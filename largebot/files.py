@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import sys
 import logging
 import re
@@ -9,38 +11,46 @@ from O365.excel import WorkBook, WorkSheet, Range
 from O365.drive import Folder
 from welo365.account import O365Account
 
-
 logger = get_logger(__name__)
 
-creds = ('37aba2ba-24ac-4a9b-9553-15967ff85768', 'IO53Ev.b0T.D9_t00Hd7tsijl.GR7-u-3_')
-scopes = ['offline_access', 'Sites.Manage.All']
-account = O365Account(creds, scopes, scrape=False)
+class Config:
+    def __init__(self, LANG: str, DOMAIN: str, TASK: str, PROJ_PHASE: str):
+        self.AIE_SITE = 'AIEnablementPractice'
+        self.PROJ_SITE = 'msteams_08dd34-AmazonLex-LargeBot'
+        self.ACCOUNT = O365Account(site=self.AIE_SITE)
 
-TEAM = 'msteams_08dd34-AmazonLex-LargeBot'
-LANG = 'EN-US'
-DOMAIN = 'Finance'
-TASK = 'Intent'
-PROD_PHASE = '_Training'
-PROD_PATH = '/'.join([
-    'Amazon Lex - LargeBot',
-    'Data Creation',
-    LANG
-    ])
-PROD_SITE = f"/sites/{TEAM}"
-PROD_FOLDER = account.get_folder_from_path(PROD_PATH, PROD_SITE)
-INTERNAL_SITE = '/sites/AIEnablementPractice'
-INTERNAL_PATH = '/'.join([
-    'Amazon Web Services, Inc',
-    'Bot Training & Testing Data (LargeBot)',
-    'Production Planning',
-    'Files for Processing'
-])
-KEY_PATH = f"{INTERNAL_PATH}/Intent_Intent IDs Keys"
-FILE_PATH = f"{INTERNAL_PATH}/Processed Files/{LANG}/{PROD_PHASE}/{DOMAIN}/{TASK}s"
-KEY_FOLDER = account.get_folder_from_path(KEY_PATH, INTERNAL_SITE)
-FILE_FOLDER = account.get_folder_from_path(FILE_PATH, INTERNAL_SITE)
-RESOURCE_PATH = f"{PROD_PATH}/{PROD_PHASE}/Creator"
-RESOURCE_FOLDER = account.get_folder_from_path(RESOURCE_PATH, PROD_SITE)
+        self.LANG = LANG
+        self.DOMAIN = DOMAIN
+        self.TASK = TASK
+        self.PROJ_PHASE = PROJ_PHASE
+        self.PROJ_PATH = [
+            'Amazon Lex - LargeBot',
+            'Data Creation',
+            self.LANG
+            ]
+        self.PROJ_FOLDER = self.ACCOUNT.get_folder(*self.PROJ_PATH, site=self.PROJ_SITE)
+        self.AIE_PATH = [
+            'Amazon Web Services, Inc',
+            'Bot Training & Testing Data (LargeBot)',
+            'Production Planning',
+            'Files for Processing'
+        ]
+        self.KEY_PATH = 'Intent_Intent IDs Keys'
+        self.FILE_PATH = [
+            'Processed Files',
+            self.LANG,
+            self.PROJ_PHASE,
+            self.DOMAIN,
+            f"{self.TASK}s"
+        ]
+        self.KEY_FOLDER = self.ACCOUNT.get_folder(*self.AIE_PATH, self.KEY_PATH)
+        self.FILE_FOLDER = self.ACCOUNT.get_folder(*self.AIE_PATH, *self.FILE_PATH)
+        self.RESOURCE_PATH = [
+            *self.PROJ_PATH,
+            self.PROJ_PHASE,
+            'Creator'
+        ]
+        self.RESOURCE_FOLDER = self.ACCOUNT.get_folder(*self.RESOURCE_PATH, site=self.PROJ_SITE)
 
 
 class Ranger:
@@ -89,9 +99,9 @@ class FileStatus(Ranger):
 
 
 class TaskFile(Ranger):
-    def __init__(self, name: str, _range: Range):
+    def __init__(self, name: str, _range: Range, CONFIG: Config):
         self.name = name
-        self.file = FILE_FOLDER.get_item(name)
+        self.file = CONFIG.FILE_FOLDER.get_item(name)
         super().__init__(_range)
 
     def __repr__(self):
@@ -156,10 +166,10 @@ class ResourceAssignment(Ranger):
 
 
 class Resource:
-    def __init__(self, code: str, _range: Range):
+    def __init__(self, code: str, _range: Range, CONFIG: Config):
         self.code = code
         self.assignment = ResourceAssignment(_range)
-        self.folder: Folder = RESOURCE_FOLDER.get_item(code).get_item(DOMAIN)
+        self.folder: Folder = CONFIG.RESOURCE_FOLDER.get_item(code).get_item(CONFIG.DOMAIN)
         self.completed_folder = self.folder.get_item('Completed')
         if self.completed_folder is None:
             logger.info(f"No 'Completed' folder in resource folder. Creating one.")
@@ -201,20 +211,29 @@ class Resource:
         task_file.assign(self.folder)
 
     def complete(self):
-        completed_file = self.folder.get_item(self.filename)
-        logger.info(f"Moving completed file {self.filename} to 'Completed' folder.")
-        completed_file.move(self.completed_folder)
+        already_completed_file = None
+        if (alread_completed_file := self.completed_folder.get_item(self.filename)):
+            logger.info(f"{self.filename} already moved to 'Completed' folder by resource.")
+        if (completed_file := self.folder.get_item(self.filename)):
+            if alread_completed_file is not None:
+                logger.info(f"Removing duplicate file {self.filename} from resource folder.")
+                completed_file.delete()
+                return
+            logger.info(f"Moving completed file {self.filename} to 'Completed' folder.")
+            completed_file.move(self.completed_folder)
 
 
 class FileList:
-    def __init__(self, task: str = TASK, sheet_name: str = 'Files'):
-        self.name = f"{DOMAIN}_Intent Key.xlsx"
-        self.file = KEY_FOLDER.get_item(self.name)
+    SHEET_NAME = 'Files'
+    def __init__(self, CONFIG: Config):
+        self.CONFIG = CONFIG
+        self.name = f"{CONFIG.DOMAIN}_Intent Key.xlsx"
+        self.file = CONFIG.KEY_FOLDER.get_item(self.name)
         self.wb = WorkBook(self.file, use_session=False, persist=False)
-        self.ws = self.wb.get_worksheet(sheet_name)
+        self.ws = self.wb.get_worksheet(self.SHEET_NAME)
         self.task_files = (
-            TaskFile(fname, self.ws.get_range(fname))
-            for value in self.ws.get_range(f"{task}FileName").values
+            TaskFile(fname, self.ws.get_range(fname), CONFIG)
+            for value in self.ws.get_range(f"{CONFIG.TASK}FileName").values
             if (fname := value[0])
         )
 
@@ -227,7 +246,7 @@ class FileList:
         )
 
     def complete(self, resource: Resource):
-        task_file = TaskFile(resource.filename, self.ws.get_range(resource.filename))
+        task_file = TaskFile(resource.filename, self.ws.get_range(resource.filename), self.CONFIG)
         logger.info(f"{task_file} completed by Resource {resource.code}.")
         task_file.complete()
         resource.complete()
@@ -243,18 +262,19 @@ class FileList:
 
 
 class ResourceList:
-    def __init__(self, lang: str = LANG, sheet_name: str = LANG):
-        self.name = f"{lang}_LargeBot Resources List.xlsx"
-        self.file = PROD_FOLDER.get_item(self.name)
+    def __init__(self, CONFIG: Config):
+        self.CONFIG = CONFIG
+        self.name = f"{CONFIG.LANG}_LargeBot Resources List.xlsx"
+        self.file = CONFIG.PROJ_FOLDER.get_item(self.name)
         self.wb = WorkBook(self.file, use_session=False, persist=False)
-        self.ws = self.wb.get_worksheet(sheet_name)
+        self.ws = self.wb.get_worksheet(CONFIG.LANG)
         self.resource_codes = [
             resource_code
             for value in self.ws.get_range('ResourceCodes').values
             if (resource_code := value[0])
         ]
         self.resources = (
-            Resource(resource_code, self.ws.get_range(resource_code))
+            Resource(resource_code, self.ws.get_range(resource_code), CONFIG)
             for resource_code in self.resource_codes
         )
 
@@ -271,9 +291,11 @@ class ResourceList:
 
 
 
-def main():
-    FILE_LIST = FileList()
-    RESOURCE_LIST = ResourceList()
+def automate(LANG: str, DOMAIN: str, TASK: str, PROJ_PHASE: str):
+    CONFIG = Config(LANG, DOMAIN, TASK, PROJ_PHASE)
+
+    FILE_LIST = FileList(CONFIG)
+    RESOURCE_LIST = ResourceList(CONFIG)
     for resource in RESOURCE_LIST.resources:
         logger.info(f"Checking resource: {resource}")
         if resource.unassigned:
@@ -283,38 +305,5 @@ def main():
         if resource.completed:
             FILE_LIST.complete(resource)
             if (task_file := next(FILE_LIST)):
+                logger.info(f"Assigning new task {task_file.name} to Resource {resource.code}.")
                 resource.assign(task_file)
-
-# resource_codes = [
-#     value[0]
-#     for value in resource_list.get_range('Resource_Code').values
-# ]
-#
-# filenames = [
-#    value[0]
-#     for value in file_list.get_range(f"{TASK}FileName").values
-# ]
-#
-# unassigned_files = []
-# completed_files = []
-#
-# for filename in filenames:
-#     filestatus = file_list.get_range(filename).values[0][0]
-#     if filestatus == 'Not Started':
-#         unassigned_files.append(filename)
-#
-# def main():
-#     for resource_code in resource_codes:
-#         resource_range = resource_list.get_range(resource_code)
-#         resource_name, filename, filestatus, notes = resource_range.values[0]
-#         if resource_name != '':
-#             if filename == '':
-#                 filename = unassigned_files[0]
-#                 unassigned_files = unassigned_files[1:]
-#             if filename != '' and filestatus == 'Completed':
-#                 completed_files.append(filename)
-#                 filename = unassigned_files[0]
-#                 filestatus = 'Not Started'
-#                 unassigned_files = unassigned_files[1:]
-#         resource_range.values = [[resource_name, filename, filestatus, notes]]
-#         resource_range.update()

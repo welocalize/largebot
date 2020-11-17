@@ -22,4 +22,5 @@ def get_logger(name: str = None):
     fh.setFormatter(formatter)
     fh.setLevel(logging.DEBUG)
     logger.addHandler(fh)
+    return logger
 
