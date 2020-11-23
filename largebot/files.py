@@ -286,31 +286,38 @@ class Resource:
         self.assignment = ''
 
     def process(self, task_file: TaskFile, file_list: FileList, resource_list: ResourceList = None, dry_run: bool = False):
+        logger.info(f"Process: {self.status=}")
         if self.finished_manually:
             logger.debug(f"Updating status to {self.assignment_status}.")
             self.status = self.assignment_status
+        logger.info(f"Process after finished_manually: {self.status=}")
         if self.completed:
             logger.debug(f"Completing {self.assignment} for {self.name} [{self.code}].")
             self.complete(dry_run=dry_run)
             task_file.record(status='Completed')
+        logger.info(f"Process after completed: {self.status=}")
         if self.accepted:
             logger.debut(f"Processing {self.assignment} as 'Accepted' by {self.name} [{self.code}].")
             self.accept(dry_run=dry_run)
             task_file.record(status='Accepted')
+        logger.info(f"Process after accepted: {self.status=}")
         if self.rejected:
             logger.debug(f"Processing {self.assignment} as 'Rejected' by {self.name} [{self.code}].")
             rejected_task_file = file_list.get_single_task_file(self.assignment, role='Creator')
             rejected_resource = resource_list.get_single_resource(rejected_task_file.assignment, role='Creator')
             self.reject(rejected_resource, dry_run=dry_run)
             task_file.record(status='Rejected')
-        if self.unassigned:
+        logger.info(f"Process after rejected: {self.status=}")
+        if self.needs_assignment:
             logger.debug(f"Assigning {task_file} to {self.name} [{self.code}].")
             self.assign(task_file, dry_run=dry_run)
+            logger.info(f"Process after needs_assignment: {self.status=}")
             return
-        if self.assignment_status != 'In Progress':
+        if self.status == 'In Progress' and self.assignment_status != 'In Progress':
             logger.warning(f"Assigned file {self.assignment} not in working folder. Recopying from central repository.")
             assigned_file = file_list.get_single_task_file(self.assignment, role=self.role)
             assigned_file.assign(self)
+        logger.info(f"Process after final: {self.status=}")
         return task_file
 
 
