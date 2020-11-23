@@ -540,7 +540,7 @@ def assign_creators(
         logger.info(f"Processing {task_file}.")
         FILE_LIST.processed.append(task_file)
         if task_file.assigned:
-            logger.info(f"No action needed for {task_file}.")
+            logger.debug(f"No action needed for {task_file}.")
             continue
         for resource in RESOURCE_LIST.resources:
             logger.info(f"Processing {resource}.")
@@ -610,7 +610,7 @@ def assign_qcs(
         logger.info(f"Processing {task_file}.")
         FILE_LIST.processed.append(task_file)
         if task_file.assigned:
-            logger.info(f"No action needed for {task_file}.")
+            logger.debug(f"No action needed for {task_file}.")
             continue
         for resource in RESOURCE_LIST.resources:
             logger.info(f"Processing {resource}.")
