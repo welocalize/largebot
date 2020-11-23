@@ -4,6 +4,9 @@ import typer
 import time
 
 from largebot.files import assign_creators, assign_qcs
+from largebot.logger import get_logger
+
+logger = get_logger(__name__)
 
 app = typer.Typer()
 
