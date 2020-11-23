@@ -299,7 +299,7 @@ class Resource:
             task_file.record(status='Completed')
         logger.info(f"Process after completed: {self.status=}")
         if self.accepted:
-            logger.debut(f"Processing {self.assignment} as 'Accepted' by {self.name} [{self.code}].")
+            logger.debug(f"Processing {self.assignment} as 'Accepted' by {self.name} [{self.code}].")
             self.accept(dry_run=dry_run)
             task_file.record(status='Accepted')
         logger.info(f"Process after accepted: {self.status=}")
