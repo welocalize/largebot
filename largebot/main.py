@@ -14,12 +14,14 @@ app = typer.Typer()
 def refresh_creators(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
-        task: str = typer.Argument('Intent')
+        task: str = typer.Argument('Intent'),
+        dry_run: bool = typer.Option(False, '--dry-run', '-d')
 ):
     assign_creators(
         LANG=lang,
         PHASE=phase,
-        TASK=task
+        TASK=task,
+        dry_run=dry_run
     )
 
 
@@ -27,12 +29,14 @@ def refresh_creators(
 def refresh_qcs(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
-        task: str = typer.Argument('Intent')
+        task: str = typer.Argument('Intent'),
+        dry_run: bool = typer.Option(False, '--dry-run', '-d')
 ):
     assign_qcs(
         LANG=lang,
         PHASE=phase,
-        TASK=task
+        TASK=task,
+        dry_run=dry_run
     )
 
 
@@ -40,18 +44,21 @@ def refresh_qcs(
 def refresh_all(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
-        task: str = typer.Argument('Intent')
+        task: str = typer.Argument('Intent'),
+        dry_run: bool = typer.Option(False, '--dry-run', '-d')
 ):
     assign_creators(
         LANG=lang,
         PHASE=phase,
-        TASK=task
+        TASK=task,
+        dry_run=dry_run
     )
     time.sleep(15)
     assign_qcs(
         LANG=lang,
         PHASE=phase,
-        TASK=task
+        TASK=task,
+        dry_run=dry_run
     )
 
 

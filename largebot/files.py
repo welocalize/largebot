@@ -198,16 +198,18 @@ class Resource:
 
     @property
     def assignment_status(self):
-        if not self.assigned:
+        logger.info(f"{self.assigned=}")
+        logger.info(f"{self.unassigned=}")
+        if self.unassigned:
             return 'N/A'
         assigned_file = None
         if self.assigned_domain and (assigned_file := self.assigned_domain.folder.get_item(self.assignment)):
             for status in ['Completed', 'Accepted', 'Rejected']:
-                if (status_folder := getattr(self.assigned_domain, status, None)):
-                    status_file = status_folder.get_item(self.assignment)
-                    if status_file and assigned_file:
-                        logger.warning(f"Duplicate files present. Removing production version.")
-                        assigned_file.delete()
+                if (status_folder := getattr(self.assigned_domain, status.lower(), None)):
+                    if (status_file := status_folder.get_item(self.assignment)):
+                        if assigned_file is not None:
+                            logger.warning(f"Duplicate files present. Removing production version.")
+                            assigned_file.delete()
                         return status
         return 'In Progress' if assigned_file else 'N/A'
 
@@ -287,7 +289,7 @@ class Resource:
 
     def process(self, task_file: TaskFile, file_list: FileList, resource_list: ResourceList = None, dry_run: bool = False):
         logger.info(f"Process: {self.status=}")
-        if self.finished_manually:
+        if self.finished_manually and self.status == 'In Progress':
             logger.debug(f"Updating status to {self.assignment_status}.")
             self.status = self.assignment_status
         logger.info(f"Process after finished_manually: {self.status=}")
