@@ -435,12 +435,9 @@ class ResourceList:
         self.ws.unprotect()
         logger.debug('Getting Resource List DataFrame object.')
         self.df = get_df(self.ws)
-        self.frange = self.ws.get_range(f"A2:E{len(self.df) + 1}")
-        self.format = self.frange.get_format()
-        self.format.background_color = '#ffd8cc'
-        self.format.update()
-        self.ws.protect()
         self.resource_codes = self.df.index.tolist()
+        self.frange = None
+        self.format = None
         logger.debug(f"{self.resource_codes=}")
         logger.debug(f"{self.df.values.tolist()=}")
         resource_folders = [
@@ -463,6 +460,7 @@ class ResourceList:
             )
         )
         self.processed = []
+        self.block()
 
     def get_single_resource(self, resource_name: str, role: str):
         path = [*self.path[:-1], role]
@@ -480,16 +478,26 @@ class ResourceList:
     def __len__(self):
         return len(self.resource_codes)
 
-    def update(self, values: list = None, file_list: FileList = None, dry_run: bool = False):
+    def block(self):
+        self.frange = self.ws.get_range(f"A2:E{len(self.df) + 1}")
+        self.format = self.frange.get_format()
+        self.format.background_color = '#ffd8cc'
+        self.format.update()
+        self.ws.protect()
+
+    def unblock(self):
         self.ws.unprotect()
+        self.format.background_color = None
+        self.format.update()
+
+    def update(self, values: list = None, file_list: FileList = None, dry_run: bool = False):
+        self.unblock()
         if values and not dry_run:
             address = f"B2:{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[len(values[0])]}{len(values) + 1}"
             _range = self.ws.get_range(address)
             _range.update(values=values)
             if self.role == 'Creator' and file_list is not None:
                 self.release_qc_files(file_list=file_list)
-        self.format.background_color = None
-        self.format.update()
 
     def release_qc_files(self, file_list: FileList):
         for filename in [to_release for resource in self.processed if (to_release := resource.needs_released)]:
@@ -540,14 +548,22 @@ def assign_creators(
         role=ROLE
     )
 
+    if all(
+            status in ['Not Started', 'In Progress']
+            for status in RESOURCE_LIST.df['Status'].tolist()
+    ):
+        logger.info('All resources currently have an active assignment.')
+        RESOURCE_LIST.unblock()
+        return
+
     for task_file in FILE_LIST:
-        logger.info(f"Processing {task_file}.")
+        logger.debug(f"Processing {task_file}.")
         FILE_LIST.processed.append(task_file)
         if task_file.assigned:
             logger.debug(f"No action needed for {task_file}.")
             continue
         for resource in RESOURCE_LIST.resources:
-            logger.info(f"Processing {resource}.")
+            logger.info(f"Processing {resource} and {task_file}.")
             task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
             RESOURCE_LIST.processed.append(resource)
             if not task_file:
@@ -610,14 +626,22 @@ def assign_qcs(
         role=ROLE
     )
 
+    if all(
+            status in ['Not Started', 'In Progress']
+            for status in RESOURCE_LIST.df['Status'].tolist()
+    ):
+        logger.info('All resources currently have an active assignment.')
+        RESOURCE_LIST.unblock()
+        return
+
     for task_file in FILE_LIST:
-        logger.info(f"Processing {task_file}.")
+        logger.debug(f"Processing {task_file}.")
         FILE_LIST.processed.append(task_file)
         if task_file.assigned:
             logger.debug(f"No action needed for {task_file}.")
             continue
         for resource in RESOURCE_LIST.resources:
-            logger.info(f"Processing {resource}.")
+            logger.info(f"Processing {resource} and {task_file}.")
             RESOURCE_LIST.processed.append(resource)
             task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
             if not task_file:
