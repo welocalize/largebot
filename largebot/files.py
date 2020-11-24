@@ -198,8 +198,6 @@ class Resource:
 
     @property
     def assignment_status(self):
-        if self.unassigned:
-            return 'N/A'
         assigned_file = None
         if self.assigned_domain and (assigned_file := self.assigned_domain.folder.get_item(self.assignment)):
             for status in ['Completed', 'Accepted', 'Rejected']:
@@ -217,7 +215,7 @@ class Resource:
 
     @property
     def unassigned(self):
-        return not self.assigned
+        return bool(self.assignment in ['', 'N/A'])
 
     @property
     def completed(self):
