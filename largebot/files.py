@@ -266,7 +266,7 @@ class Resource:
                 accepted_file.move(self.assigned_domain.accepted)
         self.assignment = ''
 
-    def reject(self, rejected_resource: Resource, dry_run: bool = False):
+    def reject(self, rejected_resource: Resource, dry_run: bool = False, return_file: bool = True):
         if self.finished_manually:
             logger.info(f"{self.assignment} already moved to 'Rejected' folder by resource.")
             if self.assignment_status == 'In Progress':
@@ -275,14 +275,23 @@ class Resource:
                 return
         if (rejected_file := self.assigned_domain.folder.get_item(self.assignment)):
             logger.info(f"Moving rejected file {self.assignment} to 'Rejected' folder.")
-            logger.info(f"Reassigning rejected file {rejected_file} to {rejected_resource.name} [{rejected_resource.code}].")
-            if not dry_run:
+            if not dry_run and return_file:
+                logger.info(
+                    f"Reassigning rejected file {rejected_file} to {rejected_resource.name} [{rejected_resource.code}]."
+                )
                 rejected_file.move(self.assigned_domain.rejected)
                 domain = 'Media_Cable' if rejected_file.name.split('_')[3] == 'MC' else 'Finance'
                 rejected_file.copy(rejected_resource.get_domain(domain).folder)
         self.assignment = ''
 
-    def process(self, task_file: TaskFile, file_list: FileList, resource_list: ResourceList = None, dry_run: bool = False):
+    def process(
+            self,
+            task_file: TaskFile,
+            file_list: FileList,
+            resource_list: ResourceList = None,
+            dry_run: bool = False,
+            return_file: bool = True
+    ):
         logger.debug(f"Process: {self.status=}")
         if self.finished_manually and self.status == 'In Progress':
             logger.debug(f"Updating status to {self.assignment_status}.")
@@ -302,7 +311,7 @@ class Resource:
             logger.debug(f"Processing {self.assignment} as 'Rejected' by {self.name} [{self.code}].")
             rejected_task_file = file_list.get_single_task_file(self.assignment, role='Creator')
             rejected_resource = resource_list.get_single_resource(rejected_task_file.assignment, role='Creator')
-            self.reject(rejected_resource, dry_run=dry_run)
+            self.reject(rejected_resource, dry_run=dry_run, return_file=return_file)
             task_file.record(status='Rejected')
         logger.debug(f"Process after rejected: {self.status=}")
         if self.needs_assignment:
@@ -564,7 +573,7 @@ def assign_creators(
             continue
         for resource in RESOURCE_LIST.resources:
             logger.info(f"Processing {resource} and {task_file}.")
-            task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
+            task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run, return_file=False)
             RESOURCE_LIST.processed.append(resource)
             if not task_file:
                 break
@@ -643,7 +652,7 @@ def assign_qcs(
         for resource in RESOURCE_LIST.resources:
             logger.info(f"Processing {resource} and {task_file}.")
             RESOURCE_LIST.processed.append(resource)
-            task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
+            task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run, return_file=False)
             if not task_file:
                 break
         else:
