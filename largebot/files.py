@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import pandas as pd
+import re
 
 from welo365 import O365Account, WorkBook, Folder, Drive
 
@@ -275,14 +276,35 @@ class Resource:
                 return
         if (rejected_file := self.assigned_domain.folder.get_item(self.assignment)):
             logger.info(f"Moving rejected file {self.assignment} to 'Rejected' folder.")
-            if not dry_run and return_file:
+            if not dry_run:
                 logger.info(
                     f"Reassigning rejected file {rejected_file} to {rejected_resource.name} [{rejected_resource.code}]."
                 )
                 rejected_file.move(self.assigned_domain.rejected)
-                domain = 'Media_Cable' if rejected_file.name.split('_')[3] == 'MC' else 'Finance'
-                rejected_file.copy(rejected_resource.get_domain(domain).folder)
+                if return_file:
+                    self.return_file(rejected_file.name, rejected_resource)
         self.assignment = ''
+
+    def return_file(self, filename: str, rejected_resource: Resource):
+        domain = 'Media_Cable' if filename.split('_')[3] == 'MC' else 'Finance'
+        rejected_info = re.search(r'(?P<rej_domain>MC|Fi)(_|-|\s)(?P<rej_number>[\d]{2,3})', filename)
+        if not rejected_info:
+            return
+        rej_domain = rejected_info.groupdict().get('rej_domain')
+        rej_number = rejected_info.groupdict().get('rej_number')
+        for item in self.assigned_domain.rejected.get_items():
+            if rej_domain in item.name and rej_number in item.name:
+                logger.info(f"Copying {item.name} to folder of resource: {rejected_resource.name}.")
+                item.copy(rejected_resource.get_domain(domain).folder)
+
+    def return_all_files(self, resource_list: ResourceList, file_list: FileList):
+        for domain in self.finance, self.media_cable:
+            if domain.rejected:
+                for item in domain.rejected.get_items():
+                    if re.match(r'^(EN|ES)_(T[A-z])_(Ints|Utts)_(MC|Fi)_([\d]{3}).xlsx$', item.name):
+                        rejected_task_file = file_list.get_single_task_file(self.assignment, role='Creator')
+                        rejected_resource = resource_list.get_single_resource(rejected_task_file.assignment, role='Creator')
+                        self.return_file(item.name, rejected_resource)
 
     def process(
             self,
@@ -413,14 +435,31 @@ class FileList:
     def __iter__(self):
         yield from self.task_files
 
-    def update(self, finance_values: list = None, media_cable_values: list = None, dry_run: bool = False):
-        if dry_run:
-            return
-        for domain, values in [('Finance', finance_values), ('Media_Cable', media_cable_values)]:
-            if values:
+    def update(self, dry_run: bool = False):
+        if self.processed:
+            self.processed.sort(key=lambda x: x.name)
+            for domain in ('Finance', 'Media_Cable'):
+                domain_key = self.get_domain(domain=domain)
+                updates = [
+                    task_file
+                    for task_file in self.processed
+                    if task_file.domain == domain
+                ]
+                values = [
+                    [*task_file]
+                    for task_file in updates
+                ]
                 address = f"B2:{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[len(values[0])]}{len(values) + 1}"
-                _range = self.get_domain(domain=domain).ws.get_range(address)
-                _range.update(values=values)
+                logger.info(f"First file: {updates[0]}.")
+                logger.info(f"Last file: {updates[-1]}.")
+                logger.info(f"{domain} update address: {domain_key.task}{domain_key.role}!{address}.")
+                _range = domain_key.ws.get_range(address)
+                for task_file, (old_status, old_assignment) in zip(
+                    updates, _range.values
+                ):
+                    logger.info(f"{task_file.name}: {old_assignment} [{old_status}] -> {task_file.assignment} [{task_file.status}]")
+                if not dry_run:
+                    _range.update(values=values)
 
 
 class ResourceList:
@@ -469,7 +508,6 @@ class ResourceList:
             )
         )
         self.processed = []
-        self.block()
 
     def get_single_resource(self, resource_name: str, role: str):
         path = [*self.path[:-1], role]
@@ -487,6 +525,13 @@ class ResourceList:
     def __len__(self):
         return len(self.resource_codes)
 
+    def __enter__(self):
+        self.block()
+        return self
+
+    def __exit__(self, type, value, traceback):
+        self.unblock()
+
     def block(self):
         self.frange = self.ws.get_range(f"A2:E{len(self.df) + 1}")
         self.format = self.frange.get_format()
@@ -499,14 +544,26 @@ class ResourceList:
         self.format.background_color = None
         self.format.update()
 
-    def update(self, values: list = None, file_list: FileList = None, dry_run: bool = False):
+    def update(self, file_list: FileList = None, dry_run: bool = False):
         self.unblock()
-        if values and not dry_run:
+        if self.processed:
+            self.processed.sort(key=lambda x: x.code)
+            values = [
+                [*resource]
+                for resource in self.processed
+            ]
             address = f"B2:{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[len(values[0])]}{len(values) + 1}"
+            logger.info(f"Resource update address: {address}.")
             _range = self.ws.get_range(address)
-            _range.update(values=values)
-            if self.role == 'Creator' and file_list is not None:
-                self.release_qc_files(file_list=file_list)
+            for resource, (_, old_assignment, old_status) in zip(
+                    self.processed, _range.values
+            ):
+                logger.info(f"{resource.name}: {old_assignment} [{old_status}] -> {resource.assignment} [{resource.status}]")
+            if not dry_run:
+                _range.update(values=values)
+                if self.role == 'Creator' and file_list is not None:
+                    self.release_qc_files(file_list=file_list)
+
 
     def release_qc_files(self, file_list: FileList):
         for filename in [to_release for resource in self.processed if (to_release := resource.needs_released)]:
@@ -550,68 +607,51 @@ def assign_creators(
         task=TASK,
         role=ROLE
     )
-    RESOURCE_LIST = ResourceList(
+
+    with ResourceList(
         drive=PROJ_DRIVE,
         lang=LANG,
         phase=PHASE,
         role=ROLE
-    )
+    ) as RESOURCE_LIST:
+        if all(
+                status in ['Not Started', 'In Progress']
+                for status in RESOURCE_LIST.df['Status'].tolist()
+        ):
+            logger.info('All resources currently have an active assignment.')
+            return
 
-    if all(
-            status in ['Not Started', 'In Progress']
-            for status in RESOURCE_LIST.df['Status'].tolist()
-    ):
-        logger.info('All resources currently have an active assignment.')
-        RESOURCE_LIST.unblock()
-        return
-
-    for task_file in FILE_LIST:
-        logger.debug(f"Processing {task_file}.")
-        FILE_LIST.processed.append(task_file)
-        if task_file.assigned:
-            logger.debug(f"No action needed for {task_file}.")
-            continue
-        for resource in RESOURCE_LIST.resources:
-            logger.info(f"Processing {resource} and {task_file}.")
-            task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run, return_file=False)
-            RESOURCE_LIST.processed.append(resource)
-            if not task_file:
+        for task_file in FILE_LIST:
+            logger.debug(f"Processing {task_file}.")
+            FILE_LIST.processed.append(task_file)
+            if task_file.assigned:
+                logger.debug(f"No action needed for {task_file}.")
+                continue
+            for resource in RESOURCE_LIST.resources:
+                logger.info(f"Processing {resource} and {task_file}.")
+                task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
+                RESOURCE_LIST.processed.append(resource)
+                if not task_file:
+                    break
+            else:
+                logger.info('All resources have been processed. Exiting loop.')
                 break
-        else:
-            logger.info('All resources have been processed. Exiting loop.')
-            break
 
-    FILE_LIST.processed.sort(key=lambda x: x.name)
-    RESOURCE_LIST.processed.sort(key=lambda x: x.code)
-
-    FILE_LIST.update(
-        finance_values=[
-            [*task_file]
-            for task_file in FILE_LIST.processed
-            if task_file.domain == 'Finance'
-        ],
-        media_cable_values=[
-            [*task_file]
-            for task_file in FILE_LIST.processed
-            if task_file.domain == 'Media_Cable'
-        ],
-        dry_run=dry_run
-    )
-    RESOURCE_LIST.update(
-        values=[
-            [*resource]
-            for resource in RESOURCE_LIST.processed
-        ],
-        file_list=FILE_LIST,
-        dry_run=dry_run
-    )
+        FILE_LIST.update(
+            dry_run=dry_run
+        )
+        RESOURCE_LIST.update(
+            file_list=FILE_LIST,
+            dry_run=dry_run
+        )
 
 def assign_qcs(
         LANG: str = 'EN-US',
         PHASE: str = '_Training',
         TASK: str = 'Intent',
         check_assignments: bool = False,
-        dry_run: bool = False
+        dry_run: bool = False,
+        return_all: bool = False
 ):
     ROLE = 'QC'
     logger.debug('Getting welo365 Account.')
@@ -628,57 +668,42 @@ def assign_qcs(
         task=TASK,
         role=ROLE
     )
-    RESOURCE_LIST = ResourceList(
+
+    with ResourceList(
         drive=PROJ_DRIVE,
         lang=LANG,
         phase=PHASE,
         role=ROLE
-    )
+    ) as RESOURCE_LIST:
+        if all(
+                status in ['Not Started', 'In Progress']
+                for status in RESOURCE_LIST.df['Status'].tolist()
+        ):
+            logger.info('All resources currently have an active assignment.')
+            return
 
-    if all(
-            status in ['Not Started', 'In Progress']
-            for status in RESOURCE_LIST.df['Status'].tolist()
-    ):
-        logger.info('All resources currently have an active assignment.')
-        RESOURCE_LIST.unblock()
-        return
-
-    for task_file in FILE_LIST:
-        logger.debug(f"Processing {task_file}.")
-        FILE_LIST.processed.append(task_file)
-        if task_file.assigned:
-            logger.debug(f"No action needed for {task_file}.")
-            continue
-        for resource in RESOURCE_LIST.resources:
-            logger.info(f"Processing {resource} and {task_file}.")
-            RESOURCE_LIST.processed.append(resource)
-            task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run, return_file=False)
-            if not task_file:
+        for task_file in FILE_LIST:
+            logger.debug(f"Processing {task_file}.")
+            FILE_LIST.processed.append(task_file)
+            if task_file.assigned:
+                logger.debug(f"No action needed for {task_file}.")
+                continue
+            for resource in RESOURCE_LIST.resources:
+                logger.info(f"Processing {resource} and {task_file}.")
+                RESOURCE_LIST.processed.append(resource)
+                if return_all:
+                    logger.info('Returning all rejected files.')
+                    resource.return_all_files(RESOURCE_LIST, FILE_LIST)
+                task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
+                if not task_file:
+                    break
+            else:
+                logger.info('All resources have been processed. Exiting loop.')
                 break
-        else:
-            logger.info('All resources have been processed. Exiting loop.')
-            break
 
-    FILE_LIST.processed.sort(key=lambda x: x.name)
-    RESOURCE_LIST.processed.sort(key=lambda x: x.code)
-
-    FILE_LIST.update(
-        finance_values=[
-            [*task_file]
-            for task_file in FILE_LIST.processed
-            if task_file.domain == 'Finance'
-        ],
-        media_cable_values=[
-            [*task_file]
-            for task_file in FILE_LIST.processed
-            if task_file.domain == 'Media_Cable'
-        ],
-        dry_run=dry_run
-    )
-    RESOURCE_LIST.update(
-        values=[
-            [*resource]
-            for resource in RESOURCE_LIST.processed
-        ],
-        dry_run=dry_run
-    )
+        FILE_LIST.update(
+            dry_run=dry_run
+        )
+        RESOURCE_LIST.update(
+            dry_run=dry_run
+        )
