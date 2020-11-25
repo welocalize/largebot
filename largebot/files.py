@@ -125,31 +125,55 @@ class DomainFolder:
         self.folder = resource_folder.get_item(domain)
         self.parent = resource_folder
         self.completed = None
+        self.re_work_completed = None
         self.accepted = None
         self.rejected = None
         if role == 'Creator':
-            self.completed = self.folder.get_item('Completed')
-            if self.completed is None:
-                logger.debug(f"No 'Completed' folder in resource folder. Creating one.")
-                self.completed = self.folder.create_child_folder('Completed')
-            if (accepted := self.folder.get_item('Accepted')):
+            folders = list(self.folder.get_child_folders())
+            self.completed = next(
+                filter(
+                    lambda x: x.name == 'Completed',
+                    folders
+                ),
+                None
+            ) or self.folder.create_child_folder('Completed')
+            self.re_work_completed = next(
+                filter(
+                    lambda x: x.name in ['Re-work Completed', 'Re-work Complete'],
+                    folders
+                ),
+                None
+            ) or self.folder.create_child_folder('Re-work Completed')
+            if self.re_work_completed.name == 'Re-work Complete':
+                self.re_work_completed = self.re_work_completed.move(self.folder, name='Re-work Completed')
+            if (accepted := next(filter(lambda x: x.name == 'Accepted', folders), None)):
                 logger.debug("Removing unnecessary 'Accepted' folder.")
                 accepted.delete()
-            if (rejected := self.folder.get_item('Rejected')):
+            if (rejected := next(filter(lambda x: x.name == 'Rejected', folders), None)):
                 logger.debug("Removing unnecessary 'Rejected' folder.")
                 rejected.delete()
         if role == 'QC':
-            if (completed := self.folder.get_item('Completed')):
+            folders = list(self.folder.get_child_folders())
+            if (completed := next(filter(lambda x: x.name == 'Completed', folders), None)):
                 logger.debug("Removing unnecessary 'Completed' folder.")
                 completed.delete()
-            self.accepted = self.folder.get_item('Accepted')
-            if self.accepted is None:
-                logger.debug(f"No 'Accepted' folder in resource folder. Creating one.")
-                self.accepted = self.folder.create_child_folder('Accepted')
-            self.rejected = self.folder.get_item('Rejected')
-            if self.rejected is None:
-                logger.debug(f"No 'Rejected' folder in resource folder. Creating one.")
-                self.rejected = self.folder.create_child_folder('Rejected')
+            if (re_work_completed := next(filter(lambda x: x.name == 'Re-work Completed', folders), None)):
+                logger.debug("Removing unnecessary 'Re-work Completed' folder.")
+                re_work_completed.delete()
+            self.accepted = next(
+                filter(
+                    lambda x: x.name == 'Accepted',
+                    folders
+                ),
+                None
+            ) or self.folder.create_child_folder('Accepted')
+            self.rejected = next(
+                filter(
+                    lambda x: x.name == 'Rejected',
+                    folders
+                ),
+                None
+            ) or self.folder.create_child_folder('Rejected')
 
 
 class Resource:
@@ -208,7 +232,7 @@ class Resource:
     def assignment_status(self):
         assigned_file = None
         if self.assigned_domain and (assigned_file := self.assigned_domain.folder.get_item(self.assignment)):
-            for status in ['Completed', 'Accepted', 'Rejected']:
+            for status in ['Completed', 'Re-work Completed', 'Accepted', 'Rejected']:
                 if (status_folder := getattr(self.assigned_domain, status.lower(), None)):
                     if (status_file := status_folder.get_item(self.assignment)):
                         if assigned_file is not None:
@@ -226,6 +250,10 @@ class Resource:
         return bool(self.assignment in ['', 'N/A'])
 
     @property
+    def re_work_completed(self):
+        return bool(self.status == 'Re-work Completed')
+
+    @property
     def completed(self):
         return bool(self.status == 'Completed')
 
@@ -239,7 +267,7 @@ class Resource:
 
     @property
     def needs_assignment(self):
-        return self.completed or self.unassigned or self.accepted or self.rejected
+        return self.completed or self.re_work_completed or self.unassigned or self.accepted or self.rejected
 
     def assign(self, task_file: TaskFile, dry_run: bool = False):
         logger.debug(f"TaskFile {task_file.name} assigned to {self.code} and marked as such in Resource List.")
@@ -257,6 +285,20 @@ class Resource:
             logger.info(f"Moving completed file {self.assignment} to 'Completed' folder.")
             if not dry_run:
                 completed_file.move(self.assigned_domain.completed)
+        self.needs_released = self.assignment
+        self.assignment = ''
+
+    def re_work_complete(self, dry_run: bool = False):
+        if self.finished_manually:
+            logger.info(f"{self.assignment} already moved to 'Re-work Completed' folder by resource.")
+            if self.assignment_status == 'In Progress':
+                logger.warning(f"Duplicate file {self.assignment} present in domain folder and 'Re-work Completed' folder.")
+                self.assignment = ''
+                return
+        if (completed_file := self.assigned_domain.folder.get_item(self.assignment)):
+            logger.info(f"Moving completed file {self.assignment} to 'Re-work Completed' folder.")
+            if not dry_run:
+                completed_file.move(self.assigned_domain.re_work_completed)
         self.needs_released = self.assignment
         self.assignment = ''
 
@@ -332,6 +374,11 @@ class Resource:
             self.complete(dry_run=dry_run)
             task_file.record(status='Completed')
         logger.debug(f"Process after completed: {self.status=}")
+        if self.re_work_completed:
+            logger.debug(f"Re-work Completing {self.assignment} for {self.name} [{self.code}].")
+            self.re_work_complete(dry_run=dry_run)
+            task_file.record(status='Re-work Completed')
+        logger.debug(f"Process after completed: {self.status=}")
         if self.accepted:
             logger.debug(f"Processing {self.assignment} as 'Accepted' by {self.name} [{self.code}].")
             self.accept(dry_run=dry_run)
@@ -339,8 +386,8 @@ class Resource:
         logger.debug(f"Process after accepted: {self.status=}")
         if self.rejected:
             logger.debug(f"Processing {self.assignment} as 'Rejected' by {self.name} [{self.code}].")
-            rejected_task_file = file_list.get_single_task_file(self.assignment, role='Creator')
-            rejected_resource = resource_list.get_single_resource(rejected_task_file.assignment, role='Creator')
+            rejected_task_file = file_list.reject_task_file(self.assignment, role='Creator')
+            rejected_resource = resource_list.reject_task_file(rejected_task_file, role='Creator')
             self.reject(rejected_resource, dry_run=dry_run, return_file=return_file)
             task_file.record(status='Rejected')
         logger.debug(f"Process after rejected: {self.status=}")
@@ -349,7 +396,7 @@ class Resource:
             self.assign(task_file, dry_run=dry_run)
             logger.debug(f"Process after needs_assignment: {self.status=}")
             return
-        if self.status == 'In Progress' and self.assignment_status != 'In Progress':
+        if self.status in ['In Progress'] and self.assignment_status != 'In Progress':
             logger.warning(f"Assigned file {self.assignment} not in working folder. Recopying from central repository.")
             assigned_file = file_list.get_single_task_file(self.assignment, role=self.role)
             assigned_file.assign(self)
@@ -412,27 +459,45 @@ class FileList:
             TaskFile(
                 filename,
                 *assignment,
-                domain_folder
+                domain_key
             )
             for filename, assignment in zip(
             self.filenames,
             self.df.drop(columns=['Domain']).values.tolist()
         )
-            if (domain_folder := self.get_domain(filename=filename))
+            if (domain_key := self.get_domain(filename=filename))
         )
         self.processed = []
 
     def get_single_task_file(self, filename: str, role: str):
-        domain_folder = self.get_domain(filename=filename)
+        domain_key = self.get_domain(filename=filename)
         task = 'Intent' if filename.split('_')[2][0] == 'I' else 'Utterance'
-        ws = domain_folder.wb.get_worksheet(f"{task}{role}Files")
+        ws = domain_key.wb.get_worksheet(f"{task}{role}Files")
         row = int(filename.split('_')[-1]) + 1
         _range = ws.get_range(f"B{row}:C{row}")
         return TaskFile(
             filename,
             *_range.values[0],
-            domain_folder
+            domain_key
         )
+
+    def update_single_task(self, task_file: TaskFile, role: str):
+        domain_key = self.get_domain(task_file.domain)
+        task = 'Intent' if task_file.name.split('_')[2][0] == 'I' else 'Utterance'
+        ws = domain_key.wb.get_worksheet(f"{task}{role}Files")
+        row = int(task_file.name.split('_')[-1]) + 1
+        _range = ws.get_range(f"B{row}:C{row}")
+        _range.update(
+            values=[
+                [*task_file]
+            ]
+        )
+
+    def reject_task_file(self, filename: str, resource: Resource):
+        rejected_task_file = self.get_single_task_file(filename, resource.role)
+        rejected_task_file.update(status='Re-work In Progress', assignment=resource.name)
+        self.update_single_task(rejected_task_file, resource.role)
+        return rejected_task_file
 
     def get_domain(self, filename: str = None, domain: str = None):
         if filename:
@@ -448,31 +513,26 @@ class FileList:
             self.processed.sort(key=lambda x: x.name)
             for domain in ['Finance', 'Media_Cable']:
                 domain_key = self.get_domain(domain=domain)
-                for task_file in self.processed:
-                    print(task_file.name, task_file.domain)
                 updates = [
                     task_file
                     for task_file in self.processed
                     if task_file.domain == domain
                 ]
-                logger.info(f"{self.processed=}")
-                logger.info(f"{updates=}")
                 values = [
                     [*task_file]
                     for task_file in updates
                 ]
-                logger.info(f"{values=}")
-                logger.info(f"{values[0]=}")
                 address = f"B2:{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[len(values[0])]}{len(values) + 1}"
-                logger.info(f"First file: {updates[0]}.")
-                logger.info(f"Last file: {updates[-1]}.")
-                logger.info(f"{domain} update address: {domain_key.task}{domain_key.role}!{address}.")
+                logger.debug(f"{domain} update address: {domain_key.task}{domain_key.role}!{address}.")
                 _range = domain_key.ws.get_range(address)
                 for task_file, (old_status, old_assignment) in zip(
                         updates, _range.values
                 ):
-                    logger.info(
-                        f"{task_file.name}: {old_assignment} [{old_status}] -> {task_file.assignment} [{task_file.status}]")
+                    update = (f"{old_assignment} [{old_status}]", f"{task_file.assignment} [{task_file.status}]")
+                    if update[0] == update[1]:
+                        logger.debug(f"{task_file.name}: {update[0]} -> {update[1]}")
+                    else:
+                        logger.info(f"{task_file.name}: {update[0]} -> {update[1]}")
                 if not dry_run:
                     _range.update(values=values)
 
@@ -524,15 +584,37 @@ class ResourceList:
         )
         self.processed = []
 
-    def get_single_resource(self, resource_name: str, role: str):
+    def get_worksheet(self, role: str):
         path = [*self.path[:-1], role]
         file = self.drive.get_item_by_path(*path, f"{self.lang}_LargeBot_{role}_Resources_List.xlsx")
         wb = WorkBook(file)
-        ws = wb.get_worksheet(self.lang)
-        df = get_df(ws)
+        return wb.get_worksheet(self.lang)
+
+    def get_single_resource(self, resource_name: str, role: str):
+        path = [*self.path[:-1], role]
+        df = get_df(self.get_worksheet(role))
         code = self.get_code_by_name(resource_name, df)
-        folder = self.drive.get_item_by_path(*path).get_item(code)
+        folder = self.drive.get_item_by_path(*path, code)
         return Resource(code, resource_name, df.loc[code]['Assignment'], df.loc[code]['Status'], folder)
+
+    def update_single_resource(self, resource: Resource):
+        ws = self.get_worksheet(resource.role)
+        row = int(resource.code.split('_')[-1]) + 1
+        _range = ws.get_range(f"B{row}:D{row}")
+        _range.update(
+            values=[
+                [*resource]
+            ]
+        )
+
+    def reject_task_file(self, task_file: TaskFile, role: str):
+        rejected_resource = self.get_single_resource(task_file.name, role)
+        rejected_resource.update(
+            assignment=task_file.name,
+            status='Re-work In Progress'
+        )
+        self.update_single_resource(rejected_resource)
+        return rejected_resource
 
     def __iter__(self):
         yield from self.resources
@@ -573,8 +655,11 @@ class ResourceList:
             for resource, (_, old_assignment, old_status) in zip(
                     self.processed, _range.values
             ):
-                logger.info(
-                    f"{resource.name}: {old_assignment} [{old_status}] -> {resource.assignment} [{resource.status}]")
+                update = (f"{old_assignment} [{old_status}]", f"{resource.assignment} [{resource.status}]")
+                if update[0] == update[1]:
+                    logger.debug(f"{resource.name}: {update[0]} -> {update[1]}")
+                else:
+                    logger.info(f"{resource.name}: {update[0]} -> {update[1]}")
             if not dry_run:
                 _range.update(values=values)
                 if self.role == 'Creator' and file_list is not None:
