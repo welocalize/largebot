@@ -15,13 +15,13 @@ def refresh_creators(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
         task: str = typer.Argument('Intent'),
-        dry_run: bool = typer.Option(False, '--dry-run', '-d')
+        DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
 ):
     assign_creators(
         LANG=lang,
         PHASE=phase,
         TASK=task,
-        dry_run=dry_run
+        DRY_RUN=DRY_RUN
     )
 
 
@@ -30,13 +30,13 @@ def refresh_qcs(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
         task: str = typer.Argument('Intent'),
-        dry_run: bool = typer.Option(False, '--dry-run', '-d')
+        DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
 ):
     assign_qcs(
         LANG=lang,
         PHASE=phase,
         TASK=task,
-        dry_run=dry_run
+        DRY_RUN=DRY_RUN
     )
 
 
@@ -45,20 +45,20 @@ def refresh_all(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
         task: str = typer.Argument('Intent'),
-        dry_run: bool = typer.Option(False, '--dry-run', '-d')
+        DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
 ):
     assign_creators(
         LANG=lang,
         PHASE=phase,
         TASK=task,
-        dry_run=dry_run
+        DRY_RUN=DRY_RUN
     )
     time.sleep(15)
     assign_qcs(
         LANG=lang,
         PHASE=phase,
         TASK=task,
-        dry_run=dry_run
+        DRY_RUN=DRY_RUN
     )
 
 
