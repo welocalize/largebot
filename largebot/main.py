@@ -65,7 +65,7 @@ def refresh_all(
 @app.command(help='Refresh relative reference to last time assignments were updated.')
 def how_long(
         LANG: str = typer.Argument('EN-US'),
-        PHASE: str = type.Argument('_Training')
+        PHASE: str = typer.Argument('_Training')
 ):
     how_long(
         LANG=LANG,
