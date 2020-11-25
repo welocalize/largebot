@@ -677,21 +677,6 @@ class ResourceList:
         self.format.background_color = None
         self.format.update()
 
-    def how_long(self):
-        data_range = {
-            'EN-US': 'A1',
-            'ES-US': 'B1'
-        }
-        ws = self.wb.get_worksheet('Data')
-        _range = ws.get_range(data_range.get(self.lang))
-        last_updated = _range.values[0][0]
-        _range = self.ws.get_range('E1')
-        _range.update(
-            values=[
-                [f"Notes - last updated {arrow.get(last_updated).humanize()}"]
-            ]
-        )
-
     def update(self, file_list: FileList = None, DRY_RUN: bool = False):
         self.unblock()
         if self.processed:
