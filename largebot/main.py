@@ -3,7 +3,7 @@
 import typer
 import time
 
-from largebot.files import assign_creators, assign_qcs
+from largebot.files import assign_creators, assign_qcs, how_long
 from largebot.logger import get_logger
 
 logger = get_logger(__name__)
@@ -59,6 +59,17 @@ def refresh_all(
         PHASE=phase,
         TASK=task,
         DRY_RUN=DRY_RUN
+    )
+
+
+@app.command(help='Refresh relative reference to last time assignments were updated.')
+def how_long(
+        LANG: str = typer.Argument('EN-US'),
+        PHASE: str = type.Argument('_Training')
+):
+    how_long(
+        LANG=LANG,
+        PHASE=PHASE
     )
 
 
