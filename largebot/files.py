@@ -50,7 +50,7 @@ class TaskFile:
     def __init__(self, name: str, status: str, assignment: str, domain_key: DomainKeyFile):
         self.name = name
         self.file = domain_key.folder.get_item(name)
-        self.domain = 'Finance' if name.split('_')[3][0] == 'F' else 'Media_Cable'
+        self.domain = domain_key.domain
         self.role = domain_key.role
         self._status = status
         self._assignment = assignment
@@ -107,12 +107,12 @@ class TaskFile:
         logger.debug(f"Moving file {self.name} to folder {target.name}.")
         return self.file.move(target)
 
-    def assign(self, resource: Resource, dry_run: bool = False):
+    def assign(self, resource: Resource, DRY_RUN: bool = False):
         logger.info(f"Marking task {self.name} 'In Progress' and assigning to {resource.name} in Intent IDs tracker.")
         self.update(status='In Progress', assignment=resource.name)
         folder = resource.get_domain(self.domain).folder
         logger.debug(f"Copying source file from internal AIE directory to resource production folder.")
-        if not dry_run:
+        if not DRY_RUN:
             self.copy(folder)
 
     def record(self, status: str):
@@ -122,6 +122,8 @@ class TaskFile:
 
 class DomainFolder:
     def __init__(self, resource_folder: Folder, domain: str, role: str):
+        self.domain = domain
+        self.role = role
         self.folder = resource_folder.get_item(domain)
         self.parent = resource_folder
         self.completed = None
@@ -145,7 +147,9 @@ class DomainFolder:
                 None
             ) or self.folder.create_child_folder('Re-work Completed')
             if self.re_work_completed.name == 'Re-work Complete':
-                self.re_work_completed = self.re_work_completed.move(self.folder, name='Re-work Completed')
+                re_work_completed = self.re_work_completed.copy(self.folder, name='Re-work Completed')
+                self.re_work_completed.delete()
+                self.re_work_completed = re_work_completed
             if (accepted := next(filter(lambda x: x.name == 'Accepted', folders), None)):
                 logger.debug("Removing unnecessary 'Accepted' folder.")
                 accepted.delete()
@@ -175,6 +179,16 @@ class DomainFolder:
                 None
             ) or self.folder.create_child_folder('Rejected')
 
+    def get_file_summary(self):
+        summary = {'In Progress': []}
+        for item in self.folder.get_items():
+            if item.is_file:
+                summary['In Progress'].append(item.name)
+            if item.is_folder:
+                for _item in item.get_items():
+                    summary.setdefault(item.name, []).append(_item.name)
+        return summary
+
 
 class Resource:
     def __init__(self, code: str, name: str, assignment: str, status: str, folder: Folder):
@@ -193,6 +207,12 @@ class Resource:
 
     def __iter__(self):
         return iter((self.name, self._assignment, self._status))
+
+    def get_file_summary(self):
+        return {
+            domain_folder.domain: domain_folder.get_file_summary()
+            for domain_folder in (self.finance,self.media_cable)
+        }
 
     @property
     def assignment(self):
@@ -269,12 +289,12 @@ class Resource:
     def needs_assignment(self):
         return self.completed or self.re_work_completed or self.unassigned or self.accepted or self.rejected
 
-    def assign(self, task_file: TaskFile, dry_run: bool = False):
+    def assign(self, task_file: TaskFile, DRY_RUN: bool = False):
         logger.debug(f"TaskFile {task_file.name} assigned to {self.code} and marked as such in Resource List.")
         self.update(assignment=task_file.name, status='Not Started')
-        task_file.assign(self, dry_run=dry_run)
+        task_file.assign(self, DRY_RUN=DRY_RUN)
 
-    def complete(self, dry_run: bool = False):
+    def complete(self, DRY_RUN: bool = False):
         if self.finished_manually:
             logger.info(f"{self.assignment} already moved to 'Completed' folder by resource.")
             if self.assignment_status == 'In Progress':
@@ -283,12 +303,12 @@ class Resource:
                 return
         if (completed_file := self.assigned_domain.folder.get_item(self.assignment)):
             logger.info(f"Moving completed file {self.assignment} to 'Completed' folder.")
-            if not dry_run:
+            if not DRY_RUN:
                 completed_file.move(self.assigned_domain.completed)
         self.needs_released = self.assignment
         self.assignment = ''
 
-    def re_work_complete(self, dry_run: bool = False):
+    def re_work_complete(self, DRY_RUN: bool = False):
         if self.finished_manually:
             logger.info(f"{self.assignment} already moved to 'Re-work Completed' folder by resource.")
             if self.assignment_status == 'In Progress':
@@ -297,12 +317,12 @@ class Resource:
                 return
         if (completed_file := self.assigned_domain.folder.get_item(self.assignment)):
             logger.info(f"Moving completed file {self.assignment} to 'Re-work Completed' folder.")
-            if not dry_run:
+            if not DRY_RUN:
                 completed_file.move(self.assigned_domain.re_work_completed)
         self.needs_released = self.assignment
         self.assignment = ''
 
-    def accept(self, dry_run: bool = False):
+    def accept(self, DRY_RUN: bool = False):
         if self.finished_manually:
             logger.info(f"{self.assignment} already moved to 'Accepted' folder by resource.")
             if self.assignment_status == 'In Progress':
@@ -311,12 +331,12 @@ class Resource:
                 return
         if (accepted_file := self.assigned_domain.folder.get_item(self.assignment)):
             logger.info(f"Moving accepted file {self.assignment} to 'Accepted' folder.")
-            if not dry_run:
+            if not DRY_RUN:
                 logger.info(f"{self.assigned_domain.accepted=}, {self.assigned_domain.folder=}")
                 accepted_file.move(self.assigned_domain.accepted)
         self.assignment = ''
 
-    def reject(self, rejected_resource: Resource, dry_run: bool = False, return_file: bool = True):
+    def reject(self, rejected_resource: Resource, DRY_RUN: bool = False, return_file: bool = True):
         if self.finished_manually:
             logger.info(f"{self.assignment} already moved to 'Rejected' folder by resource.")
             if self.assignment_status == 'In Progress':
@@ -325,7 +345,7 @@ class Resource:
                 return
         if (rejected_file := self.assigned_domain.folder.get_item(self.assignment)):
             logger.info(f"Moving rejected file {self.assignment} to 'Rejected' folder.")
-            if not dry_run:
+            if not DRY_RUN:
                 logger.info(
                     f"Reassigning rejected file {rejected_file} to {rejected_resource.name} [{rejected_resource.code}]."
                 )
@@ -361,7 +381,7 @@ class Resource:
             task_file: TaskFile,
             file_list: FileList,
             resource_list: ResourceList = None,
-            dry_run: bool = False,
+            DRY_RUN: bool = False,
             return_file: bool = True
     ):
         logger.debug(f"Process: {self.status=}")
@@ -371,29 +391,29 @@ class Resource:
         logger.debug(f"Process after finished_manually: {self.status=}")
         if self.completed:
             logger.debug(f"Completing {self.assignment} for {self.name} [{self.code}].")
-            self.complete(dry_run=dry_run)
+            self.complete(DRY_RUN=DRY_RUN)
             task_file.record(status='Completed')
         logger.debug(f"Process after completed: {self.status=}")
         if self.re_work_completed:
             logger.debug(f"Re-work Completing {self.assignment} for {self.name} [{self.code}].")
-            self.re_work_complete(dry_run=dry_run)
+            self.re_work_complete(DRY_RUN=DRY_RUN)
             task_file.record(status='Re-work Completed')
         logger.debug(f"Process after completed: {self.status=}")
         if self.accepted:
             logger.debug(f"Processing {self.assignment} as 'Accepted' by {self.name} [{self.code}].")
-            self.accept(dry_run=dry_run)
+            self.accept(DRY_RUN=DRY_RUN)
             task_file.record(status='Accepted')
         logger.debug(f"Process after accepted: {self.status=}")
         if self.rejected:
             logger.debug(f"Processing {self.assignment} as 'Rejected' by {self.name} [{self.code}].")
             rejected_task_file = file_list.reject_task_file(self.assignment, role='Creator')
             rejected_resource = resource_list.reject_task_file(rejected_task_file, role='Creator')
-            self.reject(rejected_resource, dry_run=dry_run, return_file=return_file)
+            self.reject(rejected_resource, DRY_RUN=DRY_RUN, return_file=return_file)
             task_file.record(status='Rejected')
         logger.debug(f"Process after rejected: {self.status=}")
         if self.needs_assignment:
             logger.debug(f"Assigning {task_file} to {self.name} [{self.code}].")
-            self.assign(task_file, dry_run=dry_run)
+            self.assign(task_file, DRY_RUN=DRY_RUN)
             logger.debug(f"Process after needs_assignment: {self.status=}")
             return
         if self.status in ['In Progress'] and self.assignment_status != 'In Progress':
@@ -482,7 +502,7 @@ class FileList:
         )
 
     def update_single_task(self, task_file: TaskFile, role: str):
-        domain_key = self.get_domain(task_file.domain)
+        domain_key = self.get_domain(domain=task_file.domain)
         task = 'Intent' if task_file.name.split('_')[2][0] == 'I' else 'Utterance'
         ws = domain_key.wb.get_worksheet(f"{task}{role}Files")
         row = int(task_file.name.split('_')[-1]) + 1
@@ -493,10 +513,10 @@ class FileList:
             ]
         )
 
-    def reject_task_file(self, filename: str, resource: Resource):
-        rejected_task_file = self.get_single_task_file(filename, resource.role)
-        rejected_task_file.update(status='Re-work In Progress', assignment=resource.name)
-        self.update_single_task(rejected_task_file, resource.role)
+    def reject_task_file(self, filename: str, role: str):
+        rejected_task_file = self.get_single_task_file(filename, role)
+        rejected_task_file.update(status='Re-work In Progress')
+        self.update_single_task(rejected_task_file, role)
         return rejected_task_file
 
     def get_domain(self, filename: str = None, domain: str = None):
@@ -508,7 +528,7 @@ class FileList:
     def __iter__(self):
         yield from self.task_files
 
-    def update(self, dry_run: bool = False):
+    def update(self, DRY_RUN: bool = False):
         if self.processed:
             self.processed.sort(key=lambda x: x.name)
             for domain in ['Finance', 'Media_Cable']:
@@ -533,7 +553,7 @@ class FileList:
                         logger.debug(f"{task_file.name}: {update[0]} -> {update[1]}")
                     else:
                         logger.info(f"{task_file.name}: {update[0]} -> {update[1]}")
-                if not dry_run:
+                if not DRY_RUN:
                     _range.update(values=values)
 
 
@@ -591,9 +611,12 @@ class ResourceList:
         return wb.get_worksheet(self.lang)
 
     def get_single_resource(self, resource_name: str, role: str):
+        logger.info(f"Retrieving single resource: {resource_name}")
         path = [*self.path[:-1], role]
+        logger.info(f"Resource list path: /{'/'.join(path)}")
         df = get_df(self.get_worksheet(role))
         code = self.get_code_by_name(resource_name, df)
+        logger.info(f"Single resource code: {code}")
         folder = self.drive.get_item_by_path(*path, code)
         return Resource(code, resource_name, df.loc[code]['Assignment'], df.loc[code]['Status'], folder)
 
@@ -608,7 +631,7 @@ class ResourceList:
         )
 
     def reject_task_file(self, task_file: TaskFile, role: str):
-        rejected_resource = self.get_single_resource(task_file.name, role)
+        rejected_resource = self.get_single_resource(task_file.assignment, role)
         rejected_resource.update(
             assignment=task_file.name,
             status='Re-work In Progress'
@@ -641,7 +664,7 @@ class ResourceList:
         self.format.background_color = None
         self.format.update()
 
-    def update(self, file_list: FileList = None, dry_run: bool = False):
+    def update(self, file_list: FileList = None, DRY_RUN: bool = False):
         self.unblock()
         if self.processed:
             self.processed.sort(key=lambda x: x.code)
@@ -660,7 +683,7 @@ class ResourceList:
                     logger.debug(f"{resource.name}: {update[0]} -> {update[1]}")
                 else:
                     logger.info(f"{resource.name}: {update[0]} -> {update[1]}")
-            if not dry_run:
+            if not DRY_RUN:
                 _range.update(values=values)
                 if self.role == 'Creator' and file_list is not None:
                     self.release_qc_files(file_list=file_list)
@@ -727,13 +750,19 @@ class ResourceList:
                                 summary[domain][task][filename] = (folder.name, resource.name)
         return summary
 
+    def get_file_audit(self):
+        return {
+            resource.name: resource.get_file_summary()
+            for resource in self.resources
+        }
+
 
 def assign_creators(
         LANG: str = 'EN-US',
         PHASE: str = '_Training',
         TASK: str = 'Intent',
         check_assignments: bool = False,
-        dry_run: bool = False
+        DRY_RUN: bool = False
 ):
     ROLE = 'Creator'
     FILE_LIST = FileList(
@@ -765,7 +794,7 @@ def assign_creators(
                 continue
             for resource in RESOURCE_LIST.resources:
                 logger.info(f"Processing {resource} and {task_file}.")
-                task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
+                task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, DRY_RUN=DRY_RUN)
                 RESOURCE_LIST.processed.append(resource)
                 if not task_file:
                     break
@@ -774,11 +803,11 @@ def assign_creators(
             #     break
 
         FILE_LIST.update(
-            dry_run=dry_run
+            DRY_RUN=DRY_RUN
         )
         RESOURCE_LIST.update(
             file_list=FILE_LIST,
-            dry_run=dry_run
+            DRY_RUN=DRY_RUN
         )
 
 
@@ -787,7 +816,7 @@ def assign_qcs(
         PHASE: str = '_Training',
         TASK: str = 'Intent',
         check_assignments: bool = False,
-        dry_run: bool = False,
+        DRY_RUN: bool = False,
         return_all: bool = False
 ):
     ROLE = 'QC'
@@ -820,10 +849,10 @@ def assign_qcs(
             return
 
         for task_file in FILE_LIST:
-            logger.info(f"Processing {task_file} [{task_file.domain}].")
+            logger.debug(f"Processing {task_file} [{task_file.domain}].")
             FILE_LIST.processed.append(task_file)
             if not task_file.needs_assignment:
-                logger.info(f"No action needed for {task_file}.")
+                logger.debug(f"No action needed for {task_file}.")
                 continue
             for resource in RESOURCE_LIST.resources:
                 logger.info(f"Processing {resource} and {task_file}.")
@@ -831,18 +860,22 @@ def assign_qcs(
                 if return_all:
                     logger.info('Returning all rejected files.')
                     resource.return_all_files(RESOURCE_LIST, FILE_LIST)
-                task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
+                task_file = resource.process(
+                    task_file, 
+                    FILE_LIST, 
+                    RESOURCE_LIST, 
+                    DRY_RUN=DRY_RUN
+                )
                 if not task_file:
                     break
-            '''
             else:
-                logger.info('All resources have been processed. Exiting loop.')
-                break
-            '''
+                logger.info('All resources have been processed.')
+                FILE_LIST.processed.extend([*FILE_LIST])
+                
 
         FILE_LIST.update(
-            dry_run=dry_run
+            DRY_RUN=DRY_RUN
         )
         RESOURCE_LIST.update(
-            dry_run=dry_run
+            DRY_RUN=DRY_RUN
         )
