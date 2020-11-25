@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import re
 import arrow
-import datetime
 
 import pandas as pd
 from welo365 import O365Account, WorkBook, Folder, Drive
@@ -395,11 +394,13 @@ class Resource:
             logger.debug(f"Completing {self.assignment} for {self.name} [{self.code}].")
             self.complete(DRY_RUN=DRY_RUN)
             task_file.record(status='Completed')
+            file_list.copy_completed.append(task_file.file)
         logger.debug(f"Process after completed: {self.status=}")
         if self.re_work_completed:
             logger.debug(f"Re-work Completing {self.assignment} for {self.name} [{self.code}].")
             self.re_work_complete(DRY_RUN=DRY_RUN)
             task_file.record(status='Re-work Completed')
+            file_list.copy_re_work_completed.append(task_file.file)
         logger.debug(f"Process after completed: {self.status=}")
         if self.accepted:
             logger.debug(f"Processing {self.assignment} as 'Accepted' by {self.name} [{self.code}].")
@@ -464,6 +465,8 @@ class FileList:
         self.drive = drive
         self.task = task
         self.role = role
+        self.phase = phase
+        self.lang = lang
         logger.debug('Getting Media_Cable Key object.')
         self.media_cable = DomainKeyFile(drive, 'Media_Cable', phase, lang, task, role)
         logger.debug(f"{self.media_cable=}")
@@ -476,7 +479,7 @@ class FileList:
         self.df = self.media_cable.df.append(self.finance.df)
         self.filenames = self.df.index.tolist()
         logger.debug(f"{self.get_domain(filename='EN_Tr_Ints_Fi_100')=}")
-        logger.debug('Buliding dictionary of TaskFile objects.')
+        logger.debug('Building dictionary of TaskFile objects.')
         self.task_files = (
             TaskFile(
                 filename,
@@ -490,6 +493,8 @@ class FileList:
             if (domain_key := self.get_domain(filename=filename))
         )
         self.processed = []
+        self.copy_completed = []
+        self.copy_re_work_completed = []
 
     def get_single_task_file(self, filename: str, role: str):
         domain_key = self.get_domain(filename=filename)
@@ -530,6 +535,30 @@ class FileList:
     def __iter__(self):
         yield from self.task_files
 
+    def copy_cleanup(self):
+        for domain in ['Finance', 'Media_Cable']:
+            for task in ['Intents', 'Utterances']:
+                PATH = [
+                    *FILE_PATH,
+                    self.lang,
+                    self.phase,
+                    domain,
+                    task,
+                    'QC'
+                ]
+                folder = AIE_DRIVE.get_item_by_path(*PATH)
+                for file in self.copy_completed:
+                    if file.name.split('_')[2][0] == task[0] and file.name.split('_')[3][0] == domain[0]:
+                        logger.info(f"Copying {file.name} to central QC source folder.")
+                        file.copy(folder)
+                for file in self.copy_re_work_completed:
+                    previous_versions = folder.get_item('Previous_Versions') or folder.create_child_folder('Previous_Versions')
+                    if (previous_version := folder.get_item(file.name)):
+                        logger.info(f"Moving previous version of {file.name} to 'Previous_Versions' folder.")
+                        previous_version.move(previous_versions)
+                    logger.info(f"Copying reworked {file.name} to central QC source folder.")
+                    file.copy(folder)
+
     def update(self, DRY_RUN: bool = False):
         if self.processed:
             self.processed.sort(key=lambda x: x.name)
@@ -557,7 +586,7 @@ class FileList:
                         logger.info(f"{task_file.name}: {update[0]} -> {update[1]}")
                 if not DRY_RUN:
                     _range.update(values=values)
-
+        self.copy_cleanup()
 
 class ResourceList:
     def __init__(self, drive: Drive, lang: str = 'EN-US', phase: str = '_Training', role: str = 'Creator'):
@@ -581,8 +610,6 @@ class ResourceList:
         logger.debug('Getting Resource List DataFrame object.')
         self.df = get_df(self.ws)
         self.resource_codes = self.df.index.tolist()
-        self.frange = None
-        self.format = None
         logger.debug(f"{self.resource_codes=}")
         logger.debug(f"{self.df.values.tolist()=}")
         resource_folders = [
@@ -708,8 +735,11 @@ class ResourceList:
             task = 'Intent' if filename.split('_')[2][0] == 'I' else 'Utterance'
             ws = domain_key.wb.get_worksheet(f"{task}QCFiles")
             _range = ws.get_range(filename)
-            _range.values = [['Not Started', 'Unassigned']]
-            _range.update()
+            _range.update(
+                values=[
+                    ['Not Started', 'Unassigned']
+                ]
+            )
 
     def get_code_by_name(self, resource_name: str, df: pd.DataFrame = None):
         df = df if df is not None else self.df
