@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-import pandas as pd
 import re
 
+import pandas as pd
 from welo365 import O365Account, WorkBook, Folder, Drive
 
 from largebot.logger import get_logger
@@ -37,7 +37,6 @@ FILE_PATH = [
     'Processed Files'
 ]
 
-
 logger.debug('Getting welo365 Account.')
 ACCOUNT = O365Account()
 logger.debug('Getting AIE internal drive.')
@@ -51,7 +50,7 @@ class TaskFile:
     def __init__(self, name: str, status: str, assignment: str, domain_key: DomainKeyFile):
         self.name = name
         self.file = domain_key.folder.get_item(name)
-        self.domain = domain_key.domain
+        self.domain = 'Finance' if name.split('_')[3][0] == 'F' else 'Media_Cable'
         self.role = domain_key.role
         self._status = status
         self._assignment = assignment
@@ -90,6 +89,14 @@ class TaskFile:
     def assigned(self):
         return not self.unassigned
 
+    @property
+    def ready(self):
+        return bool(self.status != 'Not Ready')
+
+    @property
+    def needs_assignment(self):
+        return self.unassigned and self.ready
+
     def copy(self, target: Folder):
         if (previous_copy := target.get_item(self.name)):
             logger.error(f"TaskFile {self.name} already present. Skipping to avoid risk of overwriting existing data.")
@@ -101,7 +108,7 @@ class TaskFile:
         return self.file.move(target)
 
     def assign(self, resource: Resource, dry_run: bool = False):
-        logger.debug(f"Marking task {self.name} 'In Progress' and assigning to {resource.name} in Intent IDs tracker.")
+        logger.info(f"Marking task {self.name} 'In Progress' and assigning to {resource.name} in Intent IDs tracker.")
         self.update(status='In Progress', assignment=resource.name)
         folder = resource.get_domain(self.domain).folder
         logger.debug(f"Copying source file from internal AIE directory to resource production folder.")
@@ -109,7 +116,7 @@ class TaskFile:
             self.copy(folder)
 
     def record(self, status: str):
-        logger.debug(f"Marking task {self.name} {status.capitalize()} in Intent IDs tracker.")
+        logger.info(f"Marking task {self.name} {status.capitalize()} in Intent IDs tracker.")
         self.update(status=status.capitalize())
 
 
@@ -303,7 +310,8 @@ class Resource:
                 for item in domain.rejected.get_items():
                     if re.match(r'^(EN|ES)_(T[A-z])_(Ints|Utts)_(MC|Fi)_([\d]{3}).xlsx$', item.name):
                         rejected_task_file = file_list.get_single_task_file(self.assignment, role='Creator')
-                        rejected_resource = resource_list.get_single_resource(rejected_task_file.assignment, role='Creator')
+                        rejected_resource = resource_list.get_single_resource(rejected_task_file.assignment,
+                                                                              role='Creator')
                         self.return_file(item.name, rejected_resource)
 
     def process(
@@ -407,9 +415,9 @@ class FileList:
                 domain_folder
             )
             for filename, assignment in zip(
-                self.filenames,
-                self.df.drop(columns=['Domain']).values.tolist()
-            )
+            self.filenames,
+            self.df.drop(columns=['Domain']).values.tolist()
+        )
             if (domain_folder := self.get_domain(filename=filename))
         )
         self.processed = []
@@ -438,26 +446,33 @@ class FileList:
     def update(self, dry_run: bool = False):
         if self.processed:
             self.processed.sort(key=lambda x: x.name)
-            for domain in ('Finance', 'Media_Cable'):
+            for domain in ['Finance', 'Media_Cable']:
                 domain_key = self.get_domain(domain=domain)
+                for task_file in self.processed:
+                    print(task_file.name, task_file.domain)
                 updates = [
                     task_file
                     for task_file in self.processed
                     if task_file.domain == domain
                 ]
+                logger.info(f"{self.processed=}")
+                logger.info(f"{updates=}")
                 values = [
                     [*task_file]
                     for task_file in updates
                 ]
+                logger.info(f"{values=}")
+                logger.info(f"{values[0]=}")
                 address = f"B2:{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[len(values[0])]}{len(values) + 1}"
                 logger.info(f"First file: {updates[0]}.")
                 logger.info(f"Last file: {updates[-1]}.")
                 logger.info(f"{domain} update address: {domain_key.task}{domain_key.role}!{address}.")
                 _range = domain_key.ws.get_range(address)
                 for task_file, (old_status, old_assignment) in zip(
-                    updates, _range.values
+                        updates, _range.values
                 ):
-                    logger.info(f"{task_file.name}: {old_assignment} [{old_status}] -> {task_file.assignment} [{task_file.status}]")
+                    logger.info(
+                        f"{task_file.name}: {old_assignment} [{old_status}] -> {task_file.assignment} [{task_file.status}]")
                 if not dry_run:
                     _range.update(values=values)
 
@@ -498,14 +513,14 @@ class ResourceList:
         self.resources = (
             Resource(resource_code, *assignment, folder)
             for resource_code, assignment, folder in zip(
-                self.resource_codes,
-                self.df.values.tolist(),
-                tuple(
-                    item
-                    for item in self.drive.get_item_by_path(*self.path).get_items()
-                    if item.name in self.resource_codes
-                )
+            self.resource_codes,
+            self.df.values.tolist(),
+            tuple(
+                item
+                for item in self.drive.get_item_by_path(*self.path).get_items()
+                if item.name in self.resource_codes
             )
+        )
         )
         self.processed = []
 
@@ -558,12 +573,12 @@ class ResourceList:
             for resource, (_, old_assignment, old_status) in zip(
                     self.processed, _range.values
             ):
-                logger.info(f"{resource.name}: {old_assignment} [{old_status}] -> {resource.assignment} [{resource.status}]")
+                logger.info(
+                    f"{resource.name}: {old_assignment} [{old_status}] -> {resource.assignment} [{resource.status}]")
             if not dry_run:
                 _range.update(values=values)
                 if self.role == 'Creator' and file_list is not None:
                     self.release_qc_files(file_list=file_list)
-
 
     def release_qc_files(self, file_list: FileList):
         for filename in [to_release for resource in self.processed if (to_release := resource.needs_released)]:
@@ -592,6 +607,42 @@ class ResourceList:
                         if item.is_file:
                             item.copy(qc_folder)
 
+    def get_status_audit(self, domains: list = None, file_list: FileList = None):
+        domains = domains or ['Finance', 'Media_Cable']
+        summary = {
+            domain: {
+                'Intent': {},
+                'Utterance': {}
+            }
+            for domain in domains
+        }
+        if not file_list:
+            for domain in domains:
+                dom = 'Fi' if domain == 'Finance' else 'MC'
+                for task in summary[domain]:
+                    for i in range(1, 101):
+                        summary[domain][task][f"EN_Tr_{task[0:3]}s_{dom}_{i:03d}"] = ('Not Started', 'Unassigned')
+        if file_list:
+            for domain in domains:
+                domain_key = file_list.get_domain(domain=domain)
+                status, assignment, _ = list(domain_key.df.columns)
+                for row in domain_key.df.itertuples(name='row'):
+                    item_task = 'Intent' if str(row.Index).split('_')[2][0] == 'I' else 'Utterance'
+                    summary[domain][item_task][str(row.Index)] = (getattr(row, status), getattr(row, assignment))
+        for resource in self.resources:
+            for domain in domains:
+                for task in summary[domain]:
+                    domain_folder = resource.get_domain(domain).folder
+                    for item in domain_folder.get_items():
+                        if item.is_file and (filename := item.name.split('.')[0]) and filename in summary[domain][task]:
+                            summary[domain][task][filename] = ('In Progress', resource.name)
+                    for folder in domain_folder.get_child_folders():
+                        for item in folder.get_items():
+                            if item.is_file and (filename := item.name.split('.')[0]) and filename in summary[domain][task]:
+                                summary[domain][task][filename] = (folder.name, resource.name)
+        return summary
+
+
 def assign_creators(
         LANG: str = 'EN-US',
         PHASE: str = '_Training',
@@ -609,10 +660,10 @@ def assign_creators(
     )
 
     with ResourceList(
-        drive=PROJ_DRIVE,
-        lang=LANG,
-        phase=PHASE,
-        role=ROLE
+            drive=PROJ_DRIVE,
+            lang=LANG,
+            phase=PHASE,
+            role=ROLE
     ) as RESOURCE_LIST:
         if all(
                 status in ['Not Started', 'In Progress']
@@ -624,7 +675,7 @@ def assign_creators(
         for task_file in FILE_LIST:
             logger.debug(f"Processing {task_file}.")
             FILE_LIST.processed.append(task_file)
-            if task_file.assigned:
+            if not task_file.needs_assignment:
                 logger.debug(f"No action needed for {task_file}.")
                 continue
             for resource in RESOURCE_LIST.resources:
@@ -633,9 +684,9 @@ def assign_creators(
                 RESOURCE_LIST.processed.append(resource)
                 if not task_file:
                     break
-            else:
-                logger.info('All resources have been processed. Exiting loop.')
-                break
+            # else:
+            #     logger.info('All resources have been processed. Exiting loop.')
+            #     break
 
         FILE_LIST.update(
             dry_run=dry_run
@@ -644,6 +695,7 @@ def assign_creators(
             file_list=FILE_LIST,
             dry_run=dry_run
         )
+
 
 def assign_qcs(
         LANG: str = 'EN-US',
@@ -670,10 +722,10 @@ def assign_qcs(
     )
 
     with ResourceList(
-        drive=PROJ_DRIVE,
-        lang=LANG,
-        phase=PHASE,
-        role=ROLE
+            drive=PROJ_DRIVE,
+            lang=LANG,
+            phase=PHASE,
+            role=ROLE
     ) as RESOURCE_LIST:
         if all(
                 status in ['Not Started', 'In Progress']
@@ -683,10 +735,10 @@ def assign_qcs(
             return
 
         for task_file in FILE_LIST:
-            logger.debug(f"Processing {task_file}.")
+            logger.info(f"Processing {task_file} [{task_file.domain}].")
             FILE_LIST.processed.append(task_file)
-            if task_file.assigned:
-                logger.debug(f"No action needed for {task_file}.")
+            if not task_file.needs_assignment:
+                logger.info(f"No action needed for {task_file}.")
                 continue
             for resource in RESOURCE_LIST.resources:
                 logger.info(f"Processing {resource} and {task_file}.")
@@ -697,9 +749,11 @@ def assign_qcs(
                 task_file = resource.process(task_file, FILE_LIST, RESOURCE_LIST, dry_run=dry_run)
                 if not task_file:
                     break
+            '''
             else:
                 logger.info('All resources have been processed. Exiting loop.')
                 break
+            '''
 
         FILE_LIST.update(
             dry_run=dry_run
