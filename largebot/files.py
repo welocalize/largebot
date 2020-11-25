@@ -769,7 +769,6 @@ class ResourceList:
             for resource in self.resources
         }
 
-
 def how_long(
         LANG: str = 'EN-US',
         PHASE: str = '_Training'
