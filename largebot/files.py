@@ -865,9 +865,8 @@ def assign_creators(
                 RESOURCE_LIST.processed.append(resource)
                 if not task_file:
                     break
-            # else:
-            #     logger.info('All resources have been processed. Exiting loop.')
-            #     break
+            else:
+                logger.info('All resources have been processed. Exiting loop.')
 
         FILE_LIST.update(
             DRY_RUN=DRY_RUN
@@ -937,8 +936,7 @@ def assign_qcs(
                     break
             else:
                 logger.info('All resources have been processed.')
-                FILE_LIST.processed.extend([*FILE_LIST])
-                
+
 
         FILE_LIST.update(
             DRY_RUN=DRY_RUN
