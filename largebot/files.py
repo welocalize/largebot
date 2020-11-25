@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import arrow
 
 import pandas as pd
 from welo365 import O365Account, WorkBook, Folder, Drive
@@ -661,6 +662,12 @@ class ResourceList:
 
     def unblock(self):
         self.ws.unprotect()
+        _range = self.ws.get_range('E1')
+        _range.update(
+            values=[
+                [f"Notes - last updated {arrow.utcnow().humanize()}"]
+            ]
+        )
         self.format.background_color = None
         self.format.update()
 
