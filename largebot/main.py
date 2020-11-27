@@ -55,14 +55,14 @@ def refresh_all(
         )
         time.sleep(15)
 
-    for task in ['Intent', 'Utterance']:
+    for task in ['Intent']:
         assign_qcs(
             LANG=lang,
             PHASE=phase,
             TASK=task,
             DRY_RUN=DRY_RUN
         )
-        time.sleep(15)
+        # time.sleep(15)
 
 
 @app.command(help='Refresh relative reference to last time assignments were updated.')

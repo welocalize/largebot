@@ -49,15 +49,16 @@ logger.debug('Building ResourceList.')
 
 
 def get_part(filename: str, part: str):
-    filename = filename.split('.')[0]
-    if (func := {
-        'lang': lambda x: f"{x.split('_')[0]}-US",
-        'phase': lambda x: '_Training' if x.split('_')[1] == 'Tr' else 'Testing',
-        'task': lambda x: 'Intent' if x.split('_')[2][0] == 'I' else 'Utterance',
-        'domain': lambda x: 'Finance' if x.split('_')[3][0] == 'F' else 'Media_Cable',
-        'number': lambda x: x.split('_')[-1]
-    }.get(part)):
-        return func(filename)
+    if filename:
+        filename = filename.split('.')[0]
+        if (func := {
+            'lang': lambda x: f"{x.split('_')[0]}-US",
+            'phase': lambda x: '_Training' if x.split('_')[1] == 'Tr' else 'Testing',
+            'task': lambda x: 'Intent' if x.split('_')[2][0] == 'I' else 'Utterance',
+            'domain': lambda x: 'Finance' if x.split('_')[3][0] == 'F' else 'Media_Cable',
+            'number': lambda x: x.split('_')[-1]
+        }.get(part)):
+            return func(filename)
 
 
 def get_lang(filename: str):
@@ -253,14 +254,15 @@ class Resource:
         self._status = status
         self.needs_released = None
         file = None
-        if (domain_folder := getattr(self, get_domain(assignment).lower())):
-            file = domain_folder.folder.get_item(assignment)
-            if not file:
-                for folder in domain_folder.folder.get_child_folders():
-                    file = folder.get_item(assignment)
-                    if file:
-                        self._status = folder.name
-                        break
+        if assignment:
+            if (domain_folder := getattr(self, get_domain(assignment).lower())):
+                file = domain_folder.folder.get_item(assignment)
+                if not file:
+                    for folder in domain_folder.folder.get_child_folders():
+                        file = folder.get_item(assignment)
+                        if file:
+                            self._status = folder.name
+                            break
         self.file = TaskFile(assignment, self._status, name, self.role, file)
 
     def __repr__(self):
@@ -544,7 +546,6 @@ class DomainKeyFile:
         self.folder = self.drive.get_item_by_path(*self.file_path)
         logger.debug(f"{self.folder=}")
         items = list(self.folder.get_items())
-        logger.debug(f"{items=}")
         self.files = {
             fname: item
             for item in self.folder.get_items()
@@ -553,7 +554,6 @@ class DomainKeyFile:
                 and fname in self.df.index
             )
         }
-        logger.debug(f"{self.files=}")
 
     @staticmethod
     def get_file_list(domain: str, drive: Drive = AIE_DRIVE):
@@ -597,7 +597,7 @@ class FileList:
                 filename,
                 *assignment,
                 role,
-                file=self.get_domain(filename=filename).files.get(filename, None)
+                self.get_domain(filename=filename).files.get(filename)
             )
             for filename, assignment in zip(
                 self.filenames,
@@ -650,7 +650,7 @@ class FileList:
         yield from self.task_files
 
     def copy_cleanup(self):
-        for domain in ['Finance', 'Media_Cable']:
+        for domain in ['Media_Cable', 'Finance']:
             for task in ['Intents', 'Utterances']:
                 PATH = [
                     *FILE_PATH,
@@ -696,12 +696,12 @@ class FileList:
                 ):
                     update = (f"{old_assignment} [{old_status}]", f"{task_file.assignment} [{task_file.status}]")
                     if update[0] == update[1]:
-                        logger.info(f"{task_file.name}: {update[0]} -> {update[1]}")
+                        logger.debug(f"{task_file.name}: {update[0]} -> {update[1]}")
                     else:
                         logger.info(f"{task_file.name}: {update[0]} -> {update[1]}")
                 if not DRY_RUN:
                     _range.update(values=values)
-        self.copy_cleanup()
+        # self.copy_cleanup()
 
 class ResourceList:
     drive: Drive = PROJ_DRIVE
@@ -1038,20 +1038,19 @@ def assign_creators(
                 )
                 if task_file.name != filename:
                     FILE_LIST.processed[filename].update(status=resource.status, assignment=resource.name)
-                    logger.debug(f"{FILE_LIST.processed[filename]}")
                     FILE_LIST.processed[task_file.name] = task_file
-                    logger.debug(f"{FILE_LIST.processed[task_file.name]=}")
                     break
         else:
             logger.debug('All resources have been processed.')
 
-        FILE_LIST.update(
-            DRY_RUN=DRY_RUN
-        )
-        RESOURCE_LIST.update(
-            file_list=FILE_LIST,
-            DRY_RUN=DRY_RUN
-        )
+        if not DRY_RUN:
+            FILE_LIST.update(
+                DRY_RUN=DRY_RUN
+            )
+            RESOURCE_LIST.update(
+                file_list=FILE_LIST,
+                DRY_RUN=DRY_RUN
+            )
 
 
 def assign_qcs(
@@ -1090,7 +1089,7 @@ def assign_qcs(
                 logger.debug(f"No action needed for {task_file}.")
                 continue
             for resource in RESOURCE_LIST.resources:
-                logger.info(f"Processing {resource} and {task_file}.")
+                logger.debug(f"Processing {resource} and {task_file}.")
                 RESOURCE_LIST.processed.append(resource)
                 if not resource:
                     break
@@ -1106,16 +1105,15 @@ def assign_qcs(
                 )
                 if task_file.name != filename:
                     FILE_LIST.processed[filename].update(status=resource.status, assignment=resource.name)
-                    logger.info(f"{FILE_LIST.processed[filename]=}")
                     FILE_LIST.processed[task_file.name] = task_file
-                    logger.info(f"{FILE_LIST.processed[task_file.name]=}")
                     break
         else:
             logger.debug('All resources have been processed.')
 
-        FILE_LIST.update(
-            DRY_RUN=DRY_RUN
-        )
-        RESOURCE_LIST.update(
-            DRY_RUN=DRY_RUN
-        )
+        if not DRY_RUN:
+            FILE_LIST.update(
+                DRY_RUN=DRY_RUN
+            )
+            RESOURCE_LIST.update(
+                DRY_RUN=DRY_RUN
+            )
