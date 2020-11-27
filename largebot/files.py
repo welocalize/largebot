@@ -12,7 +12,7 @@ from largebot.pd import get_df
 
 logger = get_logger(__name__)
 
-DEBUG = True
+DEBUG = False
 
 AIE_SWITCH = 'Dev' if DEBUG else 'Production Planning'
 PROJ_SWITCH = 'Dev' if DEBUG else 'Data Creation'
