@@ -46,7 +46,7 @@ def refresh_all(
         phase: str = typer.Argument('_Training'),
         DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
 ):
-    for task in ['Intent', 'Utterance']:
+    for task in ['Utterance']:
         assign_creators(
             LANG=lang,
             PHASE=phase,
@@ -55,7 +55,7 @@ def refresh_all(
         )
         time.sleep(15)
 
-    for task in ['Intent']:
+    for task in ['Intent', 'Utterance']:
         assign_qcs(
             LANG=lang,
             PHASE=phase,

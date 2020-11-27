@@ -611,7 +611,7 @@ class FileList:
 
     def get_single_task_file(self, filename: str, role: str):
         domain_key = self.get_domain(filename=filename)
-        task = 'Intent' if filename.split('_')[2][0] == 'I' else 'Utterance'
+        task = get_task(filename)
         ws = domain_key.wb.get_worksheet(f"{task}{role}Files")
         row = int(filename.split('_')[-1]) + 1
         _range = ws.get_range(f"B{row}:C{row}")
@@ -888,7 +888,7 @@ class ResourceList:
             ):
                 update = (f"{old_assignment} [{old_status}]", f"{resource.assignment} [{resource.status}]")
                 if update[0] == update[1]:
-                    logger.debug(f"{resource.name}: {update[0]} -> {update[1]}")
+                    logger.info(f"{resource.name}: {update[0]} -> {update[1]}")
                 else:
                     logger.info(f"{resource.name}: {update[0]} -> {update[1]}")
             if not DRY_RUN:
@@ -1015,7 +1015,7 @@ def assign_creators(
                 status in ['Not Started', 'In Progress']
                 for status in RESOURCE_LIST.df['Status'].tolist()
         ):
-            logger.debug('All resources currently have an active assignment.')
+            logger.info('All resources currently have an active assignment.')
             return
 
         for task_file in FILE_LIST:
@@ -1027,7 +1027,7 @@ def assign_creators(
                 logger.debug(f"No action needed for {task_file}.")
                 continue
             for resource in RESOURCE_LIST.resources:
-                logger.debug(f"Processing {resource} and {task_file}.")
+                logger.info(f"Processing {resource} and {task_file}.")
                 RESOURCE_LIST.processed.append(resource)
                 filename = task_file.name
                 task_file = resource.process(
@@ -1041,16 +1041,15 @@ def assign_creators(
                     FILE_LIST.processed[task_file.name] = task_file
                     break
         else:
-            logger.debug('All resources have been processed.')
+            logger.info('All resources have been processed.')
 
-        if not DRY_RUN:
-            FILE_LIST.update(
-                DRY_RUN=DRY_RUN
-            )
-            RESOURCE_LIST.update(
-                file_list=FILE_LIST,
-                DRY_RUN=DRY_RUN
-            )
+        FILE_LIST.update(
+            DRY_RUN=DRY_RUN
+        )
+        RESOURCE_LIST.update(
+            file_list=FILE_LIST,
+            DRY_RUN=DRY_RUN
+        )
 
 
 def assign_qcs(
@@ -1077,7 +1076,7 @@ def assign_qcs(
                 status in ['Not Started', 'In Progress']
                 for status in RESOURCE_LIST.df['Status'].tolist()
         ):
-            logger.debug('All resources currently have an active assignment.')
+            logger.info('All resources currently have an active assignment.')
             return
 
         for task_file in FILE_LIST:
@@ -1089,7 +1088,7 @@ def assign_qcs(
                 logger.debug(f"No action needed for {task_file}.")
                 continue
             for resource in RESOURCE_LIST.resources:
-                logger.debug(f"Processing {resource} and {task_file}.")
+                logger.info(f"Processing {resource} and {task_file}.")
                 RESOURCE_LIST.processed.append(resource)
                 if not resource:
                     break
@@ -1108,12 +1107,11 @@ def assign_qcs(
                     FILE_LIST.processed[task_file.name] = task_file
                     break
         else:
-            logger.debug('All resources have been processed.')
+            logger.info('All resources have been processed.')
 
-        if not DRY_RUN:
-            FILE_LIST.update(
-                DRY_RUN=DRY_RUN
-            )
-            RESOURCE_LIST.update(
-                DRY_RUN=DRY_RUN
-            )
+        FILE_LIST.update(
+            DRY_RUN=DRY_RUN
+        )
+        RESOURCE_LIST.update(
+            DRY_RUN=DRY_RUN
+        )
