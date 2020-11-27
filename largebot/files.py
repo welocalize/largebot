@@ -81,7 +81,7 @@ def get_number(filename: str):
 
 
 class TaskFile:
-    def __init__(self, name: str, status: str, assignment: str, role: str, file: File):
+    def __init__(self, name: str, status: str, assignment: str, role: str, file: File = None):
         logger.debug(f"__init__ for {name}")
         self.name = name
         self.file = file
@@ -597,13 +597,12 @@ class FileList:
                 filename,
                 *assignment,
                 role,
-                file
+                file=self.get_domain(filename=filename).files.get(filename, None)
             )
             for filename, assignment in zip(
                 self.filenames,
                 self.df.drop(columns=['Domain']).values.tolist()
             )
-            if (file := self.get_domain(filename=filename).files.get(filename))
         )
         logger.debug(f"{self.task_files=}")
         self.processed = {}
@@ -697,7 +696,7 @@ class FileList:
                 ):
                     update = (f"{old_assignment} [{old_status}]", f"{task_file.assignment} [{task_file.status}]")
                     if update[0] == update[1]:
-                        logger.debug(f"{task_file.name}: {update[0]} -> {update[1]}")
+                        logger.info(f"{task_file.name}: {update[0]} -> {update[1]}")
                     else:
                         logger.info(f"{task_file.name}: {update[0]} -> {update[1]}")
                 if not DRY_RUN:
@@ -1091,8 +1090,10 @@ def assign_qcs(
                 logger.debug(f"No action needed for {task_file}.")
                 continue
             for resource in RESOURCE_LIST.resources:
-                logger.debug(f"Processing {resource} and {task_file}.")
+                logger.info(f"Processing {resource} and {task_file}.")
                 RESOURCE_LIST.processed.append(resource)
+                if not resource:
+                    break
                 if return_all:
                     logger.debug('Returning all rejected files.')
                     resource.return_all_files(RESOURCE_LIST, FILE_LIST)
@@ -1105,9 +1106,9 @@ def assign_qcs(
                 )
                 if task_file.name != filename:
                     FILE_LIST.processed[filename].update(status=resource.status, assignment=resource.name)
-                    logger.debug(f"{FILE_LIST.processed[filename]}")
+                    logger.info(f"{FILE_LIST.processed[filename]=}")
                     FILE_LIST.processed[task_file.name] = task_file
-                    logger.debug(f"{FILE_LIST.processed[task_file.name]=}")
+                    logger.info(f"{FILE_LIST.processed[task_file.name]=}")
                     break
         else:
             logger.debug('All resources have been processed.')

@@ -44,22 +44,25 @@ def refresh_qcs(
 def refresh_all(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
-        task: str = typer.Argument('Intent'),
         DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
 ):
-    assign_creators(
-        LANG=lang,
-        PHASE=phase,
-        TASK=task,
-        DRY_RUN=DRY_RUN
-    )
-    time.sleep(15)
-    assign_qcs(
-        LANG=lang,
-        PHASE=phase,
-        TASK=task,
-        DRY_RUN=DRY_RUN
-    )
+    for task in ['Intent', 'Utterance']:
+        assign_creators(
+            LANG=lang,
+            PHASE=phase,
+            TASK=task,
+            DRY_RUN=DRY_RUN
+        )
+        time.sleep(15)
+
+    for task in ['Intent', 'Utterance']:
+        assign_qcs(
+            LANG=lang,
+            PHASE=phase,
+            TASK=task,
+            DRY_RUN=DRY_RUN
+        )
+        time.sleep(15)
 
 
 @app.command(help='Refresh relative reference to last time assignments were updated.')
