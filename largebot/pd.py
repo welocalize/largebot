@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+from typing import Optional, Union
 from welo365 import O365Account, WorkBook, WorkSheet, Range
 
 
@@ -42,7 +43,7 @@ class O365DataFrame(pd.DataFrame):
         _range.update()
 
 
-def get_df(worksheet: WorkSheet):
+def get_df(worksheet: WorkSheet, index_col: Optional[Union[int, str]] = None):
     _range = worksheet.get_used_range()
     columns, *values = _range.values
     df = pd.DataFrame(values, columns=columns)
@@ -59,7 +60,8 @@ def get_df(worksheet: WorkSheet):
     df = df[columns[0:index]]
     df = df.dropna(
         subset=[columns[0]]
-    ).set_index(
-        columns[0]
     )
+    if index_col is not None:
+        index_col = columns[index_col] if isinstance(index_col, int) else index_col
+        df = df.set_index(index_col)
     return df.where(pd.notnull(df), '')

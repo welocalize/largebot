@@ -571,11 +571,11 @@ class DomainKeyFile:
 class FileList:
     def __init__(
             self,
-            drive: Drive = AIE_DRIVE,
             phase: str = '_Training',
             lang: str = 'EN-US',
             task: str = 'Intent',
-            role: str = 'Creator'
+            role: str = 'Creator',
+            drive: Drive = AIE_DRIVE
     ):
         self.drive = drive
         self.task = task

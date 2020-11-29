@@ -4,6 +4,7 @@ import typer
 import time
 
 from largebot.files import assign_creators, assign_qcs, how_long
+from largebot.largebotter import ResourceBot
 from largebot.logger import get_logger
 
 logger = get_logger(__name__)
@@ -46,23 +47,13 @@ def refresh_all(
         phase: str = typer.Argument('_Training'),
         DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
 ):
-    for task in ['Utterance']:
-        assign_creators(
-            LANG=lang,
-            PHASE=phase,
-            TASK=task,
-            DRY_RUN=DRY_RUN
-        )
-        time.sleep(15)
-
-    for task in ['Intent', 'Utterance']:
-        assign_qcs(
-            LANG=lang,
-            PHASE=phase,
-            TASK=task,
-            DRY_RUN=DRY_RUN
-        )
-        # time.sleep(15)
+    with ResourceBot(
+            lang=lang,
+            phase=phase,
+            dry_run=DRY_RUN
+    ) as bot:
+        bot.refresh()
+        bot.assign()
 
 
 @app.command(help='Refresh relative reference to last time assignments were updated.')
