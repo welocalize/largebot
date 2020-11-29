@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import List, Optional, Union
+from itertools import repeat
 import pandas as pd
 import datetime
 import arrow
@@ -52,6 +53,80 @@ AIE_DRIVE = ACCOUNT.get_site(AIE_SITE).get_default_document_library()
 logger.debug('Getting Project Folder drive.')
 PROJ_DRIVE = ACCOUNT.get_site(PROJ_SITE).get_default_document_library()
 logger.debug('Building ResourceList.')
+
+
+def prep_utts(item, lang, phase, domain):
+    logger.info(f"Prepping utterances from intents for {item}")
+    UTT_PATH = [
+        *FILE_PATH,
+        lang,
+        phase,
+        domain,
+        'Utterance'
+    ]
+    prep_folder = AIE_DRIVE.get_item_by_path(
+        *UTT_PATH,
+        'Prep'
+    )
+    template = prep_folder.get_item('TEMPLATE.xlsx')
+    intent_folder = AIE_DRIVE.get_item_by_path(
+        *UTT_PATH,
+        'Intent'
+    )
+    out_folder = AIE_DRIVE.get_item_by_path(
+        *UTT_PATH,
+        'Creator'
+    )
+
+    int_file = intent_folder.get_item(item.name)
+    in_file = prep_folder.get_item(item.name.split('_', 3)[3])
+    out_file = out_folder.get_item(in_file.name)
+    in_wb = WorkBook(in_file)
+    in_ws = in_wb.get_worksheet('Sample Utterances')
+    template.copy(out_folder, name=in_file.name)
+    int_wb = WorkBook(int_file)
+    int_ws = int_wb.get_worksheet('Intent_Slot Creation')
+    out_wb = WorkBook(out_file)
+    out_ws = [ws for ws in out_wb.get_worksheets()]
+    out_intents = out_ws[0].get_range('Intents')
+    in_intents = in_ws.get_range(out_intents.address.split('!')[1])
+    int_range = in_ws.get_range('C7:C56')
+    descriptions = int_range.values
+    descriptions = list(set(desc[0] for desc in descriptions))
+    descriptions = [
+        [y]
+        for x in descriptions
+        for y in repeat(x, 60)
+    ]
+    utt_descriptions = [
+        ['IntentDescription'],
+        ['User wants to book a flight'],
+        ['User wants to book a flight'],
+        ['User wants to book a flight'],
+        *descriptions
+    ]
+    out_intents.update(values=in_intents.values)
+    addresses = (
+        ('H7:H16', 'DataValidation!A2:A12'),
+        ('H17:H26', 'DataValidation!B2:B12'),
+        ('H27:H36', 'DataValidation!C2:C12'),
+        ('H37:H46', 'DataValidation!D2:D12'),
+        ('H47:H56', 'DataValidation!E2:E12')
+    )
+    for inloc, outloc in addresses:
+        inrange = int_ws.get_range(inloc)
+        slots = inrange.values
+        slots.append(['Null'])
+        outrange = out_ws[1].get_range(outloc)
+        outrange.update(values=slots)
+    modrange = out_ws[0].get_range('Modality')
+    modality = modrange.values
+    random.shuffle(modality)
+    modrange.update(values=modality)
+    utt_range = out_ws[0].get_range('C1:C304')
+    utt_range.insert_range(shift='right')
+    utt_range.update(values=utt_descriptions)
+    logger.info(f"Utterance prep for {item} completed")
 
 
 class BaseModel(_BaseModel):
@@ -320,6 +395,21 @@ class FileAssignment(BaseModel):
         out_file = out_folder.get_item(in_file.name)
         out_wb = WorkBook(out_file)
         out_ws = [ws for ws in out_wb.get_worksheets()]
+        int_range = in_ws.get_range('C7:C56')
+        descriptions = int_range.values
+        descriptions = list(set(desc[0] for desc in descriptions))
+        descriptions = [
+            [y]
+            for x in descriptions
+            for y in repeat(x, 60)
+        ]
+        utt_descriptions = [
+            ['IntentDescription'],
+            ['User wants to book a flight'],
+            ['User wants to book a flight'],
+            ['User wants to book a flight'],
+            *descriptions
+        ]
         out_intents = out_ws[0].get_range('Intents')
         in_intents = in_ws.get_range(out_intents.address.split('!')[1])
         out_intents.update(values=in_intents.values)
@@ -340,6 +430,9 @@ class FileAssignment(BaseModel):
         modality = modrange.values
         random.shuffle(modality)
         modrange.update(values=modality)
+        utt_range = out_ws[0].get_range('C1:C304')
+        utt_range.insert_range(shift='right')
+        utt_range.update(values=utt_descriptions)
         logger.info(f"Utterance prep for {self} completed")
 
 class FileSheet(DataFrameXL):
