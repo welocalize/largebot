@@ -30,7 +30,7 @@ PROJ_PATH = [
 ]
 AIE_PATH = [
     'Amazon Web Services, Inc',
-    'Bot Training & Testing Data (LargeBot) (Akshat)',
+    'Lex Largebot (Akshat)',
     AIE_SWITCH,
     'Files for Processing'
 ]
