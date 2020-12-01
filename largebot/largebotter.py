@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import List, Optional, Union
 from itertools import repeat
 import pandas as pd
+from requests.exceptions import HTTPError
 import datetime
 import arrow
 import random
@@ -329,7 +330,10 @@ class FileAssignment(BaseModel):
             logger.info(f"Copying {item=} to {target=}")
             if (previous_version := target.get_item(item.name)):
                 if self.role == 'QC':
-                    self.prep_utts()
+                    try:
+                        self.prep_utts()
+                    except (ValueError, HTTPError) as e:
+                        logger.error(f"Error trying to prepare utterances: {e}")
                     return
                 for i in range(1, 10):
                     previous_name = f"{item.name.split('.')[0]}_v{i}.xlsx"
@@ -340,7 +344,11 @@ class FileAssignment(BaseModel):
                 previous_version.delete()
             item.copy(target)
             if self.role == 'QC' and self.file_name.task == 'Intent':
-                self.prep_utts()
+                try:
+                    self.prep_utts()
+                except (ValueError, HTTPError) as e:
+                    logger.error(f"Error trying to prepare utterances: {e}")
+
 
     def move_working(self, target: str):
         if (item := self.get_working(in_progress=True)):
@@ -380,12 +388,11 @@ class FileAssignment(BaseModel):
             *UTT_PATH,
             'Creator'
         )
-
         int_file = intent_folder.get_item(self.file_name.name)
-        in_file = prep_folder.get_item(self.file_name.name.split('_', 3)[3])
+        in_file = prep_folder.get_item(self.file_name.name.replace('Ints', 'Utts'))
         out_file = out_folder.get_item(in_file.name)
         if out_file:
-            logger.info(f"{self.file_name.name} done already")
+            logger.info(f"{out_file.name} done already")
             return
         in_wb = WorkBook(in_file)
         in_ws = in_wb.get_worksheet('Sample Utterances')
@@ -395,9 +402,20 @@ class FileAssignment(BaseModel):
         out_file = out_folder.get_item(in_file.name)
         out_wb = WorkBook(out_file)
         out_ws = [ws for ws in out_wb.get_worksheets()]
-        int_range = in_ws.get_range('C7:C56')
+        int_range = int_ws.get_range('C7:C56')
         descriptions = int_range.values
-        descriptions = list(set(desc[0] for desc in descriptions))
+        descriptions = list(
+            dict.fromkeys(
+                [
+                    desc[0] for desc in descriptions if desc[0]
+                ]
+            ).keys()
+        )
+        if len(descriptions) != 5:
+            int_file.delete()
+            out_file.delete()
+            logger.info(f"{descriptions=}")
+            raise ValueError(f"Too many intent descriptions for file {self.file_name.name}")
         descriptions = [
             [y]
             for x in descriptions
@@ -562,7 +580,7 @@ class ResourceAssignment(BaseModel):
                 self.role,
                 self.resource_code
             )
-            object.__setattr__(self, 'drive', drive)
+            self.drive = drive
         return self.drive
 
     def get_domain_folder(self, domain: str):
@@ -675,11 +693,11 @@ class ResourceAssignment(BaseModel):
             target_path = paths.get(f"{self.file_name.task}{self.role}")
             target = AIE_DRIVE.get_item_by_path(*target_path)
         if target and (item := self.get_working()):
-            logger.info(f"Copying {item} to {target}")
             if (previous_version := target.get_item(item.name)):
                 if self.role == 'QC':
                     self.prep_utts()
                     return
+                logger.info(f"Copying {item} to {target}")
                 for i in range(1, 10):
                     previous_name = f"{item.name.split('.')[0]}_v{i}.xlsx"
                     previous = target.get_item(previous_name)
@@ -954,6 +972,8 @@ class ResourceBot:
             phase: str = '_Training',
             dry_run: bool = False
     ):
+        self.lang = lang
+        self.phase = phase
         self.Creator = ResourceSheet(lang, phase, role='Creator')
         self.QC = ResourceSheet(lang, phase, role='QC')
         self.file_book = FileBook(lang, phase)
@@ -1016,13 +1036,52 @@ class ResourceBot:
             'Creator': ['Completed', 'Re-work Completed'],
             'QC': ['Accepted']
         }
+        errors = []
         for resource in getattr(self, role).resources:
             if not resource.summary:
                 resource.get_file_status()
-            for file in resource.summary.get(task, []):
-                if file.status in folders.get(role):
-                    logger.info(f"Copying {file} to source for next step.")
-                    file.copy_working()
+            for domain in ['Media_Cable', 'Finance']:
+                ROOT = [
+                    *FILE_PATH,
+                    self.lang,
+                    self.phase,
+                    domain
+                ]
+                paths = {
+                    'IntentCreator': [
+                        *ROOT,
+                        'Intent',
+                        'QC'
+                    ],
+                    'IntentQC': [
+                        *ROOT,
+                        'Utterance',
+                        'Intent'
+                    ],
+                    'UtteranceCreator': [
+                        *ROOT,
+                        'Utterance',
+                        'QC'
+                    ],
+                    'UtteranceQC': None
+                }
+                path = paths.get(f"{task}{role}")
+                if not path:
+                    logger.error(f"No source folder path for {task}{role}")
+                target = AIE_DRIVE.get_item_by_path(*path)
+                file_names = [item.name.split('.')[0] for item in target.get_items()]
+                for file in resource.summary.get(task, []):
+                    if file.file_name.name in file_names:
+                        logger.info(f"{file} already copied; skipping")
+                        continue
+                    if file.status in folders.get(role) and file.file_name.domain == domain:
+                        logger.info(f"Copying {file} to source for next step.")
+                        try:
+                            file.copy_working()
+                        except (ValueError, HTTPError) as e:
+                            logger.info(f"Error with {file}: {e}")
+                            errors.append(file)
+        logger.info(f"These files were not processed: {errors}")
 
     def assign(self):
         steps = (
