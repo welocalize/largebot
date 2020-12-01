@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-from typing import List, Optional, Union
-from itertools import repeat
-import pandas as pd
-from requests.exceptions import HTTPError
 import datetime
-import arrow
 import random
-from enum import Enum, auto
+from itertools import repeat
+from typing import Optional, Union
+
+import arrow
+import pandas as pd
 from pydantic import BaseModel as _BaseModel
 from pydantic import Extra
+from requests.exceptions import HTTPError
 from welo365 import O365Account, WorkBook, Drive, WorkSheet, Folder
 
 from largebot.logger import get_logger
@@ -148,7 +148,7 @@ class DataFrameXL(WorkBook):
         self.worksheets = {
             worksheet.name: worksheet
             for worksheet in self.get_worksheets()
-            if worksheet.name != 'Data'
+            if worksheet.name not in ['Data', 'MasterIntentList', 'ForResourcesToCopy']
         }
         self.dfs = {
             ws_name: get_df(ws, index_col=index_col)
@@ -196,6 +196,7 @@ class FileName:
 
     def __str__(self):
         return self.name
+
 
 class FileAssignment(BaseModel):
     file_name: FileName
@@ -349,7 +350,6 @@ class FileAssignment(BaseModel):
                 except (ValueError, HTTPError) as e:
                     logger.error(f"Error trying to prepare utterances: {e}")
 
-
     def move_working(self, target: str):
         if (item := self.get_working(in_progress=True)):
             target_folder = PROJ_DRIVE.get_item_by_path(
@@ -362,7 +362,8 @@ class FileAssignment(BaseModel):
                 target
             )
             if (previous_version := target_folder.get_item(self.file_name.name)):
-                previous_version.copy(target_folder, name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx")
+                previous_version.copy(target_folder,
+                                      name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx")
                 previous_version.delete()
             item.move(target_folder)
 
@@ -453,6 +454,7 @@ class FileAssignment(BaseModel):
         utt_range.update(values=utt_descriptions)
         logger.info(f"Utterance prep for {self} completed")
 
+
 class FileSheet(DataFrameXL):
     def __init__(
             self,
@@ -485,7 +487,6 @@ class FileSheet(DataFrameXL):
     def __setitem__(self, key, value):
         self.files[key] = value
 
-
     @property
     def files(self):
         return [
@@ -495,7 +496,7 @@ class FileSheet(DataFrameXL):
 
     @property
     def values(self):
-        return[
+        return [
             [*file_assignment]
             for file_assignment in self.files
         ]
@@ -610,7 +611,7 @@ class ResourceAssignment(BaseModel):
     def get_file_assignment(self, file_name: Union[str, FileName] = None, status: str = None):
         file_name = file_name or self.file_name
         status = status or self.status
-        return(
+        return (
             FileAssignment(
                 file_name, status, self.resource_name, self.resource_code, self.role
             )
@@ -659,10 +660,10 @@ class ResourceAssignment(BaseModel):
 
     def copy_working(self, target: Folder = None):
         if self.status in (
-            'Not Started',
-            'In Progress',
-            'Re-work In Progress',
-            'Has Creator Assignment'
+                'Not Started',
+                'In Progress',
+                'Re-work In Progress',
+                'Has Creator Assignment'
         ):
             return
         if not target:
@@ -717,10 +718,10 @@ class ResourceAssignment(BaseModel):
             item = self.get_working(in_progress=True)
             if not item:
                 for status in (
-                    'Completed',
-                    'Accepted',
-                    'Rejected',
-                    'Re-work Completed'
+                        'Completed',
+                        'Accepted',
+                        'Rejected',
+                        'Re-work Completed'
                 ):
                     item = self.get_working(target=status)
                     if item:
@@ -745,7 +746,8 @@ class ResourceAssignment(BaseModel):
             )
             if target_folder:
                 if (previous_version := target_folder.get_item(self.file_name.name)):
-                    previous_version.copy(target_folder, name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx")
+                    previous_version.copy(target_folder,
+                                          name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx")
                     previous_version.delete()
                 item.move(target_folder)
 
@@ -821,6 +823,7 @@ class ResourceAssignment(BaseModel):
         if not self.summary:
             self.get_file_status()
 
+
 class FileBook(DataFrameXL):
     drive: Drive = AIE_DRIVE
 
@@ -874,7 +877,7 @@ class FileBook(DataFrameXL):
             step = getattr(self, step)
             prestep = None
             if i != 0:
-                prestep_name = f"{STEPS[i-1][0]}{STEPS[i-1][1]}"
+                prestep_name = f"{STEPS[i - 1][0]}{STEPS[i - 1][1]}"
                 prestep = getattr(self, prestep_name)
             for j, file in enumerate(step.files):
                 if not prestep and prereq_only:
@@ -883,9 +886,9 @@ class FileBook(DataFrameXL):
                     prereq = prestep[j]
                     logger.debug(f"{prereq=}, {file=}")
                     if prereq.status not in (
-                        'Completed',
-                        'Re-work Completed',
-                        'Accepted'
+                            'Completed',
+                            'Re-work Completed',
+                            'Accepted'
                     ):
                         file.status = 'Not Ready'
                     if file.status == 'Not Ready':
@@ -983,10 +986,11 @@ class ResourceSheet(DataFrameXL):
         ]
 
     def publish(self):
-        _range = self.ws.get_range(f"A2:D{len(self.values)+1}")
+        _range = self.ws.get_range(f"A2:D{len(self.values) + 1}")
         _range.update(
             values=self.values
         )
+
 
 class ResourceBot:
     def __init__(
@@ -1035,7 +1039,8 @@ class ResourceBot:
                             (file_sheet_assignment := getattr(file_sheet, file_assignment.file_name.name, None))
                             and file_assignment != file_sheet_assignment
                     ):
-                        logger.debug(f"Updating {role} file assignment for {file_sheet_assignment} to {file_assignment}.")
+                        logger.debug(
+                            f"Updating {role} file assignment for {file_sheet_assignment} to {file_assignment}.")
                         object.__setattr__(
                             file_sheet,
                             file_assignment.file_name.name,
@@ -1084,16 +1089,18 @@ class ResourceBot:
                 target = AIE_DRIVE.get_item_by_path(*path)
                 file_names = [item.name.split('.')[0] for item in target.get_items()]
                 for file in resource.summary.get(task, []):
-                    if file.file_name.name in file_names:
-                        logger.info(f"{file} already copied; skipping")
+                    if file.file_name.domain != domain or file.status not in folders.get(role):
                         continue
-                    if file.status in folders.get(role) and file.file_name.domain == domain:
-                        logger.info(f"Copying {file} to source for next step.")
-                        try:
-                            file.copy_working()
-                        except (ValueError, HTTPError) as e:
-                            logger.info(f"Error with {file}: {e}")
-                            errors.append(file)
+                    if file.file_name.name in file_names:
+                        logger.debug(f"{file} already copied; skipping")
+                        continue
+                    logger.info(f"Copying {file} to source for next step.")
+                    try:
+                        file.copy_working()
+                        file.copy_working()
+                    except (ValueError, HTTPError) as e:
+                        logger.info(f"Error with {file}: {e}")
+                        errors.append(file)
         logger.info(f"These files were not processed: {errors}")
 
     def assign(self):
