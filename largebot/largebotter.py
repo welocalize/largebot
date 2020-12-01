@@ -865,6 +865,12 @@ class FileBook(DataFrameXL):
                 if prestep:
                     prereq = prestep[j]
                     logger.debug(f"{prereq=}, {file=}")
+                    if prereq.status not in (
+                        'Completed',
+                        'Re-work Completed',
+                        'Accepted'
+                    ):
+                        file.status = 'Not Ready'
                     if file.status == 'Not Ready':
                         file.status = 'Not Started' if prereq.status in (
                             'Completed',
@@ -1005,7 +1011,7 @@ class ResourceBot:
         for task, role in STEPS:
             resource_sheet = getattr(self, role)
             file_sheet = getattr(self.file_book, f"{task}{role}")
-            for resource in resource_sheet.resources:
+            for resource in resource_sheet.resources[::-1]:
                 resource.move_working()
                 if resource.status in [
                     'Completed',
