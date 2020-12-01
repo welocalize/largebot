@@ -711,7 +711,7 @@ class ResourceAssignment(BaseModel):
 
     def move_working(self, target: str = None):
         target = target or self.status
-        if target in ['Not Started', 'Not Active']:
+        if target in ['Not Active']:
             return
         if target in ['In Progress', 'Re-work In Progress']:
             item = self.get_working(in_progress=True)
@@ -727,8 +727,13 @@ class ResourceAssignment(BaseModel):
                         logger.info(f"{item.name} already moved by {self}; new status: {status}.")
                         self.status = status
                         break
+
             return
         if (item := self.get_working(in_progress=True)):
+            if item.parent_path.split('/')[-1] in ['Media_Cable', 'Finance'] and self.role == 'Creator':
+                completed_item = self.get_working(target='Completed')
+                if item.get_versions()[0].modified_by.display_name != 'Ryan O\'Rourke':
+                    self.status = 'Re-work In Progress' if completed_item else 'In Progress'
             target_folder = PROJ_DRIVE.get_item_by_path(
                 *PROJ_PATH,
                 self.file_name.lang,
@@ -803,6 +808,18 @@ class ResourceAssignment(BaseModel):
         modrange.update(values=modality)
         logger.info(f"Utterance prep for {self} completed")
 
+    def process(self):
+        self.move_working()
+        if self.status in [
+            'Completed',
+            'Re-work Completed',
+            'Accepted',
+            'Rejected'
+        ]:
+            self.copy_working()
+            self.status = 'Needs Assignment'
+        if not self.summary:
+            self.get_file_status()
 
 class FileBook(DataFrameXL):
     drive: Drive = AIE_DRIVE
@@ -1012,17 +1029,7 @@ class ResourceBot:
             resource_sheet = getattr(self, role)
             file_sheet = getattr(self.file_book, f"{task}{role}")
             for resource in resource_sheet.resources[::-1]:
-                resource.move_working()
-                if resource.status in [
-                    'Completed',
-                    'Re-work Completed',
-                    'Accepted',
-                    'Rejected'
-                ]:
-                    resource.copy_working()
-                    resource.status = 'Needs Assignment'
-                if not resource.summary:
-                    resource.get_file_status()
+                resource.process()
                 for file_assignment in resource.summary.get(task, []):
                     if (
                             (file_sheet_assignment := getattr(file_sheet, file_assignment.file_name.name, None))
