@@ -328,7 +328,6 @@ class FileAssignment(BaseModel):
             target_path = paths.get(f"{self.file_name.task}{self.role}")
             target = AIE_DRIVE.get_item_by_path(*target_path)
         if target and (item := self.get_working()):
-            logger.info(f"Copying {item=} to {target=}")
             if (previous_version := target.get_item(item.name)):
                 if self.role == 'QC':
                     try:
