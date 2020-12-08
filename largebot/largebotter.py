@@ -1093,15 +1093,15 @@ class ResourceBot:
 
     def assign(self):
         steps = (
-            'IntentCreator',
+            # 'IntentCreator',
             'UtteranceCreator',
-            'IntentQC',
+            # 'IntentQC',
             'UtteranceQC'
         )
-        for resource_list in (self.Creator, self.QC):
+        for resource_list in (self.QC, self.Creator):
             for resource in resource_list.resources:
                 if resource.needs_assignment:
-                    for step in steps:
+                    for step in steps[::-1]:
                         if resource.role not in step:
                             continue
                         file_list = getattr(self.file_book, step)
@@ -1116,7 +1116,7 @@ class ResourceBot:
                         except StopIteration:
                             logger.info(f"No unassigned files for {step}.")
                             continue
-                if resource.role == 'Creator' and resource.resource_name in self.QC.names:
-                    if not resource.needs_assignment:
-                        qc_resource = getattr(self.QC, resource.resource_name)
-                        qc_resource.status = 'Has Creator Assignment'
+               #  if resource.role == 'Creator' and resource.resource_name in self.QC.names:
+               #      if not resource.needs_assignment:
+               #          qc_resource = getattr(self.QC, resource.resource_name)
+               #          qc_resource.status = 'Has Creator Assignment'
