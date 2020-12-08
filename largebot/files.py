@@ -888,7 +888,7 @@ class ResourceList:
             ):
                 update = (f"{old_assignment} [{old_status}]", f"{resource.assignment} [{resource.status}]")
                 if update[0] == update[1]:
-                    logger.info(f"{resource.name}: {update[0]} -> {update[1]}")
+                    logger.debug(f"{resource.name}: {update[0]} -> {update[1]}")
                 else:
                     logger.info(f"{resource.name}: {update[0]} -> {update[1]}")
             if not DRY_RUN:

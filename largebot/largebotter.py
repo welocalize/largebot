@@ -10,50 +10,15 @@ import pandas as pd
 from pydantic import BaseModel as _BaseModel
 from pydantic import Extra
 from requests.exceptions import HTTPError
-from welo365 import O365Account, WorkBook, Drive, WorkSheet, Folder
+from welo365 import WorkBook, Drive, WorkSheet, Folder
+from O365.drive import File
 
+from largebot.config import AIE_DRIVE, PROJ_DRIVE, STEPS, FILE_PATH, PROJ_PATH
 from largebot.logger import get_logger
 from largebot.pd import get_df
+from largebot.qctool import qc_check
 
 logger = get_logger(__name__)
-
-DEBUG = False
-
-AIE_SWITCH = 'Dev' if DEBUG else 'Production Planning'
-PROJ_SWITCH = 'Dev' if DEBUG else 'Data Creation'
-
-AIE_SITE = 'AIEnablementPractice'
-PROJ_SITE = 'msteams_08dd34-AmazonLex-LargeBot'
-
-PROJ_PATH = [
-    'Amazon Lex - LargeBot',
-    PROJ_SWITCH
-]
-AIE_PATH = [
-    'Amazon Web Services, Inc',
-    'Lex Largebot (Akshat)',
-    AIE_SWITCH,
-    'Files for Processing'
-]
-FILE_PATH = [
-    *AIE_PATH,
-    'Processed Files 2.0'
-]
-
-STEPS = (
-    ('Intent', 'Creator'),
-    ('Intent', 'QC'),
-    ('Utterance', 'Creator'),
-    ('Utterance', 'QC')
-)
-
-logger.debug('Getting welo365 Account.')
-ACCOUNT = O365Account()
-logger.debug('Getting AIE internal drive.')
-AIE_DRIVE = ACCOUNT.get_site(AIE_SITE).get_default_document_library()
-logger.debug('Getting Project Folder drive.')
-PROJ_DRIVE = ACCOUNT.get_site(PROJ_SITE).get_default_document_library()
-logger.debug('Building ResourceList.')
 
 
 def prep_utts(item, lang, phase, domain):
@@ -323,13 +288,16 @@ class FileAssignment(BaseModel):
                     'Utterance',
                     'QC'
                 ],
-                'UtteranceQC': None
+                'UtteranceQC': [
+                    *ROOT,
+                    'DeliveryPrep'
+                ]
             }
             target_path = paths.get(f"{self.file_name.task}{self.role}")
             target = AIE_DRIVE.get_item_by_path(*target_path)
         if target and (item := self.get_working()):
             if (previous_version := target.get_item(item.name)):
-                if self.role == 'QC':
+                if self.role == 'QC' and self.file_name.task == 'Intent':
                     try:
                         self.prep_utts()
                     except (ValueError, HTTPError) as e:
@@ -343,6 +311,9 @@ class FileAssignment(BaseModel):
                 previous_version.copy(target, name=previous_name)
                 previous_version.delete()
             item.copy(target)
+            if self.role == 'Creator' and self.file_name.task == 'Utterance':
+                qc_file = target.get_item(item.name)
+                self.qc_check(qc_file)
             if self.role == 'QC' and self.file_name.task == 'Intent':
                 try:
                     self.prep_utts()
@@ -361,10 +332,15 @@ class FileAssignment(BaseModel):
                 target
             )
             if (previous_version := target_folder.get_item(self.file_name.name)):
-                previous_version.copy(target_folder,
-                                      name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx")
+                previous_version.copy(
+                    target_folder,
+                    name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx"
+                )
                 previous_version.delete()
             item.move(target_folder)
+
+    def qc_check(self, qc_file: File):
+        qc_check(qc_file)
 
     def prep_utts(self):
         logger.info(f"Prepping utterances from intents for {self}")
@@ -688,13 +664,16 @@ class ResourceAssignment(BaseModel):
                     'Utterance',
                     'QC'
                 ],
-                'UtteranceQC': None
+                'UtteranceQC': [
+                    *ROOT,
+                    'DeliveryPrep'
+                ]
             }
             target_path = paths.get(f"{self.file_name.task}{self.role}")
             target = AIE_DRIVE.get_item_by_path(*target_path)
         if target and (item := self.get_working()):
             if (previous_version := target.get_item(item.name)):
-                if self.role == 'QC':
+                if self.role == 'QC' and self.file_name.task == 'Intent':
                     self.prep_utts()
                     return
                 logger.info(f"Copying {item} to {target}")
@@ -706,6 +685,9 @@ class ResourceAssignment(BaseModel):
                 previous_version.copy(target, name=previous_name)
                 previous_version.delete()
             item.copy(target)
+            if self.role == 'Creator' and self.file_name.task == 'Utterance':
+                qc_file = target.get_item(item.name)
+                self.qc_check(qc_file)
             if self.role == 'QC' and self.file_name.task == 'Intent':
                 self.prep_utts()
 
@@ -745,10 +727,15 @@ class ResourceAssignment(BaseModel):
             )
             if target_folder:
                 if (previous_version := target_folder.get_item(self.file_name.name)):
-                    previous_version.copy(target_folder,
-                                          name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx")
+                    previous_version.copy(
+                        target_folder,
+                        name=f"{self.file_name.name}_{datetime.datetime.utcnow().strftime('%Y%m%d')}.xlsx"
+                    )
                     previous_version.delete()
                 item.move(target_folder)
+
+    def qc_check(self, qc_file: File):
+        qc_check(qc_file)
 
     def prep_utts(self):
         logger.info(f"Prepping utterances from intents for {self.file_name}")
@@ -1080,7 +1067,10 @@ class ResourceBot:
                         'Utterance',
                         'QC'
                     ],
-                    'UtteranceQC': None
+                    'UtteranceQC': [
+                        *ROOT,
+                        'DeliveryPrep'
+                    ]
                 }
                 path = paths.get(f"{task}{role}")
                 if not path:
@@ -1095,7 +1085,6 @@ class ResourceBot:
                         continue
                     logger.info(f"Copying {file} to source for next step.")
                     try:
-                        file.copy_working()
                         file.copy_working()
                     except (ValueError, HTTPError) as e:
                         logger.info(f"Error with {file}: {e}")
