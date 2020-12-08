@@ -977,6 +977,10 @@ class ResourceSheet(DataFrameXL):
             values=self.values
         )
 
+    def get_resource_status(self, resource_code: str):
+        resource = getattr(self, resource_code)
+        if
+
 
 class ResourceBot:
     def __init__(
@@ -1120,3 +1124,27 @@ class ResourceBot:
                #      if not resource.needs_assignment:
                #          qc_resource = getattr(self.QC, resource.resource_name)
                #          qc_resource.status = 'Has Creator Assignment'
+
+    def assign_one(self, resource_code: str):
+        matrix = {
+            'Cr': (getattr(self.file_book, 'UtteranceCreator'), self.Creator),
+            'QC': (getattr(self.file_book, 'UtteranceQC'), self.QC)
+        }
+        file_list, resource_list = matrix.get(resource_code.split('_')[1])
+        resource = getattr(resource_list, resource_code)
+        resource.process()
+        if resource.needs_assignment:
+            try:
+                assignment = next(file_list.unassigned)
+                assignment.resource_name = resource.resource_name
+                self.pending_assignments.append(
+                    (resource, assignment)
+                )
+            except StopIteration:
+                pass
+        return {
+            'ResourceCode': resource.resource_code,
+            'ResourceName': resource.resource_name,
+            'FileName': resource.file_name.name,
+            'Status': resource.status
+        }

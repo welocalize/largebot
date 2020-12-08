@@ -56,6 +56,17 @@ def refresh_all(
         bot.assign()
 
 
+@app.command(help='Assign single resource by resource code.')
+def assign_one(
+        resource_code: str = typer.Argument(...),
+        phase: str = typer.Argument('_Training'),
+        DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
+):
+    lang = f"{resource_code.split('_')[0]}-US"
+    bot = ResourceBot(lang=lang, phase=phase, dry_run=DRY_RUN)
+    return bot.assign_one(resource_code)
+
+
 @app.command(help='Refresh relative reference to last time assignments were updated.')
 def when(
         lang: str = typer.Argument('EN-US'),
