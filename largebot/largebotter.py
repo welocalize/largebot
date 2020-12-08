@@ -978,8 +978,14 @@ class ResourceSheet(DataFrameXL):
         )
 
     def get_resource_status(self, resource_code: str):
-        resource = getattr(self, resource_code)
-        if
+        resource = getattr(self, resource_code, None)
+        if resource:
+            return {
+                'ResourceCode': resource.resource_code,
+                'ResourceName': resource.resource_name,
+                'FileName': resource.file_name.name,
+                'Status': resource.status
+            }
 
 
 class ResourceBot:

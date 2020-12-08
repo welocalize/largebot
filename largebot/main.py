@@ -4,7 +4,7 @@ import typer
 import time
 
 from largebot.files import assign_creators, assign_qcs, how_long
-from largebot.largebotter import ResourceBot
+from largebot.largebotter import ResourceBot, ResourceSheet
 from largebot.logger import get_logger
 
 logger = get_logger(__name__)
@@ -65,6 +65,17 @@ def assign_one(
     lang = f"{resource_code.split('_')[0]}-US"
     bot = ResourceBot(lang=lang, phase=phase, dry_run=DRY_RUN)
     return bot.assign_one(resource_code)
+
+
+@app.command(help='Get status of single resource by resource code.')
+def get_resource_status(
+        resource_code: str = typer.Argument(...),
+        phase: str = typer.Argument('_Training')
+):
+    lang = f"{resource_code.split('_')[0]}-US"
+    role = 'Creator' if resource_code.split('_')[1] == 'Cr' else 'QC'
+    resource_sheet = ResourceSheet(lang=lang, phase=phase, role=role)
+    return resource_sheet.get_resource_status(resource_code)
 
 
 @app.command(help='Refresh relative reference to last time assignments were updated.')
