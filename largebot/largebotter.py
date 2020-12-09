@@ -673,8 +673,9 @@ class ResourceAssignment(BaseModel):
             target = AIE_DRIVE.get_item_by_path(*target_path)
         if target and (item := self.get_working()):
             if (previous_version := target.get_item(item.name)):
-                if self.role == 'QC' and self.file_name.task == 'Intent':
-                    self.prep_utts()
+                if self.role == 'QC':
+                    if self.file_name.task == 'Intent':
+                        self.prep_utts()
                     return
                 logger.info(f"Copying {item} to {target}")
                 for i in range(1, 10):
@@ -688,8 +689,9 @@ class ResourceAssignment(BaseModel):
             if self.role == 'Creator' and self.file_name.task == 'Utterance':
                 qc_file = target.get_item(item.name)
                 self.qc_check(qc_file)
-            if self.role == 'QC' and self.file_name.task == 'Intent':
-                self.prep_utts()
+            if self.role == 'QC':
+                if self.file_name.task == 'Intent':
+                    self.prep_utts()
 
     def move_working(self, target: str = None):
         target = target or self.status
