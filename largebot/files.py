@@ -967,30 +967,7 @@ class ResourceList:
             for resource in self.resources
         }
 
-def how_long(
-        LANG: str = 'EN-US',
-        PHASE: str = '_Training'
-):
-    for ROLE in ['Creator', 'QC']:
-        PATH = [
-            *PROJ_PATH,
-            LANG,
-            PHASE,
-            ROLE,
-            f"{LANG}_LargeBot_{ROLE}_Resources_List.xlsx"
-        ]
-        ADDRESS = {
-            'EN-US': 'A1',
-            'ES-US': 'B1'
-        }
-        wb = WorkBook(PROJ_DRIVE.get_item_by_path(*PATH))
-        last_updated = wb.get_worksheet('Data').get_range(ADDRESS.get(LANG)).values[0][0]
-        _range = wb.get_worksheet(LANG).get_range('E1')
-        _range.update(
-            values=[
-                [f"Notes - last updated {arrow.get(last_updated).humanize()}"]
-            ]
-        )
+
 
 def assign_creators(
         LANG: str = 'EN-US',

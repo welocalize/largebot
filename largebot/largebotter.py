@@ -1186,3 +1186,29 @@ class ResourceBot:
             file_sheet = getattr(self.file_book, sheet_name)
             for file in file_sheet.files:
                 print(f"{file.file_name.name}\t{file.status}\t{file.resource_name}\t{file.resource_code}")
+
+
+def how_long(
+        LANG: str = 'EN-US',
+        PHASE: str = '_Training'
+):
+    for ROLE in ['Creator', 'QC']:
+        PATH = [
+            *PROJ_PATH,
+            LANG,
+            PHASE,
+            ROLE,
+            f"{LANG}_LargeBot_{ROLE}_Resources_List.xlsx"
+        ]
+        ADDRESS = {
+            'EN-US': 'A1',
+            'ES-US': 'B1'
+        }
+        wb = WorkBook(PROJ_DRIVE.get_item_by_path(*PATH))
+        last_updated = wb.get_worksheet('Data').get_range(ADDRESS.get(LANG)).values[0][0]
+        _range = wb.get_worksheet(LANG).get_range('E1')
+        _range.update(
+            values=[
+                [f"Notes - last updated {arrow.get(last_updated).humanize()}"]
+            ]
+        )
