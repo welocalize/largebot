@@ -26,8 +26,8 @@ FILE_PATH = [
 ]
 
 STEPS = (
-    # ('Intent', 'Creator'),
-    # ('Intent', 'QC'),
+    ('Intent', 'Creator'),
+    ('Intent', 'QC'),
     ('Utterance', 'QC'),
     ('Utterance', 'Creator')
 )

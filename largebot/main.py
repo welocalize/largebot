@@ -45,6 +45,7 @@ def refresh_qcs(
 def refresh_all(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
+        refresh: bool = typer.Option(False, '--refresh', '-r'),
         DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
 ):
     with ResourceBot(
@@ -52,7 +53,8 @@ def refresh_all(
             phase=phase,
             dry_run=DRY_RUN
     ) as bot:
-        bot.refresh()
+        if refresh:
+            bot.refresh()
         bot.assign()
 
 

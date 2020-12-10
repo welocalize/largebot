@@ -303,7 +303,7 @@ class FileAssignment(BaseModel):
                     except (ValueError, HTTPError) as e:
                         logger.error(f"Error trying to prepare utterances: {e}")
                     return
-                for i in range(1, 10):
+                for i in range(1, 100):
                     previous_name = f"{item.name.split('.')[0]}_v{i}.xlsx"
                     previous = target.get_item(previous_name)
                     if not previous:
@@ -443,7 +443,10 @@ class FileSheet(DataFrameXL):
         self.role = role
         self.ws = ws
         self.df = df
-        self.file_names = self.df['FileName'].tolist()
+        self.file_names = [
+            name.lower()
+            for name in self.df['FileName'].tolist()
+        ]
         for file_name, file_assignment in zip(
                 self.file_names,
                 self.df.values.tolist()
@@ -508,6 +511,8 @@ class ResourceAssignment(BaseModel):
     phase: str
     summary: dict = {}
     drive: Drive = None
+    finance: Folder = None
+    media_cable: Folder = None
 
     def __init__(
             self,
@@ -678,7 +683,7 @@ class ResourceAssignment(BaseModel):
                         self.prep_utts()
                     return
                 logger.info(f"Copying {item} to {target}")
-                for i in range(1, 10):
+                for i in range(1, 100):
                     previous_name = f"{item.name.split('.')[0]}_v{i}.xlsx"
                     previous = target.get_item(previous_name)
                     if not previous:
@@ -687,8 +692,11 @@ class ResourceAssignment(BaseModel):
                 previous_version.delete()
             item.copy(target)
             if self.role == 'Creator' and self.file_name.task == 'Utterance':
-                qc_file = target.get_item(item.name)
-                self.qc_check(qc_file)
+                try:
+                    qc_file = target.get_item(item.name)
+                    self.qc_check(qc_file)
+                except ValueError as e:
+                    logger.error(f"Problem with {item.name}: {e}")
             if self.role == 'QC':
                 if self.file_name.task == 'Intent':
                     self.prep_utts()
@@ -1025,7 +1033,7 @@ class ResourceBot:
             self.QC.unblock()
             self.file_book.publish_all()
 
-    def refresh(self):
+    def refresh(self, status_only: bool = False, prereq_only: bool = False):
         self.file_book.reset('Creator', 'Intent')
         for task, role in STEPS:
             resource_sheet = getattr(self, role)
@@ -1044,7 +1052,7 @@ class ResourceBot:
                             file_assignment.file_name.name,
                             file_assignment
                         )
-            self.file_book.reset(role, task)
+            self.file_book.reset(role, task, status_only=status_only, prereq_only=prereq_only)
             # resource_sheet.publish()
 
     def populate_source_folder(self, role: str = None, task: str = None):
@@ -1105,15 +1113,15 @@ class ResourceBot:
 
     def assign(self):
         steps = (
-            # 'IntentCreator',
+            'IntentCreator',
             'UtteranceCreator',
-            # 'IntentQC',
+            'IntentQC',
             'UtteranceQC'
         )
-        for resource_list in (self.QC, self.Creator):
+        for resource_list in (self.Creator,):
             for resource in resource_list.resources:
                 if resource.needs_assignment:
-                    for step in steps[::-1]:
+                    for step in steps:
                         if resource.role not in step:
                             continue
                         file_list = getattr(self.file_book, step)
@@ -1128,10 +1136,10 @@ class ResourceBot:
                         except StopIteration:
                             logger.info(f"No unassigned files for {step}.")
                             continue
-               #  if resource.role == 'Creator' and resource.resource_name in self.QC.names:
-               #      if not resource.needs_assignment:
-               #          qc_resource = getattr(self.QC, resource.resource_name)
-               #          qc_resource.status = 'Has Creator Assignment'
+                if resource.role == 'Creator' and resource.resource_name in self.QC.names:
+                    if not resource.needs_assignment:
+                        qc_resource = getattr(self.QC, resource.resource_name)
+                        qc_resource.status = 'Has Creator Assignment'
 
     def assign_one(self, resource_code: str):
         matrix = {
@@ -1156,3 +1164,25 @@ class ResourceBot:
             'FileName': resource.file_name.name,
             'Status': resource.status
         }
+
+    def rebuild_file_sheet(self, role: str):
+        for resource in getattr(self, role).resources[::-1]:
+            if not resource.summary:
+                resource.get_file_status()
+            for task in resource.summary:
+                file_sheet = getattr(self.file_book, f"{task}{role}")
+                for file in resource.summary[task]:
+                    if file.file_name.name.lower() in file_sheet.file_names:
+                        logger.info(f"Updating {file} in {file_sheet}")
+                        index = file_sheet.file_names.index(file.file_name.name.lower())
+                        file_sheet[index].status = file.status
+                        file_sheet[index].resource_name = file.resource_name
+                        file_sheet[index].resource_code = file.resource_code
+
+    def rebuild_file_sheets(self):
+        for role in ('Creator', 'QC'):
+            self.rebuild_file_sheet(role)
+        for sheet_name in ('IntentCreator', 'IntentQC', 'UtteranceCreator', 'UtteranceQC'):
+            file_sheet = getattr(self.file_book, sheet_name)
+            for file in file_sheet.files:
+                print(f"{file.file_name.name}\t{file.status}\t{file.resource_name}\t{file.resource_code}")
