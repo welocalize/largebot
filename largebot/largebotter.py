@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import datetime
 import random
+import pymsteams
 from itertools import repeat
 from typing import Optional, Union
 
@@ -13,7 +14,7 @@ from requests.exceptions import HTTPError
 from welo365 import WorkBook, Drive, WorkSheet, Folder
 from O365.drive import File
 
-from largebot.config import AIE_DRIVE, PROJ_DRIVE, STEPS, FILE_PATH, PROJ_PATH
+from largebot.config import AIE_DRIVE, PROJ_DRIVE, STEPS, FILE_PATH, PROJ_PATH, WEBHOOKS
 from largebot.logger import get_logger
 from largebot.pd import get_df
 from largebot.qctool import qc_check
@@ -482,7 +483,7 @@ class FileSheet(DataFrameXL):
     def summary(self):
         df = self.df
         df['Domain'] = df['FileName'].apply(lambda x: 'Finance' if x.split('_')[3] == 'Fi' else 'Media_Cable')
-        return pd.crosstab(df.Domain, df.Status)
+        return pd.crosstab(df.Status, df.Domain)
 
     @property
     def unassigned(self):
@@ -1001,6 +1002,30 @@ class ResourceSheet(DataFrameXL):
                 'FileName': resource.file_name.name,
                 'Status': resource.status
             }
+
+
+class TeamsMessage:
+    def __init__(self, task: str = 'Utterance', role: str = 'Creator', lang: str = 'EN-US', phase: str = '_Training'):
+        self.book = FileBook(lang=lang, phase=phase)
+
+        self.summary = getattr(self.book, f"{task}{role}").summary()
+
+        self.message = pymsteams.connectorcard(WEBHOOKS.get(role))
+        self.message.summary(f"{task} {role} Progress")
+        table = f"""\n
+        \t{task} {role} Progress
+        \t\t\tFinance\t\tMedia_Cable
+        Completed\t\t{self.summary['Finance']['Completed']}\t\t\t{self.summary['Media_Cable']['Completed']}
+        Not Started\t\t{self.summary['Finance']['Not Started']}\t\t\t{self.summary['Media_Cable']['Not Started']}
+        In Progress\t\t{self.summary['Finance']['In Progress']}\t\t\t{self.summary['Media_Cable']['In Progress']}
+        """
+        self.message.text(table)
+
+    def print(self):
+        self.message.printme()
+
+    def send(self):
+        self.message.send()
 
 
 class ResourceBot:

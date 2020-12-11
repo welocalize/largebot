@@ -42,8 +42,8 @@ def get_file_summary(
     book = FileBook(lang=lang, phase=phase)
     file_sheet = getattr(book, f"{task}{role}")
     status = file_sheet.summary()
-    columns = status.columns.tolist()
-    domains = status.index.tolist()
+    columns = status.index.tolist()
+    domains = status.columns.tolist()
     values = status.values.tolist()
     return {
         domains[i]: dict(

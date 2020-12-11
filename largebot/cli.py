@@ -2,7 +2,7 @@
 
 import typer
 
-from largebot.largebotter import how_long, ResourceBot, ResourceSheet
+from largebot.largebotter import how_long, ResourceBot, ResourceSheet, TeamsMessage
 from largebot.logger import get_logger
 
 logger = get_logger(__name__)
@@ -65,6 +65,22 @@ def assign_one(
     lang = f"{resource_code.split('_')[0]}-US"
     bot = ResourceBot(lang=lang, phase=phase, dry_run=DRY_RUN)
     return bot.assign_one(resource_code)
+
+
+@app.command(help='Send Teams Message with summary stats for a given task/role.')
+def teams_summary(
+        task: str = typer.Argument('Utterance'),
+        role: str = typer.Argument('Creator'),
+        lang: str = typer.Argument('EN-US'),
+        phase: str = typer.Argument('_Training')
+):
+    update = TeamsMessage(
+        task=task,
+        role=role,
+        lang=lang,
+        phase=phase
+    )
+    update.send()
 
 
 @app.command(help='Get status of single resource by resource code.')
