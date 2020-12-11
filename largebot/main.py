@@ -54,17 +54,17 @@ def get_file_summary(
 ):
     book = FileBook(lang=lang, phase=phase)
     file_sheet = getattr(book, f"{task}{role}")
-    status = file_sheet.summary()
-    columns = status.index.tolist()
-    domains = status.columns.tolist()
-    values = status.values.tolist()
+    summary = file_sheet.summary()
+    columns = summary.index.tolist()
+    domains = summary.columns.tolist()
+    values = summary.values.tolist()
     return {
-        domains[i]: dict(
-            zip(
-                columns, _values
-            )
-        )
-        for i, _values in enumerate(values)
+        domain: {
+            status: count
+            for status in columns
+            if (count := summary[domain][status])
+        }
+        for domain in domains
     }
 
 
