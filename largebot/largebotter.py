@@ -1150,9 +1150,9 @@ class ResourceBot:
 
     def assign(self):
         steps = (
-            'IntentCreator',
+            # 'IntentCreator',
             'UtteranceCreator',
-            'IntentQC',
+            # 'IntentQC',
             'UtteranceQC'
         )
         for resource_list in (self.Creator,):
