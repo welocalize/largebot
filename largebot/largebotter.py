@@ -1062,13 +1062,11 @@ class ResourceBot:
         self.QC.block()
 
     def unblock(self):
-        for resource, assignment in self.pending_assignments:
-            logger.info(f"Actually assigning {assignment} to {resource}")
-            resource.assign(assignment)
         if not self.dry_run:
             self.Creator.unblock()
             self.QC.unblock()
             self.file_book.publish_all()
+
 
     def refresh(self, status_only: bool = False, prereq_only: bool = False):
         self.file_book.reset('Creator', 'Intent')
@@ -1180,6 +1178,19 @@ class ResourceBot:
                     if not resource.needs_assignment:
                         qc_resource = getattr(self.QC, resource.resource_name)
                         qc_resource.status = 'Has Creator Assignment'
+        updates = []
+        for resource, assignment in self.pending_assignments:
+            logger.info(f"Actually assigning {assignment} to {resource}")
+            resource.assign(assignment)
+            updates.append(
+                {
+                    'ResourceCode': resource.resource_code,
+                    'ResourceName': resource.resource_name,
+                    'FileName': resource.file_name.name,
+                    'Status': resource.status
+                }
+            )
+        return updates
 
     def assign_one(self, resource_code: str):
         matrix = {

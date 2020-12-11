@@ -5,9 +5,22 @@ from largebot.largebotter import ResourceSheet, ResourceBot, FileBook
 app = FastAPI()
 
 
-@app.get('/')
-def root():
-    return {'Hello': 'API'}
+@app.post('/resources/refresh-all')
+def refresh_all(
+        lang: str = 'EN-US',
+        phase: str = '_Training',
+        refresh: bool = False,
+        dry_run: bool = False
+):
+    with ResourceBot(
+            lang=lang,
+            phase=phase,
+            dry_run=dry_run
+    ) as bot:
+        if refresh:
+            bot.refresh()
+        updates = bot.assign()
+    return updates
 
 
 @app.get('/resource/{resource_code}')
@@ -21,7 +34,7 @@ def get_resource_status(
     return resource_sheet.get_resource_status(resource_code)
 
 
-@app.post('/resource/{resource_code}')
+@app.post('/resource/{resource_code}/assign')
 def assign_one(
         resource_code: str,
         phase: str = '_Training',
