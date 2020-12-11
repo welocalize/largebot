@@ -23,20 +23,17 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
     ln -s /opt/poetry/bin/poetry && \
     poetry config virtualenvs.create true
 
-RUN poetry config repositories.rypy "https://pypi.rypy.tk/" && \
-    poetry config http-basic.rypy welo Localiz3
-
 # Copy using poetry.lock* in case it doesn't exist yet
-COPY ./pyproject.toml ./poetry.lock* /app/
+COPY ./pyproject.toml ./poetry.lock* /largebot/
 
 COPY ./o365_token.txt /root/
 
 RUN pyenv install 3.8-dev && pyenv global 3.8-dev
 
-RUN cd /app && poetry env use $( pyenv which python ) && poetry install --no-root --no-dev
+RUN cd /largebot && poetry env use $( pyenv which python ) && poetry install --no-root --no-dev
 
-COPY ./app /app
+COPY . /largebot
 
-WORKDIR /app
+WORKDIR /largebot
 
 CMD ["poetry", "run", "uvicorn", "largebot.main:app", "--host", "0.0.0.0", "--port", "8081"]
