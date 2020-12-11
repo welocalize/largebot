@@ -1120,13 +1120,16 @@ class ResourceBot:
         )
         for resource_list in (self.Creator,):
             for resource in resource_list.resources:
+                status = resource.status
                 if resource.needs_assignment:
                     for step in steps:
                         if resource.role not in step:
                             continue
-                        file_list = getattr(self.file_book, step)
+                        file_sheet = getattr(self.file_book, step)
                         try:
-                            assignment = next(file_list.unassigned)
+                            index = file_sheet.file_names.index(resource.file_name.name.lower())
+                            file_sheet[index].status = status
+                            assignment = next(file_sheet.unassigned)
                             assignment.resource_name = resource.resource_name
                             logger.info(f"Queuing assigning {assignment} to {resource}")
                             self.pending_assignments.append(
@@ -1146,16 +1149,19 @@ class ResourceBot:
             'Cr': (getattr(self.file_book, 'UtteranceCreator'), self.Creator),
             'QC': (getattr(self.file_book, 'UtteranceQC'), self.QC)
         }
-        file_list, resource_list = matrix.get(resource_code.split('_')[1])
+        file_sheet, resource_list = matrix.get(resource_code.split('_')[1])
         resource = getattr(resource_list, resource_code)
+        status = resource.status
         resource.process()
         if resource.needs_assignment:
             try:
-                assignment = next(file_list.unassigned)
+                index = file_sheet.file_names.index(resource.file_name.name.lower())
+                file_sheet[index].status = status
+                assignment = next(file_sheet.unassigned)
                 assignment.resource_name = resource.resource_name
-                self.pending_assignments.append(
-                    (resource, assignment)
-                )
+                resource.assign(assignment)
+                file_sheet.publish()
+                resource_list.publish()
             except StopIteration:
                 pass
         return {
