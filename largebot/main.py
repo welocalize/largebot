@@ -45,7 +45,7 @@ def assign_one(
     return bot.assign_one(resource_code)
 
 
-@app.post('/task/{task}/role/{role}')
+@app.get('/task/{task}/role/{role}/summary')
 def get_file_summary(
         task: str,
         role: str,
@@ -61,7 +61,7 @@ def get_file_summary(
         domain: {
             status: count
             for status in columns
-            if (count := summary[domain][status])
+            if (count := str(summary[domain][status]))
         }
         for domain in domains
     }
