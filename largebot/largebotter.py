@@ -1015,9 +1015,16 @@ class TeamsMessage:
         table = f"""\n
         \t{task} {role} Progress
         \t\t\tFinance\t\tMedia_Cable
-        Completed\t\t{self.summary['Finance']['Completed']}\t\t\t{self.summary['Media_Cable']['Completed']}
-        Not Started\t\t{self.summary['Finance']['Not Started']}\t\t\t{self.summary['Media_Cable']['Not Started']}
-        In Progress\t\t{self.summary['Finance']['In Progress']}\t\t\t{self.summary['Media_Cable']['In Progress']}
+        Completed\t\t{self.summary['Finance'].get('Completed', 0)}\t\t\t{self.summary['Media_Cable'].get('Completed', 0)}
+        Not Started\t\t{self.summary['Finance'].get('Not Started', 0)}\t\t\t{self.summary['Media_Cable'].get('Not Started', 0)}
+        In Progress\t\t{self.summary['Finance'].get('In Progress', 0)}\t\t\t{self.summary['Media_Cable'].get('In Progress', 0)}
+        """ if role == 'Creator' else f"""\n
+        \t{task} {role} Progress
+        \t\t\tFinance\t\tMedia_Cable
+        Accepted\t\t{self.summary['Finance'].get('Accepted', 0)}\t\t\t{self.summary['Media_Cable'].get('Accepted', 0)}
+        Rejected\t\t{self.summary['Finance'].get('Rejected', 0)}\t\t\t{self.summary['Media_Cable'].get('Rejected', 0)}
+        Not Started\t\t{self.summary['Finance'].get('Not Started', 0)}\t\t\t{self.summary['Media_Cable'].get('Not Started', 0)}
+        In Progress\t\t{self.summary['Finance'].get('In Progress', 0)}\t\t\t{self.summary['Media_Cable'].get('In Progress', 0)}
         """
         self.message.text(table)
 
