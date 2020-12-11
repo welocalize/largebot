@@ -479,6 +479,11 @@ class FileSheet(DataFrameXL):
             for file_assignment in self.files
         ]
 
+    def summary(self):
+        df = self.df
+        df['Domain'] = df['FileName'].apply(lambda x: 'Finance' if x.split('_')[3] == 'Fi' else 'Media_Cable')
+        return pd.crosstab(df.Domain, df.Status)
+
     @property
     def unassigned(self):
         yield from (
@@ -1160,8 +1165,9 @@ class ResourceBot:
                 assignment = next(file_sheet.unassigned)
                 assignment.resource_name = resource.resource_name
                 resource.assign(assignment)
-                file_sheet.publish()
-                resource_list.publish()
+                if not self.dry_run:
+                    file_sheet.publish()
+                    resource_list.publish()
             except StopIteration:
                 pass
         return {

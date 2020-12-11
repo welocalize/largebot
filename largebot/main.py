@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from largebot.largebotter import ResourceSheet, ResourceBot
+from largebot.largebotter import ResourceSheet, ResourceBot, FileBook
 
 app = FastAPI()
 
@@ -30,6 +30,29 @@ def assign_one(
     lang = f"{resource_code.split('_')[0]}-US"
     bot = ResourceBot(lang=lang, phase=phase, dry_run=dry_run)
     return bot.assign_one(resource_code)
+
+
+@app.get('/task/{task}/role/{role}')
+def get_file_summary(
+        task: str,
+        role: str,
+        lang: str = 'EN-US',
+        phase: str = '_Training'
+):
+    book = FileBook(lang=lang, phase=phase)
+    file_sheet = getattr(book, f"{task}{role}")
+    status = file_sheet.summary()
+    columns = status.columns.tolist()
+    domains = status.index.tolist()
+    values = status.values.tolist()
+    return {
+        domains[i]: dict(
+            zip(
+                columns, _values
+            )
+        )
+        for i, _values in enumerate(values)
+    }
 
 
 if __name__ == '__main__':
