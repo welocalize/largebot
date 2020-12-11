@@ -45,7 +45,7 @@ def assign_one(
     return bot.assign_one(resource_code)
 
 
-@app.get('/task/{task}/role/{role}/summary')
+@app.post('/task/{task}/role/{role}')
 def get_file_summary(
         task: str,
         role: str,
