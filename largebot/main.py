@@ -57,7 +57,6 @@ def get_file_summary(
     summary = file_sheet.summary()
     columns = summary.index.tolist()
     domains = summary.columns.tolist()
-    values = summary.values.tolist()
     return {
         domain: {
             status: count
