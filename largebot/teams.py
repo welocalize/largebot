@@ -2,8 +2,6 @@ import pymsteams
 from welo365.account import O365Account
 from O365.excel import WorkBook
 import pandas as pd
-import datetime
-import numpy as np
 
 
 def send_teams_update(TASK: str = 'Intent', STEP: str = 'Creator'):
