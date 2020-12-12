@@ -1146,12 +1146,12 @@ class ResourceBot:
                         errors.append(file)
         logger.info(f"These files were not processed: {errors}")
 
-    def assign(self):
+    def assign_creators(self):
         steps = (
             # 'IntentCreator',
-            'UtteranceCreator',
+            'UtteranceCreator'
             # 'IntentQC',
-            'UtteranceQC'
+            # 'UtteranceQC'
         )
         for resource_list in (self.Creator,):
             for resource in resource_list.resources:
@@ -1174,10 +1174,58 @@ class ResourceBot:
                         except StopIteration:
                             logger.info(f"No unassigned files for {step}.")
                             continue
-                if resource.role == 'Creator' and resource.resource_name in self.QC.names:
-                    if not resource.needs_assignment:
-                        qc_resource = getattr(self.QC, resource.resource_name)
-                        qc_resource.status = 'Has Creator Assignment'
+                # if resource.role == 'Creator' and resource.resource_name in self.QC.names:
+                #     if not resource.needs_assignment:
+                #         qc_resource = getattr(self.QC, resource.resource_name)
+                #         qc_resource.status = 'Has Creator Assignment'
+        updates = []
+        for resource, assignment in self.pending_assignments:
+            logger.info(f"Actually assigning {assignment} to {resource}")
+            resource.assign(assignment)
+            updates.append(
+                {
+                    'ResourceCode': resource.resource_code,
+                    'ResourceName': resource.resource_name,
+                    'FileName': resource.file_name.name,
+                    'Status': resource.status
+                }
+            )
+        return updates
+
+    def assign_qcs(self):
+        steps = (
+            # 'IntentCreator',
+            # 'UtteranceCreator'
+            # 'IntentQC',
+            'UtteranceQC',
+        )
+        for resource_list in (self.QC,):
+            for resource in resource_list.resources:
+                print(resource, resource.role)
+                status = resource.status
+                if resource.needs_assignment:
+                    for step in steps:
+                        if resource.role not in step:
+                            print('skipping', step)
+                            continue
+                        file_sheet = getattr(self.file_book, step)
+                        try:
+                            index = file_sheet.file_names.index(resource.file_name.name.lower())
+                            file_sheet[index].status = status
+                            assignment = next(file_sheet.unassigned)
+                            assignment.resource_name = resource.resource_name
+                            logger.info(f"Queuing assigning {assignment} to {resource}")
+                            self.pending_assignments.append(
+                                (resource, assignment)
+                            )
+                            break
+                        except StopIteration:
+                            logger.info(f"No unassigned files for {step}.")
+                            continue
+                # if resource.role == 'Creator' and resource.resource_name in self.QC.names:
+                #     if not resource.needs_assignment:
+                #         qc_resource = getattr(self.QC, resource.resource_name)
+                #         qc_resource.status = 'Has Creator Assignment'
         updates = []
         for resource, assignment in self.pending_assignments:
             logger.info(f"Actually assigning {assignment} to {resource}")

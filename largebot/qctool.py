@@ -152,3 +152,56 @@ def qc_check(infile):
     error_flags = update_range.get_column(7)
     error_flags_format = error_flags.get_format()
     error_flags_format.auto_fit_columns()
+
+
+def delivery_check(infile):
+    wb = WorkBook(infile)
+    ws = wb.get_worksheet('Sheet1')
+    _range = ws.get_range('A1:G6001')
+    columns, *values = _range.values
+    df = pd.DataFrame(values, columns=columns)
+    slot_types = list(zip(df['SlotName'].tolist(), df['SlotName (Optional)'].tolist()))
+    utterances = df['Sample Utterance'].tolist()
+    modalities = [
+        bool(modality == 'Spoken')
+        for modality in df['Modality'].tolist()
+    ]
+    new_utterances = []
+    flags = []
+
+    for utterance, modality, slots in zip(utterances, modalities, slot_types):
+        new_utterance, _flags = global_prep(utterance, modality, *slots)
+        new_utterances.append(new_utterance)
+        flags.append(_flags)
+
+    # matches_dict = {}
+    # new_flags = []
+    # for i, (new_utterance, flag) in enumerate(zip(new_utterances, flags)):
+    #     if (fuzzy_match_error := matches_dict.get(new_utterance, None)):
+    #         new_flags.append([fuzzy_match_error, *flag])
+    #         continue
+    #     choices = new_utterances[:i] + new_utterances[i + 1:]
+    #     flag, matches_dict = check_fuzzies(new_utterance, choices, flag, matches_dict)
+    #     new_flags.append(flag)
+
+    df['ErrorFlags'] = [', '.join(flag) for flag in flags]
+    df['NewUtterance'] = new_utterances
+    df = df.where(pd.notnull(df), '')
+    # df.sort_values(
+    #     by=['ErrorFlags', 'Modality'],
+    #     ascending=[False, True],
+    #     inplace=True
+    # )
+
+    update_range = ws.get_range('A1:I6001')
+    update_range.update(
+        values=[
+            df.columns.tolist(),
+            *df.values.tolist()
+        ]
+    )
+    old_utterances = update_range.get_column(6)
+    old_utterances.column_hidden = True
+    old_utterances.update(
+        values=old_utterances.values
+    )

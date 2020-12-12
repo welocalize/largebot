@@ -24,7 +24,8 @@ def refresh_all(
     ) as bot:
         if refresh:
             bot.refresh()
-        bot.assign()
+        bot.assign_qcs()
+        bot.assign_creators()
 
 
 @app.command(help='Assign single resource by resource code.')
