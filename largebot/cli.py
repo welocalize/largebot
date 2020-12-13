@@ -24,7 +24,9 @@ def refresh_all(
     ) as bot:
         if refresh:
             bot.refresh()
+        logger.info("Assigning QCs.")
         bot.assign_qcs()
+        logger.info("Assigning Creators.")
         bot.assign_creators()
 
 

@@ -1149,12 +1149,13 @@ class ResourceBot:
     def assign_creators(self):
         steps = (
             # 'IntentCreator',
-            'UtteranceCreator'
+            'UtteranceCreator',
             # 'IntentQC',
             # 'UtteranceQC'
         )
         for resource_list in (self.Creator,):
             for resource in resource_list.resources:
+                logger.info(f"{resource}")
                 status = resource.status
                 if resource.needs_assignment:
                     for step in steps:
@@ -1201,12 +1202,11 @@ class ResourceBot:
         )
         for resource_list in (self.QC,):
             for resource in resource_list.resources:
-                print(resource, resource.role)
+                logger.info(f"{resource}")
                 status = resource.status
                 if resource.needs_assignment:
                     for step in steps:
                         if resource.role not in step:
-                            print('skipping', step)
                             continue
                         file_sheet = getattr(self.file_book, step)
                         try:
