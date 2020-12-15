@@ -37,6 +37,20 @@ async def assign_resource(
     return bot.assign_one(resource_code)
 
 
+@app.post('/reassign/')
+async def reassign_resource(
+        lang: str = Form(...),
+        role: str = Form(...),
+        resourceNumber: int = Form(...),
+        phase: str = Form(...),
+        dry_run: str = Form('')
+):
+    resource_code = f"{lang[:2]}_{role[:2]}_{resourceNumber:02d}"
+    dry_run = bool(dry_run == 'dry_run')
+    bot = ResourceBot(lang=lang, phase=phase, dry_run=dry_run)
+    return bot.reassign(resource_code)
+
+
 @app.post('/resources/refresh-all')
 def refresh_all(
         lang: str = 'EN-US',

@@ -558,6 +558,14 @@ class ResourceAssignment(BaseModel):
     def __str__(self):
         return repr(self)
 
+    def http_response(self):
+        return {
+            'ResourceName': self.resource_name,
+            'ResourceCode': self.resource_code,
+            'FileName': self.file_name.name,
+            'Status': self.status
+        }
+
     def get_drive(self):
         if self.drive is None:
             drive = PROJ_DRIVE.get_item_by_path(
@@ -623,6 +631,43 @@ class ResourceAssignment(BaseModel):
         assignment.resource_code = self.resource_code
         assignment.role = self.role
         assignment.copy_source()
+
+    def reassign(self):
+        ROOT = [
+            *FILE_PATH,
+            self.file_name.lang,
+            self.file_name.phase,
+            self.file_name.domain
+        ]
+        paths = {
+            'IntentCreator': [
+                *ROOT,
+                'Intent',
+                'QC'
+            ],
+            'IntentQC': [
+                *ROOT,
+                'Utterance',
+                'Intent'
+            ],
+            'UtteranceCreator': [
+                *ROOT,
+                'Utterance',
+                'QC'
+            ],
+            'UtteranceQC': [
+                *ROOT,
+                'DeliveryPrep'
+            ]
+        }
+        target_path = paths.get(f"{self.file_name.task}{self.role}")
+        target = AIE_DRIVE.get_item_by_path(*target_path)
+        if target and (item := self.get_working()):
+            previous_version = target.get_item(f"{self.file_name.name}.xlsx")
+            previous_version.delete()
+            item.move(target)
+        self.status = 'Not Active'
+        self.file_name = FileName('Not Active')
 
     def get_working(self, target: str = None, in_progress: bool = False):
         RESOURCE_PATH = [
@@ -996,12 +1041,7 @@ class ResourceSheet(DataFrameXL):
     def get_resource_status(self, resource_code: str):
         resource = getattr(self, resource_code, None)
         if resource:
-            return {
-                'ResourceCode': resource.resource_code,
-                'ResourceName': resource.resource_name,
-                'FileName': resource.file_name.name,
-                'Status': resource.status
-            }
+            return resource.http_response()
 
 
 class TeamsMessage:
@@ -1067,7 +1107,6 @@ class ResourceBot:
             self.QC.unblock()
             self.file_book.publish_all()
 
-
     def refresh(self, status_only: bool = False, prereq_only: bool = False):
         self.file_book.reset('Creator', 'Intent')
         for task, role in STEPS:
@@ -1095,7 +1134,7 @@ class ResourceBot:
             'Creator': ['Completed', 'Re-work Completed'],
             'QC': ['Accepted']
         }
-        domains = (domain, ) if domain else ('Finance', 'Media_Cable')
+        domains = (domain,) if domain else ('Finance', 'Media_Cable')
         errors = []
         for resource in getattr(self, role).resources:
             if not resource.summary:
@@ -1240,6 +1279,28 @@ class ResourceBot:
                 }
             )
         return updates
+
+    def reassign(self, resource_code: str):
+        matrix = {
+            'Cr': (getattr(self.file_book, 'UtteranceCreator'), self.Creator),
+            'QC': (getattr(self.file_book, 'UtteranceQC'), self.QC)
+        }
+        file_sheet, resource_list = matrix.get(resource_code.split('_')[1])
+        resource = getattr(resource_list, resource_code)
+        index = file_sheet.file_names.index(resource.file_name.name.lower())
+        file_sheet[index].status = 'Not Started'
+        file_sheet[index].resource_name = 'Unassigned'
+        file_sheet[index].resource_code = 'Unassigned'
+        resource.reassign()
+        if not self.dry_run:
+            file_sheet.publish()
+            resource_list.publish()
+        return {
+            'ResourceCode': resource.resource_code,
+            'ResourceName': resource.resource_name,
+            'FileName': file_sheet[index].file_name.name,
+            'Status': resource.status
+        }
 
     def assign_one(self, resource_code: str):
         matrix = {

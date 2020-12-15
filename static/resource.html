@@ -42,7 +42,7 @@
 				</span>
         </div>
 
-        <form class="getResource-form validate-form">
+        <form id="getResource" class="getResource-form validate-form">
             <div class="radio-wrap half">
                 <input type="radio" name="lang" value="EN-US" class="custom-radio" id="enUS" checked="yes"/>
                 <span class="label-input100">Language: </span>
@@ -76,16 +76,14 @@
                 <output class="label-output100" id="amount" name="amount" for="resourceNumber"></output>
             </div>
             <div class="container-getResource-form-btn">
-                <input type="submit" class="getResource-form-btn" name="getStatus" formaction="/resource/" formmethod="POST" value="Get Status"/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" class="getResource-form-btn" name="assignFile" formaction="/assign/" formmethod="POST" value="Assign File"/>
+                <input type="submit" class="getResource-form-btn" name="getStatus" value="Get Status" id="getStatus"/>
+                <input type="submit" class="getResource-form-btn" name="assignFile" value="Assign File" id="assignFile"/>
+                <input type="submit" class="getResource-form-btn" name="reassignFile" value="Reassign File" id="reassignFile"/>
             </div>
         </form>
     </div>
 </div>
 
-
-<div id="dropDownSelect1"></div>
 
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -119,14 +117,82 @@
         output.innerHTML = (this.value < 10 ? codeParts + "0" + this.value : codeParts + this.value);
     }
 </script>
+<script type="text/javascript">
+    function getFormData() {
+        var formdata = new FormData();
+        var lang = (document.getElementById("enUS").checked ? "EN-US" : "ES-US");
+        var role = (document.getElementById("creator").checked ? "Creator" : "QC");
+        var phase = (document.getElementById("training").checked ? "_Training" : "Testing");
+        var resourceNumber = document.getElementById("resourceNumber").value;
+        formdata.append("lang", lang);
+        formdata.append("role", role);
+        formdata.append("phase", phase);
+        formdata.append("resourceNumber", resourceNumber);
+        return formdata
+    };
+
+    $("#getStatus").on("click", function(event) {
+        event.preventDefault();
+        var formdata = getFormData();
+
+        $.ajax({
+            url: "/resource/",
+            type: "POST",
+            data: formdata ? formdata : form.serialize(),
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                var result = data.ResourceName + " is currently assigned " + data.FileName + " (" + data.Status + ")."
+                alert(result);
+            }
+        });
+    });
+
+    $("#assignFile").on("click", function(event) {
+        event.preventDefault();
+        var formdata = getFormData();
+
+        $.ajax({
+            url: "/assign/",
+            type: "POST",
+            data: formdata ? formdata : form.serialize(),
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                var result = data.ResourceName + " is currently assigned " + data.FileName + " (" + data.Status + ")."
+                alert(result);
+            }
+        });
+    });
+
+    $("#reassignFile").on("click", function(event) {
+        event.preventDefault();
+        var formdata = getFormData();
+
+        $.ajax({
+            url: "/reassign/",
+            type: "POST",
+            data: formdata ? formdata : form.serialize(),
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                var result = data.ResourceName + " is no longer assigned " + data.FileName + " and this resource has been marked 'Not Active'."
+                alert(result);
+            }
+        });
+    });
+</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+	  gtag("js", new Date());
 
-	  gtag('config', 'UA-23581568-13');
+	  gtag("config", "UA-23581568-13");
 
 
 </script>
