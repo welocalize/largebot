@@ -15,10 +15,10 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 async def get_resource(
         lang: str = Form(...),
         role: str = Form(...),
-        resource_number: int = Form(...),
+        resourceNumber: int = Form(...),
         phase: str = Form(...)
 ):
-    resource_code = f"{lang[:2]}_{role[:2]}_{resource_number:02d}"
+    resource_code = f"{lang[:2]}_{role[:2]}_{resourceNumber:02d}"
     resource_sheet = ResourceSheet(lang=lang, phase=phase, role=role)
     return resource_sheet.get_resource_status(resource_code)
 
@@ -27,11 +27,11 @@ async def get_resource(
 async def assign_resource(
         lang: str = Form(...),
         role: str = Form(...),
-        resource_number: int = Form(...),
+        resourceNumber: int = Form(...),
         phase: str = Form(...),
         dry_run: str = Form('')
 ):
-    resource_code = f"{lang[:2]}_{role[:2]}_{resource_number:02d}"
+    resource_code = f"{lang[:2]}_{role[:2]}_{resourceNumber:02d}"
     dry_run = bool(dry_run == 'dry_run')
     bot = ResourceBot(lang=lang, phase=phase, dry_run=dry_run)
     return bot.assign_one(resource_code)
