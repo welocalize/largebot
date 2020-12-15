@@ -1,8 +1,40 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
+from fastapi.staticfiles import StaticFiles
+import requests
 
+from largebot.logger import get_logger
 from largebot.largebotter import ResourceSheet, ResourceBot, FileBook
 
+logger = get_logger(__name__)
+
 app = FastAPI()
+
+app.mount('/static', StaticFiles(directory='static'), name='static')
+
+@app.post('/resource/')
+async def get_resource(
+        lang: str = Form(...),
+        role: str = Form(...),
+        resource_number: int = Form(...),
+        phase: str = Form(...)
+):
+    resource_code = f"{lang[:2]}_{role[:2]}_{resource_number:02d}"
+    resource_sheet = ResourceSheet(lang=lang, phase=phase, role=role)
+    return resource_sheet.get_resource_status(resource_code)
+
+
+@app.post('/assign/')
+async def assign_resource(
+        lang: str = Form(...),
+        role: str = Form(...),
+        resource_number: int = Form(...),
+        phase: str = Form(...),
+        dry_run: str = Form('')
+):
+    resource_code = f"{lang[:2]}_{role[:2]}_{resource_number:02d}"
+    dry_run = bool(dry_run == 'dry_run')
+    bot = ResourceBot(lang=lang, phase=phase, dry_run=dry_run)
+    return bot.assign_one(resource_code)
 
 
 @app.post('/resources/refresh-all')
@@ -23,7 +55,7 @@ def refresh_all(
     return updates
 
 
-@app.get('/resource/{resource_code}')
+@app.get('/resource/{resource_code}', name='get_resource_by_code')
 def get_resource_status(
         resource_code: str,
         phase: str = '_Training'
