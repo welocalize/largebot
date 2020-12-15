@@ -34,7 +34,7 @@ def get_resource_status(
     return resource_sheet.get_resource_status(resource_code)
 
 
-@app.post('/resource/{resource_code}/assign')
+@app.get('/resource/{resource_code}/assign')
 def assign_one(
         resource_code: str,
         phase: str = '_Training',
