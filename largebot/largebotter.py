@@ -1090,16 +1090,17 @@ class ResourceBot:
             self.file_book.reset(role, task, status_only=status_only, prereq_only=prereq_only)
             # resource_sheet.publish()
 
-    def populate_source_folder(self, role: str = None, task: str = None):
+    def populate_source_folder(self, role: str = None, task: str = None, domain: str = None):
         folders = {
             'Creator': ['Completed', 'Re-work Completed'],
             'QC': ['Accepted']
         }
+        domains = (domain, ) if domain else ('Finance', 'Media_Cable')
         errors = []
         for resource in getattr(self, role).resources:
             if not resource.summary:
                 resource.get_file_status()
-            for domain in ['Media_Cable', 'Finance']:
+            for domain in domains:
                 ROOT = [
                     *FILE_PATH,
                     self.lang,
