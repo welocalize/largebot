@@ -1203,8 +1203,9 @@ class ResourceBot:
                             continue
                         file_sheet = getattr(self.file_book, step)
                         try:
-                            index = file_sheet.file_names.index(resource.file_name.name.lower())
-                            file_sheet[index].status = status
+                            if (file_name := resource.file_name.name) and file_name in file_sheet.file_names:
+                                index = file_sheet.file_names.index(resource.file_name.name.lower())
+                                file_sheet[index].status = status
                             assignment = next(file_sheet.unassigned)
                             assignment.resource_name = resource.resource_name
                             logger.info(f"Queuing assigning {assignment} to {resource}")
@@ -1214,6 +1215,8 @@ class ResourceBot:
                             break
                         except StopIteration:
                             logger.info(f"No unassigned files for {step}.")
+                            resource.file_name = FileName('Pending Available File')
+                            resource.status = 'Needs Assignment'
                             continue
                 # if resource.role == 'Creator' and resource.resource_name in self.QC.names:
                 #     if not resource.needs_assignment:
@@ -1250,8 +1253,9 @@ class ResourceBot:
                             continue
                         file_sheet = getattr(self.file_book, step)
                         try:
-                            index = file_sheet.file_names.index(resource.file_name.name.lower())
-                            file_sheet[index].status = status
+                            if (file_name := resource.file_name.name) and file_name in file_sheet.file_names:
+                                index = file_sheet.file_names.index(resource.file_name.name.lower())
+                                file_sheet[index].status = status
                             assignment = next(file_sheet.unassigned)
                             assignment.resource_name = resource.resource_name
                             logger.info(f"Queuing assigning {assignment} to {resource}")
@@ -1261,6 +1265,8 @@ class ResourceBot:
                             break
                         except StopIteration:
                             logger.info(f"No unassigned files for {step}.")
+                            resource.file_name = FileName('Pending Available File')
+                            resource.status = 'Needs Assignment'
                             continue
                 # if resource.role == 'Creator' and resource.resource_name in self.QC.names:
                 #     if not resource.needs_assignment:
