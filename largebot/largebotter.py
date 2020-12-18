@@ -138,17 +138,17 @@ class DataFrameXL(WorkBook):
 
 
 class FileName:
-    def __init__(self, name: str):
+    def __init__(self, name: str = 'No Assignment'):
         self.lang = ''
         self.phase = ''
         self.task = ''
         self.domain = ''
         self.number = ''
         name = name.split('.')[0] if '.xlsx' in name else name
-        if name == 'Not Active':
+        if name in ('No Assignment', 'Not Active', 'Needs Assignment', 'Pending Available File'):
             self.name = name
             return
-        self.name = name.split()[0]
+        self.name = parts[0] if (parts := name.split()) else name
         parts = self.name.split('_')
         if len(parts) == 5:
             self.lang = f"{parts[0]}-US"
@@ -972,8 +972,19 @@ class ResourceSheet(DataFrameXL):
         self.ws.unprotect()
         self.df = self.dfs.get(lang)
         self.resources = [
-            ResourceAssignment(*resource, role, lang, phase)
-            for resource in self.df.values.tolist()
+            ResourceAssignment(**resource)
+            for resource in (
+                {
+                    'resource_code': row.ResourceCode,
+                    'resource_name': row.ResourceName,
+                    'file_name': row.FileName,
+                    'status': row.Status,
+                    'role': role,
+                    'lang': lang,
+                    'phase': phase
+                }
+                for row in self.df.itertuples(name='row')
+            )
         ]
         for resource in self.resources:
             self.__setattr__(
@@ -1355,9 +1366,10 @@ class ResourceBot:
             self.rebuild_file_sheet(role)
         for sheet_name in ('IntentCreator', 'IntentQC', 'UtteranceCreator', 'UtteranceQC'):
             file_sheet = getattr(self.file_book, sheet_name)
+            print(f"----------\t\t{sheet_name}\t\t----------")
             for file in file_sheet.files:
                 print(f"{file.file_name.name}\t{file.status}\t{file.resource_name}\t{file.resource_code}")
-
+            print(f"----------\t\t----------\t\t----------")
 
 def how_long(
         LANG: str = 'EN-US',

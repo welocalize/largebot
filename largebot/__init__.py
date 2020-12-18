@@ -1,1 +1,3 @@
-__version__ = '0.1.0'
+from largebot.largebotter import FileName, ResourceSheet, FileSheet, FileBook, ResourceBot
+
+
