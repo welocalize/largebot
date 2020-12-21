@@ -40,6 +40,30 @@ def slot_prep(utterance: str, *slot_types: str):
     return utterance
 
 
+def batch_update(ws, _range, values: list, divs: int = 5):
+    range_length = len(_range.values)
+    step = range_length // divs
+    top = int(_range.top)
+    left = _range.left
+    right = _range.right
+    index_start = 0
+    for i in range(divs):
+        index_end = index_start + step
+        if i + 1 == divs:
+            index_end = len(values)
+        updates = values[index_start:index_end]
+        index_start = index_end
+        bottom = top + len(updates) - 1
+        if i + 1 == divs:
+            bottom = int(_range.bottom)
+        update_address = f"{left}{top}:{right}{bottom}"
+        print(f"{len(updates)=}")
+        print(f"{update_address=}")
+        update_range = ws.get_range(update_address)
+        top = bottom + 1
+        update_range.update(values=updates)
+
+
 def check_slots(utterance: str, *slot_types: str, flags: list = None):
     flags = flags or []
     expected = [

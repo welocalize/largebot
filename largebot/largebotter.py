@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import pytz
 import random
 import pymsteams
 from itertools import repeat
@@ -9,10 +10,10 @@ from typing import Optional, Union
 import arrow
 import pandas as pd
 from pydantic import BaseModel as _BaseModel
-from pydantic import Extra
+from pydantic import Extra, validator
 from requests.exceptions import HTTPError
 from welo365 import WorkBook, Drive, WorkSheet, Folder
-from O365.drive import File
+from O365.drive import File, DriveItemVersion
 
 from largebot.config import AIE_DRIVE, PROJ_DRIVE, STEPS, FILE_PATH, PROJ_PATH, WEBHOOKS
 from largebot.logger import get_logger
@@ -21,6 +22,17 @@ from largebot.qctool import qc_check
 
 logger = get_logger(__name__)
 
+
+def has_been_modified(file1: File, file2: File):
+    if file1.modified > file2.modified:
+        return True
+    wb1 = WorkBook(file1)
+    wb2 = WorkBook(file2)
+    ws1 = wb1.get_worksheets()[0]
+    ws2 = wb2.get_worksheets()[0]
+    range1 = ws1.get_used_range()
+    range2 = ws2.get_used_range()
+    return not bool(range1.values == range2.values)
 
 def prep_utts(item, lang, phase, domain):
     logger.info(f"Prepping utterances from intents for {item}")
@@ -170,6 +182,8 @@ class FileAssignment(BaseModel):
     resource_name: str
     resource_code: str
     role: str
+    item: File = None
+    version: DriveItemVersion = None
 
     def __init__(
             self,
@@ -177,7 +191,8 @@ class FileAssignment(BaseModel):
             status: str,
             resource_name: str,
             resource_code: str,
-            role: str
+            role: str,
+            item: File = None
     ):
         file_name = FileName(file_name) if isinstance(file_name, str) else file_name
         resource_name = resource_name or ''
@@ -187,7 +202,8 @@ class FileAssignment(BaseModel):
             status=status,
             resource_name=resource_name,
             resource_code=resource_code,
-            role=role
+            role=role,
+            item=item
         )
 
     def __iter__(self):
@@ -216,9 +232,35 @@ class FileAssignment(BaseModel):
             return tuple(self) != tuple(other)
         return False
 
+    @validator('version', pre=True)
+    def get_version(cls, v, values):
+        if not v and (item := values.get('item')):
+            logger.info(f"validator for version")
+            v = list(item.get_versions())[0]
+        return v
+
     @property
     def needs_assignment(self):
         return bool(self.status == 'Not Started' and self.resource_name == 'Unassigned')
+
+    @property
+    def modified_by(self):
+        if self.version is not None:
+            return self.version.modified_by
+
+    @property
+    def modified(self):
+        if self.version is not None:
+            return self.version.modified
+
+    @property
+    def untouched_since(self):
+        if self.version is not None and self.status in ('In Progress', 'Not Started'):
+            now = pytz.utc.localize(datetime.datetime.now()).astimezone(pytz.timezone('US/Eastern'))
+            duration = now - self.modified
+            hours, minutes = divmod(duration.total_seconds(), 3600)
+            minutes = minutes // 60
+            return hours, minutes
 
     def get_source(self):
         return AIE_DRIVE.get_item_by_path(
@@ -290,8 +332,9 @@ class FileAssignment(BaseModel):
                     'QC'
                 ],
                 'UtteranceQC': [
-                    *ROOT,
-                    'DeliveryPrep'
+                    *ROOT[:-1],
+                    'DeliveryPrep',
+                    'Utterance'
                 ]
             }
             target_path = paths.get(f"{self.file_name.task}{self.role}")
@@ -407,7 +450,8 @@ class FileAssignment(BaseModel):
         ]
         out_intents = out_ws[0].get_range('Intents')
         in_intents = in_ws.get_range(out_intents.address.split('!')[1])
-        out_intents.update(values=in_intents.values)
+        out_intents.update\
+            (values=in_intents.values)
         addresses = (
             ('H7:H16', 'DataValidation!A2:A12'),
             ('H17:H26', 'DataValidation!B2:B12'),
@@ -589,7 +633,7 @@ class ResourceAssignment(BaseModel):
                     if (task := file_name.task):
                         self.summary.setdefault(task, []).append(
                             self.get_file_assignment(
-                                file_name, 'In Progress'
+                                file_name, 'In Progress', item=item
                             )
                         )
                 if item.is_folder:
@@ -598,16 +642,16 @@ class ResourceAssignment(BaseModel):
                         if (task := file_name.task):
                             self.summary.setdefault(task, []).append(
                                 self.get_file_assignment(
-                                    file_name, item.name
+                                    file_name, item.name, item=done
                                 )
                             )
 
-    def get_file_assignment(self, file_name: Union[str, FileName] = None, status: str = None):
+    def get_file_assignment(self, file_name: Union[str, FileName] = None, status: str = None, item: File = None):
         file_name = file_name or self.file_name
         status = status or self.status
         return (
             FileAssignment(
-                file_name, status, self.resource_name, self.resource_code, self.role
+                file_name, status, self.resource_name, self.resource_code, self.role, item=item
             )
         )
 
@@ -656,8 +700,9 @@ class ResourceAssignment(BaseModel):
                 'QC'
             ],
             'UtteranceQC': [
-                *ROOT,
-                'DeliveryPrep'
+                *ROOT[:-1],
+                'DeliveryPrep',
+                'Utterance'
             ]
         }
         target_path = paths.get(f"{self.file_name.task}{self.role}")
@@ -721,8 +766,9 @@ class ResourceAssignment(BaseModel):
                     'QC'
                 ],
                 'UtteranceQC': [
-                    *ROOT,
-                    'DeliveryPrep'
+                    *ROOT[:-1],
+                    'DeliveryPrep',
+                    'Utterance'
                 ]
             }
             target_path = paths.get(f"{self.file_name.task}{self.role}")
@@ -1101,7 +1147,7 @@ class ResourceBot:
         self.dry_run = dry_run
         self.pending_assignments = []
 
-    def __enter__(self):
+    def __enter__(self) -> ResourceBot:
         self.block()
         return self
 
@@ -1142,10 +1188,10 @@ class ResourceBot:
 
     def populate_source_folder(self, role: str = None, task: str = None, domain: str = None):
         folders = {
-            'Creator': ['Completed', 'Re-work Completed'],
-            'QC': ['Accepted']
+            'Creator': ('Completed', 'Re-work Completed'),
+            'QC': ('Accepted', )
         }
-        domains = (domain,) if domain else ('Finance', 'Media_Cable')
+        domains = (domain, ) if domain else ('Finance', 'Media_Cable')
         errors = []
         for resource in getattr(self, role).resources:
             if not resource.summary:
@@ -1174,8 +1220,9 @@ class ResourceBot:
                         'QC'
                     ],
                     'UtteranceQC': [
-                        *ROOT,
-                        'DeliveryPrep'
+                        *ROOT[:-1],
+                        'DeliveryPrep',
+                        'Utterance'
                     ]
                 }
                 path = paths.get(f"{task}{role}")
@@ -1360,6 +1407,7 @@ class ResourceBot:
                         file_sheet[index].status = file.status
                         file_sheet[index].resource_name = file.resource_name
                         file_sheet[index].resource_code = file.resource_code
+                        file_sheet[index].item = file.item
 
     def rebuild_file_sheets(self):
         for role in ('Creator', 'QC'):
@@ -1368,14 +1416,19 @@ class ResourceBot:
             file_sheet = getattr(self.file_book, sheet_name)
             print(f"----------\t\t{sheet_name}\t\t----------")
             for file in file_sheet.files:
-                print(f"{file.file_name.name}\t{file.status}\t{file.resource_name}\t{file.resource_code}")
+                file_status = f"{file.file_name.name}\t{file.status}\t{file.resource_name}\t{file.resource_code}\t"
+                if file.version:
+                    logger.info(f"{file}, {file.version}")
+                    hours, minutes = file.untouched_since
+                    file_status = f"{file_status}\tLast edited by: {file.modified_by} {hours:02d}:{minutes:02d} ago"
+                print(file_status)
             print(f"----------\t\t----------\t\t----------")
 
 def how_long(
         LANG: str = 'EN-US',
         PHASE: str = '_Training'
 ):
-    for ROLE in ['Creator', 'QC']:
+    for ROLE in ('Creator', 'QC'):
         PATH = [
             *PROJ_PATH,
             LANG,
