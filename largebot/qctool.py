@@ -6,6 +6,10 @@ import pandas as pd
 from fuzzywuzzy import fuzz, process
 from num2words import num2words
 from welo365 import WorkBook
+from largebot.logger import get_logger
+
+
+logger = get_logger(__name__)
 
 PUNC_WITH_SLOTS = '!"#$%&()*+,./:;<=>?@[\\]^_`|~'
 PUNC_WITHOUT_SLOTS = '!"#$%&()*+,./:;<=>?@[\\]^_`{|}~'
@@ -57,8 +61,7 @@ def batch_update(ws, _range, values: list, divs: int = 5):
         if i + 1 == divs:
             bottom = int(_range.bottom)
         update_address = f"{left}{top}:{right}{bottom}"
-        print(f"{len(updates)=}")
-        print(f"{update_address=}")
+        logger.info(f"{update_address=}")
         update_range = ws.get_range(update_address)
         top = bottom + 1
         update_range.update(values=updates)

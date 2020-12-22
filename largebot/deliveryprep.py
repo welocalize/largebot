@@ -1,6 +1,6 @@
 from largebot.config import AIE_DRIVE, FILE_PATH, PROJ_CONFIG
 from largebot.logger import get_logger
-from largebot.qctool import  batch_update
+from largebot.qctool import batch_update
 from welo365 import WorkBook
 import pandas as pd
 import re
@@ -9,7 +9,7 @@ import csv
 
 logger = get_logger(__name__)
 
-USE_CACHE = True
+USE_CACHE = False
 
 lang = 'EN-US'
 phase = '_Training'
@@ -114,7 +114,7 @@ def get_utterances():
                     ws = wb.get_worksheet('Sample Utterances')
                     _range = ws.get_range('A1:I301')
                     columns, *values = _range.values
-                    values.sort(key=lambda x: x[0])
+                    # values.sort(key=lambda x: x[0])
                     utterance_values.extend(
                         [
                             [
@@ -157,13 +157,15 @@ def get_utterances():
     df = df.where(pd.notnull(df), None)
 
     def trim_utterance(utterance: str, modality: str):
-        return utterance.strip().translate(PUNC_TABLES.get(modality))
+        return utterance.strip().translate(PUNC_TABLES.get(modality)) if utterance else utterance
 
     def slot_name_changes(intent_id: str, slot_name: str):
         new_slot_name = namechanges.get(intent_id, {}).get(slot_name, None) or slot_name
         return new_slot_name
 
     def has_slot_errors(utterance: str, slot1: str = None, slot2: str = None):
+        if not utterance:
+            return
         slots = [slot for slot in (slot1, slot2) if slot and slot not in (None, 'Null', '')]
         actual = re.findall(r'\{(\w+)\}', utterance)
         if not slots and actual:
@@ -212,14 +214,18 @@ def get_utterances():
     utterances = df.SampleUtterance.tolist()
     results = [[utterance, [], 0] for utterance in utterances]
     for i, utterance in enumerate(utterances):
+        logger.info(f"Processing utterance {i+1} of {len(utterances)}.")
         for j, choice in enumerate(utterances[i + 1:]):
             if fuzz.ratio(utterance, choice, score_cutoff=90):
                 results[i][2] += 1
                 results[j + i + 1][2] += 1
                 results[i][1].append(f"Row {j + i + 3}: {choice}")
-                results[j + i + 1].append(f"Row {i + 2}: {utterance}")
+                results[j + i + 1][1].append(f"Row {i + 2}: {utterance}")
 
-    df['FuzzyMatches'] = [fuzzy_matches for _, fuzzy_matches, _ in results]
+    df['FuzzyMatches'] = [
+        fuzzy_matches
+        for _, fuzzy_matches, _ in results
+    ]
 
     df.drop(columns=['Utterance', 'ErrorFlags', 'NewUtterance'], inplace=True)
 
