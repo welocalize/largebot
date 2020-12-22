@@ -15,7 +15,7 @@ from requests.exceptions import HTTPError
 from welo365 import WorkBook, Drive, WorkSheet, Folder
 from O365.drive import File, DriveItemVersion
 
-from largebot.config import AIE_DRIVE, PROJ_DRIVE, STEPS, FILE_PATH, PROJ_PATH, WEBHOOKS
+from largebot.config import AIE_DRIVE, STEPS, FILE_PATH, WEBHOOKS, PROJ_CONFIG
 from largebot.logger import get_logger
 from largebot.pd import get_df
 from largebot.qctool import qc_check
@@ -275,6 +275,7 @@ class FileAssignment(BaseModel):
 
     def copy_source(self, target: Folder = None):
         if not target:
+            PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
             RESOURCE_PATH = [
                 *PROJ_PATH,
                 self.file_name.lang,
@@ -290,6 +291,7 @@ class FileAssignment(BaseModel):
             item.copy(target)
 
     def get_working(self, in_progress: bool = False):
+        PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
         RESOURCE_PATH = [
             self.role,
             self.resource_code,
@@ -365,6 +367,7 @@ class FileAssignment(BaseModel):
                     logger.error(f"Error trying to prepare utterances: {e}")
 
     def move_working(self, target: str):
+        PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
         if (item := self.get_working(in_progress=True)):
             target_folder = PROJ_DRIVE.get_item_by_path(
                 *PROJ_PATH,
@@ -611,6 +614,7 @@ class ResourceAssignment(BaseModel):
         }
 
     def get_drive(self):
+        PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
         if self.drive is None:
             drive = PROJ_DRIVE.get_item_by_path(
                 *PROJ_PATH,
@@ -715,6 +719,7 @@ class ResourceAssignment(BaseModel):
         self.file_name = FileName('Not Active')
 
     def get_working(self, target: str = None, in_progress: bool = False):
+        PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
         RESOURCE_PATH = [
             self.role,
             self.resource_code,
@@ -799,6 +804,7 @@ class ResourceAssignment(BaseModel):
                     self.prep_utts()
 
     def move_working(self, target: str = None):
+        PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
         target = target or self.status
         if target in ['Not Active']:
             return
@@ -1000,15 +1006,15 @@ class ResourceSheet(DataFrameXL):
             self,
             lang: str = 'EN-US',
             phase: str = '_Training',
-            role: str = 'Creator',
-            drive: Drive = PROJ_DRIVE
+            role: str = 'Creator'
     ):
+        drive, PROJ_PATH = PROJ_CONFIG.get(lang)
         super().__init__(
             *PROJ_PATH,
             lang,
             phase,
             role,
-            f"{lang}_LargeBot_{role}_Resources_List.xlsx",
+            f"{lang}_LargeBot_{phase.replace('_', '')}_{role}_Resources_List.xlsx",
             drive=drive
         )
         self.lang = lang

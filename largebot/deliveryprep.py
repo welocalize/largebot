@@ -34,6 +34,8 @@ PUNC_TABLES = {
     'Written': str.maketrans(WRITTEN_PUNC)
 }
 
+slotmods = PROJ_DRIVE.get_item_by_path(*PROJ_PATH, 'EN-US', '_Training', 'Delivery Prep', 'Slot Mods for Automation.xlsx')
+
 def get_intents():
     intent_template = delivery_prep_folder.get_item('intent_template.xlsx')
     intents_in_path = [*delivery_prep_path, 'Intent', drop]
@@ -100,13 +102,9 @@ def get_utterances():
         for in_file in domain_files:
             logger.info(in_file.name)
             wb = WorkBook(in_file)
-            logger.info("Getting WorkBook")
             ws = wb.get_worksheet('Sample Utterances')
-            logger.info("Getting WorkSheet")
             _range = ws.get_range('A1:I301')
-            logger.info("Getting Range")
             columns, *values = _range.values
-            logger.info("Adding values")
             utterance_values.extend(
                 [
                     [
@@ -122,27 +120,34 @@ def get_utterances():
                 ]
             )
 
-    in_values = []
-    for i, (_, _, _, _, _, _, utterance, _, new_utterance) in enumerate(utterance_values):
-        sample_utterance = new_utterance or utterance
-        in_values.append([*utterance_values[i][0:6], sample_utterance])
+    slotmod_wb = WorkBook(slotmods)
+    slotmod_ws = slotmod_wb.get_worksheet('Slot Modification List')
+    _range = slotmod_ws.get_used_range()
+    _, *values = _range.values
+    modf = pd.DataFrame(values, columns=['IntentId', 'OldSlotName', 'NewSlotName', 'ChangeType'])
+    namechanges = {}
+    for row in modf.itertuples(name='row'):
+        if row.ChangeType == 'NameChange':
+            namechanges[row.IntentId] = {row.OldSlotName: row.NewSlotName}
 
     df = pd.DataFrame(utterance_values, columns=columns[:9])
-    print(df.columns)
     df.rename(
         columns={
-            'ID': 'Intent ID',
+            'ID': 'IntentID',
             'SlotName': 'SlotNameOne',
             'SlotName (Optional)': 'SlotNameTwo',
             'Sample Utterance': 'Utterance'
         },
         inplace=True
     )
-    print(df.columns)
     df = df.where(pd.notnull(df), None)
 
     def trim_utterance(utterance: str, modality: str):
         return utterance.strip().translate(PUNC_TABLES.get(modality))
+
+    def slot_name_changes(intent_id: str, slot_name: str):
+        new_slot_name = namechanges.get(intent_id, {}).get(slot_name, None) or slot_name
+        return new_slot_name
 
     def has_slot_errors(utterance: str, slot1: str = None, slot2: str = None):
         slots = [slot for slot in (slot1, slot2) if slot and slot not in (None, 'Null', '')]
@@ -168,6 +173,16 @@ def get_utterances():
 
     df['SampleUtterance'] = df.apply(
         lambda x: trim_utterance(x['SampleUtterance'], x['Modality']),
+        axis=1
+    )
+
+    df['SlotNameOne'] = df.apply(
+        lambda x: slot_name_changes(x['IntentID'], x['SlotNameOne']),
+        axis=1
+    )
+
+    df['SlotNameTwo'] = df.apply(
+        lambda x: slot_name_changes(x['IntentID'], x['SlotNameTwo']),
         axis=1
     )
 

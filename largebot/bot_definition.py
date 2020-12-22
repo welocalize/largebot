@@ -19,7 +19,9 @@ def _parse_args():
                         help="one or more xlsx files containing intents, like \"12142020_EN-US_Training-Data_Drop1_IntS.xlsx\"")
     parser.add_argument('--template', '-t', dest='template', required=True,
                         help='path of the bot definition template you want to populate')
-    parser.add_argument('--batch-number', '-n', dest='start', required=False, default=None,
+    parser.add_argument('--batch-number', '-n', dest='start', required=False, default=1,
+                        help='number at which to start enumerating batches')
+    parser.add_argument('--batch-size', '-s', dest='size', required=False, default=None,
                         help='number at which to start enumerating batches')
     parser.add_argument('--outdir', '-o', dest='outdir', required=True,
                         help='path of the output folder with the populated templates')
@@ -53,11 +55,42 @@ if __name__ == "__main__":
         # remove unneded columns
         training_data = training_data.reindex(columns=["Intent Name", "Slot Name", "Required", "Type", "Prompt"])
 
+        training_data["Prompt"] = training_data["Prompt"].apply(lambda x: x.replace('"', ''))
+
+        builtins = {
+            'NUMBER': 'AMAZON.Number',
+            'FIRSTNAME': 'AMAZON.FirstName',
+            'LASTNAME': 'AMAZON.LastName',
+            'PHONENUMBER': 'AMAZON.PhoneNumber',
+            'ALPHANUMERIC': 'AMAZON.AlphaNumeric',
+            'EMAILADDRESS': 'AMAZON.EmailAddress',
+            'POSTALADDRESS': 'AMAZON.PostalAddress',
+            'DATEINTERVAL': 'AMAZON.DateInterval',
+            'TIME': 'AMAZON.Time',
+            'DATE': 'AMAZON.Date',
+            'CURRENCY': 'AMAZON.Currency',
+            'DURATION': 'AMAZON.Duration',
+            'STATE': 'AMAZON.State',
+            'COUNTRY': 'AMAZON.Country',
+            'CITY': 'AMAZON.City',
+            'AIRPORT': 'AMAZON.Airport',
+            'DAYOFWEEK': 'AMAZON.DayOfWeek',
+            'PERCENTAGE': 'AMAZON.Percentage',
+            'SPEED': 'AMAZON.Speed',
+            'STREETNAME': 'AMAZON.StreetName',
+            'WEIGHT': 'AMAZON.Weight'
+        }
+
+        training_data["Type"] = training_data["Type"].apply(
+            lambda x: builtins.get(x, None) or x
+        )
         # get unique list of intents
         intents = list(training_data["Intent Name"].unique())
-        batched_intents = batch_list(intents, 5)
+        batch_size = int(args.size) if args.size else len(intents)
+        print(f"{batch_size=}")
+        batched_intents = batch_list(intents, batch_size)
 
-        file_counter = int(args.start) or 1
+        file_counter = int(args.start)
         for batch in batched_intents:
             # print((batch))
             df_batch = pd.DataFrame(batch)

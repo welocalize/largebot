@@ -14,10 +14,16 @@ AIE_SWITCH = 'Dev' if DEBUG else 'Production Planning'
 PROJ_SWITCH = 'Dev' if DEBUG else 'Data Creation'
 
 AIE_SITE = 'AIEnablementPractice'
-PROJ_SITE = 'msteams_08dd34-AmazonLex-LargeBot'
+EN_PROJ_SITE = 'msteams_08dd34-AmazonLex-LargeBot'
+ES_PROJ_SITE = 'msteams_08dd34-AmazonLex-esUSLargeBot'
 
-PROJ_PATH = [
+EN_PROJ_PATH = [
     'Amazon Lex - LargeBot',
+    PROJ_SWITCH
+]
+
+ES_PROJ_PATH = [
+    'Amazon Lex - esUS LargeBot',
     PROJ_SWITCH
 ]
 
@@ -44,4 +50,10 @@ ACCOUNT = O365Account()
 
 AIE_DRIVE = ACCOUNT.get_site(AIE_SITE).get_default_document_library()
 
-PROJ_DRIVE = ACCOUNT.get_site(PROJ_SITE).get_default_document_library()
+EN_PROJ_DRIVE = ACCOUNT.get_site(EN_PROJ_SITE).get_default_document_library()
+ES_PROJ_DRIVE = ACCOUNT.get_site(ES_PROJ_SITE).get_default_document_library()
+
+PROJ_CONFIG = {
+    'EN-US': (EN_PROJ_DRIVE, EN_PROJ_PATH),
+    'ES-US': (ES_PROJ_DRIVE, ES_PROJ_PATH)
+}
