@@ -1,5 +1,5 @@
 from largebot import AIE_DRIVE
-from welo365 import WorkBook
+from welo365.welo365 import WorkBook
 
 french = 'fr-FR'
 source_path = ['Workday', 'Assistant', 'FRENCH RYAN ONLY', french]

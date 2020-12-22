@@ -1,7 +1,7 @@
 from largebot.config import AIE_DRIVE, FILE_PATH, PROJ_CONFIG
 from largebot.logger import get_logger
 from largebot.qctool import batch_update
-from welo365 import WorkBook
+from welo365.welo365 import WorkBook
 import pandas as pd
 import re
 from rapidfuzz import fuzz

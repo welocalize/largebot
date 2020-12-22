@@ -1,5 +1,5 @@
 from largebot.config import AIE_DRIVE
-from welo365 import WorkBook
+from welo365.welo365 import WorkBook
 import pandas as pd
 
 intent_path = [

@@ -1,5 +1,5 @@
 from largebot import AIE_DRIVE, AIE_PATH
-from welo365 import WorkBook
+from welo365.welo365 import WorkBook
 
 en_intent_fol = AIE_DRIVE.get_item_by_path(*AIE_PATH, 'Data Sheet Templates', 'es-US', 'Intent', 'EN')
 es_intent_fol = AIE_DRIVE.get_item_by_path(*AIE_PATH, 'Data Sheet Templates', 'es-US', 'Intent', 'ES')

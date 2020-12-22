@@ -1,5 +1,5 @@
 from largebot import AIE_DRIVE, FILE_PATH
-from welo365 import WorkBook
+from welo365.welo365 import WorkBook
 import re
 
 testing_fol = AIE_DRIVE.get_item_by_path(*FILE_PATH, 'EN-US', 'Testing')
