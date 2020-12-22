@@ -1,16 +1,22 @@
-from largebot.config import AIE_DRIVE, FILE_PATH, PROJ_DRIVE, PROJ_PATH
+from largebot.config import AIE_DRIVE, FILE_PATH, PROJ_CONFIG
 from largebot.logger import get_logger
 from largebot.qctool import  batch_update
 from welo365 import WorkBook
 import pandas as pd
 import re
+from rapidfuzz import fuzz
+import csv
 
 logger = get_logger(__name__)
 
+USE_CACHE = True
 
 lang = 'EN-US'
 phase = '_Training'
 drop = 'Drop2'
+
+PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(lang)
+
 delivery_prep_path = [*FILE_PATH, lang, phase, 'DeliveryPrep']
 delivery_prep_folder = AIE_DRIVE.get_item_by_path(*delivery_prep_path)
 master_intent_list = PROJ_DRIVE.get_item_by_path(*PROJ_PATH, lang, phase, 'Creator', 'MasterIntentList.xlsx')
@@ -97,28 +103,36 @@ def get_utterances():
     utterance_values = []
     utterance_files = list(utterances_in_folder.get_items())
 
-    for domain in ('MC', 'Fi'):
-        domain_files = [file for file in utterance_files if domain in file.name]
-        for in_file in domain_files:
-            logger.info(in_file.name)
-            wb = WorkBook(in_file)
-            ws = wb.get_worksheet('Sample Utterances')
-            _range = ws.get_range('A1:I301')
-            columns, *values = _range.values
-            utterance_values.extend(
-                [
-                    [
-                        intent_id,
-                        *master_intents.get(intent_id),
-                        *value[3:9],
-                    ]
-                    for value in values
-                    if (
-                        (intent_id := f"{domain} {value[0]}")
-                        and 'Example' not in intent_id
+    if not USE_CACHE:
+        with open('cache.csv', 'a') as f:
+            c = csv.writer(f)
+            for domain in ('MC', 'Fi'):
+                domain_files = [file for file in utterance_files if domain in file.name]
+                for in_file in domain_files:
+                    logger.info(in_file.name)
+                    wb = WorkBook(in_file)
+                    ws = wb.get_worksheet('Sample Utterances')
+                    _range = ws.get_range('A1:I301')
+                    columns, *values = _range.values
+                    values.sort(key=lambda x: x[0])
+                    utterance_values.extend(
+                        [
+                            [
+                                intent_id,
+                                *master_intents.get(intent_id),
+                                *value[3:9],
+                            ]
+                            for value in values
+                            if (
+                                (intent_id := f"{domain} {value[0]}")
+                                and 'Example' not in intent_id
+                            )
+                        ]
                     )
-                ]
-            )
+            c.writerows([columns, *utterance_values])
+            df = pd.DataFrame(utterance_values, columns=columns[:9])
+    else:
+        df = pd.read_csv('cache.csv')
 
     slotmod_wb = WorkBook(slotmods)
     slotmod_ws = slotmod_wb.get_worksheet('Slot Modification List')
@@ -130,7 +144,7 @@ def get_utterances():
         if row.ChangeType == 'NameChange':
             namechanges[row.IntentId] = {row.OldSlotName: row.NewSlotName}
 
-    df = pd.DataFrame(utterance_values, columns=columns[:9])
+
     df.rename(
         columns={
             'ID': 'IntentID',
@@ -153,21 +167,21 @@ def get_utterances():
         slots = [slot for slot in (slot1, slot2) if slot and slot not in (None, 'Null', '')]
         actual = re.findall(r'\{(\w+)\}', utterance)
         if not slots and actual:
-            logger.info(f"UnexpectedSlotError: {slots=}, {actual=}")
+            logger.debug(f"UnexpectedSlotError: {slots=}, {actual=}")
             return 'UnexpectedSlotError'
         if actual:
             if len(actual) != len(set(actual)):
-                logger.info(f"DuplicatedSlotNameError: {slots=}, {actual=}")
+                logger.debug(f"DuplicatedSlotNameError: {slots=}, {actual=}")
                 return 'DuplicatedSlotNameError'
         if slots != actual:
             if len(slots) == len(actual):
-                logger.info(f"SlotNameError: {slots=}, {actual=}")
+                logger.debug(f"SlotNameError: {slots=}, {actual=}")
                 return 'SlotNameError'
-            logger.info(f"SlotNumberError: {slots=}, {actual=}")
+            logger.debug(f"SlotNumberError: {slots=}, {actual=}")
             return 'SlotNumberError'
 
     df['SampleUtterance'] = df.apply(
-        lambda x: x['NewUtterance'] if x['NewUtterance'] is not None else x['Utterance'],
+        lambda x: x['NewUtterance'] if x['NewUtterance'] else x['Utterance'],
         axis=1
     )
 
@@ -186,14 +200,26 @@ def get_utterances():
         axis=1
     )
 
+    df['NeedsQC'] = df['NewUtterance'].apply(
+        lambda x: 'FALSE' if x else 'TRUE'
+    )
+
     df['SlotErrors'] = df.apply(
         lambda x: has_slot_errors(x['SampleUtterance'], x['SlotNameOne'], x['SlotNameTwo']),
         axis=1
     )
 
-    df['NeedsQC'] = df['NewUtterance'].apply(
-        lambda x: 'FALSE' if x is not None else 'TRUE'
-    )
+    utterances = df.SampleUtterance.tolist()
+    results = [[utterance, [], 0] for utterance in utterances]
+    for i, utterance in enumerate(utterances):
+        for j, choice in enumerate(utterances[i + 1:]):
+            if fuzz.ratio(utterance, choice, score_cutoff=90):
+                results[i][2] += 1
+                results[j + i + 1][2] += 1
+                results[i][1].append(f"Row {j + i + 3}: {choice}")
+                results[j + i + 1].append(f"Row {i + 2}: {utterance}")
+
+    df['FuzzyMatches'] = [fuzzy_matches for _, fuzzy_matches, _ in results]
 
     df.drop(columns=['Utterance', 'ErrorFlags', 'NewUtterance'], inplace=True)
 

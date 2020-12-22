@@ -1190,7 +1190,6 @@ class ResourceBot:
                             file_assignment
                         )
             self.file_book.reset(role, task, status_only=status_only, prereq_only=prereq_only)
-            # resource_sheet.publish()
 
     def populate_source_folder(self, role: str = None, task: str = None, domain: str = None):
         folders = {
@@ -1252,10 +1251,8 @@ class ResourceBot:
 
     def assign_creators(self):
         steps = (
-            # 'IntentCreator',
-            'UtteranceCreator',
-            # 'IntentQC',
-            # 'UtteranceQC'
+            'IntentCreator',
+            'UtteranceCreator'
         )
         for resource_list in (self.Creator,):
             for resource in resource_list.resources:
@@ -1282,10 +1279,6 @@ class ResourceBot:
                             resource.file_name = FileName('Pending Available File')
                             resource.status = 'Needs Assignment'
                             continue
-                # if resource.role == 'Creator' and resource.resource_name in self.QC.names:
-                #     if not resource.needs_assignment:
-                #         qc_resource = getattr(self.QC, resource.resource_name)
-                #         qc_resource.status = 'Has Creator Assignment'
         updates = []
         for resource, assignment in self.pending_assignments:
             logger.info(f"Actually assigning {assignment} to {resource}")
@@ -1302,10 +1295,8 @@ class ResourceBot:
 
     def assign_qcs(self):
         steps = (
-            # 'IntentCreator',
-            # 'UtteranceCreator'
-            # 'IntentQC',
-            'UtteranceQC',
+            'IntentQC',
+            'UtteranceQC'
         )
         for resource_list in (self.QC,):
             for resource in resource_list.resources:
@@ -1332,10 +1323,6 @@ class ResourceBot:
                             resource.file_name = FileName('Pending Available File')
                             resource.status = 'Needs Assignment'
                             continue
-                # if resource.role == 'Creator' and resource.resource_name in self.QC.names:
-                #     if not resource.needs_assignment:
-                #         qc_resource = getattr(self.QC, resource.resource_name)
-                #         qc_resource.status = 'Has Creator Assignment'
         updates = []
         for resource, assignment in self.pending_assignments:
             logger.info(f"Actually assigning {assignment} to {resource}")
@@ -1435,12 +1422,13 @@ def how_long(
         PHASE: str = '_Training'
 ):
     for ROLE in ('Creator', 'QC'):
+        PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(LANG)
         PATH = [
             *PROJ_PATH,
             LANG,
             PHASE,
             ROLE,
-            f"{LANG}_LargeBot_{ROLE}_Resources_List.xlsx"
+            f"{LANG}_LargeBot_{PHASE.replace('_', '')}_{ROLE}_Resources_List.xlsx"
         ]
         ADDRESS = {
             'EN-US': 'A1',

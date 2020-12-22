@@ -48,6 +48,24 @@ def refresh_qcs(
         bot.assign_qcs()
 
 
+@app.command(help='Refresh all LargeBot file assignments.')
+def refresh_creators(
+        lang: str = typer.Argument('EN-US'),
+        phase: str = typer.Argument('_Training'),
+        refresh: bool = typer.Option(False, '--refresh', '-r'),
+        DRY_RUN: bool = typer.Option(False, '--dry-run', '-d')
+):
+    with ResourceBot(
+            lang=lang,
+            phase=phase,
+            dry_run=DRY_RUN
+    ) as bot:
+        if refresh:
+            bot.refresh()
+        logger.info("Assigning Creators.")
+        bot.assign_creators()
+
+
 @app.command(help='Assign single resource by resource code.')
 def assign_one(
         resource_code: str = typer.Argument(...),
