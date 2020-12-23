@@ -5,7 +5,7 @@ import re
 import pandas as pd
 from fuzzywuzzy import fuzz, process
 from num2words import num2words
-from welo365.welo365 import WorkBook
+from welo365 import WorkBook
 from largebot.logger import get_logger
 
 

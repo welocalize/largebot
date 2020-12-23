@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 from typing import Optional, Union
-from welo365.welo365 import O365Account, WorkBook, WorkSheet, Range
+from welo365 import O365Account, WorkBook, WorkSheet, Range
 
 
 class O365DataFrame(pd.DataFrame):

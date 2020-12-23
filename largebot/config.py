@@ -1,4 +1,4 @@
-from welo365.welo365 import O365Account
+from welo365 import O365Account
 
 DEBUG = False
 

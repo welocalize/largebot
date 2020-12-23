@@ -12,7 +12,7 @@ import pandas as pd
 from pydantic import BaseModel as _BaseModel
 from pydantic import Extra, validator
 from requests.exceptions import HTTPError
-from welo365.welo365 import WorkBook, Drive, WorkSheet, Folder
+from welo365 import WorkBook, Drive, WorkSheet, Folder
 from O365.drive import File, DriveItemVersion
 
 from largebot.config import AIE_DRIVE, STEPS, FILE_PATH, WEBHOOKS, PROJ_CONFIG
