@@ -7,11 +7,11 @@ from largebot.largebotter import ResourceSheet, ResourceBot, FileBook
 
 logger = get_logger(__name__)
 
-app = FastAPI()
+api = FastAPI()
 
-app.mount('/static', StaticFiles(directory='static'), name='static')
+api.mount('/static', StaticFiles(directory='static'), name='static')
 
-@app.post('/resource/')
+@api.post('/resource/')
 async def get_resource(
         lang: str = Form(...),
         role: str = Form(...),
@@ -23,7 +23,7 @@ async def get_resource(
     return resource_sheet.get_resource_status(resource_code)
 
 
-@app.post('/assign/')
+@api.post('/assign/')
 async def assign_resource(
         lang: str = Form(...),
         role: str = Form(...),
@@ -37,7 +37,7 @@ async def assign_resource(
     return bot.assign_one(resource_code)
 
 
-@app.post('/reassign/')
+@api.post('/reassign/')
 async def reassign_resource(
         lang: str = Form(...),
         role: str = Form(...),
@@ -51,7 +51,7 @@ async def reassign_resource(
     return bot.reassign(resource_code)
 
 
-@app.post('/resources/refresh-all')
+@api.post('/resources/refresh-all')
 def refresh_all(
         lang: str = 'EN-US',
         phase: str = '_Training',
@@ -69,7 +69,7 @@ def refresh_all(
     return updates
 
 
-@app.get('/resource/{resource_code}', name='get_resource_by_code')
+@api.get('/resource/{resource_code}', name='get_resource_by_code')
 def get_resource_status(
         resource_code: str,
         phase: str = '_Training'
@@ -80,7 +80,7 @@ def get_resource_status(
     return resource_sheet.get_resource_status(resource_code)
 
 
-@app.get('/resource/{resource_code}/assign')
+@api.get('/resource/{resource_code}/assign')
 def assign_one(
         resource_code: str,
         phase: str = '_Training',
@@ -91,7 +91,7 @@ def assign_one(
     return bot.assign_one(resource_code)
 
 
-@app.get('/task/{task}/role/{role}/summary')
+@api.get('/task/{task}/role/{role}/summary')
 def get_file_summary(
         task: str,
         role: str,
@@ -114,4 +114,4 @@ def get_file_summary(
 
 
 if __name__ == '__main__':
-    app()
+    api()

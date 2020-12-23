@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import typer
 
 from largebot.largebotter import how_long, ResourceBot, ResourceSheet, TeamsMessage
@@ -7,10 +5,10 @@ from largebot.logger import get_logger
 
 logger = get_logger(__name__)
 
-app = typer.Typer()
+cli = typer.Typer()
 
 
-@app.command(help='Refresh all LargeBot file assignments.')
+@cli.command(help='Refresh all LargeBot file assignments.')
 def refresh_all(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
@@ -30,7 +28,7 @@ def refresh_all(
         bot.assign_creators()
 
 
-@app.command(help='Refresh all LargeBot file assignments.')
+@cli.command(help='Refresh all LargeBot file assignments.')
 def refresh_qcs(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
@@ -48,7 +46,7 @@ def refresh_qcs(
         bot.assign_qcs()
 
 
-@app.command(help='Refresh all LargeBot file assignments.')
+@cli.command(help='Refresh all LargeBot file assignments.')
 def refresh_creators(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training'),
@@ -66,7 +64,7 @@ def refresh_creators(
         bot.assign_creators()
 
 
-@app.command(help='Assign single resource by resource code.')
+@cli.command(help='Assign single resource by resource code.')
 def assign_one(
         resource_code: str = typer.Argument(...),
         phase: str = typer.Argument('_Training'),
@@ -77,7 +75,7 @@ def assign_one(
     return bot.assign_one(resource_code)
 
 
-@app.command(help='Send Teams Message with summary stats for a given task/role.')
+@cli.command(help='Send Teams Message with summary stats for a given task/role.')
 def teams_summary(
         task: str = typer.Argument('Utterance'),
         role: str = typer.Argument('Creator'),
@@ -93,7 +91,7 @@ def teams_summary(
     update.send()
 
 
-@app.command(help='Get status of single resource by resource code.')
+@cli.command(help='Get status of single resource by resource code.')
 def get_resource_status(
         resource_code: str = typer.Argument(...),
         phase: str = typer.Argument('_Training')
@@ -104,7 +102,7 @@ def get_resource_status(
     return resource_sheet.get_resource_status(resource_code)
 
 
-@app.command(help='Refresh relative reference to last time assignments were updated.')
+@cli.command(help='Refresh relative reference to last time assignments were updated.')
 def when(
         lang: str = typer.Argument('EN-US'),
         phase: str = typer.Argument('_Training')
@@ -116,4 +114,4 @@ def when(
 
 
 if __name__ == '__main__':
-    app()
+    cli()
