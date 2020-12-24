@@ -615,8 +615,8 @@ class ResourceAssignment(BaseModel):
         }
 
     def get_drive(self):
-        PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
         if self.drive is None:
+            PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(f"{self.resource_code.split('_')[0]}-US")
             drive = PROJ_DRIVE.get_item_by_path(
                 *PROJ_PATH,
                 self.lang,
@@ -625,13 +625,15 @@ class ResourceAssignment(BaseModel):
                 self.resource_code
             )
             self.drive = drive
+        logger.info(f"Drive for {self.resource_name} [{self.resource_code}] = {self.drive}")
         return self.drive
 
     def get_domain_folder(self, domain: str):
         return self.get_drive().get_item(domain)
 
     def get_file_status(self):
-        for domain in ['Media_Cable', 'Finance']:
+        for domain in ('Media_Cable', 'Finance'):
+            logger.info(f"Getting {domain} items for {self.resource_name} [{self.resource_code}]")
             for item in self.get_domain_folder(domain).get_items():
                 if item.is_file:
                     file_name = FileName(item.name)
@@ -1265,7 +1267,7 @@ class ResourceBot:
                             continue
                         file_sheet = getattr(self.file_book, step)
                         try:
-                            if (file_name := resource.file_name.name) and file_name in file_sheet.file_names:
+                            if (file_name := resource.file_name.name) and file_name.lower() in file_sheet.file_names:
                                 index = file_sheet.file_names.index(resource.file_name.name.lower())
                                 file_sheet[index].status = status
                             assignment = next(file_sheet.unassigned)
@@ -1309,7 +1311,7 @@ class ResourceBot:
                             continue
                         file_sheet = getattr(self.file_book, step)
                         try:
-                            if (file_name := resource.file_name.name) and file_name in file_sheet.file_names:
+                            if (file_name := resource.file_name.name) and file_name.lower() in file_sheet.file_names:
                                 index = file_sheet.file_names.index(resource.file_name.name.lower())
                                 file_sheet[index].status = status
                             assignment = next(file_sheet.unassigned)

@@ -1,6 +1,6 @@
 import typer
 
-from largebot.largebotter import how_long, ResourceBot, ResourceSheet, TeamsMessage
+from largebot import how_long, ResourceBot, ResourceSheet, TeamsMessage
 from largebot.logger import get_logger
 
 logger = get_logger(__name__)
