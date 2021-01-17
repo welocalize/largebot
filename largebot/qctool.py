@@ -4,6 +4,7 @@ import re
 
 import pandas as pd
 from fuzzywuzzy import fuzz, process
+from rapidfuzz import fuzz
 from num2words import num2words
 from welo365 import WorkBook
 from largebot.logger import get_logger
@@ -184,7 +185,7 @@ def qc_check(infile):
 def delivery_check(infile):
     wb = WorkBook(infile)
     ws = wb.get_worksheet('Sheet1')
-    _range = ws.get_range('A1:G6001')
+    _range = ws.get_range('A1:G')
     columns, *values = _range.values
     df = pd.DataFrame(values, columns=columns)
     slot_types = list(zip(df['SlotName'].tolist(), df['SlotName (Optional)'].tolist()))
@@ -211,8 +212,24 @@ def delivery_check(infile):
     #     flag, matches_dict = check_fuzzies(new_utterance, choices, flag, matches_dict)
     #     new_flags.append(flag)
 
-    df['ErrorFlags'] = [', '.join(flag) for flag in flags]
+    df['SlotFlags'] = [', '.join(flag) for flag in flags]
     df['NewUtterance'] = new_utterances
+
+    utterances = df.NewUtterance.tolist()
+    results = [[utterance, [], 0] for utterance in utterances]
+    for i, utterance in enumerate(utterances):
+        logger.info(f"Processing utterance {i + 1} of {len(utterances)}.")
+        for j, choice in enumerate(utterances[i + 1:]):
+            if fuzz.ratio(utterance, choice, score_cutoff=90):
+                results[i][2] += 1
+                results[j + i + 1][2] += 1
+                results[i][1].append(f"Row {j + i + 3}: {choice}")
+                results[j + i + 1][1].append(f"Row {i + 2}: {utterance}")
+
+    df['FuzzyMatches'] = [
+        fuzzy_matches
+        for _, fuzzy_matches, _ in results
+    ]
     df = df.where(pd.notnull(df), '')
     # df.sort_values(
     #     by=['ErrorFlags', 'Modality'],

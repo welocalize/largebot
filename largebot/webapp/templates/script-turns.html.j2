@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"
+    ></script>
+    <script>
+      type = "text/javascript";
+      src = "https://j11y.io/demos/plugins/jQuery/autoresize.jquery.js";
+    </script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../styles/main.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="flex-container">
+        <div class="flex-container-outer">
+          <ul class="flex-container-outer" id="ordered">
+            {% for turn in script %}
+              <li class="ui-state-default outer">
+                <input type="hidden" />
+
+                <div class="flex-container-inner">
+                  <ul class="flex-container-inner">
+                    <div class="drag">
+                      <li class="ui-state-default inner">
+                        <span>&#x21C5;</span>
+                      </li>
+                      <li class="ui-state-default inner">
+                        <textarea>{{ turn }}</textarea>
+                      </li>
+                      <li class="ui-state-default inner">
+                        <span>&#x21C5;</span>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </li>
+            </div>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <button type="button" id="addol">Add Turn:</button>
+      </div>
+      <script type="text/javascript" src="../scripts/sorted_ul.js"></script>
+    </div>
+  </body>
+</html>

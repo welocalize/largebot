@@ -401,6 +401,8 @@ def parse_intent_clarification_worksheet(worksheet: Worksheet) -> List[str]:
         intent_clarifications.append(row[header_cols['Intent Clarification'] - 1].value
         )
 
+    logger.info(f"{intent_clarifications=}")
+
     return intent_clarifications
 
 
@@ -507,6 +509,10 @@ def parse_conversations_worksheet(worksheet: Worksheet) -> List[Conversation]:
             bias=[bias]
         ))
 
+    conversation_names = [conversation.name for conversation in conversations]
+    logger.info(f"{len(conversation_names)=}")
+    logger.info(f"{conversation_names=}")
+
     return conversations
 
 
@@ -542,10 +548,10 @@ def parse_scripts_worksheet(worksheet: Worksheet) -> Dict[str, List[Script]]:
         assume_intent = row[header_cols['Assume Intent'] - 1].value
         close = row[header_cols['Close'] - 1].value
 
-        if conversation_name not in scripts:
-            scripts[conversation_name] = []
+        # if conversation_name not in scripts:
+        #     scripts[conversation_name] = []
 
-        scripts[conversation_name].append(Script(
+        scripts.setdefault(conversation_name, []).append(Script(
             agent=agent,
             sample_response=sample_response,
             slot_to_elicit=slot_to_elicit,
@@ -554,6 +560,8 @@ def parse_scripts_worksheet(worksheet: Worksheet) -> Dict[str, List[Script]]:
             assume_intent=assume_intent,
             close=close
         ))
+
+    logger.info(f"{len(scripts)=}")
 
     return scripts
 
@@ -568,7 +576,6 @@ def bot_template_to_yaml(infile_path, outfile_path):
         bot_template = parse_bot_template_sheet(wb['Bot Template'])
         bot_template.conversations = parse_conversations_worksheet(
             wb['Conversations'])
-
         scripts = parse_scripts_worksheet(wb['Scripts'])
     except KeyError:
         raise IncompleteWorkbook()

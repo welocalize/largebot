@@ -1,0 +1,384 @@
+name: PostponedBot
+locale: en-US
+intent_clarification:
+  - I'd like to add a device plan
+intents:
+  - name: RequestDataUsage
+    sample_utterances:
+      - I need to check my data usage range for the last two months
+    slots:
+      - name: ServiceProvider
+        type: ServiceProvider
+        prompt: Which provider would you like to check?
+        required: true
+      - name: AccountNumber
+        type: AMAZON.AlphaNumeric
+        prompt: What is your account number?
+        required: true
+      - name: ServicePhoneNumber
+        type: AMAZON.PhoneNumber
+        prompt: Can I have your phone number?
+        required: false
+      - name: Time
+        type: AMAZON.Time
+        prompt: Is there a specific time you want to check?
+        required: false
+      - name: DateInterval
+        type: AMAZON.DateInterval
+        prompt: What date range would you like to check?
+        required: false
+      - name: CustomerPIN
+        type: AMAZON.AlphaNumeric
+        prompt: Would you like to enter your PIN?
+        required: false
+      - name: DisplayType
+        type: UsageType
+        prompt: Which data do you want to check?
+        required: false
+  - name: RequestPriceMatch
+    sample_utterances:
+      - I want to price match a competitor or I'm switching
+    slots:
+      - name: AdvertisementDate
+        type: AMAZON.Date
+        prompt: Can you tell me the date of the competitor's price?
+        required: true
+      - name: ServiceProvider
+        type: ServiceProvider
+        prompt: Whose price are you trying to match?
+        required: true
+      - name: CustomerFirstName
+        type: AMAZON.FirstName
+        prompt: And may I have your first name please?
+        required: true
+      - name: CustomerLastName
+        type: AMAZON.LastName
+        prompt: Can I have your last name please?
+        required: true
+      - name: CustomerPhoneNumber
+        type: AMAZON.PhoneNumber
+        prompt: Can I have your phone number please?
+        required: true
+      - name: CustomerEmail
+        type: AMAZON.EmailAddress
+        prompt: What's your e-mail address please?
+        required: false
+      - name: CustomerAddress
+        type: AMAZON.PostalAddress
+        prompt: Can I have your address please?
+        required: false
+  - name: RequestPaymentConfirmation
+    sample_utterances:
+      - I would like to confirm a payment I made
+    slots:
+      - name: PaymentAmount
+        type: AMAZON.Currency
+        prompt: Can you tell me the payment amount?
+        required: true
+      - name: CreditCardNumber
+        type: AMAZON.Number
+        prompt: Can I have your credit card number please?
+        required: true
+      - name: CustomerAddress
+        type: AMAZON.PostalAddress
+        prompt: Can I have your address please?
+        required: true
+      - name: PaymentDate
+        type: AMAZON.Date
+        prompt: When did you make this payment?
+        required: true
+      - name: CustomerFirstName
+        type: AMAZON.LastName
+        prompt: What is you first name?
+        required: true
+      - name: CustomerLastName
+        type: AMAZON.FirstName
+        prompt: Can I have your last name please?
+        required: true
+      - name: AccountPIN
+        type: AMAZON.AlphaNumeric
+        prompt: Please verify the PIN associated with your account.
+        required: true
+      - name: AccountNumber
+        type: AMAZON.AlphaNumeric
+        prompt: Can I have your account number please?
+        required: true
+      - name: CustomerPhoneNumber
+        type: AMAZON.PhoneNumber
+        prompt: Can I have your phone number please?
+        required: true
+  - name: RequestRemoteControl
+    sample_utterances:
+      - Could I order a remote here
+    slots:
+      - name: DeviceName
+        type: DeviceModel
+        prompt: What device would you like to request a remote control for?
+        required: true
+      - name: CustomerAddress
+        type: AMAZON.PostalAddress
+        prompt: Can you verify your address for shipping purposes?
+        required: true
+      - name: CustomerEmail
+        type: AMAZON.EmailAddress
+        prompt: Can I have your e-mail address please?
+        required: false
+      - name: CustomerFirstName
+        type: AMAZON.FirstName
+        prompt: Can you tell me your first name?
+        required: true
+      - name: CustomerLastName
+        type: AMAZON.LastName
+        prompt: Can you tell me your last name?
+        required: true
+      - name: CustomerPhoneNumber
+        type: AMAZON.PhoneNumber
+        prompt: What is your phone number please?
+        required: true
+  - name: RequestLanguageSettingsHelp
+    sample_utterances:
+      - Hey my iPhone is showing up in Spanish
+    slots:
+      - name: TargetLanguage
+        type: Language
+        prompt: What language would you like to change to?
+        required: true
+      - name: CurrentLanguage
+        type: Language
+        prompt: What language is it currently in?
+        required: false
+      - name: Device
+        type: Device
+        prompt: What device are you currently using?
+        required: false
+      - name: UserFirstName
+        type: AMAZON.FirstName
+        prompt: What is your first name?
+        required: true
+      - name: UserLastName
+        type: AMAZON.LastName
+        prompt: What is your last name?
+        required: true
+  - name: InquireHotelLobbyTVPrices
+    sample_utterances:
+      - Could you tell me how much it would cost to play TV programs in our lobby?
+    slots:
+      - name: CustomerFirstName
+        type: AMAZON.LastName
+        prompt: Could you please provide your first name?
+        required: false
+      - name: CustomerLastName
+        type: AMAZON.FirstName
+        prompt: Could you please provide your last name?
+        required: false
+      - name: Hotels
+        type: HotelName
+        prompt: What is the name of your hotel?
+        required: false
+      - name: DeviceNumber
+        type: AMAZON.Number
+        prompt: How many devices will need access to the programs?
+        required: true
+      - name: Devices
+        type: Device
+        prompt: What device do you need to access the programs from?
+        required: false
+      - name: ChannelPreference
+        type: Channel
+        prompt: Do you have any preference for specific programs?
+        required: false
+  - name: SetUpPhoneFindingApp
+    sample_utterances:
+      - hiya hows it going i want to setup my phone finder
+    slots:
+      - name: DeviceType
+        type: DeviceModel
+        prompt: Which type of phone do you have?
+        required: false
+      - name: CustomerEmail
+        type: AMAZON.EmailAddress
+        prompt: What email address do you want to use to login to the app?
+        required: false
+      - name: CustomerPassword
+        type: AMAZON.AlphaNumeric
+        prompt: What password do you want to use?
+        required: false
+  - name: ChannelSelectionHelp
+    sample_utterances:
+      - Hi, I would like to have the best movie channels on my plan please.
+    slots:
+      - name: CustomerFirstName
+        type: AMAZON.FirstName
+        prompt: May I have your first name, please?
+        required: true
+      - name: CustomerLastName
+        type: AMAZON.LastName
+        prompt: May I have your last name, please?
+        required: true
+      - name: StreamingDevice
+        type: Device
+        prompt: What device would you like to stream to?
+        required: false
+      - name: ChannelPreference
+        type: TelevisionGenre
+        prompt: What type of content do you watch regularly?
+        required: false
+      - name: DeviceResolution
+        type: Resolution
+        prompt: What is the highest resolution device you have?
+        required: false
+  - name: RequestDownloadAppStreaming
+    sample_utterances:
+      - Hello, I want to download the Disney+ app onto my streaming device.
+    slots:
+      - name: UserDevice
+        type: DeviceModel
+        prompt: On what device are you trying to download this app?
+        required: true
+      - name: StreamingApp
+        type: StreamingService
+        prompt: What is the name of the app you are trying to download?
+        required: true
+  - name: ChangeSubscription
+    sample_utterances:
+      - I'd like to cancel my subscription
+    slots:
+      - name: CustomerFirstName
+        type: AMAZON.LastName
+        prompt: Could I have your first name please?
+        required: true
+      - name: CustomerLastName
+        type: AMAZON.FirstName
+        prompt: Can you give me your last name?
+        required: true
+      - name: Username
+        type: AMAZON.AlphaNumeric
+        prompt: What is your username?
+        required: true
+      - name: Password
+        type: AMAZON.AlphaNumeric
+        prompt: Can you please tell me your password?
+        required: false
+      - name: ServiceType
+        type: ServiceType
+        prompt: Which subscription would you like to change?
+        required: true
+      - name: CustomerEmail
+        type: AMAZON.EmailAddress
+        prompt: Could you please tell me your email address?
+        required: false
+      - name: CustomerPhoneNumber
+        type: AMAZON.PhoneNumber
+        prompt: What is your phone number please?
+        required: true
+  - name: DisputeCharges
+    sample_utterances:
+      - There is a new charge on my account that I want to dispute.
+    slots:
+      - name: CustomerFirstName
+        type: AMAZON.FirstName
+        prompt: What is your first name please?
+        required: true
+      - name: CustomerLastName
+        type: AMAZON.LastName
+        prompt: What is your last name please?
+        required: true
+      - name: AccountNumber
+        type: AMAZON.AlphaNumeric
+        prompt: Can I have your account number?
+        required: true
+      - name: TypeOfCharge
+        type: AMAZON.AlphaNumeric
+        prompt: What does it say the charge is for?
+        required: true
+      - name: DateOfCharge
+        type: AMAZON.Date
+        prompt: When was the charge issued?
+        required: false
+      - name: ChargeAmount
+        type: AMAZON.Currency
+        prompt: What was the amount of the charge in dollars please?
+        required: true
+      - name: CustomerPhoneNumber
+        type: AMAZON.PhoneNumber
+        prompt: Would you tell me your email address?
+        required: true
+      - name: CustomerEmail
+        type: AMAZON.EmailAddress
+        prompt: Can I have your phone number please?
+        required: false
+  - name: InquireNetworkAppDetails
+    sample_utterances:
+      - I would like someone to show me how your network app works.
+    slots:
+      - name: ModelPhone
+        type: PhoneModel
+        prompt: What model phone are you using?
+        required: true
+  - name: UnsupportedIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: OODIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: FallbackIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: CancelIntent
+    parent_intent: AMAZON.CancelIntent
+  - name: HelpIntent
+    parent_intent: AMAZON.HelpIntent
+  - name: NoIntent
+    parent_intent: AMAZON.NoIntent
+  - name: PauseIntent
+    parent_intent: AMAZON.PauseIntent
+  - name: RepeatIntent
+    parent_intent: AMAZON.RepeatIntent
+  - name: ResumeIntent
+    parent_intent: AMAZON.ResumeIntent
+  - name: StartOverIntent
+    parent_intent: AMAZON.StartOverIntent
+  - name: StopIntent
+    parent_intent: AMAZON.StopIntent
+  - name: YesIntent
+    parent_intent: AMAZON.YesIntent
+slot_types:
+  - name: ServiceProvider
+    values:
+      - value: Xfinity
+      - value: Best Buy
+  - name: UsageType
+    values:
+      - value: Data usage
+  - name: DeviceModel
+    values:
+      - value: SONY KD-55A8 OLED
+      - value: oneplus 7t
+      - value: iPhone
+  - name: Language
+    values:
+      - value: English
+      - value: Spanish
+  - name: Device
+    values:
+      - value: iPhone 7
+      - value: Television
+      - value: Apple TV
+  - name: HotelName
+    values:
+      - value: Hilton
+  - name: Channel
+    values:
+      - value: HBO
+  - name: TelevisionGenre
+    values:
+      - value: Bit name films
+  - name: Resolution
+    values:
+      - value: 4k
+  - name: StreamingService
+    values:
+      - value: Disney+
+  - name: ServiceType
+    values:
+      - value: full subscription
+  - name: PhoneModel
+    values:
+      - value: Samsung Galaxy A10e

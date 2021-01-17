@@ -60,10 +60,10 @@ def prep_utts(item, lang, phase, domain):
 
     int_file = intent_folder.get_item(item.name)
     in_file = prep_folder.get_item(item.name.split('_', 3)[3])
-    out_file = out_folder.get_item(in_file.name)
     in_wb = WorkBook(in_file)
     in_ws = in_wb.get_worksheet('Sample Utterances')
     template.copy(out_folder, name=in_file.name)
+    out_file = out_folder.get_item(in_file.name)
     int_wb = WorkBook(int_file)
     int_ws = int_wb.get_worksheet('Intent_Slot Creation')
     out_wb = WorkBook(out_file)
@@ -1194,7 +1194,14 @@ class ResourceBot:
                         )
             self.file_book.reset(role, task, status_only=status_only, prereq_only=prereq_only)
 
-    def populate_source_folder(self, role: str = None, task: str = None, domain: str = None):
+    def populate_source_folder(
+            self,
+            role: str = None,
+            task: str = None,
+            domain: str = None,
+            min: int = 0,
+            max: int = 1000
+    ):
         folders = {
             'Creator': ('Completed', 'Re-work Completed'),
             'QC': ('Accepted', )
@@ -1245,11 +1252,12 @@ class ResourceBot:
                         logger.debug(f"{file} already copied; skipping")
                         continue
                     logger.info(f"Copying {file} to source for next step.")
-                    try:
-                        file.copy_working()
-                    except (ValueError, HTTPError) as e:
-                        logger.info(f"Error with {file}: {e}")
-                        errors.append(file)
+                    if min < int(file.file_name.number) < max:
+                        try:
+                            file.copy_working()
+                        except (ValueError, HTTPError) as e:
+                            logger.info(f"Error with {file}: {e}")
+                            errors.append(file)
         logger.info(f"These files were not processed: {errors}")
 
     def assign_creators(self):

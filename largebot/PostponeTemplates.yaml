@@ -1,0 +1,736 @@
+name: PostponeTemplates
+locale: en-US
+domain: MediaInternetTelecom
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_RequestDataUsage_en-US
+    scenario_id: '202012004'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with a media internet provider and you want to check the data usage of your plan.
+    description: Customer wants to see the data usage on their account from the service provider
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: I need to check my data usage range for the last two months
+        slot_to_elicit: false
+        intent_to_elicit: RequestDataUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which provider would you like to check?
+        sample_response: Xfinity
+        slot_to_elicit: ServiceProvider
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 6785-XF-3421-002
+        slot_to_elicit: AccountNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number?
+        sample_response: 305-897-6732
+        slot_to_elicit: ServicePhoneNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a specific time you want to check?
+        sample_response: Yes, from 6 pm
+        slot_to_elicit: Time
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date range would you like to check?
+        sample_response: From February 1st to March 31st
+        slot_to_elicit: DateInterval
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to enter your PIN?
+        sample_response: 8769
+        slot_to_elicit: CustomerPIN
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which data do you want to check?
+        sample_response: Data usage
+        slot_to_elicit: DisplayType
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Your data usage report has been sent by text message
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestPriceMatch_en-US
+    scenario_id: '202012007'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you want to price match an item
+    description: User wants a price match with a competitor
+    script:
+      - agent: What can I do for you?
+        sample_response: I want to price match a competitor or I'm switching
+        slot_to_elicit: false
+        intent_to_elicit: RequestPriceMatch
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the date of the competitor's price?
+        sample_response: 43857
+        slot_to_elicit: AdvertisementDate
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Whose price are you trying to match?
+        sample_response: Best Buy
+        slot_to_elicit: ServiceProvider
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And may I have your first name please?
+        sample_response: My name is Joseph
+        slot_to_elicit: CustomerFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: It's White
+        slot_to_elicit: CustomerLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: My phone number is 774-291-8538
+        slot_to_elicit: CustomerPhoneNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your e-mail address please?
+        sample_response: joseph.white@gmail.com
+        slot_to_elicit: CustomerEmail
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: 964 Earnhardt Drive Louisville Kentucky
+        slot_to_elicit: CustomerAddress
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We can match that price.
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestPaymentConfirmation_en-US
+    scenario_id: '202012008'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you want to request a confirmation of payment
+    description: User wants to request confirmation of payment
+    script:
+      - agent: What can I do for you today?
+        sample_response: I would like to confirm a payment I made
+        slot_to_elicit: false
+        intent_to_elicit: RequestPaymentConfirmation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the payment amount?
+        sample_response: 500
+        slot_to_elicit: PaymentAmount
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: The number is 4916151550581990
+        slot_to_elicit: CreditCardNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: 4520 Norma Lane in Lake Providence
+        slot_to_elicit: CustomerAddress
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you make this payment?
+        sample_response: On 12/14/20
+        slot_to_elicit: PaymentDate
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is you first name?
+        sample_response: Rachel
+        slot_to_elicit: CustomerFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Schneider
+        slot_to_elicit: CustomerLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please verify the PIN associated with your account.
+        sample_response: 3042
+        slot_to_elicit: AccountPIN
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: TJS928554
+        slot_to_elicit: AccountNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: 318-418-1883
+        slot_to_elicit: CustomerPhoneNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Your payment has been confirmed.
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestRemoteControl_en-US
+    scenario_id: '202012010'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you want a new remote control
+    description: User wants to request a new remote control
+    script:
+      - agent: Hi. What can I do for you today?
+        sample_response: Could I order a remote here
+        slot_to_elicit: false
+        intent_to_elicit: RequestRemoteControl
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device would you like to request a remote control for?
+        sample_response: SONY KD-55A8 OLED
+        slot_to_elicit: DeviceName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your address for shipping purposes?
+        sample_response: 4906  Rainbow Drive Youngston OH
+        slot_to_elicit: CustomerAddress
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your e-mail address please?
+        sample_response: carter.tom@hotmail.com
+        slot_to_elicit: CustomerEmail
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: Thomas
+        slot_to_elicit: CustomerFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: Carter
+        slot_to_elicit: CustomerLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number please?
+        sample_response: My home phone is 843-446-3400
+        slot_to_elicit: CustomerPhoneNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I have placed an order for your remote control.
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestLanguageSettingsHelp_en-US
+    scenario_id: '202012017'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with your provider via their chat and want help changing your language
+    description: User wants to change their settings to a different language
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Hey my iPhone is showing up in Spanish
+        slot_to_elicit: false
+        intent_to_elicit: RequestLanguageSettingsHelp
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What language would you like to change to?
+        sample_response: English
+        slot_to_elicit: TargetLanguage
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What language is it currently in?
+        sample_response: Spanish
+        slot_to_elicit: CurrentLanguage
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you currently using?
+        sample_response: iPhone 7!
+        slot_to_elicit: Device
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Joe
+        slot_to_elicit: UserFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Cohen
+        slot_to_elicit: UserLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Here is the information you requested
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireHotelLobbyTVPrices_en-US
+    scenario_id: '202012021'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are a hotel manager interacting with a cable company and want to know how much it will cost to show certain programs in your lobby.
+    description: User wants to know about the cost of displaying television programs in their lobby
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: Could you tell me how much it would cost to play TV programs in our lobby?
+        slot_to_elicit: false
+        intent_to_elicit: InquireHotelLobbyTVPrices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide your first name?
+        sample_response: Joan
+        slot_to_elicit: CustomerFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide your last name?
+        sample_response: Smith
+        slot_to_elicit: CustomerLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your hotel?
+        sample_response: Hilton
+        slot_to_elicit: Hotels
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices will need access to the programs?
+        sample_response: 3 devices
+        slot_to_elicit: DeviceNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device do you need to access the programs from?
+        sample_response: Television
+        slot_to_elicit: Devices
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you have any preference for specific programs?
+        sample_response: I would like to have HBO please.
+        slot_to_elicit: ChannelPreference
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Here is the information you requested
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpPhoneFindingApp_en-US
+    scenario_id: '202012045'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you're speaking to a media cable company and you'd like to know how to setup the phone finding app
+    description: User wants to set up a phone finding application
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: hiya hows it going i want to setup my phone finder
+        slot_to_elicit: false
+        intent_to_elicit: SetUpPhoneFindingApp
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which type of phone do you have?
+        sample_response: oneplus 7t
+        slot_to_elicit: DeviceType
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address do you want to use to login to the app?
+        sample_response: johnny_b_219@yahoo.com
+        slot_to_elicit: CustomerEmail
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What password do you want to use?
+        sample_response: sorrybee88
+        slot_to_elicit: CustomerPassword
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Thank you. The phone finding app setup is complete.
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChannelSelectionHelp_en-US
+    scenario_id: '202012056'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you want to get the best channels included in your plan.
+    description: User wants best channels for their channel plan
+    script:
+      - agent: Hello, how can I help you today?
+        sample_response: Hi, I would like to have the best movie channels on my plan please.
+        slot_to_elicit: false
+        intent_to_elicit: ChannelSelectionHelp
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name, please?
+        sample_response: Laura
+        slot_to_elicit: CustomerFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name, please?
+        sample_response: Johnson
+        slot_to_elicit: CustomerLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device would you like to stream to?
+        sample_response: Apple TV
+        slot_to_elicit: StreamingDevice
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of content do you watch regularly?
+        sample_response: Big name films
+        slot_to_elicit: ChannelPreference
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the highest resolution device you have?
+        sample_response: A 4k TV
+        slot_to_elicit: DeviceResolution
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Here is a list of channels you might be interested in
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestDownloadAppStreaming_en-US
+    scenario_id: '202012058'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with a service provider and need help to download a specific app onto your streaming device.
+    description: User wants help downloading an app to their streaming device
+    script:
+      - agent: Welcome, how can I be of help today?
+        sample_response: Hello, I want to download the Disney+ app onto my streaming device.
+        slot_to_elicit: false
+        intent_to_elicit: RequestDownloadAppStreaming
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what device are you trying to download this app?
+        sample_response: My iPhone
+        slot_to_elicit: UserDevice
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the app you are trying to download?
+        sample_response: Disney+
+        slot_to_elicit: StreamingApp
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Here is where to go to find the streaming app
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeSubscription_en-US
+    scenario_id: '202012076'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you want to remove your subscription
+    description: User wants to change their subscription
+    script:
+      - agent: Hi there, how can I assist you?
+        sample_response: I'd like to cancel my subscription
+        slot_to_elicit: false
+        intent_to_elicit: ChangeSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your first name please?
+        sample_response: Andrew
+        slot_to_elicit: CustomerFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me your last name?
+        sample_response: Starr
+        slot_to_elicit: CustomerLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: astarr14
+        slot_to_elicit: Username
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your password?
+        sample_response: jfaT9jyA
+        slot_to_elicit: Password
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which subscription would you like to change?
+        sample_response: I'd like to cancel my full subscription
+        slot_to_elicit: ServiceType
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: a.starr.14@gmail.com
+        slot_to_elicit: CustomerEmail
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number please?
+        sample_response: 15594333762
+        slot_to_elicit: CustomerPhoneNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: All right, I'll process your request.
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DisputeCharges_en-US
+    scenario_id: '202012091'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you want to dispute a new charge on your account
+    description: User wants to dispute an unexpected fee surcharge or an unexpected hike on a fee
+    script:
+      - agent: Hello, How can I help you today?
+        sample_response: There is a new charge on my account that I want to dispute.
+        slot_to_elicit: false
+        intent_to_elicit: DisputeCharges
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name please?
+        sample_response: It's Mark
+        slot_to_elicit: CustomerFirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Mathews
+        slot_to_elicit: CustomerLastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: 508473004857
+        slot_to_elicit: AccountNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What does it say the charge is for?
+        sample_response: It says it is for faster internet.
+        slot_to_elicit: TypeOfCharge
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the charge issued?
+        sample_response: Yesterday
+        slot_to_elicit: DateOfCharge
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the amount of the charge in dollars please?
+        sample_response: 39.99
+        slot_to_elicit: ChargeAmount
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your email address?
+        sample_response: yne26ysi4ve@yahoo.com
+        slot_to_elicit: CustomerPhoneNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: Yeah, 530-828-3478
+        slot_to_elicit: CustomerEmail
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I have reported your charge dispute. You will hear back from a representative shortly.
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireNetworkAppDetails_en-US
+    scenario_id: '202012100'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you want to know how their network app works
+    description: User wants to find out how their network app works
+    script:
+      - agent: What can we do to help you today?
+        sample_response: I would like someone to show me how your network app works.
+        slot_to_elicit: false
+        intent_to_elicit: InquireNetworkAppDetails
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What model phone are you using?
+        sample_response: I have a Samsung Galaxy A10e.
+        slot_to_elicit: ModelPhone
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We're getting a link to that information ready for you now!
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
