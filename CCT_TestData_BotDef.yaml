@@ -1,0 +1,178 @@
+name: RyanBot
+locale: en-US
+intent_clarification:
+  - Sorry, I did not understand. Goodbye!
+intents:
+  - name: CheckLuggageRestrictions
+    sample_utterances:
+      - I want to check luggage restrictions.
+    slots:
+      - name: LuggageWeight
+        type: AMAZON.WeightUnit
+        prompt: How much does your luggage weigh?
+        required: true
+      - name: Airline
+        type: Airline
+        prompt: Which airline are you flying with?
+        required: true
+  - name: ComplainAboutDelay
+    sample_utterances:
+      - I want to complain about my flight delay.
+    slots:
+      - name: BookingReference
+        type: AMAZON.AlphaNumeric
+        prompt: What is your booking reference/PNR number? This may consists of letters as well as numbers.
+        required: true
+      - name: LastName
+        type: AMAZON.LastName
+        prompt: What is your surname?
+        required: true
+  - name: GetBoardingPass
+    sample_utterances:
+      - Get my boarding pass
+    slots:
+      - name: BookingReference
+        type: AMAZON.AlphaNumeric
+        prompt: What is your booking reference/PNR number? This may consists of letters as well as numbers.
+        required: true
+      - name: LastName
+        type: AMAZON.LastName
+        prompt: What is your surname?
+        required: true
+      - name: EmailAddress
+        type: AMAZON.EmailAddress
+        prompt: Which email ID should we send your boarding pass to?
+        required: true
+  - name: BookFlight
+    sample_utterances:
+      - Book a flight
+    slots:
+      - name: FirstName
+        type: AMAZON.FirstName
+        prompt: What is the passengers's first name? Only give one name at a time.
+        required: true
+      - name: LastName
+        type: AMAZON.LastName
+        prompt: What is the passengers's surname? Only give one name at a time.
+        required: true
+      - name: OriginAirport
+        type: AMAZON.Airport
+        prompt: Which airport are you departing from?
+        required: true
+      - name: ArrivalAirport
+        type: AMAZON.Airport
+        prompt: Which airport are you arriving at?
+        required: true
+      - name: DepartureDate
+        type: AMAZON.DATE
+        prompt: Which is your departure date?
+        required: true
+      - name: ReturnDate
+        type: AMAZON.DATE
+        prompt: What is your return date?
+        required: true
+  - name: SearchForFlights
+    sample_utterances:
+      - Search for flights
+    slots:
+      - name: NumberOfPassengers
+        type: AMAZON.NUMBER
+        prompt: How many passengers?
+        required: true
+      - name: OriginCity
+        type: AMAZON.City
+        prompt: Which city are you departing from?
+        required: true
+      - name: ArrivalCity
+        type: AMAZON.City
+        prompt: Which city are you arriving at?
+        required: true
+      - name: RoundtripOneway
+        type: RoundtripOneway
+        prompt: Is this a roundtrip flight or a one-way flight?
+        required: true
+      - name: DepartureDate
+        type: AMAZON.DATE
+        prompt: What is your prefered date for departure?
+        required: true
+  - name: GetFlightStatus
+    sample_utterances:
+      - Check status of my flight
+    slots:
+      - name: FlightNumber
+        type: AMAZON.AlphaNumeric
+        prompt: What is your flight number? This consists of letters and numbers.
+        required: true
+  - name: GetLostLuggageStatus
+    sample_utterances:
+      - Check the status of my lost luggage.
+    slots:
+      - name: PIRNumber
+        type: AMAZON.NUMBER
+        prompt: What is your PIR file reference number? This is 10 digits consisting of letters and number.
+        required: true
+  - name: FlightCheck
+    sample_utterances:
+      - I want to do my flight check in.
+    slots:
+      - name: Airline
+        type: Airline
+        prompt: Which airline are you flying with?
+        required: true
+      - name: DestinationAirport
+        type: AMAZON.Airport
+        prompt: What is your destination airport?
+        required: true
+      - name: FlightNumber
+        type: AMAZON.AlphaNumeric
+        prompt: What is your flight number? This consists of letters and numbers.
+        required: true
+  - name: SelectSeat
+    sample_utterances:
+      - Select my seat
+    slots:
+      - name: SeatLocation
+        type: SeatLocation
+        prompt: Which seat type would you like? You can say window, middle, or aisle.
+        required: true
+  - name: UnsupportedIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: OODIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: FallbackIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: CancelIntent
+    parent_intent: AMAZON.CancelIntent
+  - name: HelpIntent
+    parent_intent: AMAZON.HelpIntent
+  - name: NoIntent
+    parent_intent: AMAZON.NoIntent
+  - name: PauseIntent
+    parent_intent: AMAZON.PauseIntent
+  - name: RepeatIntent
+    parent_intent: AMAZON.RepeatIntent
+  - name: ResumeIntent
+    parent_intent: AMAZON.ResumeIntent
+  - name: StartOverIntent
+    parent_intent: AMAZON.StartOverIntent
+  - name: StopIntent
+    parent_intent: AMAZON.StopIntent
+  - name: YesIntent
+    parent_intent: AMAZON.YesIntent
+slot_types:
+  - name: Airline
+    values:
+      - value: Air India
+      - value: Vistara
+      - value: Indigo
+      - value: Spice Jet
+  - name: RoundtripOneway
+    values:
+      - value: Round trip
+      - value: One Way
+      - value: Multi-City
+  - name: SeatLocation
+    values:
+      - value: Window
+      - value: Aisle
+      - value: Middle

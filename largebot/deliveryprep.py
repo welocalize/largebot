@@ -255,3 +255,115 @@ def get_utterances(get_df: bool = False):
         out_values,
         divs=10
     )
+
+def es_prep_uttqc(in_file):
+
+    logger.info(in_file.name)
+    wb = WorkBook(in_file)
+    ws = wb.get_worksheet('Sample Utterances')
+    tables = list(ws.get_tables())
+    values = None
+    if tables:
+        values = [
+            *tables[0].get_header_row_range().values,
+            *tables[0].get_data_body_range().values
+        ]
+        tables[0].delete()
+    if not values:
+        delete_range = ws.get_range('A2:I4')
+        if not all(row[0] == 'Example' for row in delete_range.values):
+            logger.error(f"Example rows issue for file {in_file.name}; skipping.")
+            return
+        delete_range.delete()
+        _range = ws.get_range('A1:I301')
+        values = _range.values
+    columns, *values = [
+        row[:9]
+        for row in values
+        if row[0] != 'Example'
+    ]
+    _range = ws.get_range('A1:L301')
+
+    df = pd.DataFrame(values, columns=columns)
+    df.rename(
+        columns={
+            'SampleUtteranceTranslation': 'OriginalSampleUtteranceTranslation'
+        },
+        inplace=True
+    )
+    df = df.where(pd.notnull(df), None)
+
+    def trim_utterance(utterance: str, modality: str):
+        return utterance.strip().translate(PUNC_TABLES.get(modality)) if utterance else utterance
+
+    def has_slot_errors(utterance: str, slot1: str = None, slot2: str = None):
+        if not utterance:
+            return
+        slots = [slot for slot in (slot1, slot2) if slot and slot not in (None, 'Null', '')]
+        actual = re.findall(r'\{(\w+)\}', utterance)
+        if not slots and actual:
+            logger.debug(f"UnexpectedSlotError: {slots=}, {actual=}")
+            return 'UnexpectedSlotError'
+        if actual:
+            if len(actual) != len(set(actual)):
+                logger.debug(f"DuplicatedSlotNameError: {slots=}, {actual=}")
+                return 'DuplicatedSlotNameError'
+        if slots != actual:
+            if len(slots) == len(actual):
+                logger.debug(f"SlotNameError: {slots=}, {actual=}")
+                return 'SlotNameError'
+            logger.debug(f"SlotNumberError: {slots=}, {actual=}")
+            return 'SlotNumberError'
+
+    df['NewSampleUtteranceTranslation'] = df.apply(
+        lambda x: trim_utterance(x['OriginalSampleUtteranceTranslation'], x['Modality']),
+        axis=1
+    )
+
+    df['SlotErrors'] = df.apply(
+        lambda x: has_slot_errors(x['NewSampleUtteranceTranslation'], x['SlotName'], x['SlotName_Optional']),
+        axis=1
+    )
+
+    utterances = df['NewSampleUtteranceTranslation'].tolist()
+    intent_ids = df['IntentID'].tolist()
+    df['FuzzyMatches'] = [
+        ', '.join(fuzzies)
+        for fuzzies in get_fuzzy_list(utterances, intent_ids)
+    ]
+
+    df.rename(
+        columns={
+            'NewSampleUtteranceTranslation': 'SampleUtteranceTranslation'
+        },
+        inplace=True
+    )
+
+    df = df.where(pd.notnull(df), '')
+
+    columns = [
+        'IntentID',
+        'IntentName',
+        'IntentNameTranslation',
+        'IntentDescription',
+        'Modality',
+        'SlotName',
+        'SlotName_Optional',
+        'SlotErrors',
+        'FuzzyMatches',
+        'SampleUtterance',
+        'OriginalSampleUtteranceTranslation',
+        'SampleUtteranceTranslation'
+    ]
+
+    df = df[columns]
+
+    out_values = [
+        columns,
+        *df.values.tolist()
+    ]
+
+    original_trans_col = _range.get_column(10)
+    original_trans_col.column_hidden = True
+
+    _range.update(values=out_values)

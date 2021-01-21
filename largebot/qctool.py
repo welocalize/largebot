@@ -152,14 +152,9 @@ def qc_check(infile):
         flag, matches_dict = check_fuzzies(new_utterance, choices, flag, matches_dict)
         new_flags.append(flag)
 
-    df['ErrorFlags'] = [', '.join(flag) for flag in new_flags]
+    df['Flags'] = [', '.join(flag) for flag in new_flags]
     df['NewUtterance'] = new_utterances
     df = df.where(pd.notnull(df), '')
-    df.sort_values(
-        by=['ErrorFlags', 'Modality'],
-        ascending=[False, True],
-        inplace=True
-    )
 
     delete_range = ws.get_range('A2:G4')
     delete_range.delete()

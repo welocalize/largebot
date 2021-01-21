@@ -361,11 +361,11 @@ class FileAssignment(BaseModel):
             if self.role == 'Creator' and self.file_name.task == 'Utterance':
                 qc_file = target.get_item(item.name)
                 self.qc_check(qc_file)
-            if self.role == 'QC' and self.file_name.task == 'Intent':
-                try:
-                    self.prep_utts()
-                except (ValueError, HTTPError) as e:
-                    logger.error(f"Error trying to prepare utterances: {e}")
+            # if self.role == 'QC' and self.file_name.task == 'Intent':
+            #     try:
+            #          self.prep_utts()
+            #     except (ValueError, HTTPError) as e:
+            #         logger.error(f"Error trying to prepare utterances: {e}")
 
     def move_working(self, target: str):
         PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)
@@ -796,15 +796,15 @@ class ResourceAssignment(BaseModel):
                 previous_version.copy(target, name=previous_name)
                 previous_version.delete()
             item.copy(target)
-            if self.role == 'Creator' and self.file_name.task == 'Utterance':
-                try:
-                    qc_file = target.get_item(item.name)
-                    self.qc_check(qc_file)
-                except ValueError as e:
-                    logger.error(f"Problem with {item.name}: {e}")
-            if self.role == 'QC':
-                if self.file_name.task == 'Intent':
-                    self.prep_utts()
+            # if self.role == 'Creator' and self.file_name.task == 'Utterance':
+            #     try:
+            #         qc_file = target.get_item(item.name)
+            #         self.qc_check(qc_file)
+            #     except ValueError as e:
+            #         logger.error(f"Problem with {item.name}: {e}")
+            # if self.role == 'QC':
+            #     if self.file_name.task == 'Intent':
+            #        self.prep_utts()
 
     def move_working(self, target: str = None):
         PROJ_DRIVE, PROJ_PATH = PROJ_CONFIG.get(self.file_name.lang)

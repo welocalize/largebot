@@ -1,0 +1,447 @@
+name: RyanBotTemplates
+locale: en-US
+domain: TestDomain
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: TestDomain_CheckLuggageRestrictions_en-IN
+    scenario_id: '2020101'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with an airport app and want to check what luggage restrictions your airline has.
+    description: Check luggage restrictions
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: I want to check luggage restrictions.
+        slot_to_elicit: false
+        intent_to_elicit: CheckLuggageRestrictions
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much does your luggage weigh?
+        sample_response: 25kg
+        slot_to_elicit: LuggageWeight
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which airline are you flying with?
+        sample_response: Air India
+        slot_to_elicit: Airline
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain_ComplainAboutDelay_en-IN
+    scenario_id: '2020102'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with an airline company app to complain about a delay on a recent flight.
+    description: Complain about delayed flight
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: I want to complain about my flight delay.
+        slot_to_elicit: false
+        intent_to_elicit: ComplainAboutDelay
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your booking reference/PNR number? This may consists of letters as well as numbers.
+        sample_response: NN2118051
+        slot_to_elicit: BookingReference
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your surname?
+        sample_response: Mittal
+        slot_to_elicit: LastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain_GetBoardingPass_en-IN
+    scenario_id: '2020103'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with an airline company app and want to get a boarding pass for a flight you already booked.
+    description: Get boarding pass
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Get my boarding pass
+        slot_to_elicit: false
+        intent_to_elicit: GetBoardingPass
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your booking reference/PNR number? This may consists of letters as well as numbers.
+        sample_response: NN21180689
+        slot_to_elicit: BookingReference
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your surname?
+        sample_response: Sharma
+        slot_to_elicit: LastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which email ID should we send your boarding pass to?
+        sample_response: travellerSharma@gmail.com
+        slot_to_elicit: EmailAddress
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain_BookFlight_Confirmed_en-IN
+    scenario_id: '2020104'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with an airline company app and want to book a flight. When you're asked if you want to confirm your booking, answer affirmatively
+    description: Book roundtrip flight, and confirm booking
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Book a flight
+        slot_to_elicit: false
+        intent_to_elicit: BookFlight
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the passengers's first name? Only give one name at a time.
+        sample_response: Ruchi
+        slot_to_elicit: FirstName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the passengers's surname? Only give one name at a time.
+        sample_response: Malhotra
+        slot_to_elicit: LastName
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which airport are you departing from?
+        sample_response: Indira Gandhi International Airport
+        slot_to_elicit: OriginAirport
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which airport are you arriving at?
+        sample_response: Haneda Airport
+        slot_to_elicit: ArrivalAirport
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which is your departure date?
+        sample_response: 17/08/2020
+        slot_to_elicit: DepartureDate
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your return date?
+        sample_response: 25/08/2020
+        slot_to_elicit: ReturnDate
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please confirm if you would like to go ahead with this request (answer affirmatively)
+        sample_response: yes
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain_SearchForFlights_en-IN
+    scenario_id: '2020105'
+    bias:
+      - SingleIntent
+    customer_instructions: Pretend you are interacting with an airline company app and want to search for flights.
+    description: Search for flights
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Search for flights
+        slot_to_elicit: false
+        intent_to_elicit: SearchForFlights
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many passengers?
+        sample_response: '3'
+        slot_to_elicit: NumberOfPassengers
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which city are you departing from?
+        sample_response: Delhi
+        slot_to_elicit: OriginCity
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which city are you arriving at?
+        sample_response: Tokyo
+        slot_to_elicit: ArrivalCity
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is this a roundtrip flight or a one-way flight?
+        sample_response: Round trip
+        slot_to_elicit: RoundtripOneway
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your prefered date for departure?
+        sample_response: '2020-08-15 00:00:00'
+        slot_to_elicit: DepartureDate
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain_GetFlightStatus_NoIntent_en-IN
+    scenario_id: '2020106'
+    bias:
+      - MultiIntent
+    customer_instructions: Pretend you are interacting with an airline company app and want to check the status of a flight you already booked. When the bot asks if you need help with anything else, decline.
+    description: Get flight status, say no
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Check status of my flight
+        slot_to_elicit: false
+        intent_to_elicit: GetFlightStatus
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your flight number? This consists of letters and numbers.
+        sample_response: GF5647
+        slot_to_elicit: FlightNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there anything else I can help you with? (decline)
+        sample_response: No, thanks
+        slot_to_elicit: false
+        intent_to_elicit: NoIntent
+        confirm_intent: false
+        assume_intent: false
+        close: true
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain_GetLostLuggageStatus_HelpIntent_en-IN
+    scenario_id: '2020107'
+    bias:
+      - MultiIntent
+    customer_instructions: Pretend you lost your luggage while flying and are calling an airline company to get the latest status on your lost luggage. When it tells you there is no status update, pretend you want to speak with a customer service representative.
+    description: Get status about lost luggage, ask for help
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Check the status of my lost luggage.
+        slot_to_elicit: false
+        intent_to_elicit: GetLostLuggageStatus
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your PIR file reference number? This is 10 digits consisting of letters and number.
+        sample_response: DELAI10167
+        slot_to_elicit: PIRNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: There is no status update on your lost luggage. Can I help you with anything else? (pretend you want to speak to a customer representative)
+        sample_response: Let me speak to a human agent, then. I need help.
+        slot_to_elicit: false
+        intent_to_elicit: HelpIntent
+        confirm_intent: false
+        assume_intent: false
+        close: true
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain_FlightCheckIn_SelectSeat_YesIntent_en-IN
+    scenario_id: '2020108'
+    bias:
+      - MultiIntent
+    customer_instructions: Pretend you are interacting with an airline company app and want to check in for a flight you already booked. When the bot asks if you need help with anything else, pretend you want to choose your seat. When the bot asks if you would like to pay extra for more legroom, answer in the affirmative.
+    description: Check in, select a seat, and then say yes to extra legroom
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: I want to do my flight check in.
+        slot_to_elicit: false
+        intent_to_elicit: FlightCheck
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which airline are you flying with?
+        sample_response: Japan Airlines
+        slot_to_elicit: Airline
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your destination airport?
+        sample_response: Haneda Airport
+        slot_to_elicit: DestinationAirport
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your flight number? This consists of letters and numbers.
+        sample_response: JAL552
+        slot_to_elicit: FlightNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there anything else I can help you with? (pretend you want to choose your seat)
+        sample_response: Select my seat
+        slot_to_elicit: false
+        intent_to_elicit: SelectSeat
+        confirm_intent: false
+        assume_intent: false
+        close: true
+      - agent: Which seat type would you like? You can say window, middle, or aisle.
+        sample_response: Window
+        slot_to_elicit: SeatLocation
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to pay ₹900 for extra legroom? (answer in the affirmative)
+        sample_response: Yes
+        slot_to_elicit: false
+        intent_to_elicit: YesIntent
+        confirm_intent: false
+        assume_intent: false
+        close: true
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: TestDomain(UnsupportedIntent)_GetFlightStatus_ChangeFlightTime_en-IN
+    scenario_id: '2020109'
+    bias:
+      - MultiIntent, UnsupportedIntent
+    customer_instructions: Pretend you are interacting with an airline company app and want to get the status of a flight. When the bot asks if you would like anything else, pretend you want to change your flight to an earlier or later flight. The bot will NOT be able to help you.
+    description: Get flight status, then change flight time (UnsupportedIntent)
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Get my flight status
+        slot_to_elicit: false
+        intent_to_elicit: GetFlightStatus
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your flight number? This consists of letters and numbers.
+        sample_response: JAL980
+        slot_to_elicit: FlightNumber
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there anything else I can help you with? (pretend you want to change your flight time. The bot won't be able to help.)
+        sample_response: I'd like to change my flight time.
+        slot_to_elicit: false
+        intent_to_elicit: UnsupportedIntent
+        confirm_intent: false
+        assume_intent: false
+        close: true
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Airline(OODIntent)_en-IN
+    scenario_id: '2020110'
+    bias:
+      - SingleIntent, OODIntent
+    customer_instructions: Pretend you are calling a customer service phone number. Make up some request that is NOT related to airlines. The bot will NOT be able to help you.
+    description: OODIntent
+    script:
+      - agent: Welcome. How can I help you? (ask about something UNRELATED to airlines. The bot won't be able to help.)
+        sample_response: I want to book a tour package.
+        slot_to_elicit: false
+        intent_to_elicit: OODIntent
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        slot_to_elicit: false
+        intent_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
