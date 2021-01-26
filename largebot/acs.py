@@ -247,6 +247,38 @@ class Templates:
         message.text(text)
         message.send()
 
+def get_cust_instructions(slot_types: dict):
+    customer_instructions = f"""    
+    <div class="instructions" id="customer-instructions">
+        In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+        <br>
+        IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+        <br>
+        ----------------
+        Pretend you are interacting with this tool and want information about a certain kind of intent.
+    </div>
+    <br>
+    
+            <div>
+            Please use the following information to answer the bot's questions.
+            <br>"""
+    for slot_type, values_list in slot_types.items():
+        customer_instructions = f"""{customer_instructions}<br>
+<b>{slot_type}</b> <br>"""
+    customer_instructions = f"""{customer_instructions}<br>
+            </div>
+        
+
+"""
+    return customer_instructions
+
+agent_instructions = """
+        <div class="instructions" id="agent-instructions">
+            In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+            <br>
+            IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+        </div>
+"""
 
 class Conversation:
     url: str = f"{BASE_URL}/conversation"

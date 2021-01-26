@@ -1,19 +1,17 @@
-from functools import partial
-from typing import Callable, Union, Optional, List, Tuple
-
-from pydantic import BaseModel as ConfigModel, validator
-from ruamel.yaml import YAML
-from ruamel.yaml.representer import RepresenterError
-from welo365 import WorkBook
-import time
-from ruamel.yaml.scalarstring import SingleQuotedScalarString
-from slot_faker import SlotFaker
-from faker import Factory
-from termcolor import cprint
 import re
-from rypy import rex
+import time
+from functools import partial
+from typing import Callable, Union, Optional, List
+
 import pandas as pd
 from pathlib import Path
+from pydantic import BaseModel as ConfigModel, validator, root_validator
+from ruamel.yaml import YAML
+from ruamel.yaml.representer import RepresenterError
+from ruamel.yaml.scalarstring import SingleQuotedScalarString
+from rypy import rex
+from slot_faker import SlotFaker
+from termcolor import cprint
 
 from largebot.logger import get_logger
 from welo365 import O365Account
@@ -50,9 +48,9 @@ announce = lambda x: cprint(x, 'white', attrs=['blink'])
 agent = lambda x: cprint(x, 'grey', 'on_yellow', attrs=['bold'])
 customer = lambda x: cprint(x.rjust(50), 'cyan', attrs=['bold'])
 
-
 FINANCE_XL = Path.home() / 'Downloads' / 'Finance Testing.xlsx'
 TESTING_PATH = ['Amazon Lex - Testing Data LargeBot', 'Archive']
+
 
 def get_first_turns():
     custom1 = 'FirstTurns1.xlsx'
@@ -72,24 +70,19 @@ def get_first_turns():
     return first_turns
 
 
-
-
-
-
-
 def cols_to_keys(key: str):
     return {
-        'intent_id': 'IntentID',
-        'intent_name': 'IntentName',
-        'intent_description': 'IntentDescription',
-        'confirm_intent': 'ConfirmIntent',
-        'assume_intent': 'AssumeIntent',
-        'slot_name': 'SlotName',
-        'slot_method': 'Method',
-        'slot_type': 'SlotTypeName',
-        'slot_prompt': 'Agent',
-        'slot_required': 'SlotRequired'
-    }.get(key, None) or key
+               'intent_id': 'IntentID',
+               'intent_name': 'IntentName',
+               'intent_description': 'IntentDescription',
+               'confirm_intent': 'ConfirmIntent',
+               'assume_intent': 'AssumeIntent',
+               'slot_name': 'SlotName',
+               'slot_method': 'Method',
+               'slot_type': 'SlotTypeName',
+               'slot_prompt': 'Agent',
+               'slot_required': 'SlotRequired'
+           }.get(key, None) or key
 
 
 class SlotTypes(dict):
@@ -109,13 +102,14 @@ class SlotTypes(dict):
             for value in custom_slot_method.values
         ]
 
+
 SLOT_TYPES = SlotTypes()
+
 
 class BaseModel(ConfigModel):
     class Config:
         arbitrary_types_allowed = True
         alias_generator = cols_to_keys
-
 
 
 class Slot(BaseModel):
@@ -146,7 +140,6 @@ class Slot(BaseModel):
                 return method
             if (parts := v.split(',')) and (method := getattr(BASE_FAKER, parts[0], None)):
                 if len(parts) == 1:
-
                     return method
                 _, *args = parts
                 params = {
@@ -154,6 +147,7 @@ class Slot(BaseModel):
                     for arg in args
                     if (p := arg.split('='))
                 }
+
                 method = partial(method, **params)
                 SLOT_TYPES.setdefault(slot_type, []).append(
                     {
@@ -161,6 +155,7 @@ class Slot(BaseModel):
                         'method': method
                     }
                 )
+
             if (parts := v.split(':')) and (method := getattr(BASE_FAKER, parts[0], None)):
                 if len(parts) < 2:
                     SLOT_TYPES.setdefault(slot_type, []).append(
@@ -170,6 +165,7 @@ class Slot(BaseModel):
                         }
                     )
                     return method
+
                 method = partial(BASE_FAKER.parse, text=f"{{{v}}}")
                 SLOT_TYPES.setdefault(slot_type, []).append(
                     {
@@ -196,7 +192,8 @@ class Slot(BaseModel):
 class Turn(BaseModel):
     turn_id: int
     agent: Union[str, bool] = False
-    sample_response: Union[str, bool] = False
+    customer_response: Union[str, bool] = False
+    slot_value: Union[List[str], str, bool] = False
     slot_to_elicit: Union[str, bool] = False
     intent_to_elicit: Union[str, bool] = False
     confirm_intent: Union[str, bool] = False
@@ -205,6 +202,14 @@ class Turn(BaseModel):
 
     class Config:
         allow_extra = False
+
+    @property
+    def intent(self):
+        return self.intent_to_elicit
+
+    @property
+    def sample_response(self):
+        sample_response = self.customer_response
 
     @property
     def yaml(self):
@@ -220,11 +225,11 @@ class Turn(BaseModel):
 
 
 class Intent(BaseModel):
-    domain: str
-    intent_id: str
-    intent_name: str
-    intent_description: str
-    scenario_id: str
+    domain: str = None
+    intent_id: str = None
+    intent_name: str = None
+    intent_description: str = None
+    scenario_id: str = None
     sample_utterances: List[str] = None
     slots: List[Slot] = None
     script: List[Turn] = None
@@ -255,12 +260,6 @@ class Intent(BaseModel):
     def prep_slots(cls, v, values):
         if (slot := Slot(**values)):
             return [slot]
-        return []
-
-    @validator('turns', pre=True)
-    def prep_turns(cls, v, values):
-        if (turn := Turn(**values)):
-            return [turn]
         return []
 
     def append_row(self, **kwargs):
@@ -501,122 +500,322 @@ class Utterer(BaseModel):
 
 class DomainScriptTurn(BaseModel):
     turn_id: int
+    slot_value: Union[List[str], bool, str] = False
     intent_to_elicit: Union[bool, str] = False
     slot_to_elicit: Union[bool, str] = False
     agent: Union[bool, str] = False
     customer_response: Union[bool, str] = False
     confirm_intent: Union[bool, str] = False
     assume_intent: bool = False
-    slot_value: Union[bool, str] = False
-
-    def __init__(
-            self,
-            turn_id: int,
-            intent_or_slot_to_elicit: str,
-            agent: str,
-            customer_response: str,
-            slot_value: str
-    ):
-        slot_to_elicit = slot_to_elicit if ((slot_to_elicit := intent_or_slot_to_elicit) and slot_value) else False
-        intent_to_elicit = intent_to_elicit if ((intent_to_elicit := intent_or_slot_to_elicit) and not slot_to_elicit) else False
-        confirm_intent = False
-        if intent_to_elicit == 'Confirmed.Intent':
-            intent_to_elicit = False
-            confirm_intent = 'Confirmed'
-        if intent_to_elicit == 'Denied.Intent':
-            intent_to_elicit = False
-            confirm_intent = 'Denied'
-        super().__init__(
-            turn_id=turn_id,
-            intent_to_elicit=intent_to_elicit,
-            slot_to_elicit=slot_to_elicit,
-            slot_value=slot_value,
-            agent=agent,
-            customer_response=customer_response,
-            confirm_intent=confirm_intent,
-            assume_intent=False
-        )
 
 
 class DomainConversation:
-    script_turns: List[DomainScriptTurn]
-
+    script_turns: List[DomainScriptTurn] = None
 
 
 class DomainIntent(BaseModel):
-    intent_id: str
-    intent_name: str
-    intent_description: str
-    conversations: List[DomainConversation]
+    intent_id: str = None
+    intent_name: str = None
+    intent_description: str = None
+    conversations: List[List[DomainScriptTurn]] = None
+
+
+def amazon_attr(name: str):
+    return '_'.join(
+        part.lower()
+        for part in re.findall(r'[A-Z][^A-Z.]*', name.replace('AMAZON.', ''))
+    )
+
+
+def clean_conversation(convo):
+    clean_convo = convo[:1]
+    matches = rex.capture_all(
+        r'\{(?P<slot_name>[\w]+)\}',
+        convo[0].get('customer_response', '')
+    )
+    if matches and (first_turn_slots := matches.get('slot_name')):
+        first_turn_customer_response = convo[0]['customer_response']
+        first_turn_slot_value = []
+        for turn in convo[1:]:
+            if (
+                    (first_turn_slot := turn.get('slot_to_elicit'))
+                    and first_turn_slot in first_turn_slots
+            ):
+                if (slot_value := turn.get('slot_value', '')):
+                    first_turn_customer_response = first_turn_customer_response.replace(
+                        f"{{{first_turn_slot}}}", f"{slot_value}")
+                    first_turn_slot_value.append(slot_value)
+                    continue
+            clean_convo.append(turn)
+        clean_convo[0]['slot_value'] = first_turn_slot_value
+        clean_convo[0]['customer_response'] = first_turn_customer_response
+    return clean_convo
 
 
 class DomainScript(BaseModel):
     source: File
-    wb: WorkBook
-    ws: WorkSheet
-    convo_range: Range
-    values: List[List[str]]
-    intents: List[DomainIntent]
+    wb: WorkBook = None
+    ws: WorkSheet = None
+    convo_range: Range = None
+    values: List[List[str]] = None
+    intents: List[DomainIntent] = None
+    conversations: list = None
+    templates: dict = None
 
-    def __init__(self, source: File):
-        wb = WorkBook(source)
-        ws = wb.get_worksheet('Conversations')
-        _range = ws.get_range()
-        super().__init__(
-            source=source,
-            wb=wb,
-            address=_range.address,
-            values=_range.values
-        )
-
-    @validator('wb', pre=True)
-    def get_wb(cls, v, values):
-        if not v and (source := values.get('source')):
-            v = WorkBook(source)
-        return v
-
-    @validator('ws', pre=True)
-    def get_ws(cls, v, values):
-        if not v and (wb := values.get('wb')):
-            v = wb.get_worksheeet('Conversations')
-        return v
-
-    @validator('convo_range', pre=True)
-    def get_convo_range(cls, v, values):
-        if not v and (ws := values.get('ws')):
-            v = ws.get_used_range()
-        return v
-
-    @validator('values', pre=True)
-    def get_values(cls, v, values):
-        if not v and (convo_range := values.get('convo_range')):
+    @root_validator
+    def get_data(cls, values):
+        if (source := values.get('source')):
+            wb = WorkBook(source)
+            ws = wb.get_worksheet('Conversations')
+            convo_range = ws.get_used_range()
+            cols, *values = convo_range.values
+            df = pd.DataFrame(values, columns=cols)
+            df = df.where(pd.notnull(df), None)
+            _v = df.values.tolist()
+            v = [
+                row
+                for row in _v
+                if row[0]
+            ]
+            '''
             v = [
                 row
                 for row in convo_range.values
-                if (intent_id := row[1])
+                if (intent_id := row[0])
             ]
-        return v
-
-    @validator('intents', pre=True)
-    def get_intents(cls, v, values: List[List[str]]):
-        if not v and (rows := values.get('values', [])):
-            convos = {}
-            for _, intent_id, intent_name, intent_description, turn_id, _, _, *conversations in rows:
-                if intent_id not in convos:
-                    convos[intent_id] = {
+            scrubbed = []
+            for row in v:
+                scrub = []
+                for cell in row:
+                    cell = False if cell in ('FALSE', 'False', 'false') else cell
+                    scrub.append(cell)
+                scrubbed.append(scrub)
+            v = scrubbed
+            '''
+            intents = {}
+            for _, intent_id, intent_name, intent_description, turn_id, *convo_data in v[1:]:
+                if intent_id not in intents:
+                    intents[intent_id] = {
                         'intent_id': intent_id,
                         'intent_name': intent_name,
                         'intent_description': intent_description,
-                        'conversations': [
-                            [], [], [], [], [], [], [], []
-                        ]
+                        'conversations': {}
                     }
-                turns = [conversations[i:i+4] for i in range(0, len(conversations), 4)]
+                conversations = [convo_data[i:i + 5] for i in range(0, len(convo_data), 5)]
+                for i, conversation in enumerate(conversations):
+                    if set(conversation) != {''}:
+                        intents[intent_id]['conversations'].setdefault(i, {}).setdefault('turns', []).append([turn_id, *conversation])
+            for intent_id in intents:
+                convo_data = []
                 for i in range(8):
-                    convos[intent_id]['conversations'][i].append(turns[i])
-            v = list(convos.values())
-        return v
+                    convo_data.append(
+                        intents[intent_id]['conversations'][i]
+                    )
+                intents[intent_id]['conversations'] = convo_data
+            intents = list(intents.values())
+            for intent in intents:
+                if (conversations := intent.get('conversations')):
+                    intent_conversations = []
+                    for i, conversation in enumerate(conversations):
+                        convo = []
+                        conversation['status'] = conversation['turns'][0][2]
+                        conversation['turns'] = conversation['turns'][1:]
+                        if conversation['status'] == 'Rejected':
+                            print(f"Skipping {intent} conversation {i+1} as 'Rejected'")
+                            continue
+                        for (turn_id, intent_to_elicit, slot_to_elicit, agent, customer_response, slot_value) in conversation['turns']:
+                            if slot_value in ('FALSE', 'False', 'false'):
+                                slot_value = False
+                            if intent_to_elicit in ('FALSE', 'False', 'false'):
+                                intent_to_elicit = False
+                            if slot_to_elicit in ('FALSE', 'False', 'false'):
+                                slot_to_elicit = False
+                            if not intent_to_elicit and not slot_to_elicit:
+                                print(
+                                    f"{intent.get('intent_id')} has neither a slot nor a prompt for conversation {i}:{turn_id}"
+                                )
+                            confirm_intent = False
+                            if intent_to_elicit == 'Confirmed.Intent':
+                                intent_to_elicit = False
+                                confirm_intent = 'Confirmed'
+                            if intent_to_elicit == 'Denied.Intent':
+                                intent_to_elicit = False
+                                confirm_intent = 'Denied'
+                            turn = {
+                                'turn_id': turn_id,
+                                'intent_to_elicit': intent_to_elicit,
+                                'slot_to_elicit': slot_to_elicit,
+                                'slot_value': slot_value,
+                                'agent': agent,
+                                'customer_response': customer_response,
+                                'confirm_intent': confirm_intent,
+                                'assume_intent': False
+                            }
+                            print(f"{turn=}")
+                            convo.append(turn)
+                            clean_convo = clean_conversation(convo)
+                        intent_conversations.append(clean_convo)
+                intent['conversations'] = intent_conversations
+        return {
+            'source': source,
+            'wb': wb,
+            'ws': ws,
+            'convo_range': convo_range,
+            'values': v,
+            'intents': intents,
+            'conversations': [
+                {
+                    'conversation': convo,
+                    'description': intent.get('intent_description'),
+                    'intent_name': intent.get('intent_name')
+                }
+                for intent in intents
+                for convo in intent.get('conversations')
+            ],
+            'templates': {}
+        }
 
+    def export_template(self, name, locale, domain):
+        count = {
+            'bias': {}
+        }
+        AMAZON_Intents = {
+            'UnsupportedIntent': 'AMAZON.FallbackIntent',
+            'OODIntent': 'AMAZON.FallbackIntent',
+            'FallbackIntent': 'AMAZON.FallbackIntent',
+            'CancelIntent': 'AMAZON.CancelIntent',
+            'HelpIntent': 'AMAZON.HelpIntent',
+            'NoIntent': 'AMAZON.NoIntent',
+            'PauseIntent': 'AMAZON.PauseIntent',
+            'RepeatIntent': 'AMAZON.RepeatIntent',
+            'ResumeIntent': 'AMAZON.ResumeIntent',
+            'StartOverIntent': 'AMAZON.StartOverIntent',
+            'StopIntent': 'AMAZON.StopIntent',
+            'YesIntent': 'AMAZON.YesIntent'
+        }
 
+        templates = {}
+        for conversation in self.conversations:
+            intent_name = conversation.get('intent_name')
+            conversation['conversation'] = [
+                Turn(**turn)
+                for turn in conversation.get('conversation')
+            ]
+            print(conversation.get('conversation'))
+            conversation['domain'] = domain
+            conversation['locale'] = locale
 
+            def classify(conversation):
+                intents = {
+                    intent
+                    for turn in conversation.get('conversation')
+                    if (intent := turn.intent)
+                }
+                print(f"bias {intents=}")
+                confirmed = confirm_intents[0] if (
+                    confirm_intents := [
+                        turn.confirm_intent
+                        for turn in conversation.get('conversation')
+                        if turn.confirm_intent
+                    ]
+                ) else False
+                cname = [conversation.get('domain'), [], conversation.get('locale')]
+                _bias = []
+                for intent in intents:
+                    if intent.lower() == 'false':
+                        continue
+                    if (amazint := AMAZON_Intents.get(intent)):
+                        if amazint != f"AMAZON.{intent}":
+                            cname[0] = f"{cname[0]}({intent})"
+                            print(f"{cname[0]=}")
+                            _bias.append(intent)
+                            continue
+                    cname[1].append(intent)
+                bias_num = 'SingleIntent' if len(cname[1]) == 1 else 'MultiIntent'
+                if confirmed:
+                    cname[1].append(confirmed)
+                bias = [bias_num, *_bias]
+                cname = f"{cname[0]}_{'_'.join(cname[1])}_{cname[2]}"
+                return bias, cname
 
+            bias, cname = classify(conversation)
+
+            if cname in templates:
+                print(f"{cname} already in templates list; skipping")
+                continue
+
+            for bias_type in bias:
+                count.get('bias', {}).setdefault(bias_type, []).append(1)
+
+            description = conversation.get('description')
+            print(f"{description=}")
+            instructions = description.replace(
+                'User', 'You').replace('Customer', 'You').replace(
+                'wants', 'want').replace('has', 'have').replace(
+                'their', 'your').replace(' is ', ' are ').replace('You\'s', 'Your').strip()
+            scenario_id = SingleQuotedScalarString(f"{len(templates) + 1:04d}")
+            script = []
+            for i, turn in enumerate(conversation.get('conversation'), start=1):
+                script_turn = {
+                    'agent': turn.agent,
+                    'sample_response': slot_value if (slot_value := turn.slot_value) else turn.customer_response,
+                    'intent_to_elicit': turn.intent,
+                    'slot_to_elicit': turn.slot_to_elicit,
+                    'confirm_intent': turn.confirm_intent,
+                    'assume_intent': turn.assume_intent,
+                    'close': False
+                }
+                script.append(script_turn)
+            templates[cname] = {
+                'conversation': None,
+                'name': cname,
+                'scenario_id': scenario_id,
+                'bias': bias,
+                'customer_intructions': instructions,
+                'description': description,
+                'script': [
+                    *script,
+                    {
+                        'agent': 'Closing message (do not respond)',
+                        'sample_response': False,
+                        'intent_to_elicit': False,
+                        'slot_to_elicit': False,
+                        'confirm_intent': False,
+                        'assume_intent': False,
+                        'close': True
+                    }
+                ]
+            }
+
+        template = {
+            'name': name,
+            'locale': locale,
+            'domain': domain,
+            'general_agent_instructions': 'In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.',
+            'general_customer_instructions': 'In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.',
+            'slot_filled_instructions': 'IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.',
+            'custom_slot_instructions': "Please use the following information to answer the bot's questions.",
+            'personal_information': 'IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.',
+            'agent_did_not_understand': 'Sorry, I did not understand. Goodbye!',
+            'conversations': list(templates.values())
+        }
+
+        try:
+            output_path = Path.cwd()
+
+            yaml = YAML()
+            yaml.width = 200
+            yaml.indent(mapping=2, sequence=4, offset=2)
+
+            out_temp = output_path / f"{name}_scenarios.yaml"
+
+            with open(out_temp, mode='w', encoding='utf-8') as outf:
+                yaml.dump(template, outf)
+
+        except RepresenterError as e:
+            logger.error(f"Error during YAML creation: {e}")
+
+        return {
+            bias_type: sum(bias_count)
+            for bias_type, bias_count in count['bias'].items()
+        }
