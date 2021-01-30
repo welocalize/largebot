@@ -1,0 +1,2727 @@
+name: LargeBot_Finance_scenarios_batch06
+locale: en-US
+domain: Finance
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestInternationalMortgage_en-US
+    scenario_id: '0251'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You would like a mortgage for a property abroad
+    description: User would like a mortgage for a property abroad
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: This is about getting a mortgage on a property located abroad
+        intent_to_elicit: RequestInternationalMortgage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In which country is the property that you wish to mortgage?
+        sample_response: what does sba stand for
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestInternationalMortgage_en-US
+    scenario_id: '0252'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You would like a mortgage for a property abroad
+    description: User would like a mortgage for a property abroad
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: This is a mortgage inquiry for an international property
+        intent_to_elicit: RequestInternationalMortgage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In which country is the property that you wish to mortgage?
+        sample_response: it's in San Marino
+        intent_to_elicit: false
+        slot_to_elicit: PropertyCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the property that you wish to mortgage?
+        sample_response: I want some BBQ Ribs
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestMortgagePayout_Confirmed_en-US
+    scenario_id: '0253'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like a mortgage payout for a certain date in the future
+    description: Customer would like a mortgage payout for a certain date in the future
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: I want to set up a {PayoutDate} mortgage payout
+        intent_to_elicit: RequestMortgagePayout
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to refinance?
+        sample_response: about $190,000
+        intent_to_elicit: false
+        slot_to_elicit: RefinanceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount remaining on your current mortgage?
+        sample_response: for a total of $130,000
+        intent_to_elicit: false
+        slot_to_elicit: MortgageAmountRemaining
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the length of the refinanced mortgage you are requesting?
+        sample_response: nine years I think
+        intent_to_elicit: false
+        slot_to_elicit: RefinanceTermLength
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the current interest rate of your mortgage?
+        sample_response: '4.35'
+        intent_to_elicit: false
+        slot_to_elicit: CurrentInterestRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date would you like to receive the payout?
+        sample_response: 03/14/2019
+        intent_to_elicit: false
+        slot_to_elicit: PayoutDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number, please?
+        sample_response: So its 7647933895S8
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: Sure it is Bryan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account?
+        sample_response: thats Lester
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address associated with your account?
+        sample_response: Sure at 4069 Livingston Street, Grasmere, ID 83604
+        intent_to_elicit: false
+        slot_to_elicit: AccountAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address where you would like to receive your payment?
+        sample_response: "so its 3652C Poplar Street,\nBlackduck, MN 56663"
+        intent_to_elicit: false
+        slot_to_elicit: PayoutAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Absolutely
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestMortgagePayout_HelpIntent_en-US
+    scenario_id: '0254'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like a mortgage payout for a certain date in the future
+    description: Customer would like a mortgage payout for a certain date in the future
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Please set up a mortgage payout the date would be {PayoutDate}
+        intent_to_elicit: RequestMortgagePayout
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to refinance?
+        sample_response: put down $20.00
+        intent_to_elicit: false
+        slot_to_elicit: RefinanceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount remaining on your current mortgage?
+        sample_response: I have $130.00 remaining on my current mortgage
+        intent_to_elicit: false
+        slot_to_elicit: MortgageAmountRemaining
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the length of the refinanced mortgage you are requesting?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestMortgagePayout_PauseIntent_en-US
+    scenario_id: '0255'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like a mortgage payout for a certain date in the future
+    description: Customer would like a mortgage payout for a certain date in the future
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: I need to set up a mortgage payout please
+        intent_to_elicit: RequestMortgagePayout
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to refinance?
+        sample_response: That'd be $100.00.
+        intent_to_elicit: false
+        slot_to_elicit: RefinanceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount remaining on your current mortgage?
+        sample_response: $200.00 remaining
+        intent_to_elicit: false
+        slot_to_elicit: MortgageAmountRemaining
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the length of the refinanced mortgage you are requesting?
+        sample_response: It is about 20 years
+        intent_to_elicit: false
+        slot_to_elicit: RefinanceTermLength
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the current interest rate of your mortgage?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestMortgagePayout_en-US
+    scenario_id: '0256'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You would like a mortgage payout for a certain date in the future
+    description: Customer would like a mortgage payout for a certain date in the future
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: This is for a mortgage payout I want to set up for a specific date.
+        intent_to_elicit: RequestMortgagePayout
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to refinance?
+        sample_response: can I apply for a mortgage in someone else's name
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestMortgagePayout_en-US
+    scenario_id: '0257'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You would like a mortgage payout for a certain date in the future
+    description: Customer would like a mortgage payout for a certain date in the future
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Can we arrange a mortgage payout on {PayoutDate} please?
+        intent_to_elicit: RequestMortgagePayout
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to refinance?
+        sample_response: a total of $20000
+        intent_to_elicit: false
+        slot_to_elicit: RefinanceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount remaining on your current mortgage?
+        sample_response: I want to order popsickles
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestBankStatementEmail_Denied_en-US
+    scenario_id: '0258'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a new bank statement emailed to them
+    description: User wants a new bank statement emailed to them
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: I am trying to get a new statement dated {StatementDate} emailed to me
+        intent_to_elicit: RequestBankStatementEmail
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account would you like your statement from?
+        sample_response: savings
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What dates would you like a statement from?
+        sample_response: three months please
+        intent_to_elicit: false
+        slot_to_elicit: StatementDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: account number 48W35964LC
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: Yes Jonathan.Norman1964
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your password?
+        sample_response: it's m32jNrZczu
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your email address?
+        sample_response: the right email address is Jonathan.Norman@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestBankStatementEmail_NoIntent_en-US
+    scenario_id: '0259'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a new bank statement emailed to them
+    description: User wants a new bank statement emailed to them
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Could I get a new bank statement emailed to me for my statement dated {StatementDate}
+        intent_to_elicit: RequestBankStatementEmail
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account would you like your statement from?
+        sample_response: it's my IRA
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What dates would you like a statement from?
+        sample_response: The statement dates I am requesting are ten months
+        intent_to_elicit: false
+        slot_to_elicit: StatementDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: Yes 7550904349n9
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: It's R.Kenneth1974
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your password?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestBankStatementEmail_HelpIntent_en-US
+    scenario_id: '0260'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a new bank statement emailed to them
+    description: User wants a new bank statement emailed to them
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Will you let me have a new bank statement dated {StatementDate} emailed to me
+        intent_to_elicit: RequestBankStatementEmail
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account would you like your statement from?
+        sample_response: can I see my brokerage
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What dates would you like a statement from?
+        sample_response: eleven months please
+        intent_to_elicit: false
+        slot_to_elicit: StatementDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: The account number is 34E139205AR
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestBankStatementEmail_en-US
+    scenario_id: '0261'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want a new bank statement emailed to them
+    description: User wants a new bank statement emailed to them
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: My account number is {AccountNumber} and I would like to have a new statement emailed to me
+        intent_to_elicit: RequestBankStatementEmail
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account would you like your statement from?
+        sample_response: Does my bank have free coffee
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestBankStatementEmail_en-US
+    scenario_id: '0262'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want a new bank statement emailed to them
+    description: User wants a new bank statement emailed to them
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Please email a new bank statement to me
+        intent_to_elicit: RequestBankStatementEmail
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account would you like your statement from?
+        sample_response: money market
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What dates would you like a statement from?
+        sample_response: I'd like it for seven months
+        intent_to_elicit: false
+        slot_to_elicit: StatementDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: Looking to order frozen yoghurt
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestResidentialLoan_Confirmed_en-US
+    scenario_id: '0263'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a residential loan
+    description: User wants a residential loan
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: Can I get some assistance applying for a residential loan
+        intent_to_elicit: RequestResidentialLoan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like your loan to be?
+        sample_response: I want $10000.00
+        intent_to_elicit: false
+        slot_to_elicit: LoanAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When do you need your loan?
+        sample_response: 12/10/2021
+        intent_to_elicit: false
+        slot_to_elicit: LoanDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which bank would you like to get the loan from?
+        sample_response: I want to use Wells Fargo
+        intent_to_elicit: false
+        slot_to_elicit: BankName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your yearly income?
+        sample_response: My yearly income is $80000.00
+        intent_to_elicit: false
+        slot_to_elicit: UserIncome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: Yes, my name is Theodore
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Of course, it's Lara
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your birthdate?
+        sample_response: '26516'
+        intent_to_elicit: false
+        slot_to_elicit: UserBirthDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: "so that's 7974 Maple Street,\nCoventry, RI 02816"
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I ask your phone number?
+        sample_response: '6938625890'
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestResidentialLoan_StartOverIntent_en-US
+    scenario_id: '0264'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a residential loan
+    description: User wants a residential loan
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: Could I get a residential loan for {LoanAmount}
+        intent_to_elicit: RequestResidentialLoan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like your loan to be?
+        sample_response: yep, $40.00
+        intent_to_elicit: false
+        slot_to_elicit: LoanAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When do you need your loan?
+        sample_response: I really need the loan starting 03/24/2021
+        intent_to_elicit: false
+        slot_to_elicit: LoanDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which bank would you like to get the loan from?
+        sample_response: I want my loan from TD Bank
+        intent_to_elicit: false
+        slot_to_elicit: BankName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your yearly income?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestResidentialLoan_StopIntent_en-US
+    scenario_id: '0265'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a residential loan
+    description: User wants a residential loan
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: I need some help getting a residential loan
+        intent_to_elicit: RequestResidentialLoan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like your loan to be?
+        sample_response: yep $150.00
+        intent_to_elicit: false
+        slot_to_elicit: LoanAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When do you need your loan?
+        sample_response: 02/13/2021 please
+        intent_to_elicit: false
+        slot_to_elicit: LoanDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which bank would you like to get the loan from?
+        sample_response: Can I have Bank of America
+        intent_to_elicit: false
+        slot_to_elicit: BankName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your yearly income?
+        sample_response: I get $90.00
+        intent_to_elicit: false
+        slot_to_elicit: UserIncome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: Sure its Ashley
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestResidentialLoan_en-US
+    scenario_id: '0266'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want a residential loan
+    description: User wants a residential loan
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: Can I get a residential loan on {LoanDate}
+        intent_to_elicit: RequestResidentialLoan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like your loan to be?
+        sample_response: Does my bank have free pens
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestResidentialLoan_en-US
+    scenario_id: '0267'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want a residential loan
+    description: User wants a residential loan
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: Would it be possible to get a residential loan on {LoanDate}
+        intent_to_elicit: RequestResidentialLoan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like your loan to be?
+        sample_response: '80'
+        intent_to_elicit: false
+        slot_to_elicit: LoanAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When do you need your loan?
+        sample_response: 03/30/2021 is ideal
+        intent_to_elicit: false
+        slot_to_elicit: LoanDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which bank would you like to get the loan from?
+        sample_response: I would prefer to get it from Wells Fargo
+        intent_to_elicit: false
+        slot_to_elicit: BankName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your yearly income?
+        sample_response: I wanna order Indian food
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_OpenCompoundInterestSavingsAccount_Confirmed_en-US
+    scenario_id: '0268'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a savings account with compound interest
+    description: User wants a savings account with compound interest
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I want a savings account with compound interest
+        intent_to_elicit: OpenCompoundInterestSavingsAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What interest rate are you looking for on your savings account?
+        sample_response: operating cash flow should be ok please
+        intent_to_elicit: false
+        slot_to_elicit: InterestRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like to deposit?
+        sample_response: a total of $800.00
+        intent_to_elicit: false
+        slot_to_elicit: DepositAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: account number 6355266871KV
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your first name?
+        sample_response: Yeah, Aaron
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: That's Wilkerson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where would you like your confirmation email sent to?
+        sample_response: the right email address is Wilkerson.Aaron@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_OpenCompoundInterestSavingsAccount_StartOverIntent_en-US
+    scenario_id: '0269'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a savings account with compound interest
+    description: User wants a savings account with compound interest
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I need to get a savings account that has compound interest
+        intent_to_elicit: OpenCompoundInterestSavingsAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What interest rate are you looking for on your savings account?
+        sample_response: I'd like current
+        intent_to_elicit: false
+        slot_to_elicit: InterestRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like to deposit?
+        sample_response: I would like to deposit $120.00
+        intent_to_elicit: false
+        slot_to_elicit: DepositAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_OpenCompoundInterestSavingsAccount_CancelIntent_en-US
+    scenario_id: '0270'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a savings account with compound interest
+    description: User wants a savings account with compound interest
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: How can I get a savings account with a compound interest rate of {InterestRate}
+        intent_to_elicit: OpenCompoundInterestSavingsAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What interest rate are you looking for on your savings account?
+        sample_response: quick
+        intent_to_elicit: false
+        slot_to_elicit: InterestRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like to deposit?
+        sample_response: '160'
+        intent_to_elicit: false
+        slot_to_elicit: DepositAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: The account number is QK93002467
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your first name?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_OpenCompoundInterestSavingsAccount_en-US
+    scenario_id: '0271'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want a savings account with compound interest
+    description: User wants a savings account with compound interest
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: What do I need to do to get a savings account with compound interest
+        intent_to_elicit: OpenCompoundInterestSavingsAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What interest rate are you looking for on your savings account?
+        sample_response: Who makes credit cards
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_OpenCompoundInterestSavingsAccount_en-US
+    scenario_id: '0272'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want a savings account with compound interest
+    description: User wants a savings account with compound interest
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Can you help me get a savings account with compound interest
+        intent_to_elicit: OpenCompoundInterestSavingsAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What interest rate are you looking for on your savings account?
+        sample_response: '0.05'
+        intent_to_elicit: false
+        slot_to_elicit: InterestRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like to deposit?
+        sample_response: I want to order McDonalds breakfast
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestSecureCode_Confirmed_en-US
+    scenario_id: '0273'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a secure code to authenticate a transaction
+    description: User wants a secure code to authenticate a transaction
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I'd like a secure code to authenticate a transaction
+        intent_to_elicit: RequestSecureCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your secure code to be?
+        sample_response: Let's go with 9290
+        intent_to_elicit: false
+        slot_to_elicit: SecureCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your credit card number?
+        sample_response: credit card number 3509075016142111
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When does your card expire?
+        sample_response: The date of 08/21.
+        intent_to_elicit: false
+        slot_to_elicit: CardExpirationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your ATM PIN?
+        sample_response: '1489'
+        intent_to_elicit: false
+        slot_to_elicit: ATMPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name?
+        sample_response: My given name is Michelle
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yeah, it is Russell
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your phone number?
+        sample_response: '9603446767'
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email should I send your confirmation to?
+        sample_response: Just add MichelleR@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestSecureCode_NoIntent_en-US
+    scenario_id: '0274'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a secure code to authenticate a transaction
+    description: User wants a secure code to authenticate a transaction
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I am {UserFirstName} {UserLastName} and I would like a secure code to authenticate a transaction
+        intent_to_elicit: RequestSecureCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your secure code to be?
+        sample_response: Set is as 1234
+        intent_to_elicit: false
+        slot_to_elicit: SecureCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your credit card number?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestSecureCode_en-US
+    scenario_id: '0275'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want a secure code to authenticate a transaction
+    description: User wants a secure code to authenticate a transaction
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: This is {UserFirstName} {UserLastName} and I need a secure code to authenticate a transaction
+        intent_to_elicit: RequestSecureCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your secure code to be?
+        sample_response: Can I get my own magnetic strip reader
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestSecureCode_en-US
+    scenario_id: '0276'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want a secure code to authenticate a transaction
+    description: User wants a secure code to authenticate a transaction
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I'd like to set up a secure code to authenticate a transaction
+        intent_to_elicit: RequestSecureCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your secure code to be?
+        sample_response: Please put my secure code as 1234
+        intent_to_elicit: false
+        slot_to_elicit: SecureCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your credit card number?
+        sample_response: '30089219406839'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When does your card expire?
+        sample_response: Order me a milkshake
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestDigitalCard_Denied_en-US
+    scenario_id: '0277'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a temporary digital card
+    description: User wants a temporary digital card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I'm {CustomerFirstName} {CustomerLastName} and I'm trying to get a temporary digital card
+        intent_to_elicit: RequestDigitalCard
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to receive your digital card?
+        sample_response: on 03/02/2021
+        intent_to_elicit: false
+        slot_to_elicit: DateNeeded
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: yep 9508202651D7
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: 2FRVpuGrWm
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Yes, it's Christopher
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your last name?
+        sample_response: Yeah, it is Williams
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your birthdate?
+        sample_response: 09/09/1991
+        intent_to_elicit: false
+        slot_to_elicit: CustomerBirthdate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your email address?
+        sample_response: ChristopherW@hotmail.com is the correct email
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestDigitalCard_PauseIntent_en-US
+    scenario_id: '0278'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a temporary digital card
+    description: User wants a temporary digital card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: My account number is {AccountNumber} and I want to get a temporary digital card
+        intent_to_elicit: RequestDigitalCard
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to receive your digital card?
+        sample_response: 'on the following date: 01/02/2021'
+        intent_to_elicit: false
+        slot_to_elicit: DateNeeded
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: the account number is 43I99143IS
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: it's down as X7TQgdDg5Q
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: yep, i'm James
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your last name?
+        sample_response: yeah last name is Bailey
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your birthdate?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestDigitalCard_StopIntent_en-US
+    scenario_id: '0279'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a temporary digital card
+    description: User wants a temporary digital card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Can I have a temporary digital card for {DateNeeded}
+        intent_to_elicit: RequestDigitalCard
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to receive your digital card?
+        sample_response: 01/29/2021 please
+        intent_to_elicit: false
+        slot_to_elicit: DateNeeded
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: yeah that's 9603818424F7
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: it should be L4Gm8F455H
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestDigitalCard_en-US
+    scenario_id: '0280'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want a temporary digital card
+    description: User wants a temporary digital card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I need some assistance getting a temporary digital card
+        intent_to_elicit: RequestDigitalCard
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to receive your digital card?
+        sample_response: Can I pay my bills with gift cards
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestDigitalCard_en-US
+    scenario_id: '0281'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want a temporary digital card
+    description: User wants a temporary digital card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Can you tell me how to get a temporary digital card
+        intent_to_elicit: RequestDigitalCard
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to receive your digital card?
+        sample_response: 16th Jan
+        intent_to_elicit: false
+        slot_to_elicit: DateNeeded
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: XJ36642233
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: Order chilli dogs for delivery
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_PortfolioAdvice_Denied_en-US
+    scenario_id: '0282'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to balance current portfolio
+    description: User wants to balance current portfolio
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I'd like to rebalance my current portfolio with a {StocksAndBondsPercentage} stocks and bonds percentage
+        intent_to_elicit: PortfolioAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current allocation?
+        sample_response: exactly 70% stocks/20% bonds/10% cash
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAllocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your ideal asset allocation?
+        sample_response: 70% stocks/30% bonds I guess
+        intent_to_elicit: false
+        slot_to_elicit: IdealAssetAllocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What amount do you want to invest?
+        sample_response: I want to invest $900.00
+        intent_to_elicit: false
+        slot_to_elicit: InvestmentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to purchase?
+        sample_response: '300'
+        intent_to_elicit: false
+        slot_to_elicit: BuyShares
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to sell?
+        sample_response: '50'
+        intent_to_elicit: false
+        slot_to_elicit: SellShares
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What percentage of stocks and bonds should make up your portfolio?
+        sample_response: 100%.
+        intent_to_elicit: false
+        slot_to_elicit: StocksAndBondsPercentage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which company are you interested in investing in?
+        sample_response: Chang Inc
+        intent_to_elicit: false
+        slot_to_elicit: CompaniesToInvestIn
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which automatic investing company are you interested in?
+        sample_response: SoFi
+        intent_to_elicit: false
+        slot_to_elicit: AutomaticInvestingCompanies
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are there any companies you would not be interested in investing in?
+        sample_response: Baker, Jones and Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CompaniesToAvoidInvesting
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_PortfolioAdvice_StartOverIntent_en-US
+    scenario_id: '0283'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to balance current portfolio
+    description: User wants to balance current portfolio
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I'd like to rebalance my current portfolio with {StocksAndBondsPercentage} percent stocks and bonds
+        intent_to_elicit: PortfolioAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current allocation?
+        sample_response: put 400
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAllocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your ideal asset allocation?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_PortfolioAdvice_en-US
+    scenario_id: '0284'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to balance current portfolio
+    description: User wants to balance current portfolio
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I want to balance my investment portfolio to {IdealAssetAllocation}
+        intent_to_elicit: PortfolioAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current allocation?
+        sample_response: '100'
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAllocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your ideal asset allocation?
+        sample_response: Can I order a roast dinner
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_PortfolioAdvice_en-US
+    scenario_id: '0285'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to balance current portfolio
+    description: User wants to balance current portfolio
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I am looking into rebalancing my current portfolio and I want to make the stocks and bonds percentage {StocksAndBondsPercentage}
+        intent_to_elicit: PortfolioAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current allocation?
+        sample_response: I want to start a hedge fund business
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_TaxBurdenAdvice_RequestTaxInformation_Confirmed_en-US
+    scenario_id: '0286'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce taxes owed by increasing deductions
+    description: User wants to reduce taxes owed by increasing deductions
+    script:
+      - agent: What can I do to help?
+        sample_response: I think I have some more deductions I can add to lower my tax owed
+        intent_to_elicit: TaxBurdenAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many home mortgage points do you have?
+        sample_response: I have 2 points
+        intent_to_elicit: false
+        slot_to_elicit: HomeMortgagePoints
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much have you given in charity?
+        sample_response: A total of $110.00.
+        intent_to_elicit: false
+        slot_to_elicit: CharitableContributions
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long have you been working from home so you can claim business use of your home?
+        sample_response: It is one month I think
+        intent_to_elicit: false
+        slot_to_elicit: BusinessUseOfHome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many miles do you drive for work so you can claim business use of your car?
+        sample_response: a total of 200 miles
+        intent_to_elicit: false
+        slot_to_elicit: BusinessUseOfCar
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What can you claim for casualty losses?
+        sample_response: An earthquake.
+        intent_to_elicit: false
+        slot_to_elicit: CasualtyLosses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What property can you claim disaster losses on?
+        sample_response: business
+        intent_to_elicit: false
+        slot_to_elicit: DisasterLosses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is a dental expense you can claim?
+        sample_response: for a check-up
+        intent_to_elicit: false
+        slot_to_elicit: DentalExpenses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is a medical expense you can claim?
+        sample_response: surgery
+        intent_to_elicit: false
+        slot_to_elicit: MedicalExpenses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I think I need to do some of my own calculations first. Can you give me some information on my taxes so I can do that?
+        intent_to_elicit: RequestTaxInformation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Sure! How much do you make in a year?
+        sample_response: My yearly income is $50,000.00
+        intent_to_elicit: false
+        slot_to_elicit: YearlyIncome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your tax form type?
+        sample_response: Not sure i think it's W2
+        intent_to_elicit: false
+        slot_to_elicit: TaxFormType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much in back taxes do you owe?
+        sample_response: About $150.00
+        intent_to_elicit: false
+        slot_to_elicit: BackTaxes
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which state do you live in?
+        sample_response: In CT
+        intent_to_elicit: false
+        slot_to_elicit: StateLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: '706117533'
+        intent_to_elicit: false
+        slot_to_elicit: SocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your filing number?
+        sample_response: '706117533'
+        intent_to_elicit: false
+        slot_to_elicit: TaxFormNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your employment status?
+        sample_response: I'm employed
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfEmployment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dependents do you want to claim?
+        sample_response: 3 dependents
+        intent_to_elicit: false
+        slot_to_elicit: FamilyDependents
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_TaxBurdenAdvice_Confirmed_en-US
+    scenario_id: '0287'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce taxes owed by increasing deductions
+    description: User wants to reduce taxes owed by increasing deductions
+    script:
+      - agent: What can I do to help?
+        sample_response: I'm trying to add some more deductions to my taxes
+        intent_to_elicit: TaxBurdenAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many home mortgage points do you have?
+        sample_response: 4 points so far.
+        intent_to_elicit: false
+        slot_to_elicit: HomeMortgagePoints
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much have you given in charity?
+        sample_response: Yeah $1800.00
+        intent_to_elicit: false
+        slot_to_elicit: CharitableContributions
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long have you been working from home so you can claim business use of your home?
+        sample_response: It is six months
+        intent_to_elicit: false
+        slot_to_elicit: BusinessUseOfHome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many miles do you drive for work so you can claim business use of your car?
+        sample_response: I think it is 1 mile.
+        intent_to_elicit: false
+        slot_to_elicit: BusinessUseOfCar
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What can you claim for casualty losses?
+        sample_response: this is because of the drought
+        intent_to_elicit: false
+        slot_to_elicit: CasualtyLosses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What property can you claim disaster losses on?
+        sample_response: house.
+        intent_to_elicit: false
+        slot_to_elicit: DisasterLosses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is a dental expense you can claim?
+        sample_response: for my teeth whitening
+        intent_to_elicit: false
+        slot_to_elicit: DentalExpenses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is a medical expense you can claim?
+        sample_response: For hip surgery
+        intent_to_elicit: false
+        slot_to_elicit: MedicalExpenses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Please. thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_TaxBurdenAdvice_StopIntent_en-US
+    scenario_id: '0288'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce taxes owed by increasing deductions
+    description: User wants to reduce taxes owed by increasing deductions
+    script:
+      - agent: What can I do to help?
+        sample_response: I'd like to add more deductions to my taxes
+        intent_to_elicit: TaxBurdenAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many home mortgage points do you have?
+        sample_response: I think I have 95 points right now
+        intent_to_elicit: false
+        slot_to_elicit: HomeMortgagePoints
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much have you given in charity?
+        sample_response: $130.00 I think
+        intent_to_elicit: false
+        slot_to_elicit: CharitableContributions
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long have you been working from home so you can claim business use of your home?
+        sample_response: one month I guess
+        intent_to_elicit: false
+        slot_to_elicit: BusinessUseOfHome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many miles do you drive for work so you can claim business use of your car?
+        sample_response: 5 miles would be the distance
+        intent_to_elicit: false
+        slot_to_elicit: BusinessUseOfCar
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What can you claim for casualty losses?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_TaxBurdenAdvice_PauseIntent_en-US
+    scenario_id: '0289'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce taxes owed by increasing deductions
+    description: User wants to reduce taxes owed by increasing deductions
+    script:
+      - agent: What can I do to help?
+        sample_response: I need to add deductions to reduce tax owed
+        intent_to_elicit: TaxBurdenAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many home mortgage points do you have?
+        sample_response: 8 points.
+        intent_to_elicit: false
+        slot_to_elicit: HomeMortgagePoints
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much have you given in charity?
+        sample_response: yes $110.00 please
+        intent_to_elicit: false
+        slot_to_elicit: CharitableContributions
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long have you been working from home so you can claim business use of your home?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_TaxBurdenAdvice_en-US
+    scenario_id: '0290'
+    bias:
+      - MultiIntent
+      - UnsupportedIntent
+    customer_instructions: You want to reduce taxes owed by increasing deductions
+    description: User wants to reduce taxes owed by increasing deductions
+    script:
+      - agent: What can I do to help?
+        sample_response: Help me lower my tax bill via additional deductions
+        intent_to_elicit: TaxBurdenAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many home mortgage points do you have?
+        sample_response: I believe I have 300 points
+        intent_to_elicit: false
+        slot_to_elicit: HomeMortgagePoints
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much have you given in charity?
+        sample_response: Can I pay my taxes with an app
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DividendInvestmentAdvice_Denied_en-US
+    scenario_id: '0291'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to invest your monthly dividends
+    description: User wants to invest their monthly dividends
+    script:
+      - agent: How may I assist you?
+        sample_response: I want to invest my monthly dividends
+        intent_to_elicit: DividendInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What amount would you like to make through your monthly dividend investment?
+        sample_response: The amount is exactly $170.00.
+        intent_to_elicit: false
+        slot_to_elicit: InvestingDividendsGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to set your automatic monthly dividend investments for?
+        sample_response: I think approximately for seven months
+        intent_to_elicit: false
+        slot_to_elicit: AutomaticDividendsDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks would you like to buy?
+        sample_response: '3'
+        intent_to_elicit: false
+        slot_to_elicit: BuyStock
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks do you currently have?
+        sample_response: '10'
+        intent_to_elicit: false
+        slot_to_elicit: StocksCurrentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company would you prefer to buy from?
+        sample_response: Wilson, Cortez and Lutz
+        intent_to_elicit: false
+        slot_to_elicit: CompanyPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company would you prefer to avoid?
+        sample_response: Palmer Inc
+        intent_to_elicit: false
+        slot_to_elicit: CompanyAvoid
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What program are you interested in that will process your dividends automatically?
+        sample_response: Johnson & Johnson
+        intent_to_elicit: false
+        slot_to_elicit: AutomaticDividends
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which stock are you interested in?
+        sample_response: FuelCell Energy
+        intent_to_elicit: false
+        slot_to_elicit: IdentifyStocks
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account type?
+        sample_response: checking
+        intent_to_elicit: false
+        slot_to_elicit: AccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DividendInvestmentAdvice_StartOverIntent_en-US
+    scenario_id: '0292'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to invest your monthly dividends
+    description: User wants to invest their monthly dividends
+    script:
+      - agent: How may I assist you?
+        sample_response: Each month when I get dividends can those please be invested instead
+        intent_to_elicit: DividendInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What amount would you like to make through your monthly dividend investment?
+        sample_response: for $140.00
+        intent_to_elicit: false
+        slot_to_elicit: InvestingDividendsGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to set your automatic monthly dividend investments for?
+        sample_response: for about seven months
+        intent_to_elicit: false
+        slot_to_elicit: AutomaticDividendsDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks would you like to buy?
+        sample_response: I'd like to buy 500 please
+        intent_to_elicit: false
+        slot_to_elicit: BuyStock
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks do you currently have?
+        sample_response: I've got a total of 4000
+        intent_to_elicit: false
+        slot_to_elicit: StocksCurrentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company would you prefer to buy from?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DividendInvestmentAdvice_StopIntent_en-US
+    scenario_id: '0293'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to invest your monthly dividends
+    description: User wants to invest their monthly dividends
+    script:
+      - agent: How may I assist you?
+        sample_response: Can I invest monthly dividends for my account in {BuyStock}
+        intent_to_elicit: DividendInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What amount would you like to make through your monthly dividend investment?
+        sample_response: That'd be $40.00.
+        intent_to_elicit: false
+        slot_to_elicit: InvestingDividendsGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to set your automatic monthly dividend investments for?
+        sample_response: for around ten months
+        intent_to_elicit: false
+        slot_to_elicit: AutomaticDividendsDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks would you like to buy?
+        sample_response: I wanna buy 25 stocks in total
+        intent_to_elicit: false
+        slot_to_elicit: BuyStock
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks do you currently have?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_DividendInvestmentAdvice_en-US
+    scenario_id: '0294'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to invest your monthly dividends
+    description: User wants to invest their monthly dividends
+    script:
+      - agent: How may I assist you?
+        sample_response: I'd like to invest all my monthly dividends during {AutomaticDividendsDuration}
+        intent_to_elicit: DividendInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What amount would you like to make through your monthly dividend investment?
+        sample_response: '80'
+        intent_to_elicit: false
+        slot_to_elicit: InestingDivendenGoals
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to set your automatic monthly dividend investments for?
+        sample_response: for about eleven months
+        intent_to_elicit: false
+        slot_to_elicit: AutomaticDividendsDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks would you like to buy?
+        sample_response: 100 please
+        intent_to_elicit: false
+        slot_to_elicit: BuyStock
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stocks do you currently have?
+        sample_response: Need to order chocolate chip cookies
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_DividendInvestmentAdvice_en-US
+    scenario_id: '0295'
+    bias:
+      - MultiIntent
+      - UnsupportedIntent
+    customer_instructions: You want to invest your monthly dividends
+    description: User wants to invest their monthly dividends
+    script:
+      - agent: How may I assist you?
+        sample_response: I want to invest my monthly dividends with a goal of {InvestingDividendsGoal}
+        intent_to_elicit: DividendInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What amount would you like to make through your monthly dividend investment?
+        sample_response: just $10.00
+        intent_to_elicit: false
+        slot_to_elicit: InvestingDividendsGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to set your automatic monthly dividend investments for?
+        sample_response: I wanna invest in pumpkins
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ShareInvestmentAdvice_Confirmed_en-US
+    scenario_id: '0296'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to invest in shares
+    description: User wants to invest in shares
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I'd like to invest in shares
+        intent_to_elicit: ShareInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares do you currently have?
+        sample_response: I've got 3 shares
+        intent_to_elicit: false
+        slot_to_elicit: SharesCurrentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to have?
+        sample_response: I want 8
+        intent_to_elicit: false
+        slot_to_elicit: SharesGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many companies are you interested in investing in?
+        sample_response: around 2
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfCompanies
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How often do you want to make investments?
+        sample_response: weekly please
+        intent_to_elicit: false
+        slot_to_elicit: InvestmentTimeline
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company are you currently interested in?
+        sample_response: Delgado, Maldonado and Jackson
+        intent_to_elicit: false
+        slot_to_elicit: CompanyPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company do you want to make sure to avoid?
+        sample_response: The company is Booker Ltd
+        intent_to_elicit: false
+        slot_to_elicit: CompaniesToAvoid
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your monthly budget for investments?
+        sample_response: sure it's $30.00
+        intent_to_elicit: false
+        slot_to_elicit: MonthlyBudget
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name on your investing account?
+        sample_response: It's Karen thanks
+        intent_to_elicit: false
+        slot_to_elicit: InvestingAccountFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the last name on your investing account?
+        sample_response: The name is Cooper
+        intent_to_elicit: false
+        slot_to_elicit: InvestingAccountLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ShareInvestmentAdvice_HelpIntent_en-US
+    scenario_id: '0297'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to invest in shares
+    description: User wants to invest in shares
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I want to look at investing in some shares and I have a shares goal of {MonthlyBudget} in mind
+        intent_to_elicit: ShareInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares do you currently have?
+        sample_response: I have a total of 2 shares
+        intent_to_elicit: false
+        slot_to_elicit: SharesCurrentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to have?
+        sample_response: 3 shares please
+        intent_to_elicit: false
+        slot_to_elicit: SharesGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many companies are you interested in investing in?
+        sample_response: '2'
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfCompanies
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How often do you want to make investments?
+        sample_response: certificate of deposit please
+        intent_to_elicit: false
+        slot_to_elicit: InvestmentTimeline
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company are you currently interested in?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ShareInvestmentAdvice_StopIntent_en-US
+    scenario_id: '0298'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to invest in shares
+    description: User wants to invest in shares
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I want to invest in shares my goal for that is {MonthlyBudget}
+        intent_to_elicit: ShareInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares do you currently have?
+        sample_response: '5000'
+        intent_to_elicit: false
+        slot_to_elicit: SharesCurrentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to have?
+        sample_response: '100000'
+        intent_to_elicit: false
+        slot_to_elicit: SharesGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many companies are you interested in investing in?
+        sample_response: '10'
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfCompanies
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How often do you want to make investments?
+        sample_response: daily
+        intent_to_elicit: false
+        slot_to_elicit: InvestmentTimeline
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company are you currently interested in?
+        sample_response: I'm interested in Mckinney, Kirby and Jacobs
+        intent_to_elicit: false
+        slot_to_elicit: CompanyPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company do you want to make sure to avoid?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_ShareInvestmentAdvice_en-US
+    scenario_id: '0299'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to invest in shares
+    description: User wants to invest in shares
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I am trying to invest in shares
+        intent_to_elicit: ShareInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares do you currently have?
+        sample_response: I've got 100 shares
+        intent_to_elicit: false
+        slot_to_elicit: SharesCurrentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to have?
+        sample_response: 100 pls
+        intent_to_elicit: false
+        slot_to_elicit: SharesGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many companies are you interested in investing in?
+        sample_response: 2 companies
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfCompanies
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How often do you want to make investments?
+        sample_response: Want to order vegan deserts
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_ShareInvestmentAdvice_en-US
+    scenario_id: '0300'
+    bias:
+      - MultiIntent
+      - UnsupportedIntent
+    customer_instructions: You want to invest in shares
+    description: User wants to invest in shares
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I'd like to invest in shares I have a shares goal which is {SharesGoal}
+        intent_to_elicit: ShareInvestmentAdvice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares do you currently have?
+        sample_response: I have 200
+        intent_to_elicit: false
+        slot_to_elicit: SharesCurrentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to have?
+        sample_response: 1000 please.
+        intent_to_elicit: false
+        slot_to_elicit: SharesGoal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many companies are you interested in investing in?
+        sample_response: I want to make my own shares
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

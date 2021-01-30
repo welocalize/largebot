@@ -1,0 +1,1015 @@
+name: LargeBot_MediaCable_scenarios_batch07
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_PlanMinimumAge_NoIntent_en-US
+    scenario_id: '0121'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the minimum age for having a plan in your name
+    description: User wants to know the minimum age for having a plan in their name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I want my own plan now. Is that possible I was born on {UserBirthDate}.
+        intent_to_elicit: PlanMinimumAge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Of course its Bradley
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name?
+        sample_response: Yes its Brown
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your birth date?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_IncreaseStreamingMinimumBandwidth_Confirmed_en-US
+    scenario_id: '0122'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to change your minimum bandwidth for streaming services
+    description: User wants to change their minimum bandwidth for streaming services
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: false
+        intent_to_elicit: IncreaseStreamingMinimumBandwidth
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which streaming service would you like to check?
+        sample_response: HBO Max please
+        intent_to_elicit: false
+        slot_to_elicit: StreamingService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which of the bandwidth options would you like?
+        sample_response: I'd like 15 Mbps
+        intent_to_elicit: false
+        slot_to_elicit: BandwidthCapabilities
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: call me Douglas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: that's Peters
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: yep 40-04061122m8
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: it's Zi5WLvCmgZ
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: '6011797245387027.'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_IncreaseStreamingMinimumBandwidth_StopIntent_en-US
+    scenario_id: '0123'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your minimum bandwidth for streaming services
+    description: User wants to change their minimum bandwidth for streaming services
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: false
+        intent_to_elicit: IncreaseStreamingMinimumBandwidth
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which streaming service would you like to check?
+        sample_response: Wait actually now I don't want to
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_IncreaseStreamingMinimumBandwidth_Confirmed_en-US
+    scenario_id: '0124'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to change your minimum bandwidth for streaming services
+    description: User wants to change their minimum bandwidth for streaming services
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: false
+        intent_to_elicit: IncreaseStreamingMinimumBandwidth
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which streaming service would you like to check?
+        sample_response: Find me an optometrist in North Hollywood
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: BandwidthCapabilities
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_IncreaseStreamingMinimumBandwidth_StartOverIntent_en-US
+    scenario_id: '0125'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your minimum bandwidth for streaming services
+    description: User wants to change their minimum bandwidth for streaming services
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: false
+        intent_to_elicit: IncreaseStreamingMinimumBandwidth
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which streaming service would you like to check?
+        sample_response: Check Hulu please
+        intent_to_elicit: false
+        slot_to_elicit: StreamingService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which of the bandwidth options would you like?
+        sample_response: I would like 15 Mbps please
+        intent_to_elicit: false
+        slot_to_elicit: BandwidthCapabilities
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yes its Christine
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name Collins
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_BroadbandMinimumPeriod_en-US
+    scenario_id: '0126'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want the minimum subscription period for a broadband connection
+    description: User wants the minimum subscription period for a broadband connection
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: false
+        intent_to_elicit: BroadbandMinimumPeriod
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which broadband subscription period would you like?
+        sample_response: Chicken or fish?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BroadbandMinimumPeriod_Confirmed_en-US
+    scenario_id: '0127'
+    bias:
+      - SingleIntent
+    customer_instructions: You want the minimum subscription period for a broadband connection
+    description: User wants the minimum subscription period for a broadband connection
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: false
+        intent_to_elicit: BroadbandMinimumPeriod
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which broadband subscription period would you like?
+        sample_response: Put down 1 year
+        intent_to_elicit: false
+        slot_to_elicit: BroadbandSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yep, I'm Beth
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: It is under the name Lara.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: 615-457-6572
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address please?
+        sample_response: the right email address is BethLara@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "Sure thing, here it is: 4687 Goldfield Street,\nPhila, PA 19148"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number?
+        sample_response: its 3586039752205744
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BroadbandMinimumPeriod_PauseIntent_en-US
+    scenario_id: '0128'
+    bias:
+      - MultiIntent
+    customer_instructions: You want the minimum subscription period for a broadband connection
+    description: User wants the minimum subscription period for a broadband connection
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: false
+        intent_to_elicit: BroadbandMinimumPeriod
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which broadband subscription period would you like?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BroadbandMinimumPeriod_StopIntent_en-US
+    scenario_id: '0129'
+    bias:
+      - MultiIntent
+    customer_instructions: You want the minimum subscription period for a broadband connection
+    description: User wants the minimum subscription period for a broadband connection
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: false
+        intent_to_elicit: BroadbandMinimumPeriod
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which broadband subscription period would you like?
+        sample_response: Sure 1 year.
+        intent_to_elicit: false
+        slot_to_elicit: BroadbandSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: First name Katherine
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yep, it is Green
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: yes 270-8738
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address please?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SignUpAreaPopularInternetProvider_Confirmed_en-US
+    scenario_id: '0130'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to switch to the most popular internet provider in the area
+    description: User wants to switch to the most popular internet provider in the area
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: I want to switch internet providers to the most popular one in the area
+        intent_to_elicit: SignUpAreaPopularInternetProvider
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet provider would you like to switch to?
+        sample_response: It's called HughesNet
+        intent_to_elicit: false
+        slot_to_elicit: CustomerInternetPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "It's 2376 NW. Lower River St.,\nCarlotta, CA 95528"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: It's Amy thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: It is under the name Morris.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address please?
+        sample_response: sure it's AmyM@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: '9264653812'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would you like to make your payment?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFormOfPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number?
+        sample_response: '5129062671761570'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Yup!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SignUpAreaPopularInternetProvider_HelpIntent_en-US
+    scenario_id: '0131'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to the most popular internet provider in the area
+    description: User wants to switch to the most popular internet provider in the area
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: I live at {CustomerAddress} and I would like internet with the best provider around here
+        intent_to_elicit: SignUpAreaPopularInternetProvider
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet provider would you like to switch to?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_SignUpAreaPopularInternetProvider_en-US
+    scenario_id: '0132'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to switch to the most popular internet provider in the area
+    description: User wants to switch to the most popular internet provider in the area
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: What can I do to get the most popular provider's {CustomerInternetPreference} internet at my home
+        intent_to_elicit: SignUpAreaPopularInternetProvider
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet provider would you like to switch to?
+        sample_response: Gluten free bread please
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SignUpAreaPopularInternetProvider_NoIntent_en-US
+    scenario_id: '0133'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to the most popular internet provider in the area
+    description: User wants to switch to the most popular internet provider in the area
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: Can you help me figure out how to change internet providers to a more popular one
+        intent_to_elicit: SignUpAreaPopularInternetProvider
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet provider would you like to switch to?
+        sample_response: I'll go with Verizon WirelessSpectrum
+        intent_to_elicit: false
+        slot_to_elicit: CustomerInternetPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "Sure, that's 6709 Creek Street,\nOakley, UT 84055 29123 Gilmer."
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: sure it's Lisa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yeah, it's Buckley
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address please?
+        sample_response: ID is LisaBuckley@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: Yes, 5400152221
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would you like to make your payment?
+        sample_response: I think I'll do debit
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFormOfPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SignUpResidentialHighSpeedInternet_Confirmed_en-US
+    scenario_id: '0134'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to switch to residential high-speed broadband service in your location
+    description: User wants to switch to residential high-speed broadband service in their location
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Can I get internet with {NameOfBroadbandProvider} Do they offer residential high speed internet
+        intent_to_elicit: SignUpResidentialHighSpeedInternet
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah, Ricky
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes, the last name is Kent
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "At the address 4281A South Vale St.,\nAttleboro Fls, MA 02763"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: '2135901752'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address please?
+        sample_response: yeah sure RickyKent@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: that's 6011630075576445.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SignUpResidentialHighSpeedInternet_NoIntent_en-US
+    scenario_id: '0135'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to residential high-speed broadband service in your location
+    description: User wants to switch to residential high-speed broadband service in their location
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Does {NameOfBroadbandProvider} offer residential high speed plans around me
+        intent_to_elicit: SignUpResidentialHighSpeedInternet
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which broadband provider are you interested in?
+        sample_response: No, thank you
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_SignUpResidentialHighSpeedInternet_en-US
+    scenario_id: '0136'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to switch to residential high-speed broadband service in your location
+    description: User wants to switch to residential high-speed broadband service in their location
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Is {NameOfBroadbandProvider} available in my area for broadband high speed internet
+        intent_to_elicit: SignUpResidentialHighSpeedInternet
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which broadband provider are you interested in?
+        sample_response: Find a Guitar Center near me
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SignUpResidentialHighSpeedInternet_YesIntent_en-US
+    scenario_id: '0137'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to residential high-speed broadband service in your location
+    description: User wants to switch to residential high-speed broadband service in their location
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Which companies offer broadband high speed internet in my area
+        intent_to_elicit: SignUpResidentialHighSpeedInternet
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which broadband provider are you interested in?
+        sample_response: I'm thinking of Frontier
+        intent_to_elicit: false
+        slot_to_elicit: NameOfBroadbandProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yep, i'm Jessica
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My name is Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "It's: 5827 heritage street,\nlk cormorant, ms 38641 94292 homeworth"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireInternetSpeedIssues_Confirmed_en-US
+    scenario_id: '0138'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know what are affecting the internet speed
+    description: User wants to know what is affecting the internet speed
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: This is Mr. {CustomerLastName}. Why is my internet slow?
+        intent_to_elicit: InquireInternetSpeedIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: record my name as George
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: Its 46-D645638ZO
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "Here it is: 2764B Plymouth Street,\nOlathe, CO 81425"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What color is the connectivity light on your modem?
+        sample_response: it's orange
+        intent_to_elicit: false
+        slot_to_elicit: ModemStatus
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireInternetSpeedIssues_HelpIntent_en-US
+    scenario_id: '0139'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know what are affecting the internet speed
+    description: User wants to know what is affecting the internet speed
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Please check my internet speed. My account number is {CustomerAccountNumber}
+        intent_to_elicit: InquireInternetSpeedIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: I don't understand.
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_InquireInternetSpeedIssues_en-US
+    scenario_id: '0140'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to know what are affecting the internet speed
+    description: User wants to know what is affecting the internet speed
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Can you check my internet speed? My account is {CustomerAccountNumber}
+        intent_to_elicit: InquireInternetSpeedIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Can I get extra cheese
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

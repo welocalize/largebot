@@ -1,0 +1,60 @@
+name: LargeBot_MediaCable_Bot
+locale: en-US
+intent_clarification:
+  - I'd like to add a device plan
+intents:
+  - name: VODServiceTitleAvailability
+    sample_utterances:
+      - I'm looking for a specific movie to stream
+    slots:
+      - name: FilmGenre
+        type: FilmGenre
+        prompt: What genre are you looking to stream?
+        required: true
+    output_contexts:
+      - name: get_content_information
+        turns_to_live: 3
+  - name: Follow-up_VODServiceTitleAvailability
+    sample_utterances:
+      - What about {FilmGenre}
+    slots:
+      - name: FilmGenre
+        type: FilmGenre
+        prompt: What genre are you looking to stream?
+        required: true
+    input_contexts:
+      - name: get_content_information
+  - name: UnsupportedIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: OODIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: FallbackIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: CancelIntent
+    parent_intent: AMAZON.CancelIntent
+  - name: HelpIntent
+    parent_intent: AMAZON.HelpIntent
+  - name: NoIntent
+    parent_intent: AMAZON.NoIntent
+  - name: PauseIntent
+    parent_intent: AMAZON.PauseIntent
+  - name: RepeatIntent
+    parent_intent: AMAZON.RepeatIntent
+  - name: ResumeIntent
+    parent_intent: AMAZON.ResumeIntent
+  - name: StartOverIntent
+    parent_intent: AMAZON.StartOverIntent
+  - name: StopIntent
+    parent_intent: AMAZON.StopIntent
+  - name: YesIntent
+    parent_intent: AMAZON.YesIntent
+slot_types:
+  - name: FilmGenre
+    values:
+      - value: Action
+      - value: Horror
+      - value: Romance
+      - value: Thriller
+      - value: Mystery
+      - value: Comedy
+      - value: Sci-fi

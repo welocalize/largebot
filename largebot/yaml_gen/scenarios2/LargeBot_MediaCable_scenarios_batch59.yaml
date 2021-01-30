@@ -1,0 +1,926 @@
+name: LargeBot_MediaCable_scenarios_batch59
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_RemoveWorkspaceDomain_PauseIntent_en-US
+    scenario_id: '1161'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove a domain from your workspace
+    description: User wants to remove a domain from their workspace
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Delete the {DomainName} domain
+        intent_to_elicit: RemoveWorkspaceDomain
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the email address you'd like to remove?
+        sample_response: That would be JaimeBaileygmailcom
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressRemoval
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the password to enter into your domain?
+        sample_response: p3k7UnnBpp
+        intent_to_elicit: false
+        slot_to_elicit: DomainPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddEmailForwarding_Confirmed_en-US
+    scenario_id: '1162'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to add a forwarding email address
+    description: User wants to add a forwarding email address
+    script:
+      - agent: What can I do to help you?
+        sample_response: Put email forwarding on my work mail for me please
+        intent_to_elicit: AddEmailForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the forwarding email address you would like to add?
+        sample_response: The correct email is Alicia.Smith@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerForwardingEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to begin forwarding to that email address?
+        sample_response: The date of 2021-07-06
+        intent_to_elicit: false
+        slot_to_elicit: BeginForwardingDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to keep the forwarding email address active?
+        sample_response: I guess 4 days.
+        intent_to_elicit: false
+        slot_to_elicit: ForwardingDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: First name Alicia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yeah last name is Smith
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddEmailForwarding_CancelIntent_en-US
+    scenario_id: '1163'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a forwarding email address
+    description: User wants to add a forwarding email address
+    script:
+      - agent: What can I do to help you?
+        sample_response: Please in my email i need forwarding added can you set it up for me
+        intent_to_elicit: AddEmailForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the forwarding email address you would like to add?
+        sample_response: Gregory.Bright@hotmail.com would be it.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerForwardingEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to begin forwarding to that email address?
+        sample_response: On 2021-07-09
+        intent_to_elicit: false
+        slot_to_elicit: BeginForwardingDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to keep the forwarding email address active?
+        sample_response: Cancel
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddEmailForwarding_NoIntent_en-US
+    scenario_id: '1164'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a forwarding email address
+    description: User wants to add a forwarding email address
+    script:
+      - agent: What can I do to help you?
+        sample_response: What are the steps to put {CustomerForwardingEmailAddress} email into forwarding
+        intent_to_elicit: AddEmailForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to begin forwarding to that email address?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeReplyEmailAddress_Confirmed_en-US
+    scenario_id: '1165'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to change your email address
+    description: User wants to change their email address
+    script:
+      - agent: What can I do to help you today?
+        sample_response: I wanna have {NewUserEmail} as my email address
+        intent_to_elicit: ChangeReplyEmailAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your email password?
+        sample_response: Ok it's 8QDOnkIIYZ
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number linked to the email account?
+        sample_response: 873-5267
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Name's Curtis
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Casey is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeReplyEmailAddress_NoIntent_en-US
+    scenario_id: '1166'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your email address
+    description: User wants to change their email address
+    script:
+      - agent: What can I do to help you today?
+        sample_response: Place {NewUserEmail} as my default email for me thank you
+        intent_to_elicit: ChangeReplyEmailAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your email password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeReplyEmailAddress_HelpIntent_en-US
+    scenario_id: '1167'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your email address
+    description: User wants to change their email address
+    script:
+      - agent: What can I do to help you today?
+        sample_response: Set up my new email for me delete the old one
+        intent_to_elicit: ChangeReplyEmailAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your new email address to be?
+        sample_response: Yeah it's WoodKarla@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: NewUserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your email password?
+        sample_response: can you help me
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddAdditionalDomainEmails_DomainHostName_Confirmed_en-US
+    scenario_id: '1168'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add an email address
+    description: User wants to add an email address
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: Add this email please
+        intent_to_elicit: AddAdditionalDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address you would like to add?
+        sample_response: JoshuaH@hotmail.com that's it.
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressToAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your domain host?
+        sample_response: Yahoo
+        intent_to_elicit: DomainHostName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My name is Joshua
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My name is Hunter thanks
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: (505)-188-0375
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddAdditionalDomainEmails_Confirmed_en-US
+    scenario_id: '1169'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to add an email address
+    description: User wants to add an email address
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: I need another email added - can you assist
+        intent_to_elicit: AddAdditionalDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address you would like to add?
+        sample_response: That's HaleyP@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressToAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your domain host?
+        sample_response: We're hosted by WordPress
+        intent_to_elicit: false
+        slot_to_elicit: DomainHostName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: I am Haley
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: that's Patterson
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: That is 1695785283
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddAdditionalDomainEmails_PauseIntent_en-US
+    scenario_id: '1170'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add an email address
+    description: User wants to add an email address
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: I need {EmailAddressesToAdd} email added please
+        intent_to_elicit: AddAdditionalDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address you would like to add?
+        sample_response: Timothy.N@yahoo.com that's it.
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressToAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your domain host?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddAdditionalDomainEmails_CancelIntent_en-US
+    scenario_id: '1171'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add an email address
+    description: User wants to add an email address
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: Could you kindly please add on {EmailAddressesToAdd}
+        intent_to_elicit: AddAdditionalDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address you would like to add?
+        sample_response: never mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalInboxStorage_RepeatIntent_en-US
+    scenario_id: '1172'
+    bias:
+      - MultiIntent
+    customer_instructions: You have a full inbox and want to purchavee additional storage
+    description: User has a full inbox and wants to purchase additional storage
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Add {DesiredStorageAmount} to my email please
+        intent_to_elicit: PurchaseAdditionalInboxStorage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you currently have?
+        sample_response: '64'
+        intent_to_elicit: false
+        slot_to_elicit: CurrentEmailStorage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like the additional storage to expire?
+        sample_response: For the date 2021-05-29.
+        intent_to_elicit: false
+        slot_to_elicit: StorageExpirationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of credit card will you be using to pay?
+        sample_response: Can you repeat that
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalInboxStorage_YesIntent_en-US
+    scenario_id: '1173'
+    bias:
+      - MultiIntent
+    customer_instructions: You have a full inbox and want to purchavee additional storage
+    description: User has a full inbox and wants to purchase additional storage
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: How do I get more email storage
+        intent_to_elicit: PurchaseAdditionalInboxStorage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you currently have?
+        sample_response: That's 128
+        intent_to_elicit: false
+        slot_to_elicit: CurrentEmailStorage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you think you need?
+        sample_response: yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalInboxStorage_Confirmed_en-US
+    scenario_id: '1174'
+    bias:
+      - SingleIntent
+    customer_instructions: You have a full inbox and want to purchavee additional storage
+    description: User has a full inbox and wants to purchase additional storage
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Make my email storage larger
+        intent_to_elicit: PurchaseAdditionalInboxStorage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you currently have?
+        sample_response: So that's 32
+        intent_to_elicit: false
+        slot_to_elicit: CurrentEmailStorage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you think you need?
+        sample_response: it should be 64
+        intent_to_elicit: false
+        slot_to_elicit: DesiredStorageAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like the additional storage to expire?
+        sample_response: Say 2021-06-24?
+        intent_to_elicit: false
+        slot_to_elicit: StorageExpirationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of credit card will you be using to pay?
+        sample_response: A VISA 16 digit card
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfCreditCard
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: For the number it's 4294237198347416
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address?
+        sample_response: Yup, it is P.Donald@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalData_Confirmed_en-US
+    scenario_id: '1175'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to purchavee additional data
+    description: User wants to purchase additional data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I'm {CustomerFirstName} {CustomerLastName} and I need more data for my phone can I buy some more please
+        intent_to_elicit: PurchaseAdditionalData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data would you like to purchase?
+        sample_response: That's 128 GB
+        intent_to_elicit: false
+        slot_to_elicit: PurchaseAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your username please?
+        sample_response: I've got James.Dean1907, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: Its S02UjbKtgU
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your credit card number?
+        sample_response: It would be 3515079881111427
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email do you want your receipt sent to?
+        sample_response: The email is James.Dean@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalData_StartOverIntent_en-US
+    scenario_id: '1176'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional data
+    description: User wants to purchase additional data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I'm {CustomerFirstName} {CustomerLastName} and I would like to buy more data
+        intent_to_elicit: PurchaseAdditionalData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data would you like to purchase?
+        sample_response: Yes that's 12
+        intent_to_elicit: false
+        slot_to_elicit: PurchaseAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your username please?
+        sample_response: It is AngelaStanley1942.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: So it's H4WoW2jx5M
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your credit card number?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalData_StopIntent_en-US
+    scenario_id: '1177'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional data
+    description: User wants to purchase additional data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Buy the {PurchaseAmount} data package for my phone
+        intent_to_elicit: PurchaseAdditionalData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your username please?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReduceData_Confirmed_en-US
+    scenario_id: '1178'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to reduce the amount of data on your plan
+    description: User wants to reduce the amount of data on their plan
+    script:
+      - agent: Hello! Can I help you with something?
+        sample_response: Deduct {DataAmount} data from my plan so that my new plan is {NewAmount}.
+        intent_to_elicit: ReduceData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When do you want the change to go into effect?
+        sample_response: Yes, 2021-06-03
+        intent_to_elicit: false
+        slot_to_elicit: StartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device is this for?
+        sample_response: Express
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I believe it is 37205025464HN
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your password?
+        sample_response: So I think it's 3bRWgv0jxm
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email do you want your confirmation email sent to?
+        sample_response: My email address is NancyGlenn@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReduceData_YesIntent_en-US
+    scenario_id: '1179'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce the amount of data on your plan
+    description: User wants to reduce the amount of data on their plan
+    script:
+      - agent: Hello! Can I help you with something?
+        sample_response: There's {DataAmount} worth of data on my plan that I don't need can I switch to just {NewAmount} of data
+        intent_to_elicit: ReduceData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you want to have?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReduceData_StopIntent_en-US
+    scenario_id: '1180'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce the amount of data on your plan
+    description: User wants to reduce the amount of data on their plan
+    script:
+      - agent: Hello! Can I help you with something?
+        sample_response: I don't need this much data how can I reduce the amount I have on my plan
+        intent_to_elicit: ReduceData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you currently have?
+        sample_response: its 28
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you want to have?
+        sample_response: stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

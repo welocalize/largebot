@@ -1,0 +1,1087 @@
+name: LargeBot_MediaCable_scenarios_batch56
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_CancelAfterFreeTrial_Confirmed_en-US
+    scenario_id: '1101'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to cancel your free trial
+    description: User wants to cancel their free trial
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I wanna cancel the free trial I signed up for
+        intent_to_elicit: CancelAfterFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would you like to cancel?
+        sample_response: Flex
+        intent_to_elicit: false
+        slot_to_elicit: TrialService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: Yes 95-68012414u5
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Charles is my first name
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes, my name is Singleton
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CancelAfterFreeTrial_PauseIntent_en-US
+    scenario_id: '1102'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to cancel your free trial
+    description: User wants to cancel their free trial
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I'd like to end the free trial that's on my account which the number is {UserAccountNumber}.
+        intent_to_elicit: CancelAfterFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would you like to cancel?
+        sample_response: Flex Plus service, please
+        intent_to_elicit: false
+        slot_to_elicit: TrialService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CancelAfterFreeTrial_CancelIntent_en-US
+    scenario_id: '1103'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to cancel your free trial
+    description: User wants to cancel their free trial
+    script:
+      - agent: How can I be of assistance?
+        sample_response: My name is {UserFirstName} {UserLastName} and I want to end the free trial on my account
+        intent_to_elicit: CancelAfterFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would you like to cancel?
+        sample_response: Cancel my Basic service
+        intent_to_elicit: false
+        slot_to_elicit: TrialService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: FI-89573486
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SelectTVStreaming_Confirmed_en-US
+    scenario_id: '1104'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to purchavee a TV streaming plan
+    description: User wants to purchase a TV streaming plan
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I want to get a streaming plan. My account number is {UserAccountNumber}.
+        intent_to_elicit: SelectTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of programs would you like to have included in your TV streaming plan?
+        sample_response: action
+        intent_to_elicit: false
+        slot_to_elicit: PreferredPrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What other type of programs would you like to have included in your TV streaming plan?
+        sample_response: western
+        intent_to_elicit: false
+        slot_to_elicit: AdditionalPrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are there any additional types of programs would you like to have included in your TV streaming plan?
+        sample_response: no
+        intent_to_elicit: false
+        slot_to_elicit: MorePrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide me with a monthly budget for your TV streaming plan?
+        sample_response: '65'
+        intent_to_elicit: false
+        slot_to_elicit: UserBudget
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: yep - its Brooke
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: That's Murphy
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SelectTVStreaming_StartOverIntent_en-US
+    scenario_id: '1105'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a TV streaming plan
+    description: User wants to purchase a TV streaming plan
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: Will you sign me up for a streaming plan. My name is {UserFirstName} {UserLastName}.
+        intent_to_elicit: SelectTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of programs would you like to have included in your TV streaming plan?
+        sample_response: science fiction is good
+        intent_to_elicit: false
+        slot_to_elicit: PreferredPrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What other type of programs would you like to have included in your TV streaming plan?
+        sample_response: drama is great
+        intent_to_elicit: false
+        slot_to_elicit: AdditionalPrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are there any additional types of programs would you like to have included in your TV streaming plan?
+        sample_response: romance is great
+        intent_to_elicit: false
+        slot_to_elicit: MorePrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide me with a monthly budget for your TV streaming plan?
+        sample_response: $100 total.
+        intent_to_elicit: false
+        slot_to_elicit: UserBudget
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SelectTVStreaming_PauseIntent_en-US
+    scenario_id: '1106'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a TV streaming plan
+    description: User wants to purchase a TV streaming plan
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: My name is {UserFirstName} {UserLastName} and I would like a streaming plan
+        intent_to_elicit: SelectTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of programs would you like to have included in your TV streaming plan?
+        sample_response: animation mostly
+        intent_to_elicit: false
+        slot_to_elicit: PreferredPrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What other type of programs would you like to have included in your TV streaming plan?
+        sample_response: western mostly
+        intent_to_elicit: false
+        slot_to_elicit: AdditionalPrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are there any additional types of programs would you like to have included in your TV streaming plan?
+        sample_response: comedy mostly
+        intent_to_elicit: false
+        slot_to_elicit: MorePrograms
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide me with a monthly budget for your TV streaming plan?
+        sample_response: around $150
+        intent_to_elicit: false
+        slot_to_elicit: UserBudget
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_GetDataRolloverPlan_Confirmed_en-US
+    scenario_id: '1107'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to change to a plan that allows data rollover
+    description: User wants to change to a plan that allows data rollover
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Could you tell me how to get a data rollover plan
+        intent_to_elicit: GetDataRolloverPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what type of data plan you currently have?
+        sample_response: Xfinity Extreme Pro
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which data plan you would like to change to?
+        sample_response: Verizon Fios Gigabit
+        intent_to_elicit: false
+        slot_to_elicit: NewDataPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: 14-B327463II I think?
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: it's Marcus...
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yeah sure the name is Caldwell
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_GetDataRolloverPlan_StopIntent_en-US
+    scenario_id: '1108'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change to a plan that allows data rollover
+    description: User wants to change to a plan that allows data rollover
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: I'm on {DataPlanType} but I want to enroll in {NewDataPlan} so my data can rollover
+        intent_to_elicit: GetDataRolloverPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: think it's 36-91782775R2
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: No problem, it's William
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_GetDataRolloverPlan_HelpIntent_en-US
+    scenario_id: '1109'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change to a plan that allows data rollover
+    description: User wants to change to a plan that allows data rollover
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Could you change my plan to include data rollover, the account is {UserAccountNumber}
+        intent_to_elicit: GetDataRolloverPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what type of data plan you currently have?
+        sample_response: It's Xfinity Extreme Pro
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which data plan you would like to change to?
+        sample_response: Spectrum Internet Gig please
+        intent_to_elicit: false
+        slot_to_elicit: NewDataPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DecreaseDataCap_30 gig_Confirmed_en-US
+    scenario_id: '1110'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease the data cap of your current plan
+    description: User wants to decrease the data cap of their current plan
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I'd like my plan to have less data because I don't need the amount I'm paying for now
+        intent_to_elicit: DecreaseDataCap
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of data plan do you currently have?
+        sample_response: Cox Gigablast
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in gigabytes, what size data plan you would like to change to?
+        sample_response: Can I have the 30 gig plan?
+        intent_to_elicit: 30 gig
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: 40590435343XR I think?
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My name is Kenneth thanks
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yeah it's Long
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DecreaseDataCap_Confirmed_en-US
+    scenario_id: '1111'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to decrease the data cap of your current plan
+    description: User wants to decrease the data cap of their current plan
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Hey this is {UserFirstName} {UserLastName} can you help me lower my data capacity
+        intent_to_elicit: DecreaseDataCap
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of data plan do you currently have?
+        sample_response: It's a Verizon Fios Gigabit plan
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in gigabytes, what size data plan you would like to change to?
+        sample_response: I want the 100 gigs plan
+        intent_to_elicit: false
+        slot_to_elicit: NewDataCap
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: not entirely sure but I think it's 12-F231552PS
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DecreaseDataCap_HelpIntent_en-US
+    scenario_id: '1112'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease the data cap of your current plan
+    description: User wants to decrease the data cap of their current plan
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Will you please assist with lowering the data cap for account {UserAccountNumber}.
+        intent_to_elicit: DecreaseDataCap
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of data plan do you currently have?
+        sample_response: The plan is Cox Gigablast
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in gigabytes, what size data plan you would like to change to?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DecreaseDataCap_StopIntent_en-US
+    scenario_id: '1113'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease the data cap of your current plan
+    description: User wants to decrease the data cap of their current plan
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: My account number is {UserAccountNumber} and I want to decrease the data cap on my plan
+        intent_to_elicit: DecreaseDataCap
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of data plan do you currently have?
+        sample_response: It's called a Cox Gigablast plan
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in gigabytes, what size data plan you would like to change to?
+        sample_response: I'm probably gonna need 500 gigs.
+        intent_to_elicit: false
+        slot_to_elicit: NewDataCap
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_IncreaseData_100_Denied_en-US
+    scenario_id: '1114'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to increase the data for thier plan
+    description: User wants to increase the data for thier plan
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I don't have enough data how can I add more to my account
+        intent_to_elicit: IncreaseData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data would you like to have?
+        sample_response: That'll be 100
+        intent_to_elicit: '100'
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your account number?
+        sample_response: it's 86-X973721MN
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your password?
+        sample_response: yeah so its gZe76HrLSI
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: sure it's Matthew
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Sure it's Bernard
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: 421-000-1449
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: '1958-06-19'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_IncreaseData_Denied_en-US
+    scenario_id: '1115'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to increase the data for thier plan
+    description: User wants to increase the data for thier plan
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I want to add {DesiredDataGigabyteAmount} to my phone
+        intent_to_elicit: IncreaseData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your account number?
+        sample_response: 86-56792430j8 i guess
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your password?
+        sample_response: It should be Vyidaikbi3
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: Yeah, Tom
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Yeah, it's Cervantes
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: That is 999-100-3440
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: It's 1989-12-10
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_IncreaseData_HelpIntent_en-US
+    scenario_id: '1116'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to increase the data for thier plan
+    description: User wants to increase the data for thier plan
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I need more data added to my account {AccountNumber}
+        intent_to_elicit: IncreaseData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data would you like to have?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_IncreaseData_NoIntent_en-US
+    scenario_id: '1117'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to increase the data for thier plan
+    description: User wants to increase the data for thier plan
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I need to get more data for {CustomerPhoneNumber}.
+        intent_to_elicit: IncreaseData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data would you like to have?
+        sample_response: yeah the number's 200
+        intent_to_elicit: false
+        slot_to_elicit: DesiredDataGigabyteAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your account number?
+        sample_response: it would be 55787201371EN
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your password?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestClearInbox_Denied_en-US
+    scenario_id: '1118'
+    bias:
+      - SingleIntent
+    customer_instructions: You needs your web host to clear your full inbox
+    description: User needs their web host to clear their full inbox
+    script:
+      - agent: What can I do to help?
+        sample_response: I want my {FolderToBeCleared} to be emptied
+        intent_to_elicit: RequestClearInbox
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you logged into this email?
+        sample_response: I want to say 2021-01-12
+        intent_to_elicit: false
+        slot_to_elicit: LastLoginDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your username?
+        sample_response: George.Briggs1986!
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your password?
+        sample_response: try c3EPrW2hLH
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: George.Briggs@hotmail.com is good.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your recovery email address?
+        sample_response: its George.Briggs@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: SecondaryEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your phone number?
+        sample_response: '3220376712'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name please?
+        sample_response: Sure, it's George
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: that's Briggs
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your date of birth please?
+        sample_response: '1985-12-19'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: On second thought not just yet. Thanks anyway!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestClearInbox_NoIntent_en-US
+    scenario_id: '1119'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs your web host to clear your full inbox
+    description: User needs their web host to clear their full inbox
+    script:
+      - agent: What can I do to help?
+        sample_response: My email's {FolderToBeCleared} folder is full. Can you please clear it for me
+        intent_to_elicit: RequestClearInbox
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you logged into this email?
+        sample_response: yeah, 2020-12-24 I think
+        intent_to_elicit: false
+        slot_to_elicit: LastLoginDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your username?
+        sample_response: try Julie.F1949
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestClearInbox_RepeatIntent_en-US
+    scenario_id: '1120'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs your web host to clear your full inbox
+    description: User needs their web host to clear their full inbox
+    script:
+      - agent: What can I do to help?
+        sample_response: Get rid of all the messages in my {FolderToBeCleared}.
+        intent_to_elicit: RequestClearInbox
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you logged into this email?
+        sample_response: on 2021-01-08
+        intent_to_elicit: false
+        slot_to_elicit: LastLoginDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your username?
+        sample_response: I have HJacqueline1963
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your password?
+        sample_response: yeah so it's WJ1SxvNe8B
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: HJacqueline@yahoo.com is my email address
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your recovery email address?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

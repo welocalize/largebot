@@ -1,0 +1,1171 @@
+name: LargeBot_MediaCable_scenarios_batch31
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_DeviceFileTransfer_NoIntent_en-US
+    scenario_id: '0601'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer or sync files from an old device to a new one
+    description: User wants to transfer or sync files from an old device to a new one
+    script:
+      - agent: What can I help you with today?
+        sample_response: I'd like to move files from my {SourceDevice} can you tell me how
+        intent_to_elicit: DeviceFileTransfer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Yes 15-Q939316ZY
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the destination device?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DeviceFileTransfer_StartOverIntent_en-US
+    scenario_id: '0602'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer or sync files from an old device to a new one
+    description: User wants to transfer or sync files from an old device to a new one
+    script:
+      - agent: What can I help you with today?
+        sample_response: Can you tell me how I get stuff off my {SourceDevice} and put it somewhere else
+        intent_to_elicit: DeviceFileTransfer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: "it's: 93-P005847DY"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the source device?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireRestaurantSatelliteTV_Confirmed_en-US
+    scenario_id: '0603'
+    bias:
+      - SingleIntent
+    customer_instructions: Business want to know available satellite tv options
+    description: Business wants to know available satellite tv options
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Gimme available satellite options for a small busines
+        intent_to_elicit: InquireRestaurantSatelliteTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: it's Jeremy...
+        intent_to_elicit: false
+        slot_to_elicit: ProspectFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Sure it's Potter
+        intent_to_elicit: false
+        slot_to_elicit: ProspectLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have the name of the business?
+        sample_response: It's called Harrison, Smith and Gilbert
+        intent_to_elicit: false
+        slot_to_elicit: BusinessName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have the address of the business?
+        sample_response: "No problem, the address is 6130 Buttonwood St.,\nAlbuquerque, NM 87104"
+        intent_to_elicit: false
+        slot_to_elicit: PostalAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireRestaurantSatelliteTV_RepeatIntent_en-US
+    scenario_id: '0604'
+    bias:
+      - MultiIntent
+    customer_instructions: Business want to know available satellite tv options
+    description: Business wants to know available satellite tv options
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I have a business called {BusinessName} and I'm thinking about putting in a TV what are my options
+        intent_to_elicit: InquireRestaurantSatelliteTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: My first name is Edwin
+        intent_to_elicit: false
+        slot_to_elicit: ProspectFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Sure, it is Walker
+        intent_to_elicit: false
+        slot_to_elicit: ProspectLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have the name of the business?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireRestaurantSatelliteTV_PauseIntent_en-US
+    scenario_id: '0605'
+    bias:
+      - MultiIntent
+    customer_instructions: Business want to know available satellite tv options
+    description: Business wants to know available satellite tv options
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: So what deals have you got on satellite TV for businesses
+        intent_to_elicit: InquireRestaurantSatelliteTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: put it down as Tara
+        intent_to_elicit: false
+        slot_to_elicit: ProspectFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: It's Little
+        intent_to_elicit: false
+        slot_to_elicit: ProspectLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have the name of the business?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccidentalViewingCharges_Confirmed_en-US
+    scenario_id: '0606'
+    bias:
+      - SingleIntent
+    customer_instructions: You are disputing charges for content that they do not believe they should be charged for
+    description: User is disputing charges for content that they do not believe they should be charged for
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: There are some incorrect charges that I need to resolve
+        intent_to_elicit: AccidentalViewingCharges
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the first name associated with your account, please?
+        sample_response: Yes its Jeremy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the last name associated with your account, please?
+        sample_response: Yeah last name Jones
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: KC10784602
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the phone number used on your account?
+        sample_response: '5044487993'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current subscription package?
+        sample_response: Flex Plus
+        intent_to_elicit: false
+        slot_to_elicit: CurrentPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For what period would you like to review new charges?
+        sample_response: put may 2020-june 2020
+        intent_to_elicit: false
+        slot_to_elicit: BillingStatementPeriod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you view this content?
+        sample_response: Its going to be 20210108
+        intent_to_elicit: false
+        slot_to_elicit: DateContentViewed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: If you dont mind thank you
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccidentalViewingCharges_StartOverIntent_en-US
+    scenario_id: '0607'
+    bias:
+      - MultiIntent
+    customer_instructions: You are disputing charges for content that they do not believe they should be charged for
+    description: User is disputing charges for content that they do not believe they should be charged for
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: My {CurrentPlan} doesn't include {ContentViewed} so why am I getting charged for it
+        intent_to_elicit: AccidentalViewingCharges
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the first name associated with your account, please?
+        sample_response: Nathan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the last name associated with your account, please?
+        sample_response: That would be Davies
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: that is 32973275843OQ
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the phone number used on your account?
+        sample_response: its 0905993164
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current subscription package?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SatelliteDamage_Confirmed_en-US
+    scenario_id: '0608'
+    bias:
+      - SingleIntent
+    customer_instructions: Your satellite dish are damaged or broken and they would like to schedule a service visit
+    description: Customer's satellite dish is damaged or broken and they would like to schedule a service visit
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I need someone to come to {CustomerAddress} to fix my satellite dish
+        intent_to_elicit: SatelliteDamage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account, please?
+        sample_response: Record my name as Jose
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account, please?
+        sample_response: Yes, the last name is Erickson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number as it appears on your billing statement?
+        sample_response: It could be Hp-13732068
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number associated with your account?
+        sample_response: (559)-261-4760
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did the damage to your satellite occur?
+        sample_response: Yeah so its 2020-08-03
+        intent_to_elicit: false
+        slot_to_elicit: DateOfDamage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How did the damage to your satellite occur?
+        sample_response: Hurricane
+        intent_to_elicit: false
+        slot_to_elicit: CauseOfDamage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day would be convenient for us to send a service technician to your home?
+        sample_response: On 2021-02-03
+        intent_to_elicit: false
+        slot_to_elicit: RequestedServiceDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Perfect! thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SatelliteDamage_StopIntent_en-US
+    scenario_id: '0609'
+    bias:
+      - MultiIntent
+    customer_instructions: Your satellite dish are damaged or broken and they would like to schedule a service visit
+    description: Customer's satellite dish is damaged or broken and they would like to schedule a service visit
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I want my satellite dish repaired fast
+        intent_to_elicit: SatelliteDamage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account, please?
+        sample_response: okay it's Jose
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account, please?
+        sample_response: that's Phillips
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number as it appears on your billing statement?
+        sample_response: 94201432525PN I think?
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number associated with your account?
+        sample_response: Sure, (542)-379-8354
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did the damage to your satellite occur?
+        sample_response: check 2020-12-17
+        intent_to_elicit: false
+        slot_to_elicit: DateOfDamage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How did the damage to your satellite occur?
+        sample_response: Stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SatelliteDamage_PauseIntent_en-US
+    scenario_id: '0610'
+    bias:
+      - MultiIntent
+    customer_instructions: Your satellite dish are damaged or broken and they would like to schedule a service visit
+    description: Customer's satellite dish is damaged or broken and they would like to schedule a service visit
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Hello... I need someone to come fix my satellite dish. I live at {CustomerAddress}
+        intent_to_elicit: SatelliteDamage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account, please?
+        sample_response: yes Jonathan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account, please?
+        sample_response: For last name, it's Atkinson.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number as it appears on your billing statement?
+        sample_response: not entirely sure but I think it's RN-20739085
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number associated with your account?
+        sample_response: Yes, (744)-977-7329
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did the damage to your satellite occur?
+        sample_response: On 2020-10-07
+        intent_to_elicit: false
+        slot_to_elicit: DateOfDamage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How did the damage to your satellite occur?
+        sample_response: hailstorm
+        intent_to_elicit: false
+        slot_to_elicit: CauseOfDamage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day would be convenient for us to send a service technician to your home?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InstallationHomeVisit_Confirmed_en-US
+    scenario_id: '0611'
+    bias:
+      - SingleIntent
+    customer_instructions: You want schedule a home visit for installation
+    description: Customer wants schedule a home visit for installation
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Can I be out of the house when this installation happens
+        intent_to_elicit: InstallationHomeVisit
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: so its 87-34855587o4
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of installation were you needing?
+        sample_response: I need internet
+        intent_to_elicit: false
+        slot_to_elicit: InstallationServiceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which days are you available to receive our technician?
+        sample_response: Between Monday-Wednesday
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateAvailability
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best time to schedule your installation?
+        sample_response: Ideally 10 AM
+        intent_to_elicit: false
+        slot_to_elicit: CustomerTimeAvailability
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you confirm the address for your scheduled installation?
+        sample_response: "At 3472 George Street,\nNew Baltimore, MI 48047"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What phone number can we use to reach you?
+        sample_response: (988)-569-9960
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InstallationHomeVisit_RepeatIntent_en-US
+    scenario_id: '0612'
+    bias:
+      - MultiIntent
+    customer_instructions: You want schedule a home visit for installation
+    description: Customer wants schedule a home visit for installation
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Hey there I am wondering do I need to be present for the upcoming installation
+        intent_to_elicit: InstallationHomeVisit
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: As far as I can tell its 65831712701EW
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of installation were you needing?
+        sample_response: I was looking for phone
+        intent_to_elicit: false
+        slot_to_elicit: InstallationServiceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which days are you available to receive our technician?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InstallationHomeVisit_StartOverIntent_en-US
+    scenario_id: '0613'
+    bias:
+      - MultiIntent
+    customer_instructions: You want schedule a home visit for installation
+    description: Customer wants schedule a home visit for installation
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Hey I have this installation coming up... Do I need to be there
+        intent_to_elicit: InstallationHomeVisit
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: It's Ix-42142011
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of installation were you needing?
+        sample_response: I am needing Internet
+        intent_to_elicit: false
+        slot_to_elicit: InstallationServiceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which days are you available to receive our technician?
+        sample_response: Monday would work
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateAvailability
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best time to schedule your installation?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_MultipleOutletSafety_Confirmed_en-US
+    scenario_id: '0614'
+    bias:
+      - SingleIntent
+    customer_instructions: You are using multiple power outlets and want to check if it's safe
+    description: Customer is using multiple power outlets and wants to check if it's safe
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Is there a problem with using a lot of power outlets at home
+        intent_to_elicit: MultipleOutletSafety
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many outlets are currently in use?
+        sample_response: 3 outlets
+        intent_to_elicit: false
+        slot_to_elicit: OutletsInUse
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you currently have plugged in?
+        sample_response: 10 devices are plugged in rn
+        intent_to_elicit: false
+        slot_to_elicit: DevicesInUse
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What year was your home constructed?
+        sample_response: '2018'
+        intent_to_elicit: false
+        slot_to_elicit: HomeConstructionYear
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many times has the circuit breaker been tripped?
+        sample_response: 10 times I believe
+        intent_to_elicit: false
+        slot_to_elicit: CircuitBreakerTripCount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be splendid Thanks
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_MultipleOutletSafety_StartOverIntent_en-US
+    scenario_id: '0615'
+    bias:
+      - MultiIntent
+    customer_instructions: You are using multiple power outlets and want to check if it's safe
+    description: Customer is using multiple power outlets and wants to check if it's safe
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: My home was built in {HomeConstructionYear} can I use multiple power outlets please
+        intent_to_elicit: MultipleOutletSafety
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many outlets are currently in use?
+        sample_response: '4'
+        intent_to_elicit: false
+        slot_to_elicit: OutletsInUse
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you currently have plugged in?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_MultipleOutletSafety_RepeatIntent_en-US
+    scenario_id: '0616'
+    bias:
+      - MultiIntent
+    customer_instructions: You are using multiple power outlets and want to check if it's safe
+    description: Customer is using multiple power outlets and wants to check if it's safe
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Would it be fine if I use a lot of power outlets
+        intent_to_elicit: MultipleOutletSafety
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many outlets are currently in use?
+        sample_response: I think it is 4.
+        intent_to_elicit: false
+        slot_to_elicit: OutletsInUse
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you currently have plugged in?
+        sample_response: '6'
+        intent_to_elicit: false
+        slot_to_elicit: DevicesInUse
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What year was your home constructed?
+        sample_response: '1993'
+        intent_to_elicit: false
+        slot_to_elicit: HomeConstructionYear
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many times has the circuit breaker been tripped?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CableTVAdComplaints_Confirmed_en-US
+    scenario_id: '0617'
+    bias:
+      - SingleIntent
+    customer_instructions: You have concerns about a cable TV advertisement they have viewed
+    description: Customer has concerns about a cable TV advertisement they have viewed
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: There is a big problem with a TV ad I just saw
+        intent_to_elicit: CableTVAdComplaints
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: It's Michelle
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: It's Miller
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number?
+        sample_response: 132-7682
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What about the advertisement caused you concern?
+        sample_response: It was creepy
+        intent_to_elicit: false
+        slot_to_elicit: ComplaintNature
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you recall what brand the advertisement was for?
+        sample_response: Yes, Marshall-Buchanan
+        intent_to_elicit: false
+        slot_to_elicit: AdCompany
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time was it when you saw the advertisement?
+        sample_response: 21:29:53 works
+        intent_to_elicit: false
+        slot_to_elicit: AdTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day was it when you saw the advertisement?
+        sample_response: Before 2021-06-08.
+        intent_to_elicit: false
+        slot_to_elicit: AdDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel were you watching when you saw the advertisement that caused your concern?
+        sample_response: I was watching Bravo
+        intent_to_elicit: false
+        slot_to_elicit: AdChannel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What program were you watching when the advertisement appeared?
+        sample_response: The Real Housewives of Atlanta
+        intent_to_elicit: false
+        slot_to_elicit: AdProgram
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CableTVAdComplaints_StopIntent_en-US
+    scenario_id: '0618'
+    bias:
+      - MultiIntent
+    customer_instructions: You have concerns about a cable TV advertisement they have viewed
+    description: Customer has concerns about a cable TV advertisement they have viewed
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: A cable TV ad I just viewed is inappropriate and needs removal from air
+        intent_to_elicit: CableTVAdComplaints
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: Sure, it's Eugene
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: Last name's Williams
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number?
+        sample_response: That is 932-020-5627
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What about the advertisement caused you concern?
+        sample_response: Stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CableTVAdComplaints_YesIntent_en-US
+    scenario_id: '0619'
+    bias:
+      - MultiIntent
+    customer_instructions: You have concerns about a cable TV advertisement they have viewed
+    description: Customer has concerns about a cable TV advertisement they have viewed
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: There is a problematic TV ad the date is {AdDate} and the time is {AdTime}
+        intent_to_elicit: CableTVAdComplaints
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: Yep, I'm Natasha
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: My name is Castillo
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number?
+        sample_response: Yes, 2971162113
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What about the advertisement caused you concern?
+        sample_response: it was too violent
+        intent_to_elicit: false
+        slot_to_elicit: ComplaintNature
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you recall what brand the advertisement was for?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveLandlineService_Confirmed_en-US
+    scenario_id: '0620'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to remove the landline from your service plan
+    description: User wants to remove the landline from their service plan
+    script:
+      - agent: Hi, what do you need help with today?
+        sample_response: Can you please help me cancel my landline from my account
+        intent_to_elicit: RemoveLandlineService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: It's Kelly thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: The name's Sanders
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Yes 95-99797578B0 please
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the username on your account?
+        sample_response: Yes Kelly.Sanders1918
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please provide me with your account password?
+        sample_response: 5NjWP0c9EI!
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: 422-0943
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: That's Kelly.Sanders@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the date you'd like cancellation to take effect?
+        sample_response: '2021-03-21'
+        intent_to_elicit: false
+        slot_to_elicit: CancellationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me the reason for your cancellation? This is optional.
+        sample_response: I don't need it anymore
+        intent_to_elicit: false
+        slot_to_elicit: CancellationReason
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yup!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

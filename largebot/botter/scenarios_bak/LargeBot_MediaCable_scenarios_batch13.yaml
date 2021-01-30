@@ -1,0 +1,2839 @@
+name: LargeBot_MediaCable_scenarios_batch13
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_RemoveLandlineService_NoIntent_en-US
+    scenario_id: '0601'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove the landline from your service plan
+    description: User wants to remove the landline from their service plan
+    script:
+      - agent: Hi, what do you need help with today?
+        sample_response: Can you kindly cancel my landline for account number {AccountNumber}
+        intent_to_elicit: RemoveLandlineService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Joe
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Wright would be it
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: "it's: 83-R117012IA"
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the username on your account?
+        sample_response: WJoe2020
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please provide me with your account password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_VoIPInquiry_Confirmed_en-US
+    scenario_id: '0602'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a VoIP service to your plan
+    description: User wants to add a VoIP service to their plan
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Hi this is {CustomerFirstName} {CustomerLastName} I want to add VoIP service
+        intent_to_elicit: VoIPInquiry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which VoIP service plan did you want do sign up for?
+        sample_response: I want to sign up for dialpad
+        intent_to_elicit: false
+        slot_to_elicit: VoIPServiceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My name's Brenda
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: It's Flynn
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: I have 15-99235960N1
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the username on your account?
+        sample_response: It should be Brenda.Flynn1950
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your account password.
+        sample_response: Put 9VFaWEWj4U
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best phone number to reach you at?
+        sample_response: 525-482-3468
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is a current email address for you?
+        sample_response: It would be Brenda.Flynn@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_VoIPInquiry_CancelIntent_en-US
+    scenario_id: '0603'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a VoIP service to your plan
+    description: User wants to add a VoIP service to their plan
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I need to add a service at my place.
+        intent_to_elicit: VoIPInquiry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which VoIP service plan did you want do sign up for?
+        sample_response: The dialpad plan
+        intent_to_elicit: false
+        slot_to_elicit: VoIPServiceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Jonathon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Sure, it is Roberson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: For that I have UH-88191426
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the username on your account?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_VoIPInquiry_NoIntent_en-US
+    scenario_id: '0604'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a VoIP service to your plan
+    description: User wants to add a VoIP service to their plan
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Hi I need to add VoIP to my plan this is {CustomerFirstName} speaking
+        intent_to_elicit: VoIPInquiry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which VoIP service plan did you want do sign up for?
+        sample_response: I would like OnSIP
+        intent_to_elicit: false
+        slot_to_elicit: VoIPServiceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My given name is Joshua
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: For the last name it's Huffman
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: "it's: 73-Y879750CZ"
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the username on your account?
+        sample_response: "it's: Huffman.Joshua1934"
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your account password.
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoteLocationInternetProvider_Denied_en-US
+    scenario_id: '0605'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee the best internet service for your remote location
+    description: User wants to purchase the best internet service for their remote location
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Is there an internet plan with a month to month contract {DurationOfContract}
+        intent_to_elicit: RemoteLocationInternetProvider
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in megabytes, what internet speed you are looking for?
+        sample_response: 50 mb
+        intent_to_elicit: false
+        slot_to_elicit: DesiredInternetSpeed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your budget for Internet service?
+        sample_response: 100 per month
+        intent_to_elicit: false
+        slot_to_elicit: BudgetAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: I am Crystal
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Last name's Davis
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your phone number.
+        sample_response: '6987255811'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: DavisCrystal@hotmail.com is my email address
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your full service address.
+        sample_response: "Yes it's 1188 Pawnee St.,\nPhoenix, AZ 85045"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like internet services to start?
+        sample_response: 2021-02-20 I guess
+        intent_to_elicit: false
+        slot_to_elicit: ServiceStartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to sign for this service?
+        sample_response: 12 months
+        intent_to_elicit: false
+        slot_to_elicit: DurationOfContract
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: I think I will think about it a little first so let's not finalize anything just this minute.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoteLocationInternetProvider_HelpIntent_en-US
+    scenario_id: '0606'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee the best internet service for your remote location
+    description: User wants to purchase the best internet service for their remote location
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Which internet plan is the best for this locality
+        intent_to_elicit: RemoteLocationInternetProvider
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in megabytes, what internet speed you are looking for?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoteLocationInternetProvider_PauseIntent_en-US
+    scenario_id: '0607'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee the best internet service for your remote location
+    description: User wants to purchase the best internet service for their remote location
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: What internet service has the fastest speed please
+        intent_to_elicit: RemoteLocationInternetProvider
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in megabytes, what internet speed you are looking for?
+        sample_response: '80'
+        intent_to_elicit: false
+        slot_to_elicit: DesiredInternetSpeed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your budget for Internet service?
+        sample_response: That would be 75
+        intent_to_elicit: false
+        slot_to_elicit: BudgetAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Sure, it's Diana
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes, my name is Soto
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your phone number.
+        sample_response: Yes, 111-6776
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: DianaSoto@yahoo.com is the best one to use
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your full service address.
+        sample_response: "Thats: 96 Brickell Street,\nBeardstown, IL 62618"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like internet services to start?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoteLocationNetworks_Confirmed_en-US
+    scenario_id: '0608'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee from the best network providers for your remote location
+    description: User wants to purchase from the best network providers for their remote location
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: How do I find out which provider is used the most in my vicinity
+        intent_to_elicit: RemoteLocationNetworks
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in megabytes, what internet speed you are looking for?
+        sample_response: 50 mb
+        intent_to_elicit: false
+        slot_to_elicit: DesiredInternetSpeed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your budget for internet service?
+        sample_response: If possible, 40 dollars
+        intent_to_elicit: false
+        slot_to_elicit: BudgetAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: yes it's jasmin
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: yeah last name is fischer
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your phone number.
+        sample_response: (922)-783-5818
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: email id is jasmin.f@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your full service address.
+        sample_response: "of course, it's 2390 lakewood street,\nrawlings, md 21557"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like internet services to start?
+        sample_response: ending 2021-05-19
+        intent_to_elicit: false
+        slot_to_elicit: ServiceStartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to sign up for this service?
+        sample_response: 2 years
+        intent_to_elicit: false
+        slot_to_elicit: DurationOfContract
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: that would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoteLocationNetworks_NoIntent_en-US
+    scenario_id: '0609'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee from the best network providers for your remote location
+    description: User wants to purchase from the best network providers for their remote location
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: Who is the most popular network provider around these parts
+        intent_to_elicit: RemoteLocationNetworks
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in megabytes, what internet speed you are looking for?
+        sample_response: that would be 645
+        intent_to_elicit: false
+        slot_to_elicit: DesiredInternetSpeed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your budget for internet service?
+        sample_response: '100'
+        intent_to_elicit: false
+        slot_to_elicit: BudgetAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Susan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes, it's Stephenson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your phone number.
+        sample_response: That is (553)-479-0252
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: It's SSusan@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your full service address.
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoteLocationNetworks_CancelIntent_en-US
+    scenario_id: '0610'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee from the best network providers for your remote location
+    description: User wants to purchase from the best network providers for their remote location
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: This is {CustomerFirstName} could y'all tell me who has the strongest tower around here
+        intent_to_elicit: RemoteLocationNetworks
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me, in megabytes, what internet speed you are looking for?
+        sample_response: '64'
+        intent_to_elicit: false
+        slot_to_elicit: DesiredInternetSpeed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your budget for internet service?
+        sample_response: That'd be 75 dollars
+        intent_to_elicit: false
+        slot_to_elicit: BudgetAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: yep - it's Christopher
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes, my name is Chen
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your phone number.
+        sample_response: Yes, 2274074859
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: Yup, it is ChristopherChen@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your full service address.
+        sample_response: "Yep, that's 668 Brookside Street,\nPitt, PA 15218"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like internet services to start?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NearestCellTower_Confirmed_en-US
+    scenario_id: '0611'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a phone plan from the company with the nearest cell tower
+    description: User wants to purchase a phone plan from the company with the nearest cell tower
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Can you tell me what the closest cell phone tower is to me
+        intent_to_elicit: NearestCellTower
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the address you're currently located?
+        sample_response: "At 4815 Wall Street,\nHorseshoe Bend, AR 72512"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yes, my name is John
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: For last name, it's Gill.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Email address is JohnGill@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NearestCellTower_PauseIntent_en-US
+    scenario_id: '0612'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a phone plan from the company with the nearest cell tower
+    description: User wants to purchase a phone plan from the company with the nearest cell tower
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: My address is {CustomerAddress} who has the closest cell cellular tower to me please
+        intent_to_elicit: NearestCellTower
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the address you're currently located?
+        sample_response: "Here you go 32 Amerige Street\nAllen SD 57714"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: No problem its Johnny
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Willis
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Can we do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NearestCellTower_StartOverIntent_en-US
+    scenario_id: '0613'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a phone plan from the company with the nearest cell tower
+    description: User wants to purchase a phone plan from the company with the nearest cell tower
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Hi this is Mr. {CustomerLastName} which cell tower is closest to me
+        intent_to_elicit: NearestCellTower
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the address you're currently located?
+        sample_response: "Sure, it's 9095 SW. East Street,\nWhitakers, NC 27891"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: It is Ann
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Last name Nicholson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LockLostPhone_Confirmed_en-US
+    scenario_id: '0614'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to lock your lost phone
+    description: User needs to lock their lost phone
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I want my lost phone locked
+        intent_to_elicit: LockLostPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: try C.Bonnie1947
+        intent_to_elicit: false
+        slot_to_elicit: AccountUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: QJ4SAv8y81 I think?
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone number.
+        sample_response: my number is (259)-058-4218
+        intent_to_elicit: false
+        slot_to_elicit: AccountPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to remotely delete your data or wait till the phone is found?
+        sample_response: I think I will delete data
+        intent_to_elicit: false
+        slot_to_elicit: DeleteContents
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LockLostPhone_NoIntent_en-US
+    scenario_id: '0615'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to lock your lost phone
+    description: User needs to lock their lost phone
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Lock my lost phone connected to the phone number {AccountPhoneNumber}. Thanks
+        intent_to_elicit: LockLostPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: It is CJames2019.
+        intent_to_elicit: false
+        slot_to_elicit: AccountUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReplacementSim_Denied_en-US
+    scenario_id: '0616'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs a replacement SIM
+    description: User needs a replacement SIM
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: I need to order a SIM replacement
+        intent_to_elicit: ReplacementSim
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: Yes Anderson.Thomas1991
+        intent_to_elicit: false
+        slot_to_elicit: AccountUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: For that I have XHv7vojG6q
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: 973-552-4257
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to have your SIM card mailed to you or picked up at your local retailer?
+        sample_response: delivery
+        intent_to_elicit: false
+        slot_to_elicit: MailOrPickUp
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What has happened to your first SIM card?
+        sample_response: stolen
+        intent_to_elicit: false
+        slot_to_elicit: SIMLost
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you live so I can have it mailed to you or sent to your nearest local retailer?
+        sample_response: "It's 3864 Manhattan Street,\nPleasant Hill, MO 64080"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReplacementSim_NoIntent_en-US
+    scenario_id: '0617'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs a replacement SIM
+    description: User needs a replacement SIM
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Do you know how to get a SIM replaced please
+        intent_to_elicit: ReplacementSim
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: yeah so its GJohn2008
+        intent_to_elicit: false
+        slot_to_elicit: AccountUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_Inquire5GAreaAvailability_Confirmed_en-US
+    scenario_id: '0618'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if there are 5G available in your area
+    description: User wants to know if there is 5G available in their area
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Is there a timeline for when 5G will be available here
+        intent_to_elicit: Inquire5GAreaAvailability
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What area do you want to check for 5G?
+        sample_response: The city would be Decatur
+        intent_to_elicit: false
+        slot_to_elicit: InquirerLocationCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And the best email to reach you at?
+        sample_response: Email address is JuanLutz@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: InquirerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be great thanks
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_Inquire5GAreaAvailability_CancelIntent_en-US
+    scenario_id: '0619'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if there are 5G available in your area
+    description: User wants to know if there is 5G available in their area
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Is 5G located in {InquirerLocationCity} please
+        intent_to_elicit: Inquire5GAreaAvailability
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What area do you want to check for 5G?
+        sample_response: Yeah thats Newbury
+        intent_to_elicit: false
+        slot_to_elicit: InquirerLocationCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And the best email to reach you at?
+        sample_response: Cancel
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_Inquire5GAvailability_Confirmed_en-US
+    scenario_id: '0620'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know when there will be 5G in your area
+    description: User wants to know when there will be 5G in their area
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: This is {CustomerFirstName} {CustomerLastName} and I want to find out when my area will have 5G
+        intent_to_elicit: Inquire5GAvailability
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current location?
+        sample_response: "It's at 189 Riverside St.,\nMathews, AL 36052"
+        intent_to_elicit: false
+        slot_to_elicit: InquirerLocationHouse
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first name?
+        sample_response: put it down as Kimberly
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name?
+        sample_response: Sure it's Castillo
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like a reminder when it is available in your area?
+        sample_response: yeah, at 04-22-2021
+        intent_to_elicit: false
+        slot_to_elicit: ReminderWhenAvailable
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What number can I reach you at?
+        sample_response: 067-9870
+        intent_to_elicit: false
+        slot_to_elicit: InquirerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email?
+        sample_response: ID is Kimberly.C@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: InquirerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_Inquire5GAvailability_StartOverIntent_en-US
+    scenario_id: '0621'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know when there will be 5G in your area
+    description: User wants to know when there will be 5G in their area
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: Can y'all tell me when {InquirerLocationCity} will get 5G
+        intent_to_elicit: Inquire5GAvailability
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current location?
+        sample_response: "Sure, at 6420 Brickyard St.,\nTroy, OH 45373 66372 Rittman"
+        intent_to_elicit: false
+        slot_to_elicit: InquirerLocationHouse
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first name?
+        sample_response: It's Rachel
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name?
+        sample_response: Put Richmond
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like a reminder when it is available in your area?
+        sample_response: it should be on 2021-05-10
+        intent_to_elicit: false
+        slot_to_elicit: ReminderWhenAvailable
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What number can I reach you at?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePhone5GCompatibility_Denied_en-US
+    scenario_id: '0622'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if a phone are 5G compatible
+    description: User wants to know if a phone is 5G compatible
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: Can I get 5G on my device
+        intent_to_elicit: InquirePhone5GCompatibility
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: save my name as Kelly
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: It is Johnson thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you checking for 5G compatibility?
+        sample_response: Google Pixel XL
+        intent_to_elicit: false
+        slot_to_elicit: InquirerDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I get your phone number, please?
+        sample_response: 152-528-7244
+        intent_to_elicit: false
+        slot_to_elicit: InquirerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to be sent a reminder that it's compatible?
+        sample_response: I want to put 02-17-2021
+        intent_to_elicit: false
+        slot_to_elicit: ReminderWhenAvailable
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I can send a reminder to your email. May I have your email?
+        sample_response: JohnsonKelly@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: InquirerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Please don't do anything just yet. I'm going to wait a bit.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePhone5GCompatibility_YesIntent_en-US
+    scenario_id: '0623'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if a phone are 5G compatible
+    description: User wants to know if a phone is 5G compatible
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: I'm wondering if I can get 5G connectivity on my device
+        intent_to_elicit: InquirePhone5GCompatibility
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Sure, it is Kelly
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yeah sure the name is Salas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you checking for 5G compatibility?
+        sample_response: I have got a Google Pixel XL.
+        intent_to_elicit: false
+        slot_to_elicit: InquirerDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I get your phone number, please?
+        sample_response: Yes, (900)-201-8608
+        intent_to_elicit: false
+        slot_to_elicit: InquirerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to be sent a reminder that it's compatible?
+        sample_response: 2021-05-14, probably
+        intent_to_elicit: false
+        slot_to_elicit: ReminderWhenAvailable
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I can send a reminder to your email. May I have your email?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CellphoneDisposal_Confirmed_en-US
+    scenario_id: '0624'
+    bias:
+      - MultiIntent
+    customer_instructions: You want advice on disposing of a cell phone properly
+    description: User wants advice on disposing of a cell phone properly
+    script:
+      - agent: How may I assist you?
+        sample_response: I want to get rid of a {DeviceType}. How do I do it properly
+        intent_to_elicit: CellphoneDisposal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of cellphone do you have?
+        sample_response: it is a iPhone 11
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country do you live in?
+        sample_response: Yep Jordan
+        intent_to_elicit: false
+        slot_to_elicit: UserCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your zip code?
+        sample_response: The zip code is 66886
+        intent_to_elicit: false
+        slot_to_elicit: UserZipCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your email please?
+        sample_response: Yes Michael.O@gmail.com is my email.
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CellphoneDisposal_StartOverIntent_en-US
+    scenario_id: '0625'
+    bias:
+      - MultiIntent
+    customer_instructions: You want advice on disposing of a cell phone properly
+    description: User wants advice on disposing of a cell phone properly
+    script:
+      - agent: How may I assist you?
+        sample_response: Could you tell me how I can properly dispose of a {DeviceType}
+        intent_to_elicit: CellphoneDisposal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of cellphone do you have?
+        sample_response: My phone is a Galaxy Note 8
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country do you live in?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ResetTVBox_Confirmed_en-US
+    scenario_id: '0626'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reset TV box
+    description: User wants to reset TV box
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: How do I reset my {TVBoxType}
+        intent_to_elicit: ResetTVBox
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your username?
+        sample_response: So it's Amber.Manning2019
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what type of TV box you have?
+        sample_response: It's a Comcast TV box
+        intent_to_elicit: false
+        slot_to_elicit: TVBoxType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me, in gigabytes, how much storage is taken up on your TV box?
+        sample_response: I've got 500 gigs full
+        intent_to_elicit: false
+        slot_to_elicit: TVBoxStorage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what day of the week would you like to schedule an automatic reset?
+        sample_response: on Saturday please
+        intent_to_elicit: false
+        slot_to_elicit: ResetDay
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date would you like to schedule an automatic reset?
+        sample_response: say 01-29-2021?
+        intent_to_elicit: false
+        slot_to_elicit: ResetDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time would you like to schedule an automatic reset?
+        sample_response: that'd be 11:59:26
+        intent_to_elicit: false
+        slot_to_elicit: ResetTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ResetTVBox_RepeatIntent_en-US
+    scenario_id: '0627'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reset TV box
+    description: User wants to reset TV box
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Can y'all assist me I want to reset the TV box
+        intent_to_elicit: ResetTVBox
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your username?
+        sample_response: yeah Rich.Travis2011
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what type of TV box you have?
+        sample_response: a Huawei
+        intent_to_elicit: false
+        slot_to_elicit: TVBoxType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me, in gigabytes, how much storage is taken up on your TV box?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AnytimeCancellationPlan_Denied_en-US
+    scenario_id: '0628'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to buy a plan for a media or cable service they can cancel anytime
+    description: User wants to buy a plan for a media or cable service they can cancel anytime
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I want to get a plan the one that allows anytime cancellation
+        intent_to_elicit: AnytimeCancellationPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your address?
+        sample_response: "It is at 5373 Prairie Street,\nLittlefield, TX 79339"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your email please?
+        sample_response: put down Heather.Thomas@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number please?
+        sample_response: my number is 5090808957
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: There are a range of options, how much do you want to spend?
+        sample_response: An amount of 500$
+        intent_to_elicit: false
+        slot_to_elicit: PlanCost
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We can do recurring payments, what's your bank account number?
+        sample_response: try 34-55385642d6
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AnytimeCancellationPlan_StopIntent_en-US
+    scenario_id: '0629'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to buy a plan for a media or cable service they can cancel anytime
+    description: User wants to buy a plan for a media or cable service they can cancel anytime
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Hi I would like assistance buying the anytime cancellation plan
+        intent_to_elicit: AnytimeCancellationPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your address?
+        sample_response: "so thats 1868 SE St Louis Street\nBridgewater MA 02324"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your email please?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AnytimeCancellationPlan_YesIntent_en-US
+    scenario_id: '0630'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to buy a plan for a media or cable service they can cancel anytime
+    description: User wants to buy a plan for a media or cable service they can cancel anytime
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Please help in getting the anytime cancellation plan you have thanks
+        intent_to_elicit: AnytimeCancellationPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your address?
+        sample_response: "Sure, at 2574 John Street,\nPotosi, WI 53820"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your email please?
+        sample_response: It is Nunez.Jason@hotmail.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number please?
+        sample_response: Yes, 504-0470
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: There are a range of options, how much do you want to spend?
+        sample_response: I can spend $40
+        intent_to_elicit: false
+        slot_to_elicit: PlanCost
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We can do recurring payments, what's your bank account number?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternationalTVPackage_Confirmed_en-US
+    scenario_id: '0631'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee an international TV package
+    description: User wants to purchase an international TV package
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Hey please help me purchase an international TV package
+        intent_to_elicit: PurchaseInternationalTVPackage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name please?
+        sample_response: It's Allison thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name please?
+        sample_response: Yeah sure the name is Rogers
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country do you live in?
+        sample_response: Spain
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your address?
+        sample_response: "Street address is 3722 Poplar Street,\nSlc, UT 84113"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your network service provider?
+        sample_response: I use AT&T Wireless
+        intent_to_elicit: false
+        slot_to_elicit: NetworkServiceProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dishes do you currently have?
+        sample_response: '5'
+        intent_to_elicit: false
+        slot_to_elicit: DishAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you use to watch TV in your household?
+        sample_response: That'll be 4
+        intent_to_elicit: false
+        slot_to_elicit: DeviceAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of device do you use to watch TV?
+        sample_response: I've got a laptop
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What other languages do you want to add to your package?
+        sample_response: Spanish and Russian, please
+        intent_to_elicit: false
+        slot_to_elicit: NewLanguageToAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternationalTVPackage_RepeatIntent_en-US
+    scenario_id: '0632'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee an international TV package
+    description: User wants to purchase an international TV package
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Help me purchase an international TV package please
+        intent_to_elicit: PurchaseInternationalTVPackage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name please?
+        sample_response: I don't understand
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddInternationalRoaming_Confirmed_en-US
+    scenario_id: '0633'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your plan to include international roaming
+    description: User wants to change their plan to include international roaming
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: I want to turn on international roaming
+        intent_to_elicit: AddInternationalRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number please?
+        sample_response: (729)-384-9392
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the current plan you have with us?
+        sample_response: The Connect
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCurrentPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where are you traveling to?
+        sample_response: I'm in Slovakia (Slovak Republic)
+        intent_to_elicit: false
+        slot_to_elicit: DestinationCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What are the dates you'll be traveling?
+        sample_response: I want that to be 03-05-2021 - 03-11-2021
+        intent_to_elicit: false
+        slot_to_elicit: TravelDateSpan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me how much data, in gigabytes, you typically use?
+        sample_response: '45'
+        intent_to_elicit: false
+        slot_to_elicit: DataQuantity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me how many phone calls you think you'll make?
+        sample_response: '10'
+        intent_to_elicit: false
+        slot_to_elicit: PhoneCallRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me how many text messages you think you'll write?
+        sample_response: that's 200
+        intent_to_elicit: false
+        slot_to_elicit: TextRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddInternationalRoaming_CancelIntent_en-US
+    scenario_id: '0634'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your plan to include international roaming
+    description: User wants to change their plan to include international roaming
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: Can I get international roaming included in my plan
+        intent_to_elicit: AddInternationalRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number please?
+        sample_response: Yes, 6226566547
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the current plan you have with us?
+        sample_response: I've got the Unlimited plan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCurrentPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where are you traveling to?
+        sample_response: It's for the country Australia
+        intent_to_elicit: false
+        slot_to_elicit: DestinationCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What are the dates you'll be traveling?
+        sample_response: Its 10-10-2021 - 10-29-2021
+        intent_to_elicit: false
+        slot_to_elicit: TravelDateSpan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me how much data, in gigabytes, you typically use?
+        sample_response: Wait actually now I don't want to
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CellphoneAccessibilityOptions_Confirmed_en-US
+    scenario_id: '0635'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change cellphone screen contrast
+    description: User wants to change cellphone screen contrast
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: Can I adjust the look of videos when I watch them on my phone
+        intent_to_elicit: CellphoneAccessibilityOptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What level (from 1 to 100) would you like to set the screen contrast for?
+        sample_response: around 85
+        intent_to_elicit: false
+        slot_to_elicit: ContrastLevel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CellphoneAccessibilityOptions_RepeatIntent_en-US
+    scenario_id: '0636'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change cellphone screen contrast
+    description: User wants to change cellphone screen contrast
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: Change contrast for me
+        intent_to_elicit: CellphoneAccessibilityOptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What level (from 1 to 100) would you like to set the screen contrast for?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BlockProfanity_Confirmed_en-US
+    scenario_id: '0637'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to block offensive language during family TV time
+    description: User wants to block offensive language during family TV time
+    script:
+      - agent: Hello. How can I help you?
+        sample_response: Yeah I don't want any bad words on TV during family time can you do that for me
+        intent_to_elicit: BlockProfanity
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 2282213354JO I think?
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the first name on your account?
+        sample_response: First name Mark
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the last name on your account?
+        sample_response: The last name's Brown
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time would you like to start blocking profanity?
+        sample_response: that's 11:36:27
+        intent_to_elicit: false
+        slot_to_elicit: BlockTimeStart
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time do you want to stop blocking profanity?
+        sample_response: At 02:42:05, please
+        intent_to_elicit: false
+        slot_to_elicit: BlockTimeEnd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BlockProfanity_CancelIntent_en-US
+    scenario_id: '0638'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to block offensive language during family TV time
+    description: User wants to block offensive language during family TV time
+    script:
+      - agent: Hello. How can I help you?
+        sample_response: I don't want my children seeing dirty words on TV
+        intent_to_elicit: BlockProfanity
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: SJ-85102447 is that it
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the first name on your account?
+        sample_response: I'm called Tiffany
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the last name on your account?
+        sample_response: that's Martinez
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time would you like to start blocking profanity?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseUniversalRemote_Confirmed_en-US
+    scenario_id: '0639'
+    bias:
+      - MultiIntent
+    customer_instructions: You are looking to purchavee a universal remote for several devices
+    description: User is looking to purchase a universal remote for several devices
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Universal remote for {DeviceType} please
+        intent_to_elicit: PurchaseUniversalRemote
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first type of device you would you like to find a universal remote for?
+        sample_response: it's a dongle
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes the first device?
+        sample_response: That's Microsoft
+        intent_to_elicit: false
+        slot_to_elicit: DeviceTypeBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the second type of device you would you like to find a universal remote for?
+        sample_response: it's a tv
+        intent_to_elicit: false
+        slot_to_elicit: DeviceTypeTwo
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes the second device?
+        sample_response: yeah Sony
+        intent_to_elicit: false
+        slot_to_elicit: DeviceTypeTwoBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the third type of device you would you like to find a universal remote for?
+        sample_response: it's a cable box
+        intent_to_elicit: false
+        slot_to_elicit: DeviceTypeThree
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes the third device?
+        sample_response: It's Microsoft
+        intent_to_elicit: false
+        slot_to_elicit: DeviceTypeThreeBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When it comes to the maximum price, what's that for you?
+        sample_response: for 250
+        intent_to_elicit: false
+        slot_to_elicit: UniversalRemotePriceMaximum
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ActorSearchOptions_Confirmed_en-US
+    scenario_id: '0640'
+    bias:
+      - MultiIntent
+    customer_instructions: You are looking for shows with a specific actor
+    description: User is looking for shows with a specific actor
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: What {ShowGenre} shows have {ActorLastName} in them
+        intent_to_elicit: ActorSearchOptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name of the actor you're looking for?
+        sample_response: Kirsten is my first name
+        intent_to_elicit: false
+        slot_to_elicit: ActorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the actor's last name as well?
+        sample_response: It is Bell thanks
+        intent_to_elicit: false
+        slot_to_elicit: ActorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What genre or genres of shows featuring this actor are you looking for?
+        sample_response: documentary
+        intent_to_elicit: false
+        slot_to_elicit: ShowGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yes please Thank you very much
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ActorSearchOptions_NoIntent_en-US
+    scenario_id: '0641'
+    bias:
+      - MultiIntent
+    customer_instructions: You are looking for shows with a specific actor
+    description: User is looking for shows with a specific actor
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: I'm looking for shows with {ActorLastName} please list them out
+        intent_to_elicit: ActorSearchOptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name of the actor you're looking for?
+        sample_response: No, thank you
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ActorSearchOptions_StopIntent_en-US
+    scenario_id: '0642'
+    bias:
+      - MultiIntent
+    customer_instructions: You are looking for shows with a specific actor
+    description: User is looking for shows with a specific actor
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: I'd like to see something with {ActorFirstName} {ActorLastName} please tell me what's available
+        intent_to_elicit: ActorSearchOptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name of the actor you're looking for?
+        sample_response: It's Rege-Jean thanks
+        intent_to_elicit: false
+        slot_to_elicit: ActorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the actor's last name as well?
+        sample_response: Of course, it's Krasinski
+        intent_to_elicit: false
+        slot_to_elicit: ActorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What genre or genres of shows featuring this actor are you looking for?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TVGuideAccessAssistance_Confirmed_en-US
+    scenario_id: '0643'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access the TV guide
+    description: User wants to access the TV guide
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Can you show me the TV guide
+        intent_to_elicit: TVGuideAccessAssistance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to see the TV Guide for?
+        sample_response: Before Thursday.
+        intent_to_elicit: false
+        slot_to_elicit: TVGuideDisplayDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And for what time?
+        sample_response: yeah 03:59:31.
+        intent_to_elicit: false
+        slot_to_elicit: TVGuideDisplayInterval
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TVGuideAccessAssistance_PauseIntent_en-US
+    scenario_id: '0644'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access the TV guide
+    description: User wants to access the TV guide
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Hey what's playing today I wanna watch my stories
+        intent_to_elicit: TVGuideAccessAssistance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to see the TV Guide for?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UnlockPhone_Confirmed_en-US
+    scenario_id: '0645'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to unlock phone from current network
+    description: User wants to unlock phone from current network
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: My phone number is {UserPhoneNumber} and I was wondering how I could get my phone unlocked
+        intent_to_elicit: UnlockPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: It is Cesar
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: The name is Hernandez
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: 9641415796HE
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the phone number of the phone you are trying to unlock please?
+        sample_response: 534 906 3556
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UnlockPhone_StartOverIntent_en-US
+    scenario_id: '0646'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to unlock phone from current network
+    description: User wants to unlock phone from current network
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: Can you tell me how to unlock my phone please My name is {UserFirstName} {UserLastName}.
+        intent_to_elicit: UnlockPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: sure it's Angela
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Donaldson.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: the number is 10659098242UV
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the phone number of the phone you are trying to unlock please?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InternationalRoamingSettings_Denied_en-US
+    scenario_id: '0647'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change settings so they do not get charged extra while abroad
+    description: User wants to change settings so they do not get charged extra while abroad
+    script:
+      - agent: What can I do to help you?
+        sample_response: I'll be in {TravelDestination} and I was wondering if there was anything I could do to keep my bill the same cost while there
+        intent_to_elicit: InternationalRoamingSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: First name Daniel
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure it's Guzman
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 95-Q388221FV is that it?
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number of the phone you are trying to unlock please?
+        sample_response: 989-358-0246
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What model phone is associated with this phone number?
+        sample_response: A Galaxy Note 8
+        intent_to_elicit: false
+        slot_to_elicit: PhoneModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country will you be traveling to?
+        sample_response: That'd be Djibouti
+        intent_to_elicit: false
+        slot_to_elicit: TravelDestination
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What other country will you be traveling to?
+        sample_response: So, it's Malaysia
+        intent_to_elicit: false
+        slot_to_elicit: SecondTravelDestination
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What dates will your travel plans span?
+        sample_response: I will be gone from 02-20-2021 - 02-27-2021
+        intent_to_elicit: false
+        slot_to_elicit: TravelDateSpan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Actually, let's hold off for the moment. Please don't submit anything now.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InternationalRoamingSettings_NoIntent_en-US
+    scenario_id: '0648'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change settings so they do not get charged extra while abroad
+    description: User wants to change settings so they do not get charged extra while abroad
+    script:
+      - agent: What can I do to help you?
+        sample_response: I'll be in {TravelDestination} for {TravelDateSpan} and wanted to know how to not be charged extra while away
+        intent_to_elicit: InternationalRoamingSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: I'm not telling you
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InternationalRoamingSettings_UnlockPhone_Confirmed_en-US
+    scenario_id: '0649'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change settings so they do not get charged extra while abroad
+    description: User wants to change settings so they do not get charged extra while abroad
+    script:
+      - agent: What can I do to help you?
+        sample_response: When I'm in {TravelDestination} for{TravelDateSpan} I didn't want to get charged extra what can I change on my phone to avoid those charges
+        intent_to_elicit: InternationalRoamingSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Yes, I'm Brian
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: I need to unlock my phone from the current network
+        intent_to_elicit: UnlockPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: it's Thorneberry
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Yes, I've got 25-D927507HN here
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the phone number of the phone you are trying to unlock please?
+        sample_response: it's 395-285-8259
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InternationalRoamingSettings_StopIntent_en-US
+    scenario_id: '0650'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change settings so they do not get charged extra while abroad
+    description: User wants to change settings so they do not get charged extra while abroad
+    script:
+      - agent: What can I do to help you?
+        sample_response: Account number is {UserAccountNumber} I'm gonna be in {TravelDestination} so is there something I need to do so I'm not charged extra while away
+        intent_to_elicit: InternationalRoamingSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Barbara...
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: My last name is Miller
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: so it's NP-13411345
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number of the phone you are trying to unlock please?
+        sample_response: Yes, 170-072-1373
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What model phone is associated with this phone number?
+        sample_response: I have a Galaxy Note 8
+        intent_to_elicit: false
+        slot_to_elicit: PhoneModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country will you be traveling to?
+        sample_response: sure it is United States Virgin Islands
+        intent_to_elicit: false
+        slot_to_elicit: TravelDestination
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What other country will you be traveling to?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

@@ -1,0 +1,919 @@
+name: LargeBot_MediaCable_scenarios_batch30
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_NewTenantCableTransfer_NoIntent_en-US
+    scenario_id: '0581'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer ownership of your cable account to the new tenant
+    description: User wants to transfer ownership of their cable account to the new tenant
+    script:
+      - agent: What can I do to help?
+        sample_response: How can I transfer my account to someone else please
+        intent_to_elicit: NewTenantCableTransfer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Scott
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Last name of Anderson.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: it would be WL-80565235
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name of the new user on the account?
+        sample_response: Sure, it is Scott
+        intent_to_elicit: false
+        slot_to_elicit: NewUserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the last name of the new user on the account?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NewTenantCableTransfer_PauseIntent_en-US
+    scenario_id: '0582'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer ownership of your cable account to the new tenant
+    description: User wants to transfer ownership of their cable account to the new tenant
+    script:
+      - agent: What can I do to help?
+        sample_response: This is {UserFirstName} and I want the new tenant to have ownership of my cable account can you sort that out pleas
+        intent_to_elicit: NewTenantCableTransfer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: last name of Bell
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: 22330798117VF.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name of the new user on the account?
+        sample_response: Yes of course, I'm Jose
+        intent_to_elicit: false
+        slot_to_elicit: NewUserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the last name of the new user on the account?
+        sample_response: Yeah last name is Bell
+        intent_to_elicit: false
+        slot_to_elicit: NewUserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address of the new user on the account?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpdateLastName_Confirmed_en-US
+    scenario_id: '0583'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to change your last name on your account
+    description: User wants to change their last name on their account
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I need to change the last name on my account. My current last name is {UserCurrentLastName} and my new last name will be {UserNewLastName}.
+        intent_to_elicit: UpdateLastName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Sure, my name is Lisa
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: 82-H944941JF!
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpdateLastName_PauseIntent_en-US
+    scenario_id: '0584'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your last name on your account
+    description: User wants to change their last name on their account
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Could you guys change the last name on my account {UserAccountNumber}
+        intent_to_elicit: UpdateLastName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: the name of Mark
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name currently used on your account?
+        sample_response: last name of Jimenez
+        intent_to_elicit: false
+        slot_to_elicit: UserCurrentLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpdateLastName_StartOverIntent_en-US
+    scenario_id: '0585'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your last name on your account
+    description: User wants to change their last name on their account
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Can you please change the last name on my account that's account number {UserAccountNumber}
+        intent_to_elicit: UpdateLastName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: note my name as Chelsea
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name currently used on your account?
+        sample_response: it's Jones
+        intent_to_elicit: false
+        slot_to_elicit: UserCurrentLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your new last name you would like to use on your account?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PartyPlaylist_Confirmed_en-US
+    scenario_id: '0586'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to compile a playlist using the best music charts
+    description: User wants to compile a playlist using the best music charts
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: I would like to compile a playlist with the name {PlaylistName} using the best music charts
+        intent_to_elicit: PartyPlaylist
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What genre of music would you like to include in your playlist?
+        sample_response: kpop
+        intent_to_elicit: false
+        slot_to_elicit: ChartGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PartyPlaylist_StartOverIntent_en-US
+    scenario_id: '0587'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to compile a playlist using the best music charts
+    description: User wants to compile a playlist using the best music charts
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: I want to compile a playlist using the best music chart please
+        intent_to_elicit: PartyPlaylist
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your playlist to be called?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PartyPlaylist_CancelIntent_en-US
+    scenario_id: '0588'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to compile a playlist using the best music charts
+    description: User wants to compile a playlist using the best music charts
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: I need some help to compile a playlist using the best music chart
+        intent_to_elicit: PartyPlaylist
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your playlist to be called?
+        sample_response: Bangers
+        intent_to_elicit: false
+        slot_to_elicit: PlaylistName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What genre of music would you like to include in your playlist?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CanceledBillError_Denied_en-US
+    scenario_id: '0589'
+    bias:
+      - SingleIntent
+    customer_instructions: You want a refund for a charge for a subscription they have cancelled
+    description: User wants a refund for a charge for a subscription they have cancelled
+    script:
+      - agent: What can I do to help you?
+        sample_response: Is there where I can get a refund for the subscription I canceled but was charged for
+        intent_to_elicit: CanceledBillError
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yeah, I'm Lori
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: that's Hurley
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Not sure I think it's 80413899557VC
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On which date did you cancel your subscription?
+        sample_response: Probably 2020-12-31
+        intent_to_elicit: false
+        slot_to_elicit: CancellationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which subscription were you billed for?
+        sample_response: It's Basic
+        intent_to_elicit: false
+        slot_to_elicit: DisputedSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number that was charged?
+        sample_response: The number is 3590465918420774
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CanceledBillError_StopIntent_en-US
+    scenario_id: '0590'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a refund for a charge for a subscription they have cancelled
+    description: User wants a refund for a charge for a subscription they have cancelled
+    script:
+      - agent: What can I do to help you?
+        sample_response: I want to ask about getting a refund for the subscription I canceled
+        intent_to_elicit: CanceledBillError
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: it's Phillip
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yeah sure the name is Wheeler
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: ok it's 36-64017391X4
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On which date did you cancel your subscription?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CanceledBillError_NoIntent_en-US
+    scenario_id: '0591'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a refund for a charge for a subscription they have cancelled
+    description: User wants a refund for a charge for a subscription they have cancelled
+    script:
+      - agent: What can I do to help you?
+        sample_response: I need a refund for a subscription I canceled can you guys sort it
+        intent_to_elicit: CanceledBillError
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My given name is Robert
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Smith
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Yes, I've got ZH-86422312 here
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On which date did you cancel your subscription?
+        sample_response: On 2020-12-05
+        intent_to_elicit: false
+        slot_to_elicit: CancellationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which subscription were you billed for?
+        sample_response: I was billed for Premium
+        intent_to_elicit: false
+        slot_to_elicit: DisputedSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number that was charged?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireBandwidthThrottles_Confirmed_en-US
+    scenario_id: '0592'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know if the internet provider throttles bandwidth-intensive users
+    description: User wants to know if the internet provider throttles bandwidth-intensive users
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Does {CustomerPlan} come with a data cap
+        intent_to_elicit: InquireBandwidthThrottles
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: 33-29676290Y3, is that it?
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people are on the internet at the same time?
+        sample_response: 2 people
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccess
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireBandwidthThrottles_YesIntent_en-US
+    scenario_id: '0593'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if the internet provider throttles bandwidth-intensive users
+    description: User wants to know if the internet provider throttles bandwidth-intensive users
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: I love steaming videos that gonna be a problem will you cap my usage
+        intent_to_elicit: InquireBandwidthThrottles
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What internet plan do you currently use?
+        sample_response: It's called a Spectrum Internet Gig plan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireBandwidthThrottles_RepeatIntent_en-US
+    scenario_id: '0594'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if the internet provider throttles bandwidth-intensive users
+    description: User wants to know if the internet provider throttles bandwidth-intensive users
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: If I use up about {CustomerUsage} a week is that going to affect my internet speed
+        intent_to_elicit: InquireBandwidthThrottles
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What internet plan do you currently use?
+        sample_response: I have a Cox Gigablast
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: 43-13825426l4
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people are on the internet at the same time?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternationalTVStreaming_Denied_en-US
+    scenario_id: '0595'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to access a show from another country using streaming service account
+    description: User wants to access a show from another country using streaming service account
+    script:
+      - agent: How can I be of service?
+        sample_response: How can I watch a show from another country my account is {CustomerAccount}
+        intent_to_elicit: PurchaseInternationalTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which international streaming plan do you want to add?
+        sample_response: I'd like BritBox
+        intent_to_elicit: false
+        slot_to_elicit: AddPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Actually, let's hold off for the moment. Please don't submit anything now.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternationalTVStreaming_CancelIntent_en-US
+    scenario_id: '0596'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access a show from another country using streaming service account
+    description: User wants to access a show from another country using streaming service account
+    script:
+      - agent: How can I be of service?
+        sample_response: I got {CustomerPlan} does that let me what stuff from anywhere in the world
+        intent_to_elicit: PurchaseInternationalTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: its 3466776811WL
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which international streaming plan do you want to add?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternationalTVStreaming_HelpIntent_en-US
+    scenario_id: '0597'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access a show from another country using streaming service account
+    description: User wants to access a show from another country using streaming service account
+    script:
+      - agent: How can I be of service?
+        sample_response: Can I see a show from anywhere in the world with {CustomerPlan}
+        intent_to_elicit: PurchaseInternationalTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: think it's 61-b622077kw
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which international streaming plan do you want to add?
+        sample_response: would you be able to help me
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SatelliteError_Denied_en-US
+    scenario_id: '0598'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know how to correct satellite error message
+    description: User wants to know how to correct satellite error message
+    script:
+      - agent: Hello. How can I help you?
+        sample_response: I got a satellite error message what do I do
+        intent_to_elicit: SatelliteError
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah, Laura
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: For the last name it's Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 32-P69660AP.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the satellite error code?
+        sample_response: it should be code 101
+        intent_to_elicit: false
+        slot_to_elicit: SatelliteErrorCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: I think I will think about it a little first so let's not finalize anything just this minute.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SatelliteError_HelpIntent_en-US
+    scenario_id: '0599'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know how to correct satellite error message
+    description: User wants to know how to correct satellite error message
+    script:
+      - agent: Hello. How can I help you?
+        sample_response: There seems to be some kind of problem with my satellite
+        intent_to_elicit: SatelliteError
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah, I'm Amy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Sure, it is Gregory
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: yep 86-E883120WE
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the satellite error code?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DeviceFileTransfer_Confirmed_en-US
+    scenario_id: '0600'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to transfer or sync files from an old device to a new one
+    description: User wants to transfer or sync files from an old device to a new one
+    script:
+      - agent: What can I help you with today?
+        sample_response: How do I get files from my {SourceDevice} to a new one
+        intent_to_elicit: DeviceFileTransfer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: yeah it's 41-67102566i8
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the destination device?
+        sample_response: laptop
+        intent_to_elicit: false
+        slot_to_elicit: DestinationDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

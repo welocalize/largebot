@@ -1,0 +1,73 @@
+name: LargeBot_MediaCable_Bot
+locale: en-US
+intent_clarification:
+  - I'd like to add a device plan
+intents:
+  - name: AddPreferredNewsChannel
+    sample_utterances:
+      - Where can save my favorite news channel
+    slots:
+      - name: TelevisionProvider
+        type: ORGANIZATION_ServiceProvider
+        prompt: Could you please tell me which television provider you are currently with?
+        required: false
+      - name: AccountFirstName
+        type: AMAZON.FirstName
+        prompt: Do you think you could give me the first name on the account?
+        required: true
+      - name: AccountLastName
+        type: AMAZON.LastName
+        prompt: Do you think you could give me the last name on the account?
+        required: true
+      - name: AccountNumber
+        type: AMAZON.AlphaNumeric
+        prompt: Can you please give me the account number?
+        required: true
+      - name: NewsChannel
+        type: NewsChannel
+        prompt: What news channel would you like to add?
+        required: false
+      - default_value_spec:
+          default_value_list:
+            - default_value: '#news_channel_selected.PolicyNumber'
+        name: PolicyNumber
+        prompt: What is your policy number?
+        required: true
+        type: AMAZON.AlphaNumeric
+    input_contexts:
+      - name: news_channel_selected
+        turns_to_live: 5
+    output_contexts:
+      - name: news_channel_selected
+        turns_to_live: 5
+  - name: UnsupportedIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: OODIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: FallbackIntent
+    parent_intent: AMAZON.FallbackIntent
+  - name: CancelIntent
+    parent_intent: AMAZON.CancelIntent
+  - name: HelpIntent
+    parent_intent: AMAZON.HelpIntent
+  - name: NoIntent
+    parent_intent: AMAZON.NoIntent
+  - name: PauseIntent
+    parent_intent: AMAZON.PauseIntent
+  - name: RepeatIntent
+    parent_intent: AMAZON.RepeatIntent
+  - name: ResumeIntent
+    parent_intent: AMAZON.ResumeIntent
+  - name: StartOverIntent
+    parent_intent: AMAZON.StartOverIntent
+  - name: StopIntent
+    parent_intent: AMAZON.StopIntent
+  - name: YesIntent
+    parent_intent: AMAZON.YesIntent
+slot_types:
+  - name: NewsChannel
+    values:
+      - value: CNN
+      - value: MSNBC
+      - value: NBC
+      - value: Fox News

@@ -1,0 +1,1197 @@
+name: LargeBot_MediaCable_scenarios_batch12
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_SyncLaptopTVScreen_RepeatIntent_en-US
+    scenario_id: '0221'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sync your laptop to your TV screen
+    description: User wants to sync their laptop to their TV screen
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: My {LaptopModel} and {SmartTVModel} are out of sync how do I fix it
+        intent_to_elicit: SyncLaptopTVScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: put Michelle as the first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: It's Hall
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best email address for your records?
+        sample_response: put down HallMichelle@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best number to reach you at?
+        sample_response: 732-5977
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your laptop model and model number?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseSeparateCable_Confirmed_en-US
+    scenario_id: '0222'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to purchavee duplicate cable service for same address
+    description: User wants to purchase duplicate cable service for same address
+    script:
+      - agent: What can I do to help?
+        sample_response: Please help me set up a duplicate cable service at the same address
+        intent_to_elicit: PurchaseSeparateCable
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your first name?
+        sample_response: okay it's Brittany
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your last name?
+        sample_response: The name is Nelson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your account number?
+        sample_response: it could be BK-50174122
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: For that I have Brittany.N2009
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the password associated with your account.
+        sample_response: seems to be 5WHUHrkQXT
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: "For the address 3478 Hawthorne Street,\nLewisville, MN"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address can I use for your account?
+        sample_response: That's Brittany.N@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the best phone number to put on file?
+        sample_response: '0633408263'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What plan do you currently have?
+        sample_response: Sure it's the America's Top 100 plan
+        intent_to_elicit: false
+        slot_to_elicit: PresentCableService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the cable service plan you'd like to add in addition?
+        sample_response: Please add Sparklight
+        intent_to_elicit: false
+        slot_to_elicit: DesiredAdditionalCableService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseSeparateCable_CancelIntent_en-US
+    scenario_id: '0223'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee duplicate cable service for same address
+    description: User wants to purchase duplicate cable service for same address
+    script:
+      - agent: What can I do to help?
+        sample_response: My address is {CustomerAddress} can I get a duplicate service please
+        intent_to_elicit: PurchaseSeparateCable
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your first name?
+        sample_response: Yeah it is Angela
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your last name?
+        sample_response: My family name is Owen
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your account number?
+        sample_response: 62-56577287n4!
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: I have Angela.Owen1907
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the password associated with your account.
+        sample_response: try C3QHQPNntn
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address can I use for your account?
+        sample_response: My email address is Angela.Owen@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the best phone number to put on file?
+        sample_response: it's 591-0471
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What plan do you currently have?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_PurchaseSeparateCable_en-US
+    scenario_id: '0224'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to purchavee duplicate cable service for same address
+    description: User wants to purchase duplicate cable service for same address
+    script:
+      - agent: What can I do to help?
+        sample_response: I want 2 {PresentCableService} packages at the same address please
+        intent_to_elicit: PurchaseSeparateCable
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your first name?
+        sample_response: Yeah, Hunter
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your last name?
+        sample_response: Yes, it's Peck
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your account number?
+        sample_response: Is my dog allowed to come with me?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_PurchaseSeparateCable_en-US
+    scenario_id: '0225'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to purchavee duplicate cable service for same address
+    description: User wants to purchase duplicate cable service for same address
+    script:
+      - agent: What can I do to help?
+        sample_response: I want another {PresentCableService} at my home address please
+        intent_to_elicit: PurchaseSeparateCable
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your first name?
+        sample_response: How do I start my own cable TV channel?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseSeparateCable_NoIntent_en-US
+    scenario_id: '0226'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee duplicate cable service for same address
+    description: User wants to purchase duplicate cable service for same address
+    script:
+      - agent: What can I do to help?
+        sample_response: I want two services at the same address and the same package
+        intent_to_elicit: PurchaseSeparateCable
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your first name?
+        sample_response: My name is Jessica
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please provide me with your last name?
+        sample_response: Yep, it is Briggs
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your account number?
+        sample_response: so it's 24546925803XD
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: it's JessicaBriggs1968
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the password associated with your account.
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestRestrictedViewingNotifications_ResetParentalLockPIN_Confirmed_en-US
+    scenario_id: '0227'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to receive an email notification if anyone accesses pornographic content on your home network
+    description: User wants to receive an email notification if anyone accesses pornographic content on their home network
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: I wanna get an email if anyone looks at porn while on my network
+        intent_to_elicit: RequestRestrictedViewingNotifications
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first name.
+        sample_response: Yes, I'm Gary
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your last name.
+        sample_response: Sure, it is Higgins
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your account number.
+        sample_response: 55-31916878F7?? is that what you need
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name for your home network?
+        sample_response: It is Bbox-EFE52B.
+        intent_to_elicit: false
+        slot_to_elicit: HomeNetworkName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: 237-280-9181
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How frequent would you like to receive restricted viewing notifications?
+        sample_response: daily
+        intent_to_elicit: false
+        slot_to_elicit: NotificationFrequency
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to enable notifications through email or text?
+        sample_response: text
+        intent_to_elicit: false
+        slot_to_elicit: RestrictedViewingNotificationConfirmation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address would you like to enable notifications for?
+        sample_response: H.Gary@gmail.com is my email address
+        intent_to_elicit: false
+        slot_to_elicit: PreferredNotificationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Actually it's probably better if I just reset the PIN on my account.
+        intent_to_elicit: ResetParentalLockPIN
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Sure! Please enter your desired PIN.
+        sample_response: from what I can see its 3592
+        intent_to_elicit: false
+        slot_to_elicit: NewPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please confirm your desired PIN.
+        sample_response: Yes, I've got 3592 here
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmNewPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestRestrictedViewingNotifications_Denied_en-US
+    scenario_id: '0228'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to receive an email notification if anyone accesses pornographic content on your home network
+    description: User wants to receive an email notification if anyone accesses pornographic content on their home network
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: Can I set up notifications for my network if it used for bad sites
+        intent_to_elicit: RequestRestrictedViewingNotifications
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first name.
+        sample_response: My given name is Rebecca
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your last name.
+        sample_response: The name's Hudson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your account number.
+        sample_response: That's going to be 5777538807GI
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name for your home network?
+        sample_response: it should be UPC7313127
+        intent_to_elicit: false
+        slot_to_elicit: HomeNetworkName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: the number is 324-4299
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How frequent would you like to receive restricted viewing notifications?
+        sample_response: I'd like to receive them monthly
+        intent_to_elicit: false
+        slot_to_elicit: NotificationFrequency
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to enable notifications through email or text?
+        sample_response: via mail
+        intent_to_elicit: false
+        slot_to_elicit: RestrictedViewingNotificationConfirmation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address would you like to enable notifications for?
+        sample_response: So it is Rebecca.Hudson@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: PreferredNotificationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestRestrictedViewingNotifications_CancelIntent_en-US
+    scenario_id: '0229'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to receive an email notification if anyone accesses pornographic content on your home network
+    description: User wants to receive an email notification if anyone accesses pornographic content on their home network
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: Please send me an email if someone watches porn while on my network. My account number is {AccountNumber}.
+        intent_to_elicit: RequestRestrictedViewingNotifications
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first name.
+        sample_response: My name's Dana
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your last name.
+        sample_response: Yeah, it's Gonzalez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name for your home network?
+        sample_response: yeah freeBestBuywifi
+        intent_to_elicit: false
+        slot_to_elicit: HomeNetworkName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: it's 909-679-4105
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How frequent would you like to receive restricted viewing notifications?
+        sample_response: I want them daily
+        intent_to_elicit: false
+        slot_to_elicit: NotificationFrequency
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to enable notifications through email or text?
+        sample_response: Cancel
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_RequestRestrictedViewingNotifications_en-US
+    scenario_id: '0230'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to receive an email notification if anyone accesses pornographic content on your home network
+    description: User wants to receive an email notification if anyone accesses pornographic content on their home network
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: Send me an email if anyone on {HomeNetworkName} watches porn please
+        intent_to_elicit: RequestRestrictedViewingNotifications
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first name.
+        sample_response: record my name as Scott
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your last name.
+        sample_response: It's Scott
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your account number.
+        sample_response: Do you have a daycare?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestRestrictedViewingNotifications_PauseIntent_en-US
+    scenario_id: '0231'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to receive an email notification if anyone accesses pornographic content on your home network
+    description: User wants to receive an email notification if anyone accesses pornographic content on their home network
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: If anyone looks at porn while connected to my network can you please email me
+        intent_to_elicit: RequestRestrictedViewingNotifications
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first name.
+        sample_response: Yeah, I am Megan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your last name.
+        sample_response: Peterson is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your account number.
+        sample_response: not entirely sure but I think it's 11-30429872O7
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name for your home network?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordLiveTV_Confirmed_en-US
+    scenario_id: '0232'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to live record shows on your Smart TV
+    description: User wants to live record shows on their Smart TV
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: Am I able to record live TV on my smart TV
+        intent_to_elicit: RecordLiveTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the first name on the account?
+        sample_response: My name is Dana thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the last name on the account?
+        sample_response: My name is Santana thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your preferred email address?
+        sample_response: Just add Dana.S@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of the smart TV you're trying to live-record shows on?
+        sample_response: The Frame
+        intent_to_elicit: false
+        slot_to_elicit: SmartTVModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How often do you experience network connectivity issues, if any?
+        sample_response: hourly
+        intent_to_elicit: false
+        slot_to_elicit: NetworkConnectionConfirmation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordLiveTV_StopIntent_en-US
+    scenario_id: '0233'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to live record shows on your Smart TV
+    description: User wants to live record shows on their Smart TV
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: My name is {CustomerFirstName} I was wondering if I could record live shows on my {SmartTVModel}
+        intent_to_elicit: RecordLiveTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the last name on the account?
+        sample_response: For the last name it's Hall
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your preferred email address?
+        sample_response: My email address is LydiaHall@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of the smart TV you're trying to live-record shows on?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_RecordLiveTV_en-US
+    scenario_id: '0234'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to live record shows on your Smart TV
+    description: User wants to live record shows on their Smart TV
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: '{CustomerFirstName} here just want to know if is is possible to record live TV on a {SmartTVModel}'
+        intent_to_elicit: RecordLiveTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the last name on the account?
+        sample_response: My last name is Peterson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your preferred email address?
+        sample_response: Yes it is Megan.Peterson@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of the smart TV you're trying to live-record shows on?
+        sample_response: I want a Long Island iced tea delivered to my door
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordLiveTV_PauseIntent_en-US
+    scenario_id: '0235'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to live record shows on your Smart TV
+    description: User wants to live record shows on their Smart TV
+    script:
+      - agent: Hello, what could I help you with?
+        sample_response: Can you check if I can record live shows on my smart TV
+        intent_to_elicit: RecordLiveTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the first name on the account?
+        sample_response: you can call me Mark
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the last name on the account?
+        sample_response: Sure, it's Williams
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your preferred email address?
+        sample_response: WilliamsMark@hotmail.com is the best one to use
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of the smart TV you're trying to live-record shows on?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordSimultaneousPrograms_Confirmed_en-US
+    scenario_id: '0236'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know if they can record two programs at the same time
+    description: User wants to know if they can record two programs at the same time
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: The DVR can record multiple shows at once can you tell me how
+        intent_to_elicit: RecordSimultaneousPrograms
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: That's 79-52462863d4
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: sure it's Anthony
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes, the last name's Bryant.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is the manufacturer of your DVR?
+        sample_response: it's a Appro
+        intent_to_elicit: false
+        slot_to_elicit: ManufacturerName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your DVR?
+        sample_response: That's oSlUD8QjDW
+        intent_to_elicit: false
+        slot_to_elicit: ModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordSimultaneousPrograms_HelpIntent_en-US
+    scenario_id: '0237'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if they can record two programs at the same time
+    description: User wants to know if they can record two programs at the same time
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: How do I record two programs at a time on the {ModelNumber}
+        intent_to_elicit: RecordSimultaneousPrograms
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: think it's 51-29728086A3
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: it's Lucas...
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes the last name is Young
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is the manufacturer of your DVR?
+        sample_response: I have a Fuji
+        intent_to_elicit: false
+        slot_to_elicit: ManufacturerName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your DVR?
+        sample_response: I need help
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_RecordSimultaneousPrograms_en-US
+    scenario_id: '0238'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to know if they can record two programs at the same time
+    description: User wants to know if they can record two programs at the same time
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: Hi It is {CustomerFirstName}. I want to record multiple shows at once. Is that possible
+        intent_to_elicit: RecordSimultaneousPrograms
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: Not entirely sure but i think it's Ak-77153184
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Pay my car registration thanks
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordSimultaneousPrograms_RepeatIntent_en-US
+    scenario_id: '0239'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if they can record two programs at the same time
+    description: User wants to know if they can record two programs at the same time
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: I want to know how to get the {ManufacturerName} to record multiple shows
+        intent_to_elicit: RecordSimultaneousPrograms
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: "it's: 44-H313002XL"
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah, it is Diana
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: That would be Maddox.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is the manufacturer of your DVR?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ResetParentalLockPIN_Confirmed_en-US
+    scenario_id: '0240'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to reset your parental lock PIN
+    description: User wants to reset their parental lock PIN
+    script:
+      - agent: How may I assist you?
+        sample_response: I need a reset email sent to {CustomerEmail} because I forgot the PIN again
+        intent_to_elicit: ResetParentalLockPIN
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: It should be 37314768790LW
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Sure, my name is Susan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes Kelly is the last name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your desired PIN.
+        sample_response: from what I can see its 3592
+        intent_to_elicit: false
+        slot_to_elicit: NewPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please confirm your desired PIN.
+        sample_response: Yes, I've got 3592 here
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmNewPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

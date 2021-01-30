@@ -1,0 +1,1075 @@
+name: LargeBot_MediaCable_scenarios_batch11
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable(OODIntent)_ReportCableSignalDisruptions_en-US
+    scenario_id: '0201'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to report that your cable signal are getting disrupted at different times of the day
+    description: User wants to report that their cable signal is getting disrupted at different times of the day
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: I'm inquiring about my cable signal disruptions can you help
+        intent_to_elicit: ReportCableSignalDisruptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: you can call me Andrea
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account?
+        sample_response: Yes, it's Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: No ice in the drinks please
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_ReportCableSignalDisruptions_en-US
+    scenario_id: '0202'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to report that your cable signal are getting disrupted at different times of the day
+    description: User wants to report that their cable signal is getting disrupted at different times of the day
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: I'm trying to figure out how to get my cable signal back
+        intent_to_elicit: ReportCableSignalDisruptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: What channel number is CNN on in my hotel?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportCableSignalDisruptions_StartOverIntent_en-US
+    scenario_id: '0203'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report that your cable signal are getting disrupted at different times of the day
+    description: User wants to report that their cable signal is getting disrupted at different times of the day
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: My house at {CustomerServiceAddress} is experiencing signal disruptions
+        intent_to_elicit: ReportCableSignalDisruptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: note my name as William
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account?
+        sample_response: Becker would be it
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: Yes 50-G899132XN
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you confirm your address for me?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportSlowWiFi_Denied_en-US
+    scenario_id: '0204'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to report that your Wi-Fi are slow
+    description: User wants to report that their Wi-Fi is slow
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Hey my my Wi-Fi is super slow can you fix it
+        intent_to_elicit: ReportSlowWiFi
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the first name on your account?
+        sample_response: Donald
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the last name on your account?
+        sample_response: Young
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you know your account number, may I have it?
+        sample_response: 60-89923438x2
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address where you are having this issue?
+        sample_response: "It is 4310 Fairway St.,\nHead Of The Harbor, NY 11780"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerServiceAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Was there a specific day when you noticed your Wi-Fi was slow?
+        sample_response: check 2020-09-23
+        intent_to_elicit: false
+        slot_to_elicit: DateOfSlowdown
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Did this slowdown happen at a specific time?
+        sample_response: Yeah, 11:18
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfSlowdown
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many devices are on your Wi-Fi network?
+        sample_response: yes, 3
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfDevicesOnNetwork
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people are connected to your network?
+        sample_response: that's 3
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfIndividualsOnNetwork
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you remember what you were doing when you noticed that your Wi-Fi was slow?
+        sample_response: I was just sitting there
+        intent_to_elicit: false
+        slot_to_elicit: CustomerActivityAtTimeOfSlowdown
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What internet plan are you on?
+        sample_response: The Spectrum Internet Gig plan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please don't do anything just yet. I'm going to wait a bit.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportSlowWiFi_NoIntent_en-US
+    scenario_id: '0205'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report that your Wi-Fi are slow
+    description: User wants to report that their Wi-Fi is slow
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Hello who do I speak with to fix my slow Wi-Fi
+        intent_to_elicit: ReportSlowWiFi
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the first name on your account?
+        sample_response: Sure, it's Julia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the last name on your account?
+        sample_response: For the last name it's Gaines
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you know your account number, may I have it?
+        sample_response: Yes 91-38209386t8
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address where you are having this issue?
+        sample_response: "Street address is 7165 Division Street,\nWilliamsburg, KS 66095"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerServiceAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Was there a specific day when you noticed your Wi-Fi was slow?
+        sample_response: Let's put 2020-11-21
+        intent_to_elicit: false
+        slot_to_elicit: DateOfSlowdown
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Did this slowdown happen at a specific time?
+        sample_response: I want to say 2:47 PM
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfSlowdown
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many devices are on your Wi-Fi network?
+        sample_response: No
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_ReportSlowWiFi_en-US
+    scenario_id: '0206'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to report that your Wi-Fi are slow
+    description: User wants to report that their Wi-Fi is slow
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: My Wi-Fi is very slow my name is {CustomerFirstName} {CustomerLastName}.
+        intent_to_elicit: ReportSlowWiFi
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you know your account number, may I have it?
+        sample_response: 26253785232YT I guess
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address where you are having this issue?
+        sample_response: What are this weeks lottery numbers?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_ReportSlowWiFi_en-US
+    scenario_id: '0207'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to report that your Wi-Fi are slow
+    description: User wants to report that their Wi-Fi is slow
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: How do I increase the speed of my Wi-Fi it's slow
+        intent_to_elicit: ReportSlowWiFi
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the first name on your account?
+        sample_response: I want to buy a local TV station!
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportSlowWiFi_YesIntent_en-US
+    scenario_id: '0208'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report that your Wi-Fi are slow
+    description: User wants to report that their Wi-Fi is slow
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: My account number is {CustomerAccountNumber} and I have been experiencing a bad Wi-Fi signal
+        intent_to_elicit: ReportSlowWiFi
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the first name on your account?
+        sample_response: Sure it's Michele
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the last name on your account?
+        sample_response: Sure it's Andrade
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address where you are having this issue?
+        sample_response: "At 1599 harvard street,\nbig clifty, ky 42712"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerServiceAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Was there a specific day when you noticed your Wi-Fi was slow?
+        sample_response: Ending 2020-09-30
+        intent_to_elicit: false
+        slot_to_elicit: DateOfSlowdown
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Did this slowdown happen at a specific time?
+        sample_response: '0.496527777777778'
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfSlowdown
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many devices are on your Wi-Fi network?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireISPNetNeutralityPolicy_Denied_en-US
+    scenario_id: '0209'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to file a complaint about your ISP's net neutrality policy
+    description: User wants to file a complaint about their ISP's net neutrality policy
+    script:
+      - agent: What can I do to help you?
+        sample_response: I'm upset with the policy on my ISP's net neutrality
+        intent_to_elicit: InquireISPNetNeutralityPolicy
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name?
+        sample_response: Sure my name is Michael
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name?
+        sample_response: It is Roberson thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what city and state you are located in?
+        sample_response: Yeah thats Santa Barbara
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what city and state you are located in?
+        sample_response: its going to be MO
+        intent_to_elicit: false
+        slot_to_elicit: CustomerState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know what plan you currently have?
+        sample_response: its the ATT Internet 1000
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Actually lets hold off for the moment Please dont submit anything now
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireISPNetNeutralityPolicy_CancelIntent_en-US
+    scenario_id: '0210'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to file a complaint about your ISP's net neutrality policy
+    description: User wants to file a complaint about their ISP's net neutrality policy
+    script:
+      - agent: What can I do to help you?
+        sample_response: I would like help filing a complaint about the net neutrality policy in {CustomerCity}.
+        intent_to_elicit: InquireISPNetNeutralityPolicy
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name?
+        sample_response: Sure, it is Cassandra
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name?
+        sample_response: Jones is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what city and state you are located in?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_InquireISPNetNeutralityPolicy_en-US
+    scenario_id: '0211'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to file a complaint about your ISP's net neutrality policy
+    description: User wants to file a complaint about their ISP's net neutrality policy
+    script:
+      - agent: What can I do to help you?
+        sample_response: Help me lodge complaint about my ISP's net neutrality policy
+        intent_to_elicit: InquireISPNetNeutralityPolicy
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name?
+        sample_response: Yeah, it is Tracy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name?
+        sample_response: The name is Owens
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what city and state you are located in?
+        sample_response: Dropped my iPhone in the toilet help
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireISPNetNeutralityPolicy_StopIntent_en-US
+    scenario_id: '0212'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to file a complaint about your ISP's net neutrality policy
+    description: User wants to file a complaint about their ISP's net neutrality policy
+    script:
+      - agent: What can I do to help you?
+        sample_response: Where should I complain about the ISP net neutrality policy
+        intent_to_elicit: InquireISPNetNeutralityPolicy
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name?
+        sample_response: My name's Shannon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name?
+        sample_response: That's Woods
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what city and state you are located in?
+        sample_response: yep, Leon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what city and state you are located in?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LowerMonthlyBill_Confirmed_en-US
+    scenario_id: '0213'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to lower your monthly bill
+    description: User wants to lower their monthly bill
+    script:
+      - agent: What can I do for you?
+        sample_response: My bill's too high I wanna pay less
+        intent_to_elicit: LowerMonthlyBill
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Yeah, it's Thomas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name Brooks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your full account number?
+        sample_response: 37042807103ki i guess
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your email address?
+        sample_response: The email is Bthomas@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I get your phone number?
+        sample_response: '0550030470'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your account password.
+        sample_response: That is A2lkryami5
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LowerMonthlyBill_NoIntent_en-US
+    scenario_id: '0214'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to lower your monthly bill
+    description: User wants to lower their monthly bill
+    script:
+      - agent: What can I do for you?
+        sample_response: Can you tell me what to do to lower the cost of my monthly bill the account number's {AccountNumber}.
+        intent_to_elicit: LowerMonthlyBill
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My name is William
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Jones is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your email address?
+        sample_response: Id is Jwilliam@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I get your phone number?
+        sample_response: It's 7055448594
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your account password.
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_LowerMonthlyBill_Confirmed_en-US
+    scenario_id: '0215'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to lower your monthly bill
+    description: User wants to lower their monthly bill
+    script:
+      - agent: What can I do for you?
+        sample_response: Please help me reduce my monthly bill for account {AccountNumber}
+        intent_to_elicit: LowerMonthlyBill
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My name is Tyler
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Donovan would be it
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your email address?
+        sample_response: What do I do if I forget the code to my phone?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_LowerMonthlyBill_en-US
+    scenario_id: '0216'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to lower your monthly bill
+    description: User wants to lower their monthly bill
+    script:
+      - agent: What can I do for you?
+        sample_response: What should I do to lower the monthly bill for {AccountNumber}
+        intent_to_elicit: LowerMonthlyBill
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: How do I make money on TikTok?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SyncLaptopTVScreen_Confirmed_en-US
+    scenario_id: '0217'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to sync your laptop to your TV screen
+    description: User wants to sync their laptop to their TV screen
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: My {LaptopModel} won't sync with my TV
+        intent_to_elicit: SyncLaptopTVScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: yep - its Matthew
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: For the last name it's Fisher
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best email address for your records?
+        sample_response: Yeah F.Matthew@gmail.com is the email.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best number to reach you at?
+        sample_response: (037)-854-9640
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your smart TV model?
+        sample_response: Master Series
+        intent_to_elicit: false
+        slot_to_elicit: SmartTVModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you trying to sync your TV and laptop with a wireless or wired connection?
+        sample_response: wired
+        intent_to_elicit: false
+        slot_to_elicit: WiredOrWirelessConnection
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What cable do you use to connect your TV and laptop?
+        sample_response: I use a hdmi
+        intent_to_elicit: false
+        slot_to_elicit: HDMICableAvailable
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SyncLaptopTVScreen_HelpIntent_en-US
+    scenario_id: '0218'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sync your laptop to your TV screen
+    description: User wants to sync their laptop to their TV screen
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: I can't get my computer to sync up to my {SmartTVModel} what am I doing wrong
+        intent_to_elicit: SyncLaptopTVScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: Sure, it's Colin
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: Yes, my name is Hunt
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best email address for your records?
+        sample_response: HColin@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best number to reach you at?
+        sample_response: 083-277-1924
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your laptop model and model number?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_SyncLaptopTVScreen_en-US
+    scenario_id: '0219'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to sync your laptop to your TV screen
+    description: User wants to sync their laptop to their TV screen
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: I need help my laptop and TV won't sync up
+        intent_to_elicit: SyncLaptopTVScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: Tyrone
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: It's Jones
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best email address for your records?
+        sample_response: Yeah it is JTyrone@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best number to reach you at?
+        sample_response: I want waffles with chicken
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SyncLaptopTVScreen_en-US
+    scenario_id: '0220'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to sync your laptop to your TV screen
+    description: User wants to sync their laptop to their TV screen
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: My laptop and TV won't sync can you help me fix it
+        intent_to_elicit: SyncLaptopTVScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: How do I fix my own Apple TV?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

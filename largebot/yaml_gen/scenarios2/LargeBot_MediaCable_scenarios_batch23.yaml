@@ -1,0 +1,868 @@
+name: LargeBot_MediaCable_scenarios_batch23
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SetupAutomaticTVPlay_en-US
+    scenario_id: '0441'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want your TV to turn on by itself at a certain time of day
+    description: User wants their TV to turn on by itself at a certain time of day
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: Can you guide me with setting up automatic TV turn on
+        intent_to_elicit: SetupAutomaticTVPlay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which day or days of the week would you like the TV to turn on automatically?
+        sample_response: On Friday.
+        intent_to_elicit: false
+        slot_to_elicit: DayOfWeek
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time of day would you like the TV to turn on automatically?
+        sample_response: I wanna sell my TV
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupAutomaticTVPlay_StartOverIntent_en-US
+    scenario_id: '0442'
+    bias:
+      - MultiIntent
+    customer_instructions: You want your TV to turn on by itself at a certain time of day
+    description: User wants their TV to turn on by itself at a certain time of day
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: I would like to set up automatic TV play what do I do
+        intent_to_elicit: SetupAutomaticTVPlay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which day or days of the week would you like the TV to turn on automatically?
+        sample_response: OK, Sunday.
+        intent_to_elicit: false
+        slot_to_elicit: DayOfWeek
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time of day would you like the TV to turn on automatically?
+        sample_response: that'd be 01:20
+        intent_to_elicit: false
+        slot_to_elicit: AutoOnTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time of day would you like the TV to turn off automatically?
+        sample_response: yeah 18:40.
+        intent_to_elicit: false
+        slot_to_elicit: AutoOffTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the channel would you like the TV to be on?
+        sample_response: Put it on TVLand
+        intent_to_elicit: false
+        slot_to_elicit: ChannelName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What volume number (between 1 and 100) would you like the TV to be at?
+        sample_response: 15 please
+        intent_to_elicit: false
+        slot_to_elicit: VolumeNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How about the brightness level (between 1 and 100)?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupAutomaticTVPlay_RepeatIntent_en-US
+    scenario_id: '0443'
+    bias:
+      - MultiIntent
+    customer_instructions: You want your TV to turn on by itself at a certain time of day
+    description: User wants their TV to turn on by itself at a certain time of day
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: I want my automatic TV set up and I want it only on {DayOfWeek} please
+        intent_to_elicit: SetupAutomaticTVPlay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time of day would you like the TV to turn on automatically?
+        sample_response: 2PM should be ok
+        intent_to_elicit: false
+        slot_to_elicit: AutoOnTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time of day would you like the TV to turn off automatically?
+        sample_response: its 3PM
+        intent_to_elicit: false
+        slot_to_elicit: AutoOffTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the channel would you like the TV to be on?
+        sample_response: channel MTV
+        intent_to_elicit: false
+        slot_to_elicit: ChannelName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What volume number (between 1 and 100) would you like the TV to be at?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessTVGuideOnline_Confirmed_en-US
+    scenario_id: '0444'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to access the TV guide online
+    description: User wants to access the TV guide online
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I want to see {TVProgramName} on the online TV guide
+        intent_to_elicit: AccessTVGuideOnline
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to access the TV Guide for?
+        sample_response: yeah so its 2021-04-09
+        intent_to_elicit: false
+        slot_to_elicit: Date
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: At what time?
+        sample_response: 23:00:53 plz
+        intent_to_elicit: false
+        slot_to_elicit: TimeInterval
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_AccessTVGuideOnline_en-US
+    scenario_id: '0445'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to access the TV guide online
+    description: User wants to access the TV guide online
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I want to view the online TV guide for {TimeInterval} can you help
+        intent_to_elicit: AccessTVGuideOnline
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to access the TV Guide for?
+        sample_response: How do I get a story in the TV guide?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessTVGuideOnline_PauseIntent_en-US
+    scenario_id: '0446'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access the TV guide online
+    description: User wants to access the TV guide online
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Do you have {TimeInterval}'s online TV guide I can't find it
+        intent_to_elicit: AccessTVGuideOnline
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to access the TV Guide for?
+        sample_response: On 2021-05-27
+        intent_to_elicit: false
+        slot_to_elicit: Date
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you are looking for a particular TV program, what's it called?
+        sample_response: Ah I can't remember hang on a sec
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessTVGuideOnline_StopIntent_en-US
+    scenario_id: '0447'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access the TV guide online
+    description: User wants to access the TV guide online
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Can you guide me to the online TV guide for {TVProgramName} for {Date} please
+        intent_to_elicit: AccessTVGuideOnline
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: At what time?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ','
+        sample_response: ''
+        intent_to_elicit: ''
+        slot_to_elicit: ''
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FollowUpRefundRequest_Confirmed_en-US
+    scenario_id: '0448'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know when they will receive a previously requested refund
+    description: User wants to know when they will receive a previously requested refund
+    script:
+      - agent: Hi, what do you need help with today?
+        sample_response: So I'm looking for information on the refund I requested and when it will be issued
+        intent_to_elicit: FollowUpRefundRequest
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: As far as I can tell it's KJ-70161687.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date did you request the refund?
+        sample_response: that is going to be 2021-01-13
+        intent_to_elicit: false
+        slot_to_elicit: RequestDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the best phone number for a customer service representative to call to reach you?
+        sample_response: 652-9020
+        intent_to_elicit: false
+        slot_to_elicit: ContactPhone
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In the event we are unable to reach you by phone, what email address should we use to contact you?
+        sample_response: EmmaK@yahoo.com is good.
+        intent_to_elicit: false
+        slot_to_elicit: ContactEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FollowUpRefundRequest_RequestBills_Confirmed_en-US
+    scenario_id: '0449'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know when they will receive a previously requested refund
+    description: User wants to know when they will receive a previously requested refund
+    script:
+      - agent: Hi, what do you need help with today?
+        sample_response: Can you kindly find out when I will receive the refund I requested on {RequestDate}
+        intent_to_elicit: FollowUpRefundRequest
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Can I see my bills
+        intent_to_elicit: RequestBills
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I believe it is 12-H195738SK
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: From what date to what date would you like to request your bills?
+        sample_response: 01/06/2021-4/15/2021
+        intent_to_elicit: false
+        slot_to_elicit: BillDateRange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_FollowUpRefundRequest_en-US
+    scenario_id: '0450'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to know when they will receive a previously requested refund
+    description: User wants to know when they will receive a previously requested refund
+    script:
+      - agent: Hi, what do you need help with today?
+        sample_response: Can you kindly check on the refund I requested
+        intent_to_elicit: FollowUpRefundRequest
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: So it's 98186334995JE
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date did you request the refund?
+        sample_response: what's the best way to find a cool phone cover
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FollowUpRefundRequest_PauseIntent_en-US
+    scenario_id: '0451'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know when they will receive a previously requested refund
+    description: User wants to know when they will receive a previously requested refund
+    script:
+      - agent: Hi, what do you need help with today?
+        sample_response: Could you check when I will get my refund
+        intent_to_elicit: FollowUpRefundRequest
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 41-77385453J3 I guess
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date did you request the refund?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FollowUpRefundRequest_HelpIntent_en-US
+    scenario_id: '0452'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know when they will receive a previously requested refund
+    description: User wants to know when they will receive a previously requested refund
+    script:
+      - agent: Hi, what do you need help with today?
+        sample_response: I want to know when I will get my refund
+        intent_to_elicit: FollowUpRefundRequest
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Number IA-64848316
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date did you request the refund?
+        sample_response: For 2020-10-05.
+        intent_to_elicit: false
+        slot_to_elicit: RequestDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the best phone number for a customer service representative to call to reach you?
+        sample_response: I need help
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RescheduleTechnician_Denied_en-US
+    scenario_id: '0453'
+    bias:
+      - SingleIntent
+    customer_instructions: You would like to reschedule a technician
+    description: User would like to reschedule a technician
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: I would like to reschedule a technician
+        intent_to_elicit: RescheduleTechnician
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: That is going to be 70-36052921L3
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please confirm your street address?
+        sample_response: "This is it: 6275 Shub Farm Street,\nMartinez, GA 30907"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerStreetAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Thank you — now, will you confirm your contact phone number?
+        sample_response: 639-8231
+        intent_to_elicit: false
+        slot_to_elicit: CustomerContactPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What range of dates should I try to reschedule you for?
+        sample_response: How's next week?
+        intent_to_elicit: false
+        slot_to_elicit: RescheduleForDateRange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time range would you like to reschedule for? You can say morning, afternoon, or evening.
+        sample_response: morning would work best
+        intent_to_elicit: false
+        slot_to_elicit: RescheduleTimeRange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: On second thought not just yet. Thanks anyway!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_RescheduleTechnician_en-US
+    scenario_id: '0454'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You would like to reschedule a technician
+    description: User would like to reschedule a technician
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Can you use my account number {AccountNumber} to reschedule a technician please
+        intent_to_elicit: RescheduleTechnician
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please confirm your street address?
+        sample_response: "It's 8145 Sussex St.,\nHuntington, UT 84528 35082 Ellicott City"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerStreetAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Thank you — now, will you confirm your contact phone number?
+        sample_response: it's 0833841257
+        intent_to_elicit: false
+        slot_to_elicit: CustomerContactPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What range of dates should I try to reschedule you for?
+        sample_response: How do I become a technician?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RescheduleTechnician_RepeatIntent_en-US
+    scenario_id: '0455'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like to reschedule a technician
+    description: User would like to reschedule a technician
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: I was wondering if we could reschedule our technician from {RescheduleTimeRange}
+        intent_to_elicit: RescheduleTechnician
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: it would be 13-73584833G1
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please confirm your street address?
+        sample_response: At 6192 Jennings St.,Spfld, MA 01103 77417 Guttenberg
+        intent_to_elicit: false
+        slot_to_elicit: CustomerStreetAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Thank you — now, will you confirm your contact phone number?
+        sample_response: Sure, 379-193-0645
+        intent_to_elicit: false
+        slot_to_elicit: CustomerContactPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What range of dates should I try to reschedule you for?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RescheduleTechnician_StopIntent_en-US
+    scenario_id: '0456'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like to reschedule a technician
+    description: User would like to reschedule a technician
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: I want to reschedule a technician please
+        intent_to_elicit: RescheduleTechnician
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Yes KT-70963143 please
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please confirm your street address?
+        sample_response: "it's: 8257 Rockville Street,\nAbiquiu, NM 87516 92224 La Moille"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerStreetAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Thank you — now, will you confirm your contact phone number?
+        sample_response: Yes, 843-481-6058
+        intent_to_elicit: false
+        slot_to_elicit: CustomerContactPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What range of dates should I try to reschedule you for?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestBills_Confirmed_en-US
+    scenario_id: '0457'
+    bias:
+      - SingleIntent
+    customer_instructions: You would like to see the bills from your service provider
+    description: User would like to see the bills from their service provider
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: If you could pull up my {BillDateRange} bill that would be great
+        intent_to_elicit: RequestBills
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: That's going to be SS-96644928
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_RequestBills_en-US
+    scenario_id: '0458'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You would like to see the bills from your service provider
+    description: User would like to see the bills from their service provider
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Let me please see the bill for {AccountNumber}
+        intent_to_elicit: RequestBills
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: From what date to what date would you like to request your bills?
+        sample_response: I want to buy shares in the service provider
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestBills_PauseIntent_en-US
+    scenario_id: '0459'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like to see the bills from your service provider
+    description: User would like to see the bills from their service provider
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: I want to see my bill from {BillDateRange} for {AccountNumber} please
+        intent_to_elicit: RequestBills
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Hold on I need to look it up
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestBills_YesIntent_en-US
+    scenario_id: '0460'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like to see the bills from your service provider
+    description: User would like to see the bills from their service provider
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: If you could show me the bill from {BillDateRange} I would appreciate it
+        intent_to_elicit: RequestBills
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: it's 29-98397643c6
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: From what date to what date would you like to request your bills?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

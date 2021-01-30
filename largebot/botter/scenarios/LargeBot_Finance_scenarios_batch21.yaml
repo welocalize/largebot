@@ -1,0 +1,2517 @@
+name: LargeBot_Finance_scenarios_batch21
+locale: en-US
+domain: Finance
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: Finance_DividendPercentageAmount_PauseIntent_en-US
+    scenario_id: '1001'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to find out what percentage of dividends are paid out by a company
+    description: User wants to find out what percentage of dividends are paid out by a company
+    script:
+      - agent: In what state is the company located?
+        sample_response: The state's MI.
+        intent_to_elicit: false
+        slot_to_elicit: CompanyLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What period of time do you want to check?
+        sample_response: three years
+        intent_to_elicit: false
+        slot_to_elicit: PeriodOfTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the company name you are looking for?
+        sample_response: for Gregory Ltd
+        intent_to_elicit: false
+        slot_to_elicit: CompanyName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is their percentage compared to other companies?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DividendPercentageAmount_Confirmed_en-US
+    scenario_id: '1002'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to find out what percentage of dividends are paid out by a company
+    description: User wants to find out what percentage of dividends are paid out by a company
+    script:
+      - agent: In what state is the company located?
+        sample_response: CA.
+        intent_to_elicit: false
+        slot_to_elicit: CompanyLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What period of time do you want to check?
+        sample_response: three years
+        intent_to_elicit: false
+        slot_to_elicit: PeriodOfTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the company name you are looking for?
+        sample_response: I am searching for Moran Robertson and Johnson.
+        intent_to_elicit: false
+        slot_to_elicit: CompanyName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is their percentage compared to other companies?
+        sample_response: it is 24%
+        intent_to_elicit: false
+        slot_to_elicit: OtherCompanyComparison
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the average percentage paid?
+        sample_response: Yes, operating cash flow is correct.
+        intent_to_elicit: false
+        slot_to_elicit: AveragePercentagePaid
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where would you like the information sent?
+        sample_response: My phone if I can.
+        intent_to_elicit: false
+        slot_to_elicit: InformationReceived
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ForeclosureProcessInfo_Confirmed_en-US
+    scenario_id: '1003'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the foreclosure process
+    description: User wants to know the foreclosure process
+    script:
+      - agent: Could you please provide your first name?
+        sample_response: Laura
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Young
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: "6926 SW Nichols St\nMeridian TX 76665"
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What city do you live in?
+        sample_response: Tyro
+        intent_to_elicit: false
+        slot_to_elicit: UserCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current state?
+        sample_response: OK
+        intent_to_elicit: false
+        slot_to_elicit: UserState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of foreclosure are you looking for?
+        sample_response: foreclosure by sale
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfForeclosure
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address would you like to receive the information?
+        sample_response: Laura.Young@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ForeclosureProcessInfo_RepeatIntent_en-US
+    scenario_id: '1004'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the foreclosure process
+    description: User wants to know the foreclosure process
+    script:
+      - agent: Could you please provide your first name?
+        sample_response: Jasmine.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: It's Smith.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: My address is 6179 High Noon Street Cheltenham PA 19012.
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What city do you live in?
+        sample_response: City is Lamont.
+        intent_to_elicit: false
+        slot_to_elicit: UserCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current state?
+        sample_response: IA.
+        intent_to_elicit: false
+        slot_to_elicit: UserState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of foreclosure are you looking for?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ForeclosureProcessInfo_StartOverIntent_en-US
+    scenario_id: '1005'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the foreclosure process
+    description: User wants to know the foreclosure process
+    script:
+      - agent: Could you please provide your first name?
+        sample_response: My first name is Samuel.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure, it's Colon.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: "The street address is 849 Hilldale Street\nBennettsville SC 29512."
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What city do you live in?
+        sample_response: City's Ann Arbor.
+        intent_to_elicit: false
+        slot_to_elicit: UserCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current state?
+        sample_response: The state is PA.
+        intent_to_elicit: false
+        slot_to_elicit: UserState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of foreclosure are you looking for?
+        sample_response: the non judicial one
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfForeclosure
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address would you like to receive the information?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_ForeclosureProcessInfo_en-US
+    scenario_id: '1006'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to know the foreclosure process
+    description: User wants to know the foreclosure process
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Could you share some detailed information on the foreclosure process
+        intent_to_elicit: ForeclosureProcessInfo
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide your first name?
+        sample_response: How can I get a safe
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestFraudCaseReference_StopIntent_en-US
+    scenario_id: '1007'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to know your fraud investigation reference number.
+    description: Customer needs to know their fraud investigation reference number.
+    script:
+      - agent: Can I have your first name please?
+        sample_response: Raymond
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you list your last name?
+        sample_response: White
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account login name?
+        sample_response: Raymond.W1915
+        intent_to_elicit: false
+        slot_to_elicit: AccountLogin
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give your account password?
+        sample_response: bxsv5GB9v4
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of account are you checking?
+        sample_response: savings
+        intent_to_elicit: false
+        slot_to_elicit: AccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your PIN?
+        sample_response: Stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestFraudCaseReference_YesIntent_en-US
+    scenario_id: '1008'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to know your fraud investigation reference number.
+    description: Customer needs to know their fraud investigation reference number.
+    script:
+      - agent: Can I have your first name please?
+        sample_response: Sherri
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you list your last name?
+        sample_response: Sure its Love
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account login name?
+        sample_response: Okay its LSherri1919
+        intent_to_elicit: false
+        slot_to_elicit: AccountLogin
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give your account password?
+        sample_response: Thats Rp5g6Fo3R9
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of account are you checking?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_MergerArbitrageRiskInfo_Confirmed_en-US
+    scenario_id: '1009'
+    bias:
+      - MultiIntent
+    customer_instructions: You want merger arbitrage risk information
+    description: User wants merger arbitrage risk information
+    script:
+      - agent: What is your email?
+        sample_response: GinaGomez@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: UserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city where the merger taking place?
+        sample_response: Hoosick Falls
+        intent_to_elicit: false
+        slot_to_elicit: Location
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of merger are you referring to?
+        sample_response: horizontal.
+        intent_to_elicit: false
+        slot_to_elicit: MergerType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did the merger take place?
+        sample_response: 01/05/2021
+        intent_to_elicit: false
+        slot_to_elicit: MergerDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_MergerArbitrageRiskInfo_CancelIntent_en-US
+    scenario_id: '1010'
+    bias:
+      - MultiIntent
+    customer_instructions: You want merger arbitrage risk information
+    description: User wants merger arbitrage risk information
+    script:
+      - agent: What is your email?
+        sample_response: OK, it's Peterson.Sherri@hotmail.com.
+        intent_to_elicit: false
+        slot_to_elicit: UserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city where the merger taking place?
+        sample_response: Thomaston is the city.
+        intent_to_elicit: false
+        slot_to_elicit: Location
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of merger are you referring to?
+        sample_response: It is a market extension merge.
+        intent_to_elicit: false
+        slot_to_elicit: MergerType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did the merger take place?
+        sample_response: Cancel
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_MergerArbitrageRiskInfo_HelpIntent_en-US
+    scenario_id: '1011'
+    bias:
+      - MultiIntent
+    customer_instructions: You want merger arbitrage risk information
+    description: User wants merger arbitrage risk information
+    script:
+      - agent: What is your email?
+        sample_response: For email, JenniferT@yahoo.com.
+        intent_to_elicit: false
+        slot_to_elicit: UserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city where the merger taking place?
+        sample_response: Okay, it's Laurel Fork.
+        intent_to_elicit: false
+        slot_to_elicit: Location
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of merger are you referring to?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_MergerArbitrageRiskInfo_en-US
+    scenario_id: '1012'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want merger arbitrage risk information
+    description: User wants merger arbitrage risk information
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: So can you tell me all of the risks with a merger arbitrage
+        intent_to_elicit: MergerArbitrageRiskInfo
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email?
+        sample_response: I want to buy an ATM machine
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditCardSecurityCode_NoIntent_en-US
+    scenario_id: '1013'
+    bias:
+      - MultiIntent
+    customer_instructions: You does not have access to your credit card but would like to know its security code
+    description: Customer does not have access to their credit card but would like to know its security code
+    script:
+      - agent: Can I have your first name as it appears on your credit card?
+        sample_response: Rachel
+        intent_to_elicit: false
+        slot_to_elicit: CardholderFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name as it appears on your credit card?
+        sample_response: Torres
+        intent_to_elicit: false
+        slot_to_elicit: CardholderLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the username that you use to access your account online?
+        sample_response: TorresRachel1906
+        intent_to_elicit: false
+        slot_to_elicit: CardholderAccountUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the password that you use to access your account online?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditCardSecurityCode_PauseIntent_en-US
+    scenario_id: '1014'
+    bias:
+      - MultiIntent
+    customer_instructions: You does not have access to your credit card but would like to know its security code
+    description: Customer does not have access to their credit card but would like to know its security code
+    script:
+      - agent: Can I have your first name as it appears on your credit card?
+        sample_response: My first name is Brittany.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name as it appears on your credit card?
+        sample_response: Gonzales.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the username that you use to access your account online?
+        sample_response: It is Brittany.Gonzales1948.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderAccountUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the password that you use to access your account online?
+        sample_response: 0ftq0sqEvN.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderAccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your billing address?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditCardSecurityCode_Confirmed_en-US
+    scenario_id: '1015'
+    bias:
+      - MultiIntent
+    customer_instructions: You does not have access to your credit card but would like to know its security code
+    description: Customer does not have access to their credit card but would like to know its security code
+    script:
+      - agent: Can I have your first name as it appears on your credit card?
+        sample_response: First name's Allison.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name as it appears on your credit card?
+        sample_response: It's Berry.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the username that you use to access your account online?
+        sample_response: That's BAllison1960.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderAccountUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the password that you use to access your account online?
+        sample_response: OK, it's SouNihxf9P.
+        intent_to_elicit: false
+        slot_to_elicit: CardholderAccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your billing address?
+        sample_response: The address is 4931 Lake Street Marianna FL 32448
+        intent_to_elicit: false
+        slot_to_elicit: CardholderBillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the phone number tied to your account?
+        sample_response: '5997453972'
+        intent_to_elicit: false
+        slot_to_elicit: CardholderPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In order to verify your identity, what is your social security number (SSN)?
+        sample_response: Sure, it's 640058021
+        intent_to_elicit: false
+        slot_to_elicit: CardholderSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CheckStockVolatility_Confirmed_en-US
+    scenario_id: '1016'
+    bias:
+      - MultiIntent
+    customer_instructions: Investor want to know the volatility of a stock over a given date range
+    description: Investor wants to know the volatility of a stock over a given date range
+    script:
+      - agent: Which country is the stock listed in?
+        sample_response: Greenland
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On which stock exchange is the stock listed?
+        sample_response: Bombay Stock Exchange.
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the ticker symbol for the stock?
+        sample_response: CPRX.
+        intent_to_elicit: false
+        slot_to_elicit: TickerSymbol
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the stock?
+        sample_response: Netflix.
+        intent_to_elicit: false
+        slot_to_elicit: StockName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date range of stock volatility do you want to know about?
+        sample_response: May 9 to June 9
+        intent_to_elicit: false
+        slot_to_elicit: StockHistoryRange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CheckStockVolatility_RepeatIntent_en-US
+    scenario_id: '1017'
+    bias:
+      - MultiIntent
+    customer_instructions: Investor want to know the volatility of a stock over a given date range
+    description: Investor wants to know the volatility of a stock over a given date range
+    script:
+      - agent: Which country is the stock listed in?
+        sample_response: Bhutan.
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On which stock exchange is the stock listed?
+        sample_response: the NYSE.
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the ticker symbol for the stock?
+        sample_response: KODK is the stock symbol.
+        intent_to_elicit: false
+        slot_to_elicit: TickerSymbol
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the stock?
+        sample_response: the name is Johnson and Johnson.
+        intent_to_elicit: false
+        slot_to_elicit: StockName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date range of stock volatility do you want to know about?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CheckStockVolatility_StartOverIntent_en-US
+    scenario_id: '1018'
+    bias:
+      - MultiIntent
+    customer_instructions: Investor want to know the volatility of a stock over a given date range
+    description: Investor wants to know the volatility of a stock over a given date range
+    script:
+      - agent: Which country is the stock listed in?
+        sample_response: In Hungary.
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On which stock exchange is the stock listed?
+        sample_response: It's NASDAQ
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the ticker symbol for the stock?
+        sample_response: SPY is the ticker symbol
+        intent_to_elicit: false
+        slot_to_elicit: TickerSymbol
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the stock?
+        sample_response: The stock's name was Apple.
+        intent_to_elicit: false
+        slot_to_elicit: StockName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date range of stock volatility do you want to know about?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_CheckStockVolatility_en-US
+    scenario_id: '1019'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: Investor want to know the volatility of a stock over a given date range
+    description: Investor wants to know the volatility of a stock over a given date range
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Can I be connected with an adviser regarding {StockName} and its its recent volatility
+        intent_to_elicit: CheckStockVolatility
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which country is the stock listed in?
+        sample_response: How can I get a loan with no repayments
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_Request1099DIV_StopIntent_en-US
+    scenario_id: '1020'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request a 1099-DIV for tax filing purposes
+    description: Customer wants to request a 1099-DIV for tax filing purposes
+    script:
+      - agent: May I have your first name, please?
+        sample_response: Stephen
+        intent_to_elicit: false
+        slot_to_elicit: InvestorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name, please?
+        sample_response: Hernandez
+        intent_to_elicit: false
+        slot_to_elicit: InvestorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: RX32479108
+        intent_to_elicit: false
+        slot_to_elicit: InvestorAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I please have your social security number?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_Request1099DIV_YesIntent_en-US
+    scenario_id: '1021'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request a 1099-DIV for tax filing purposes
+    description: Customer wants to request a 1099-DIV for tax filing purposes
+    script:
+      - agent: May I have your first name, please?
+        sample_response: My name is Regina.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name, please?
+        sample_response: Sure, it's Carroll.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Sure, 88595672859TU.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I please have your social security number?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_Request1099DIV_Denied_en-US
+    scenario_id: '1022'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request a 1099-DIV for tax filing purposes
+    description: Customer wants to request a 1099-DIV for tax filing purposes
+    script:
+      - agent: May I have your first name, please?
+        sample_response: It's Jeffrey.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name, please?
+        sample_response: Sure, it's Todd.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: That's GX99936054.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I please have your social security number?
+        sample_response: Sure, 131454670.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address do you want the form sent to?
+        sample_response: My email address is Jeffrey.T@yahoo.com.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you want to mail the form to?
+        sample_response: Sure, it's 9805 Fifth St Belton SC 2962
+        intent_to_elicit: false
+        slot_to_elicit: InvestorMailingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you prefer a paper or emailed copy of your form?
+        sample_response: paper copy, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorCopyPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Please don't do anything just yet. I'm going to wait a bit.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_401kEarlyWithdrawal_Denied_en-US
+    scenario_id: '1023'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to withdraw your 401(k) early
+    description: User wants to withdraw their 401(k) early
+    script:
+      - agent: What is the first name on your account?
+        sample_response: Javier
+        intent_to_elicit: false
+        slot_to_elicit: InvestorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the last name on your account?
+        sample_response: Chavez
+        intent_to_elicit: false
+        slot_to_elicit: InvestorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the bank account number?
+        sample_response: WQ58333515
+        intent_to_elicit: false
+        slot_to_elicit: InvestorBankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your social security number (SSN)?
+        sample_response: 652-15-4981
+        intent_to_elicit: false
+        slot_to_elicit: InvestorSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your mailing address?
+        sample_response: 8677 Harvey Street Los Fresnos TX 78566
+        intent_to_elicit: false
+        slot_to_elicit: InvestorMailingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for the account that you want to withdraw from?
+        sample_response: WQ58333515
+        intent_to_elicit: false
+        slot_to_elicit: AccountToWithdrawFrom
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the routing number of the bank account?
+        sample_response: '4695223124'
+        intent_to_elicit: false
+        slot_to_elicit: InvestorBankRoutingNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the bank where the withdrawal should be deposited?
+        sample_response: State Street
+        intent_to_elicit: false
+        slot_to_elicit: InvestorBankAccountName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to withdraw?
+        sample_response: $40.00
+        intent_to_elicit: false
+        slot_to_elicit: AmountToWithdraw
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Nope. Not now. Thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_401kEarlyWithdrawal_CancelIntent_en-US
+    scenario_id: '1024'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to withdraw your 401(k) early
+    description: User wants to withdraw their 401(k) early
+    script:
+      - agent: What is the first name on your account?
+        sample_response: My name is Joseph.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the last name on your account?
+        sample_response: My last name is Williams.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the bank account number?
+        sample_response: It is 83155042576MO.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorBankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your social security number (SSN)?
+        sample_response: That's 499160624.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your mailing address?
+        sample_response: My address is 9291C Princeton Street Clarksdale IL 62556.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorMailingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for the account that you want to withdraw from?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_401kEarlyWithdrawal_HelpIntent_en-US
+    scenario_id: '1025'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to withdraw your 401(k) early
+    description: User wants to withdraw their 401(k) early
+    script:
+      - agent: What is the first name on your account?
+        sample_response: Yeah, it's Cindy.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the last name on your account?
+        sample_response: Last name is Pennington.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the bank account number?
+        sample_response: Yeah, it's 5525767539O8.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorBankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your social security number (SSN)?
+        sample_response: Okay, it's 115381927.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your mailing address?
+        sample_response: My address is 2533 High Point Street Ravendale CA 96123.
+        intent_to_elicit: false
+        slot_to_elicit: InvestorMailingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for the account that you want to withdraw from?
+        sample_response: It is 5525767539O8.
+        intent_to_elicit: false
+        slot_to_elicit: AccountToWithdrawFrom
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the routing number of the bank account?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_401kEarlyWithdrawal_en-US
+    scenario_id: '1026'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to withdraw your 401(k) early
+    description: User wants to withdraw their 401(k) early
+    script:
+      - agent: What can I help you with?
+        sample_response: Is it possible for me to withdraw early from my 401k please check
+        intent_to_elicit: 401kEarlyWithdrawal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name on your account?
+        sample_response: I want to access other people's bank statements
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SellStock_PauseIntent_en-US
+    scenario_id: '1027'
+    bias:
+      - MultiIntent
+    customer_instructions: Investor want to sell a stock that they currently hold
+    description: Investor wants to sell a stock that they currently hold
+    script:
+      - agent: What is the amount in dollars of the stock that you would like to sell?
+        sample_response: $140.00
+        intent_to_elicit: false
+        slot_to_elicit: StockCurrencyValueToSell
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What percentage of your currently held shares would you like to sell?
+        sample_response: operating cash flow should be ok please
+        intent_to_elicit: false
+        slot_to_elicit: StockPercentageToSell
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the ticker symbol of the stock that you would like to sell?
+        sample_response: CCL.
+        intent_to_elicit: false
+        slot_to_elicit: StockToSellTickerSymbol
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the name of the stock that you would like to sell?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SellStock_RepeatIntent_en-US
+    scenario_id: '1028'
+    bias:
+      - MultiIntent
+    customer_instructions: Investor want to sell a stock that they currently hold
+    description: Investor wants to sell a stock that they currently hold
+    script:
+      - agent: What is the amount in dollars of the stock that you would like to sell?
+        sample_response: That's $140.00.
+        intent_to_elicit: false
+        slot_to_elicit: StockCurrencyValueToSell
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What percentage of your currently held shares would you like to sell?
+        sample_response: current
+        intent_to_elicit: false
+        slot_to_elicit: StockPercentageToSell
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the ticker symbol of the stock that you would like to sell?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SellStock_Confirmed_en-US
+    scenario_id: '1029'
+    bias:
+      - MultiIntent
+    customer_instructions: Investor want to sell a stock that they currently hold
+    description: Investor wants to sell a stock that they currently hold
+    script:
+      - agent: What is the amount in dollars of the stock that you would like to sell?
+        sample_response: $20.00 is the amount.
+        intent_to_elicit: false
+        slot_to_elicit: StockCurrencyValueToSell
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What percentage of your currently held shares would you like to sell?
+        sample_response: Yes, operating cash flow is correct.
+        intent_to_elicit: false
+        slot_to_elicit: StockPercentageToSell
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the ticker symbol of the stock that you would like to sell?
+        sample_response: SOLO is the stock symbol.
+        intent_to_elicit: false
+        slot_to_elicit: StockToSellTickerSymbol
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the name of the stock that you would like to sell?
+        sample_response: I'd like to sell Prospect Capital.
+        intent_to_elicit: false
+        slot_to_elicit: StockToSellName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many shares would you like to sell?
+        sample_response: Yes, 50
+        intent_to_elicit: false
+        slot_to_elicit: StockShareAmountToSell
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CheckHolidayTradingHours_Denied_en-US
+    scenario_id: '1030'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to trade stocks during the holidays
+    description: User wants to trade stocks during the holidays
+    script:
+      - agent: Can you tell me what country's stock exchange you will be using?
+        sample_response: Korea
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of stocks will you be trading?
+        sample_response: preferred.
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfStocks
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What market index will you be using?
+        sample_response: Vaxart.
+        intent_to_elicit: false
+        slot_to_elicit: MarketIndex
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What holiday will you be trading on?
+        sample_response: Martin Luther King Jr Day
+        intent_to_elicit: false
+        slot_to_elicit: NameOfHoliday
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time will you be trading?
+        sample_response: night
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfTrading
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: I think I will think about it a little first so let's not finalize anything just this minute.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CheckHolidayTradingHours_StartOverIntent_en-US
+    scenario_id: '1031'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to trade stocks during the holidays
+    description: User wants to trade stocks during the holidays
+    script:
+      - agent: Can you tell me what country's stock exchange you will be using?
+        sample_response: Antigua and Barbuda is the country
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of stocks will you be trading?
+        sample_response: Im looking to trade preferred
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfStocks
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What market index will you be using?
+        sample_response: Kodak please
+        intent_to_elicit: false
+        slot_to_elicit: MarketIndex
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What holiday will you be trading on?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CheckHolidayTradingHours_StopIntent_en-US
+    scenario_id: '1032'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to trade stocks during the holidays
+    description: User wants to trade stocks during the holidays
+    script:
+      - agent: Can you tell me what country's stock exchange you will be using?
+        sample_response: Singapore is the country.
+        intent_to_elicit: false
+        slot_to_elicit: StockExchangeCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of stocks will you be trading?
+        sample_response: I will be trading preferred.
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfStocks
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What market index will you be using?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_CheckHolidayTradingHours_en-US
+    scenario_id: '1033'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to trade stocks during the holidays
+    description: User wants to trade stocks during the holidays
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: What are the stock trading hours for {NameOfHoliday}.
+        intent_to_elicit: CheckHolidayTradingHours
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what country's stock exchange you will be using?
+        sample_response: I want a free loan
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_PurchaseTravelersChecks_NoIntent_en-US
+    scenario_id: '1034'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee traveler's checks
+    description: User wants to purchase traveler's checks
+    script:
+      - agent: What is your account number?
+        sample_response: WL27302383
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: State Street
+        intent_to_elicit: false
+        slot_to_elicit: NameOfFinancialInstitution
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_PurchaseTravelersChecks_YesIntent_en-US
+    scenario_id: '1035'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee traveler's checks
+    description: User wants to purchase traveler's checks
+    script:
+      - agent: What is your account number?
+        sample_response: Yeah, it's 37D388242TX.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: it is Chase
+        intent_to_elicit: false
+        slot_to_elicit: NameOfFinancialInstitution
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: The street address is 3170 Talbot Street Arapahoe WY 82510
+        intent_to_elicit: false
+        slot_to_elicit: BillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the type of account you will be using?
+        sample_response: I want to use my brokerage.
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will the checks be mailed, or will you be picking them up?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_PurchaseTravelersChecks_Confirmed_en-US
+    scenario_id: '1036'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee traveler's checks
+    description: User wants to purchase traveler's checks
+    script:
+      - agent: What is your account number?
+        sample_response: That's 233787401R8.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: The name is Bank of America.
+        intent_to_elicit: false
+        slot_to_elicit: NameOfFinancialInstitution
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: It is 6189C NE Columbia Street Sublette KS 67877
+        intent_to_elicit: false
+        slot_to_elicit: BillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the type of account you will be using?
+        sample_response: I will be using a checking account.
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will the checks be mailed, or will you be picking them up?
+        sample_response: mailed, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: MailOrPickupCheck
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What denomination of checks will you need?
+        sample_response: Sure, it's $10.00.
+        intent_to_elicit: false
+        slot_to_elicit: CheckDenomination
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_UpdateInvestmentPortfolio_Confirmed_en-US
+    scenario_id: '1037'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update your investment portfolio
+    description: User wants to update their investment portfolio
+    script:
+      - agent: What is your first name?
+        sample_response: Carla
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Miles
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 6582778706Y2
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: 46NKPiVdjK
+        intent_to_elicit: false
+        slot_to_elicit: UserPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to update in your business portfolio?
+        sample_response: commodity
+        intent_to_elicit: false
+        slot_to_elicit: InvestmentPortfolioUpdate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_UpdateInvestmentPortfolio_CancelIntent_en-US
+    scenario_id: '1038'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update your investment portfolio
+    description: User wants to update their investment portfolio
+    script:
+      - agent: What is your first name?
+        sample_response: The name is Lisa.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: The last name is Thompson.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: That is 194626136y2.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: It is h2TyqCOiu6.
+        intent_to_elicit: false
+        slot_to_elicit: UserPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to update in your business portfolio?
+        sample_response: Wait actually now I don't want to
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_UpdateInvestmentPortfolio_HelpIntent_en-US
+    scenario_id: '1039'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update your investment portfolio
+    description: User wants to update their investment portfolio
+    script:
+      - agent: What is your first name?
+        sample_response: My name is Stephanie.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Wilson.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: It's PP5801240.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: aJ73XKqta2.
+        intent_to_elicit: false
+        slot_to_elicit: UserPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to update in your business portfolio?
+        sample_response: would you be able to help me
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_UpdateInvestmentPortfolio_en-US
+    scenario_id: '1040'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to update your investment portfolio
+    description: User wants to update their investment portfolio
+    script:
+      - agent: What can I help you with today?
+        sample_response: Look up my investment portfolio and update it
+        intent_to_elicit: UpdateInvestmentPortfolio
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: I want to have get a credit card in someone else's name
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_UpdateBillingStatementDelivery_NoIntent_en-US
+    scenario_id: '1041'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change the delivery method of your billing statement
+    description: User wants to change the delivery method of their billing statement
+    script:
+      - agent: What is your first name?
+        sample_response: Elizabeth
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Stewart
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide your account number please?
+        sample_response: 64-D747167BS
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_UpdateBillingStatementDelivery_PauseIntent_en-US
+    scenario_id: '1042'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change the delivery method of your billing statement
+    description: User wants to change the delivery method of their billing statement
+    script:
+      - agent: What is your first name?
+        sample_response: I'm Matthew.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name is Guerrero.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide your account number please?
+        sample_response: Sure, 45398882424RF.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: OK, it's 9XiYTujpCL.
+        intent_to_elicit: false
+        slot_to_elicit: UserPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would you like to receive your billing statement?
+        sample_response: Through mail.
+        intent_to_elicit: false
+        slot_to_elicit: PreferredDeliveryMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address would you like your billing statement sent to?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_UpdateBillingStatementDelivery_Confirmed_en-US
+    scenario_id: '1043'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change the delivery method of your billing statement
+    description: User wants to change the delivery method of their billing statement
+    script:
+      - agent: What is your first name?
+        sample_response: My name's Carol.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure, it's Garner.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide your account number please?
+        sample_response: Sure, 7718362670q8.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: Okay, it's VlARECXwE6.
+        intent_to_elicit: false
+        slot_to_elicit: UserPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would you like to receive your billing statement?
+        sample_response: By email, if I can.
+        intent_to_elicit: false
+        slot_to_elicit: PreferredDeliveryMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address would you like your billing statement sent to?
+        sample_response: My email is GarnerCarol@yahoo.com.
+        intent_to_elicit: false
+        slot_to_elicit: UserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you want to mail your billing statement to?
+        sample_response: It is 4448 Walnutwood Street Camarillo CA 93010
+        intent_to_elicit: false
+        slot_to_elicit: BillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CalculateEquityReturn_Denied_en-US
+    scenario_id: '1044'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to calculate your return on equity
+    description: User wants to calculate their return on equity
+    script:
+      - agent: What is your first name?
+        sample_response: Tanner
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Martin
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 39442041873FY
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: 59ZElNfhr4
+        intent_to_elicit: false
+        slot_to_elicit: UserPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the total number of shareholders?
+        sample_response: '10'
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfShareholders
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much net income was invested?
+        sample_response: $90.00
+        intent_to_elicit: false
+        slot_to_elicit: NetIncome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Not right now. But thank you for your help.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CalculateEquityReturn_RepeatIntent_en-US
+    scenario_id: '1045'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to calculate your return on equity
+    description: User wants to calculate their return on equity
+    script:
+      - agent: What is your first name?
+        sample_response: It's Kenneth.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name's Mora.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Yeah, it's 12889389616XY.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: Okay, it's 9xgpXq4KOT.
+        intent_to_elicit: false
+        slot_to_elicit: UserPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the total number of shareholders?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CalculateEquityReturn_StartOverIntent_en-US
+    scenario_id: '1046'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to calculate your return on equity
+    description: User wants to calculate their return on equity
+    script:
+      - agent: What is your first name?
+        sample_response: My first name is Benjamin.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: OK, it's Cruz.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Sure, 84832707930JH.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your account password please?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_CalculateEquityReturn_en-US
+    scenario_id: '1047'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to calculate your return on equity
+    description: User wants to calculate their return on equity
+    script:
+      - agent: What may I assist you with today?
+        sample_response: I want to calculate my equity returns
+        intent_to_elicit: CalculateEquityReturn
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: How do you print money
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ResolveMarginCall_StopIntent_en-US
+    scenario_id: '1048'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to resolve a margin call
+    description: User wants to resolve a margin call
+    script:
+      - agent: What type of account do you have?
+        sample_response: money market
+        intent_to_elicit: false
+        slot_to_elicit: AccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much is in your account?
+        sample_response: $30.00
+        intent_to_elicit: false
+        slot_to_elicit: AccountBalance
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your brokerage firm?
+        sample_response: Fidelity
+        intent_to_elicit: false
+        slot_to_elicit: BrokerageName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the minimum you are required to hold?
+        sample_response: $90.00
+        intent_to_elicit: false
+        slot_to_elicit: AmountRequiredToHold
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In cash how much are your assets worth?
+        sample_response: $180.00
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfAssetsOwned
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the maintenance percentage?
+        sample_response: Please stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ResolveMarginCall_CancelIntent_en-US
+    scenario_id: '1049'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to resolve a margin call
+    description: User wants to resolve a margin call
+    script:
+      - agent: What type of account do you have?
+        sample_response: it's a savings
+        intent_to_elicit: false
+        slot_to_elicit: AccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much is in your account?
+        sample_response: It is $70.00.
+        intent_to_elicit: false
+        slot_to_elicit: AccountBalance
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your brokerage firm?
+        sample_response: It's Ally Invest
+        intent_to_elicit: false
+        slot_to_elicit: BrokerageName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the minimum you are required to hold?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ResolveMarginCall_Confirmed_en-US
+    scenario_id: '1050'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to resolve a margin call
+    description: User wants to resolve a margin call
+    script:
+      - agent: What type of account do you have?
+        sample_response: it is a brokerage
+        intent_to_elicit: false
+        slot_to_elicit: AccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much is in your account?
+        sample_response: Sure, it's $70.00.
+        intent_to_elicit: false
+        slot_to_elicit: AccountBalance
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your brokerage firm?
+        sample_response: They are E*TRADE
+        intent_to_elicit: false
+        slot_to_elicit: BrokerageName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the minimum you are required to hold?
+        sample_response: That's $20.00.
+        intent_to_elicit: false
+        slot_to_elicit: AmountRequiredToHold
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In cash how much are your assets worth?
+        sample_response: $190.00.
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfAssetsOwned
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the maintenance percentage?
+        sample_response: Yes, current is correct.
+        intent_to_elicit: false
+        slot_to_elicit: PercentageOnLoan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much did you take out in loans?
+        sample_response: That's $80.00.
+        intent_to_elicit: false
+        slot_to_elicit: LoanAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

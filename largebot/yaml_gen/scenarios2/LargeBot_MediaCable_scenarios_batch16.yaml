@@ -1,0 +1,941 @@
+name: LargeBot_MediaCable_scenarios_batch16
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_SetUpPassword_NoIntent_en-US
+    scenario_id: '0301'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set your password
+    description: User wants to set their password
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: I need help to set a password on my account
+        intent_to_elicit: SetUpPassword
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Brandon
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Sure the last name is Warren
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: I have NR-28687452
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your new password to be?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpPassword_PauseIntent_en-US
+    scenario_id: '0302'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set your password
+    description: User wants to set their password
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: I don't know how to set up a password for my account can you help
+        intent_to_elicit: SetUpPassword
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: the name of Brandy
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Burnett is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpServiceAutopay_Denied_en-US
+    scenario_id: '0303'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to set up autopayment for your service
+    description: User wants to set up autopayment for their service
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: I want to turn on autopay for my account
+        intent_to_elicit: SetUpServiceAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Sure, it is Jerry
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Last name is Stevens.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: think it's 97-09511747F7
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would you like to set up autopayment for?
+        sample_response: internet
+        intent_to_elicit: false
+        slot_to_elicit: UserService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your method of payment?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: UserPaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number you would like to use?
+        sample_response: yeah, 3501584822309952
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like your credit card to be charged?
+        sample_response: it should be on 2021-01-20
+        intent_to_elicit: false
+        slot_to_elicit: PaymentDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: On second thought, not just yet. Thanks any way!Never mind.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SetUpServiceAutopay_en-US
+    scenario_id: '0304'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to set up autopayment for your service
+    description: User wants to set up autopayment for their service
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Would you kindly help me set up autopay
+        intent_to_elicit: SetUpServiceAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Can I set up a cash autopayment?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_SetUpServiceAutopay_en-US
+    scenario_id: '0305'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to set up autopayment for your service
+    description: User wants to set up autopayment for their service
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Do you think you can help me turn on autopay please
+        intent_to_elicit: SetUpServiceAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: okay it's Christina
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes, my name is Cole
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: How hot is the hot sauce?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpServiceAutopay_PauseIntent_en-US
+    scenario_id: '0306'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up autopayment for your service
+    description: User wants to set up autopayment for their service
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Account number {UserAccountNumber} I would like to schedule autopay
+        intent_to_elicit: SetUpServiceAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Charles
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Murray is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would you like to set up autopayment for?
+        sample_response: Please set it up on my internet
+        intent_to_elicit: false
+        slot_to_elicit: UserService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your method of payment?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpServiceAutopay_StopIntent_en-US
+    scenario_id: '0307'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up autopayment for your service
+    description: User wants to set up autopayment for their service
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Is it possible to use auto-pay my name's {UserFirstName} {UserLastName}
+        intent_to_elicit: SetUpServiceAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: yeah so it's 36-X832345CF
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would you like to set up autopayment for?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StartFreeTrial_Confirmed_en-US
+    scenario_id: '0308'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to sign up to a free trial period
+    description: User wants to sign up to a free trial period
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Can I try {ServiceRequested} for free
+        intent_to_elicit: StartFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: the name's Edward
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Nelson
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: it should be 17-I045678JZ
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_StartFreeTrial_en-US
+    scenario_id: '0309'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to sign up to a free trial period
+    description: User wants to sign up to a free trial period
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Would you please help me obtain a free trial of {ServiceRequested}
+        intent_to_elicit: StartFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: I want the free trial that's always free
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_StartFreeTrial_en-US
+    scenario_id: '0310'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to sign up to a free trial period
+    description: User wants to sign up to a free trial period
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Can you tell me if you still offer a free trial
+        intent_to_elicit: StartFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: It's Hannah thanks
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Sure, it's Williams
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Do you offer Vegan options?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StartFreeTrial_StopIntent_en-US
+    scenario_id: '0311'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sign up to a free trial period
+    description: User wants to sign up to a free trial period
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Hi I wanted to sign up for a free trial please
+        intent_to_elicit: StartFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Of course, it's Ashley
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: My last name is Wood
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: seems to be 89-26434752q2
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would like to start a free trial with?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StartFreeTrial_PauseIntent_en-US
+    scenario_id: '0312'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sign up to a free trial period
+    description: User wants to sign up to a free trial period
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Is there a free trial for your plans
+        intent_to_elicit: StartFreeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: okay its Kenneth
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: The names Jones
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NoContractPhonePlan_Denied_en-US
+    scenario_id: '0313'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to sign up for a phone plan without a contract
+    description: User wants to sign up for a phone plan without a contract
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Am I right in thinking that {PhonePlanRequested} doesn't have a contract
+        intent_to_elicit: NoContractPhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My name is Traci
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yeah its Rowe
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: yes that is 73P541258PB
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your method of payment?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: UserPaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number you would like to use?
+        sample_response: Thatll be 4053894941433025
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like your credit card to be charged?
+        sample_response: 20210127 I guess
+        intent_to_elicit: false
+        slot_to_elicit: PaymentDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Hm not just yet I need to think about it a little more
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_NoContractPhonePlan_en-US
+    scenario_id: '0314'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to sign up for a phone plan without a contract
+    description: User wants to sign up for a phone plan without a contract
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I need a new provider but I don't want to get locked into a contract
+        intent_to_elicit: NoContractPhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: How do I start my own phone network?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_NoContractPhonePlan_en-US
+    scenario_id: '0315'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to sign up for a phone plan without a contract
+    description: User wants to sign up for a phone plan without a contract
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I want to get your plan but I don't want to be locked into it
+        intent_to_elicit: NoContractPhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: record my name as Jay
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Sure, it's Marshall
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: I have 58544053421FZ
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which no lock in contract phone plan would you like to sign up for?
+        sample_response: I want donuts
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NoContractPhonePlan_NoIntent_en-US
+    scenario_id: '0316'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sign up for a phone plan without a contract
+    description: User wants to sign up for a phone plan without a contract
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Hi do you have contract-free plans
+        intent_to_elicit: NoContractPhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Daniel is my name
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yeah sure the name is Coleman
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: it could be HT-53549599
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which no lock in contract phone plan would you like to sign up for?
+        sample_response: I'd like Basic instead
+        intent_to_elicit: false
+        slot_to_elicit: PhonePlanRequested
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your method of payment?
+        sample_response: I'm using credit
+        intent_to_elicit: false
+        slot_to_elicit: UserPaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number you would like to use?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NoContractPhonePlan_RepeatIntent_en-US
+    scenario_id: '0317'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sign up for a phone plan without a contract
+    description: User wants to sign up for a phone plan without a contract
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Are there any non-contract plans please
+        intent_to_elicit: NoContractPhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Nicholas
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Put Rivera
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: it would be VU-64134552
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which no lock in contract phone plan would you like to sign up for?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_JoinEmailList_Confirmed_en-US
+    scenario_id: '0318'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to sign up to receive emails on special deals and offers
+    description: User wants to sign up to receive emails on special deals and offers
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: Hi I wanted to get on your list with deals my email is {UserEmailAddress}
+        intent_to_elicit: JoinEmailList
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Robert is my name
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yep, it is Roy
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_JoinEmailList_en-US
+    scenario_id: '0319'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to sign up to receive emails on special deals and offers
+    description: User wants to sign up to receive emails on special deals and offers
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: I wanted to get your coupons in my email
+        intent_to_elicit: JoinEmailList
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Can I see the names on your email list?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_JoinEmailList_en-US
+    scenario_id: '0320'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to sign up to receive emails on special deals and offers
+    description: User wants to sign up to receive emails on special deals and offers
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: Can I join your promotional list
+        intent_to_elicit: JoinEmailList
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Sarah
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: For last name, it's Shelton.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which email address would you like our special deals and offers to be sent to?
+        sample_response: Call my phone provider
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

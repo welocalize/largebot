@@ -1,0 +1,1017 @@
+name: LargeBot_MediaCable_scenarios_batch17
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_JoinEmailList_CancelIntent_en-US
+    scenario_id: '0321'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sign up to receive emails on special deals and offers
+    description: User wants to sign up to receive emails on special deals and offers
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: I need to sign up for your email list
+        intent_to_elicit: JoinEmailList
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yeah, I am Julie
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: It is under the name Fox.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which email address would you like our special deals and offers to be sent to?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_JoinEmailList_StartOverIntent_en-US
+    scenario_id: '0322'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sign up to receive emails on special deals and offers
+    description: User wants to sign up to receive emails on special deals and offers
+    script:
+      - agent: Hello! Can I help you?
+        sample_response: I want to sign up for special offers from your mailing list
+        intent_to_elicit: JoinEmailList
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My given name is Michelle
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes, my name is Lynch
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which email address would you like our special deals and offers to be sent to?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CustomerComplaintsCode_Denied_en-US
+    scenario_id: '0323'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know company's complaints code of practice
+    description: User wants to know company's complaints code of practice
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I want to see your code of practice right now
+        intent_to_elicit: CustomerComplaintsCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the nature of your complaint?
+        sample_response: I was charged extra at the store.
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfComplaint
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the store you wish to complain about?
+        sample_response: "Sure, at 4890 Young Street,\nEglon, WA 98346"
+        intent_to_elicit: false
+        slot_to_elicit: StoreAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the date of purchase?
+        sample_response: starting 2021-01-10
+        intent_to_elicit: false
+        slot_to_elicit: DateOfService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the payment amount?
+        sample_response: $60.00 only.
+        intent_to_elicit: false
+        slot_to_elicit: PaymentAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: I think I will think about it a little first so let's not finalize anything just this minute.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_CustomerComplaintsCode_en-US
+    scenario_id: '0324'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to know company's complaints code of practice
+    description: User wants to know company's complaints code of practice
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I used your service and I am not pleased. I want to see the complaint procedures
+        intent_to_elicit: CustomerComplaintsCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the nature of your complaint?
+        sample_response: Can I change your complaints code of practice?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_CustomerComplaintsCode_TypeOfComplaint_en-US
+    scenario_id: '0325'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to know company's complaints code of practice
+    description: User wants to know company's complaints code of practice
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: What is your company's complaints code of practice for small businesses
+        intent_to_elicit: CustomerComplaintsCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the nature of your complaint?
+        sample_response: you double charged me
+        intent_to_elicit: TypeOfComplaint
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the store you wish to complain about?
+        sample_response: "6065 Riverview Street,\nRocky Ridge, UT 84645 21162 Argos"
+        intent_to_elicit: false
+        slot_to_elicit: StoreAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the date of purchase?
+        sample_response: I want a curry
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CustomerComplaintsCode_PauseIntent_en-US
+    scenario_id: '0326'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know company's complaints code of practice
+    description: User wants to know company's complaints code of practice
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: May I see your complaints code of practice
+        intent_to_elicit: CustomerComplaintsCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the nature of your complaint?
+        sample_response: I was charged extra at the store.
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfComplaint
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the store you wish to complain about?
+        sample_response: "Yes it's 3218 Walnut St.,\nBillet, IL 62439 39409 Shenandoah National Park"
+        intent_to_elicit: false
+        slot_to_elicit: StoreAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the date of purchase?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CustomerComplaintsCode_StopIntent_en-US
+    scenario_id: '0327'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know company's complaints code of practice
+    description: User wants to know company's complaints code of practice
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Where is your written code of practice please
+        intent_to_elicit: CustomerComplaintsCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the nature of your complaint?
+        sample_response: I was charged extra at the store.
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfComplaint
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the store you wish to complain about?
+        sample_response: "It was 4416 Paris Hill St.,\nBrilliant, AL 35548 23583 Pebble Beach"
+        intent_to_elicit: false
+        slot_to_elicit: StoreAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the date of purchase?
+        sample_response: '44189'
+        intent_to_elicit: false
+        slot_to_elicit: DateOfService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the payment amount?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StreamCableTVPhone_Confirmed_en-US
+    scenario_id: '0328'
+    bias:
+      - SingleIntent
+    customer_instructions: You needs help streaming cable TV from your phone
+    description: User needs help streaming cable TV from their phone
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Can you help me with my phone I can't stream anything
+        intent_to_elicit: StreamCableTVPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your cell phone provider?
+        sample_response: I'm with Visible
+        intent_to_elicit: false
+        slot_to_elicit: CellPhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: Austin
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What phone device are you currently using?
+        sample_response: I have a Galaxy Note 8
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfPhoneDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What cable package do you have?
+        sample_response: the one called Hulu + Live TV
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfCablePackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me in gigabytes how much data is in your plan?
+        sample_response: 20 GB
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanSize
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel number do you wish to watch?
+        sample_response: Disney!
+        intent_to_elicit: false
+        slot_to_elicit: ChannelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What language would you like to stream in?
+        sample_response: English
+        intent_to_elicit: false
+        slot_to_elicit: StreamingLanguage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would it be alright if you gave me your WIFI password? If so then what is it?
+        sample_response: from what I can see its MCQARf3R71
+        intent_to_elicit: false
+        slot_to_elicit: WIFIPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_StreamCableTVPhone_en-US
+    scenario_id: '0329'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You needs help streaming cable TV from your phone
+    description: User needs help streaming cable TV from their phone
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: For the {TypeOfPhoneDevice} how do I stream TV to it
+        intent_to_elicit: StreamCableTVPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your cell phone provider?
+        sample_response: I want to broadcast my own TV show to my phone
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_StreamCableTVPhone_en-US
+    scenario_id: '0330'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You needs help streaming cable TV from your phone
+    description: User needs help streaming cable TV from their phone
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I want to stream TV on my phone my account number is {AccountNumber}.
+        intent_to_elicit: StreamCableTVPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your cell phone provider?
+        sample_response: I've got Boost mobile
+        intent_to_elicit: false
+        slot_to_elicit: CellPhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: Sure Dodson
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What phone device are you currently using?
+        sample_response: Google pixel xl
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfPhoneDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What cable package do you have?
+        sample_response: Buy me pasta
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StreamCableTVPhone_CancelIntent_ChannelNumber_en-US
+    scenario_id: '0331'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs help streaming cable TV from your phone
+    description: User needs help streaming cable TV from their phone
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: So how do I stream television to my phone
+        intent_to_elicit: StreamCableTVPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your cell phone provider?
+        sample_response: It's At&t
+        intent_to_elicit: false
+        slot_to_elicit: CellPhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: Sure Perkins
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What phone device are you currently using?
+        sample_response: I'm using a Iphone 11
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfPhoneDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What cable package do you have?
+        sample_response: Spectrum tv gold
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfCablePackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me in gigabytes how much data is in your plan?
+        sample_response: I get 2
+        intent_to_elicit: false
+        slot_to_elicit: DataPlanSize
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel number do you wish to watch?
+        sample_response: I think I'd like to see channel 123
+        intent_to_elicit: ChannelNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What language would you like to stream in?
+        sample_response: Wait actually now I don't want to
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StreamCableTVPhone_RepeatIntent_en-US
+    scenario_id: '0332'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs help streaming cable TV from your phone
+    description: User needs help streaming cable TV from their phone
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I want to watch television on my phone
+        intent_to_elicit: StreamCableTVPhone
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your cell phone provider?
+        sample_response: Boost Mobile.
+        intent_to_elicit: false
+        slot_to_elicit: CellPhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: Yes, it's Braintree Highlands
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What phone device are you currently using?
+        sample_response: I use a Google Pixel XL
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfPhoneDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What cable package do you have?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OneDayCableSubscription_ChannelNumber_Denied_en-US
+    scenario_id: '0333'
+    bias:
+      - MultiIntent
+    customer_instructions: You wishes to subscribe for a cable TV channel for only a day
+    description: User wishes to subscribe for a cable TV channel for only a day
+    script:
+      - agent: What can I do to help?
+        sample_response: I only want to want to watch tv on {DateOfSubscription} is that possible
+        intent_to_elicit: OneDayCableSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I've got 98-06846390M3, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: yep it's Strongstown
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel number do you want?
+        sample_response: Channel 66
+        intent_to_elicit: ChannelNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How will you be paying?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Nope. Not now. Thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OneDayCableSubscription_Denied_en-US
+    scenario_id: '0334'
+    bias:
+      - SingleIntent
+    customer_instructions: You wishes to subscribe for a cable TV channel for only a day
+    description: User wishes to subscribe for a cable TV channel for only a day
+    script:
+      - agent: What can I do to help?
+        sample_response: I want to know if I can I pay by {PaymentType} for a single day of television
+        intent_to_elicit: OneDayCableSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Put 87-b6147qt
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: The city its N chesterfld
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like this channel?
+        sample_response: By 2021-04-14
+        intent_to_elicit: false
+        slot_to_elicit: DateOfSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel number do you want?
+        sample_response: I'd like Disney
+        intent_to_elicit: false
+        slot_to_elicit: ChannelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_OneDayCableSubscription_en-US
+    scenario_id: '0335'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You wishes to subscribe for a cable TV channel for only a day
+    description: User wishes to subscribe for a cable TV channel for only a day
+    script:
+      - agent: What can I do to help?
+        sample_response: How do I buy cable for one day
+        intent_to_elicit: OneDayCableSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: If I subscribe to a channel and don't watch it can I get my money back?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_OneDayCableSubscription_en-US
+    scenario_id: '0336'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You wishes to subscribe for a cable TV channel for only a day
+    description: User wishes to subscribe for a cable TV channel for only a day
+    script:
+      - agent: What can I do to help?
+        sample_response: I want to subscribe to this cable service for one day
+        intent_to_elicit: OneDayCableSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: So it's 17-F576581YF
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: yeah it's Trotwood
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like this channel?
+        sample_response: I want to buy olives
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OneDayCableSubscription_StopIntent_ChannelNumber_en-US
+    scenario_id: '0337'
+    bias:
+      - MultiIntent
+    customer_instructions: You wishes to subscribe for a cable TV channel for only a day
+    description: User wishes to subscribe for a cable TV channel for only a day
+    script:
+      - agent: What can I do to help?
+        sample_response: I want to subscribe to this service but only for one day
+        intent_to_elicit: OneDayCableSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: think it's IA-7846447
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: So that's Portland
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like this channel?
+        sample_response: it should be on 2021-03-10
+        intent_to_elicit: false
+        slot_to_elicit: DateOfSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel number do you want?
+        sample_response: I think I'd like to see channel 234.
+        intent_to_elicit: ChannelNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How will you be paying?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OneDayCableSubscription_PauseIntent_en-US
+    scenario_id: '0338'
+    bias:
+      - MultiIntent
+    customer_instructions: You wishes to subscribe for a cable TV channel for only a day
+    description: User wishes to subscribe for a cable TV channel for only a day
+    script:
+      - agent: What can I do to help?
+        sample_response: What are your one day offers for cable please
+        intent_to_elicit: OneDayCableSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Put 72-44069667u1
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your current city?
+        sample_response: I'm going to put Orland
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like this channel?
+        sample_response: The date of 2021-03-14
+        intent_to_elicit: false
+        slot_to_elicit: DateOfSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel number do you want?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SurrenderConnection_Denied_en-US
+    scenario_id: '0339'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to cancel your cable TV or broadband connection
+    description: User wants to cancel their cable TV or broadband connection
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I need to cancel my service on {DateOfCancellation}.
+        intent_to_elicit: SurrenderConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Sure, it's Vincent
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: The name's Bowman
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your account number?
+        sample_response: my account numbers WS-31887215
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the current address connected to this account?
+        sample_response: "Postal Address: 1041 Lantern Street,\nWilcox, PA 15870"
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number connected to this account?
+        sample_response: That's 4121726336690722740.
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date will you return your cable box?
+        sample_response: yeah, 2021-04-04
+        intent_to_elicit: false
+        slot_to_elicit: DateOfCableBoxReturn
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: I think I will think about it a little first so let's not finalize anything just this minute.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SurrenderConnection_en-US
+    scenario_id: '0340'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to cancel your cable TV or broadband connection
+    description: User wants to cancel their cable TV or broadband connection
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I am moving so just delete the {TypeOfCablePackage} from my account
+        intent_to_elicit: SurrenderConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yeah, I'm Hunter
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Last name would be Martinez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your account number?
+        sample_response: If I cancel my connection I can still watch stuff like I used to right?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

@@ -1,0 +1,1009 @@
+name: LargeBot_MediaCable_scenarios_batch13
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_ResetParentalLockPIN_NoIntent_en-US
+    scenario_id: '0241'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reset your parental lock PIN
+    description: User wants to reset their parental lock PIN
+    script:
+      - agent: How may I assist you?
+        sample_response: Hey I need this parental lock PIN changed
+        intent_to_elicit: ResetParentalLockPIN
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: That is Nx-82839459
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Put Sylvia as the first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: The name is Ramos
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the e-mail address to send confirmation of your new PIN?
+        sample_response: Sylvia.ramos@yahoo.com is the correct email
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your desired PIN.
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_ResetParentalLockPIN_en-US
+    scenario_id: '0242'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to reset your parental lock PIN
+    description: User wants to reset their parental lock PIN
+    script:
+      - agent: How may I assist you?
+        sample_response: Hello my name is {CustomerFirstName} account number {AccountNumber} I need to reset the parental PIN
+        intent_to_elicit: ResetParentalLockPIN
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My family name is Perkins
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the e-mail address to send confirmation of your new PIN?
+        sample_response: I'll have the extra large mango smoothie
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ResetParentalLockPIN_StartOverIntent_en-US
+    scenario_id: '0243'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reset your parental lock PIN
+    description: User wants to reset their parental lock PIN
+    script:
+      - agent: How may I assist you?
+        sample_response: I need a reset parental lock pin sent to {CustomerEmail}. Thanks
+        intent_to_elicit: ResetParentalLockPIN
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: not entirely sure but I think it's TV-8896665
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: call me April
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: last name of Wallace
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the e-mail address to send confirmation of your new PIN?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ResetWiFiPassword_Confirmed_en-US
+    scenario_id: '0244'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to reset your Wi-Fi password
+    description: User wants to reset their Wi-Fi password
+    script:
+      - agent: What can I do to help you?
+        sample_response: I don't like the password on my router change it to {NewPassword}
+        intent_to_elicit: ResetWiFiPassword
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: I have down 93W543543FQ
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Of course its Christopher
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Sure the last name is Sanders
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please confirm your new Wi-Fi password.
+        sample_response: try 3JOAsaNdbR
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sounds good
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ResetWiFiPassword_PauseIntent_en-US
+    scenario_id: '0245'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reset your Wi-Fi password
+    description: User wants to reset their Wi-Fi password
+    script:
+      - agent: What can I do to help you?
+        sample_response: For the account number {Account {AccountNumber} change the wifi password to {NewPassword}.
+        intent_to_elicit: ResetWiFiPassword
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: put Laura as the first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes, the last name's Perez.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your new Wi-Fi password.
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_ResetWiFiPassword_en-US
+    scenario_id: '0246'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to reset your Wi-Fi password
+    description: User wants to reset their Wi-Fi password
+    script:
+      - agent: What can I do to help you?
+        sample_response: Hey please reset my new wifi password to {NewPassword}.
+        intent_to_elicit: ResetWiFiPassword
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: not sure I think it's 64276554271TT
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yes, I'm Daniel
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: What's in that because I'm allergic to peanuts
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_ResetWiFiPassword_en-US
+    scenario_id: '0247'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to reset your Wi-Fi password
+    description: User wants to reset their Wi-Fi password
+    script:
+      - agent: What can I do to help you?
+        sample_response: I would like to change the router password to {NewPassword}.
+        intent_to_elicit: ResetWiFiPassword
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: I want to turbo charge my wifi myself how do I do it
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ResetWiFiPassword_NoIntent_en-US
+    scenario_id: '0248'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reset your Wi-Fi password
+    description: User wants to reset their Wi-Fi password
+    script:
+      - agent: What can I do to help you?
+        sample_response: I need help resetting the internet wifi password
+        intent_to_elicit: ResetWiFiPassword
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: 59857434978PR I think?
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: you can call me Sandra
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yeah last name Patterson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your new Wi-Fi password.
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetuneTVChannels_Confirmed_en-US
+    scenario_id: '0249'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to retune your TV channels
+    description: User wants to retune their TV channels
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: I am getting the wrong channels. Here is my account number {AccountNumber} can you fix this for me
+        intent_to_elicit: RetuneTVChannels
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Joseph
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: It is Johnson thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the manufacturer of your TV please?
+        sample_response: it's a Vizio
+        intent_to_elicit: false
+        slot_to_elicit: ManufacturerName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your TV's model number please?
+        sample_response: it should be o7erMSDx1o
+        intent_to_elicit: false
+        slot_to_elicit: ModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetuneTVChannels_StopIntent_en-US
+    scenario_id: '0250'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to retune your TV channels
+    description: User wants to retune their TV channels
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: The {ManufacturerName} box isn't showing me my game
+        intent_to_elicit: RetuneTVChannels
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: seems to be 11-U224596JU
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yes, my name is Patricia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: that's Nguyen
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the manufacturer of your TV please?
+        sample_response: Wait, can we stop?
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_RetuneTVChannels_en-US
+    scenario_id: '0251'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to retune your TV channels
+    description: User wants to retune their TV channels
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: Help me retune my box please
+        intent_to_elicit: RetuneTVChannels
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: I've got SZ-70186696, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: My name's Vincent
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My name is Lambert thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the manufacturer of your TV please?
+        sample_response: Order a wake up call
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetuneTVChannels_PauseIntent_en-US
+    scenario_id: '0252'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to retune your TV channels
+    description: User wants to retune their TV channels
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: I cannot figure out why my channels aren't showing up
+        intent_to_elicit: RetuneTVChannels
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: 'is this it: 98023729666oo'
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: it's amanda
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: last name of phillips
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the manufacturer of your TV please?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReturnEquipment_Confirmed_en-US
+    scenario_id: '0253'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to return equipment of a service after canceling the contract
+    description: User wants to return equipment of a service after canceling the contract
+    script:
+      - agent: What can I do to help?
+        sample_response: On the account {AccountNumber} I need to return the equipment
+        intent_to_elicit: ReturnEquipment
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: the name's Tracy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yeah last name Parker
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the ZIP Code where you would like to drop the equipment off to find the nearest location.
+        sample_response: sure it's 59138
+        intent_to_elicit: false
+        slot_to_elicit: PostalCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReturnEquipment_StartOverIntent_en-US
+    scenario_id: '0254'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to return equipment of a service after canceling the contract
+    description: User wants to return equipment of a service after canceling the contract
+    script:
+      - agent: What can I do to help?
+        sample_response: I wanna return this equipment
+        intent_to_elicit: ReturnEquipment
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: yes that is 91-01591971q9
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: first name is jennifer
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: yes, the last name is weaver
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the ZIP Code where you would like to drop the equipment off to find the nearest location.
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_ReturnEquipment_en-US
+    scenario_id: '0255'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to return equipment of a service after canceling the contract
+    description: User wants to return equipment of a service after canceling the contract
+    script:
+      - agent: What can I do to help?
+        sample_response: Hi my account number is {AccountNumber}. I want to return my equipment
+        intent_to_elicit: ReturnEquipment
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: The name is Robert
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: I want cheesesticks
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReturnEquipment_StopIntent_en-US
+    scenario_id: '0256'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to return equipment of a service after canceling the contract
+    description: User wants to return equipment of a service after canceling the contract
+    script:
+      - agent: What can I do to help?
+        sample_response: I need to close account number {AccountNumber} and return my equipment
+        intent_to_elicit: ReturnEquipment
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: My names Joshua
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireNetworkFrequencies_Denied_en-US
+    scenario_id: '0257'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to see what network frequency providers are in your area
+    description: User wants to see what network frequency providers are in their area
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I have a {InquirerDevice} and I need a different network provider
+        intent_to_elicit: InquireNetworkFrequencies
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you looking for services mainly in the United States or international?
+        sample_response: just international
+        intent_to_elicit: false
+        slot_to_elicit: InternationalOffering
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you plan to use these services for?
+        sample_response: I'll use them for calls.
+        intent_to_elicit: false
+        slot_to_elicit: InquirerUsagePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of coverage are you looking for?
+        sample_response: I've got 2600MHz, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: FrequencyRangePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide me with your address?
+        sample_response: "It is 9866 San Pablo Street,\nLouisville, TX 75067 90784 Martinsville thank you"
+        intent_to_elicit: false
+        slot_to_elicit: InquirerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which plan are you looking for?
+        sample_response: The plan is called Basic
+        intent_to_elicit: false
+        slot_to_elicit: PlanPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of data plan are you looking for?
+        sample_response: Spectrum Internet Gig data
+        intent_to_elicit: false
+        slot_to_elicit: DataPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I can check for specific companies. Do you have one in mind?
+        sample_response: I think it's AT&T
+        intent_to_elicit: false
+        slot_to_elicit: InquirerPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Actually, let's hold off for the moment. Please don't submit anything now.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_InquireNetworkFrequencies_en-US
+    scenario_id: '0258'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to see what network frequency providers are in your area
+    description: User wants to see what network frequency providers are in their area
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Hey I wanna get the {PlanPreference} my address is {InquirerAddress}
+        intent_to_elicit: InquireNetworkFrequencies
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you looking for services mainly in the United States or international?
+        sample_response: I want US
+        intent_to_elicit: false
+        slot_to_elicit: InternationalOffering
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you plan to use these services for?
+        sample_response: probably just data
+        intent_to_elicit: false
+        slot_to_elicit: InquirerUsagePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of coverage are you looking for?
+        sample_response: it would be 900MHz
+        intent_to_elicit: false
+        slot_to_elicit: FrequencyRangePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide me with your address?
+        sample_response: I need a dog trainer
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireNetworkFrequencies_InquirerUsagePreference_Denied_en-US
+    scenario_id: '0259'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to see what network frequency providers are in your area
+    description: User wants to see what network frequency providers are in their area
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Hey there I'm wanting to change to the {PlanPreference} can you assist me
+        intent_to_elicit: InquireNetworkFrequencies
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you looking for services mainly in the United States or international?
+        sample_response: i want international service
+        intent_to_elicit: false
+        slot_to_elicit: InternationalOffering
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you plan to use these services for?
+        sample_response: I do a lot of texting on my phone
+        intent_to_elicit: InquirerUsagePreference
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of coverage are you looking for?
+        sample_response: so it's 2600mhz
+        intent_to_elicit: false
+        slot_to_elicit: FrequencyRangePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide me with your address?
+        sample_response: so it's 355 s. greystone street,eudowood, md 21204
+        intent_to_elicit: false
+        slot_to_elicit: InquirerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I can check for coverage. What device are you planning to use?
+        sample_response: i've got a samsung galaxy s10 plus
+        intent_to_elicit: false
+        slot_to_elicit: InquirerDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of data plan are you looking for?
+        sample_response: it'll be for verizon fios gigabit data
+        intent_to_elicit: false
+        slot_to_elicit: DataPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I can check for specific companies. Do you have one in mind?
+        sample_response: i want verizon
+        intent_to_elicit: false
+        slot_to_elicit: InquirerPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: actually, let's hold off for the moment. please don't submit anything now.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireNetworkFrequencies_HelpIntent_en-US
+    scenario_id: '0260'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to see what network frequency providers are in your area
+    description: User wants to see what network frequency providers are in their area
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I'm at {InquirerAddress} and I wanna get a plan will it work with my {InquirerDevice}
+        intent_to_elicit: InquireNetworkFrequencies
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you looking for services mainly in the United States or international?
+        sample_response: service in US
+        intent_to_elicit: false
+        slot_to_elicit: InternationalOffering
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you plan to use these services for?
+        sample_response: I'll use service for calls
+        intent_to_elicit: false
+        slot_to_elicit: InquirerUsagePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of coverage are you looking for?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

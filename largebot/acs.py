@@ -5,8 +5,20 @@ from urllib.parse import urlparse, parse_qsl
 
 import pymsteams
 import requests
+import random
 from pathlib import Path
 from pydantic import BaseModel
+from termcolor import cprint
+import asyncio
+from aiohttp import ClientSession
+from largebot.logger import get_logger
+
+logger = get_logger(__file__)
+
+
+announce = lambda x: cprint(x, 'white', attrs=['blink'])
+agent = lambda x: cprint(x, 'white', 'on_magenta', attrs=['dark', 'bold'])
+customer = lambda x: cprint(x.rjust(50), 'red', 'on_yellow', attrs=['bold', 'dark'])
 
 BASE_URL = 'https://api.acs.projectdublin.com/v1'
 
@@ -65,15 +77,21 @@ def get_query_dict(url: str):
 class Token:
     url: str = f"{BASE_URL}/token/create"
 
-    def __init__(self, username: str, password: str):
-        self.token = requests.post(
-            self.url, json={
+    def __init__(self, token: str):
+        self.token = token
+
+    @classmethod
+    def get(cls, username: str, password: str):
+        url = f"{BASE_URL}/token/create"
+        token = requests.post(
+            url, json={
                 'agent': {
                     'login': username,
                     'password': password
                 }
             }
         ).json().get('token')
+        return cls(token)
 
     def keys(self):
         return ['token']
@@ -117,12 +135,14 @@ class Author:
     @classmethod
     def get_customer(cls, token: Token):
         url = f"{BASE_URL}/conversation/queue/joinbest"
-        customer_url = requests.post(
+        r = requests.post(
             url,
             json={
                 **token
             }
-        ).json().get('customerURL')
+        )
+        print(f"{r.json()=}")
+        customer_url = r.json().get('customerURL')
         return cls(**get_query_dict(customer_url))
 
     def update_present_state(self):
@@ -139,6 +159,65 @@ class Author:
         return r.json().get('successful')
 
 
+class AsyncAuthor:
+    url: str = f"{BASE_URL}/conversation/present"
+
+    def __init__(self, conversation_id: str, author_id: str, author_key: str):
+        self.conversation_id = conversation_id
+        self.author_id = author_id
+        self.author_key = author_key
+
+    def keys(self):
+        return ['author_id', 'author_key']
+
+    def __getitem__(self, key):
+        return self.__dict__[key]
+
+    @classmethod
+    async def get_agent(cls, template_id: str, token: Token):
+        url = f"{BASE_URL}/conversation"
+        async with ClientSession() as session:
+            async with session.post(
+                url,
+                json={
+                    'template_id': template_id,
+                    **token
+                }
+            ) as resp:
+                r = await resp.json()
+                agent_url = r.get('agentURL')
+                return cls(**get_query_dict(agent_url))
+
+    @classmethod
+    async def get_customer(cls, token: Token):
+        url = f"{BASE_URL}/conversation/queue/joinbest"
+        async with ClientSession() as session:
+            async with session.post(
+                url,
+                json={
+                    **token
+                }
+            ) as resp:
+                r = await resp.json()
+                customer_url = r.get('customerURL')
+                return cls(**get_query_dict(customer_url))
+
+    async def update_present_state(self):
+        url = f"{self.url}/{self.conversation_id}"
+        async with ClientSession() as session:
+            async with session.post(
+                url,
+                json={
+                    'author': {
+                        **self
+                    },
+                    'present': True
+                }
+            ) as resp:
+                r = await resp.json()
+                return r.get('successful')
+
+
 class ConfigModel(BaseModel):
     class Config:
         arbitrary_types_allowed = True
@@ -146,54 +225,58 @@ class ConfigModel(BaseModel):
 
 class Slot(ConfigModel):
     required: bool
-    type: str
-    name: str
+    type: str = None
+    name: str = None
 
 
 class Intent(ConfigModel):
     name: str
     slots: List[Slot]
 
+    def __str__(self):
+        return self.name
+
 
 class Template(ConfigModel):
-    domain: str
-    author_agent_id: str
+    token: Token = None
+    domain: str = None
+    author_agent_id: str = None
     collection_reference: dict = None
-    author_org_id: str
-    done_collecting: bool
+    author_org_id: str = None
+    done_collecting: bool = None
     collections_target: int = None
-    bias: str
-    intent: list
+    bias: str = None
+    intent: list = None
     bot_agent_config: dict = None
-    created_timestamp: int
-    definition_references: dict
-    slots: list
+    created_timestamp: int = None
+    definition_references: dict = None
+    slots: list = None
     customer_instructions_visibile_to_agent: bool
-    agent_organizations: list
-    updated_timestamp: int
-    turn_configurations: list
+    agent_organizations: list = None
+    updated_timestamp: int = None
+    turn_configurations: list = None
     intent_to_slot_mapping: dict = None
-    name: str
+    name: str = None
     language: str
     agent_instructions: str
     mturk_hit_config: dict = None
-    author: str
-    scenario_id: float
-    state: str
-    version: int
-    version_history: list
+    author: str = None
+    scenario_id: float = None
+    state: str = None
+    version: int = None
+    version_history: list = None
     customer_instructions: str
     inline_annotation_enabled: bool
-    collections_completed: int
-    template_id: str
-    intents: List[Intent]
-    customer_organizations: list
+    collections_completed: int = None
+    template_id: str = None
+    intents: List[Intent] = None
+    customer_organizations: list = None
 
     @classmethod
-    def get_template(cls, template_id: str):
+    def get_template(cls, template_id: str, token: Token):
         url = f"{BASE_URL}/template/{template_id}"
-        attributes = requests.get(self.url).json()
-        return cls(**attributes)
+        attributes = requests.get(url).json()
+        return cls(**attributes, token=token)
 
     @property
     def agent_prompts(self):
@@ -202,23 +285,99 @@ class Template(ConfigModel):
             for turn in self.turn_configurations
         ]
 
+    def delete(self):
+        url = f"{BASE_URL}/template/{self.template_id}"
+        payload = {**self.token}
+        r = requests.delete(url, json=payload)
+        return r.json().get('successful')
 
-class Templates:
-    def __init__(self):
-        self.token = Token(admin_username, admin_password)
-        url = f"{BASE_URL}/template/editor/templates"
+    def update_collections_target(self, target: int = None):
+        target = target or 1
+        current_target = self.collections_target or 0
+        current_target += target
+        url = f"{BASE_URL}/template"
         payload = {
-            'chunk_key': None,
-            'filters': {
-                'sort_ascending': False,
-                'sort_field': 'updated_timestamp'
-            },
+            'template_id': self.template_id,
+            'name': self.name,
+            'domain': self.domain,
+            'bias': self.bias,
+            'intent': self.intent,
+            'slots': self.slots,
+            'collection_reference': self.collection_reference,
+            'language': self.language,
+            'collections_target': current_target,
+            'agent_organizations': self.agent_organizations,
+            'customer_organizations': self.customer_organizations,
+            'mturk_hit_config': self.mturk_hit_config,
+            'bot_agent_config': self.bot_agent_config,
+            'customer_instructions_visibile_to_agent': self.customer_instructions_visibile_to_agent,
+            'inline_annotation_enabled': self.inline_annotation_enabled,
+            'agent_instructions': self.agent_instructions,
+            'customer_instructions': self.customer_instructions,
             **self.token
         }
-        self.templates = [
-            Template(**template)
-            for template in requests.post(url, json=payload).json().get('templates')
-        ]
+        r = requests.post(url, json=payload)
+        return r.json()
+
+    async def async_update_collections_target(self, target: int):
+        collections_target = self.collections_target or 0
+        collections_target += target
+        url = f"{BASE_URL}/template"
+        payload = {
+            'template_id': self.template_id,
+            'name': self.name,
+            'domain': self.domain,
+            'bias': self.bias,
+            'intent': self.intent,
+            'slots': self.slots,
+            'collection_reference': self.collection_reference,
+            'language': self.language,
+            'collections_target': current_target,
+            'agent_organizations': self.agent_organizations,
+            'customer_organizations': self.customer_organizations,
+            'mturk_hit_config': self.mturk_hit_config,
+            'bot_agent_config': self.bot_agent_config,
+            'customer_instructions_visibile_to_agent': self.customer_instructions_visibile_to_agent,
+            'inline_annotation_enabled': self.inline_annotation_enabled,
+            'agent_instructions': self.agent_instructions,
+            'customer_instructions': self.customer_instructions,
+            **self.token
+        }
+        async with ClientSession() as session:
+            async with session.post(url, json=payload) as resp:
+                return await resp.json()
+
+
+class Templates:
+    def __init__(self, state: str = 'PARTIAL_TEMPLATE', token: str = None):
+        self.token = Token(token) if token else Token.get(admin_username, admin_password)
+
+        def get_templates(chunk_key: dict = None):
+            url = f"{BASE_URL}/template/editor/templates"
+            payload = {
+                'filters': {
+                    'sort_ascending': False,
+                    'sort_field': 'updated_timestamp',
+                    'state': state
+                },
+                **self.token
+            }
+            if chunk_key:
+                chunk_key['updated_timestamp'] = int(chunk_key['updated_timestamp'])
+                payload['chunk_key'] = chunk_key
+            r = requests.post(url, json=payload)
+            resp_templates = r.json().get('templates')
+            templates = [
+                Template(token=self.token, **template)
+                for template in resp_templates
+            ] if resp_templates else None
+            if templates and (chunk_key := r.json().get('chunk_key', None)):
+                more_templates = get_templates(chunk_key=chunk_key)
+                if more_templates:
+                    templates += more_templates
+            return templates
+
+        self.templates = get_templates()
 
     def __iter__(self):
         return iter(self.templates)
@@ -247,6 +406,7 @@ class Templates:
         message.text(text)
         message.send()
 
+
 def get_cust_instructions(slot_types: dict):
     customer_instructions = f"""    
     <div class="instructions" id="customer-instructions">
@@ -272,6 +432,7 @@ def get_cust_instructions(slot_types: dict):
 """
     return customer_instructions
 
+
 agent_instructions = """
         <div class="instructions" id="agent-instructions">
             In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
@@ -279,56 +440,84 @@ agent_instructions = """
             IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
         </div>
 """
+def get_tokens():
+    pair = random.randint(1, 50)
+    password = 'welo7890'
+    agent = f"wl_bot_enUS_{pair}"
+    cust = f"wl_user_enUS_{pair}"
+    return Token.get(agent, password), Token.get(cust, password)
+
+
+class ScriptGenerator:
+    def __init__(self, turns: list):
+        self.turns = turns
+
+    def __iter__(self):
+        return iter(self.turns)
+
+    def __next__(self):
+        try:
+            return next(iter(self))
+        except StopIteration as e:
+            logger.error(f"No turns remain: {e}")
+            return None
+
+
 
 class Conversation:
     url: str = f"{BASE_URL}/conversation"
-    agent_username: str = agent_username
-    agent_password: str = agent_password
-    customer_username: str = customer_username
-    customer_password: str = customer_password
 
-    def __init__(self, template_id: str):
+    def __init__(self, template_id: str, dry_run: bool = False):
+        self.dry_run = dry_run
         self.template_id = template_id
-        self.agent_token = Token(self.agent_username, self.agent_password)
-        self.customer_token = Token(self.customer_username, self.customer_password)
-        self.agent = Author.get_agent(self.template_id, self.agent_token)
-        self.agent.update_present_state()
-        self.customer = Author.get_customer(self.customer_token)
-        self.conversation_id = self.agent.conversation_id
-        self.template = Template(template_id)
-        self.intent_name = self.template.intent_name
+        self.agent_token, self.customer_token = get_tokens()
+        self.template = Template.get_template(template_id, token=self.agent_token)
+        self.intents = self.template.intents
         self.statements = []
+        self.successful = True
+        if not self.dry_run:
+            self.agent = Author.get_agent(self.template_id, self.agent_token)
+            self.agent.update_present_state()
+            self.customer = Author.get_customer(self.customer_token)
+            self.conversation_id = self.agent.conversation_id
+
+    @property
+    def intent_name(self):
+        return f"{self.intents[0]!s}" if self.intents else None
 
     def agent_response(self, content: str):
-        self.agent.update_present_state()
-        print(f"Agent: {content}")
-        url = f"{self.url}/{self.conversation_id}"
-        requests.post(
-            url,
-            json={
-                'author': {
-                    **self.agent
-                },
-                'content': content
-            }
-        )
-        self.update_statements()
+        agent(f"Agent: {content}")
+        if not self.dry_run:
+            url = f"{self.url}/{self.conversation_id}"
+            self.agent.update_present_state()
+            requests.post(
+                url,
+                json={
+                    'author': {
+                        **self.agent
+                    },
+                    'content': content
+                }
+            )
+            self.update_statements()
 
     def customer_response(self, content: str):
-        self.customer.update_present_state()
-        print(f"Customer: {content}")
-        url = f"{self.url}/{self.conversation_id}"
-        requests.post(
-            url,
-            json={
-                'author': {
-                    **self.customer
-                },
-                'content': content
-            }
-        )
-        self.update_statements()
+        customer(f"Customer: {content}")
+        if not self.dry_run:
+            url = f"{self.url}/{self.conversation_id}"
+            self.customer.update_present_state()
+            requests.post(
+                url,
+                json={
+                    'author': {
+                        **self.customer
+                    },
+                    'content': content
+                }
+            )
+            self.update_statements()
 
+    '''
     def confirm_intent(self):
         self.agent.update_present_state()
         url = f"{self.url}/{self.conversation_id}/annotation/1"
@@ -349,10 +538,185 @@ class Conversation:
             }
         }
         r = requests.post(url, json=payload)
+        self.successful = r.json().get('successful')
+    '''
+
+    def create_annotation(self, turn_id: int, customer_response: dict = None):
+        intent_to_elicit = customer_response.get('intent', None)
+        slots_to_elicit = customer_response.get('slots', None)
+        if not intent_to_elicit and not slots_to_elicit:
+            return
+        payload = {
+            'payload': {
+                'type': 'annotation',
+                'value': [
+                    {
+                        'intent_name': intent_to_elicit or self.intent_name
+                    }
+                ],
+                'activeContexts': [],
+                'agentTurnActiveContexts': []
+            }
+        }
+        dialog_intent_name = 'ContentOnlyIntent'
+        if intent_to_elicit:
+            payload['payload']['value'][0]['is_intent_present'] = True
+            dialog_intent_name = intent_to_elicit
+        if dialog_intent_name != self.intent_name:
+            payload['payload']['value'][0]['dialog_intent_name'] = dialog_intent_name
+        if slots_to_elicit:
+            for slot_name, slot_value in slots_to_elicit:
+                print(slot_name, slot_value)
+                matches = re.search(re.escape(slot_value), customer_response.get('content'), re.IGNORECASE)
+                if matches:
+                    offset = matches.span()[0]
+                    payload['payload']['value'][0].setdefault('slots', []).append(
+                        {
+                            'is_slot_present': True,
+                            'slot_name': slot_name,
+                            'offset': offset,
+                            'slot_value': slot_value,
+                            'utterance': customer_response.get('content')
+                        }
+                    )
+        if self.dry_run:
+            announce(f"{payload=}")
+            return
+        url = f"{self.url}/{self.conversation_id}/annotation/{turn_id}"
+        payload['author'] = {**self.agent}
+        self.agent.update_present_state()
+        r = requests.post(url, json=payload)
+        self.successful = r.json().get('successful')
+
+    def update_statements(self):
+        url = f"{self.url}/{self.conversation_id}"
+        r = requests.get(url, headers={**self.agent_token})
+        self.statements = r.json().get('statements')
+
+    def exchange(self, agent_prompt: str, customer_response: str):
+        self.agent_response(content=agent_prompt)
+        time.sleep(round(random.random(), 1))
+        self.customer_response(content=customer_response)
+        time.sleep(round(random.random(), 1))
+
+    def close(self, agent_rating: str = 'Good', notes: str = ''):
+        payload = {
+            'result': {
+                'agent_rating': agent_rating,
+                'notes': notes
+            }
+        }
+        if self.dry_run:
+            announce(f"{payload=}")
+            return payload
+        url = f"{self.url}/{self.conversation_id}"
+        payload['author'] = {**self.agent}
+        r = requests.delete(url, json=payload)
         return r.json().get('successful')
 
-    def create_annotation(self, turn_id: int, offset: int, content: str, slot_name: str, slot_value: str):
-        self.agent.update_present_state()
+    def converse(self, customer_responses: list):
+        collected_slots = []
+        agent_script = self.template.turn_configurations[:-1]
+        agent = ScriptGenerator(agent_script)
+        customer = ScriptGenerator(customer_responses)
+        for turn_id in range(1, len(customer_responses)*2+1, 2):
+            agent_response = next(agent)
+            if agent_response.get('slot_to_elicit') in collected_slots:
+                agent_response = next(agent)
+            if not agent_response:
+                if (agent_response := customer_response.get('agent', [])) and len(agent_response) == 1:
+                    agent_response = agent_response[0]
+                    if not agent_response:
+                        return self.close(
+                            agent_rating='Poor',
+                            notes='Missing agent response'
+                        )
+            customer_response = next(customer)
+            self.exchange(agent_response.get('agent_prompt'), customer_response.get('content'))
+            time.sleep(round(random.random(), 1))
+            self.create_annotation(turn_id, customer_response)
+            if slots := customer_response.get('slots'):
+                for slot_name, _ in slots:
+                    collected_slots.append(slot_name)
+
+        self.agent_response(self.template.agent_prompts[-1])
+        return self.close()
+
+
+class AsyncConversation:
+    url: str = f"{BASE_URL}/conversation"
+    agent_username: str = agent_username
+    agent_password: str = agent_password
+    customer_username: str = customer_username
+    customer_password: str = customer_password
+
+    def __init__(self, template_id: str):
+        self.template_id = template_id
+        self.agent_token = Token.get(self.agent_username, self.agent_password)
+        self.customer_token = Token.get(self.customer_username, self.customer_password)
+        self.get_users()
+        self.conversation_id = self.agent.conversation_id
+        self.template = Template.get_template(template_id, token=self.agent_token)
+        self.intents = self.template.intents
+        self.statements = []
+        self.successful = True
+
+    async def async_get_users(self):
+        self.agent = await AsyncAuthor.get_agent(self.template_id, self.agent_token)
+        await self.agent.update_present_state()
+        self.customer = await AsyncAuthor.get_customer(self.customer_token)
+
+    def get_users(self):
+        try:
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(async_get_users())
+        except Exception as e:
+            print(e)
+
+    @property
+    def intent_name(self):
+        return f"{self.intents[0]!s}" if self.intents else None
+
+    async def agent_response(self, content: str):
+        await self.agent.update_present_state()
+        agent(f"Agent: {content}")
+        url = f"{self.url}/{self.conversation_id}"
+        async with ClientSession() as session:
+            async with session.post(
+                url,
+                json={
+                    'author': {
+                        **self.agent
+                    },
+                    'content': content
+                }
+            ) as resp:
+                await resp
+                await self.update_statements()
+
+    async def customer_response(self, content: str):
+        await self.customer.update_present_state()
+        customer(f"Customer: {content}")
+        url = f"{self.url}/{self.conversation_id}"
+        async with ClientSession() as session:
+            async with session.post(
+                url,
+                json={
+                    'author': {
+                        **self.customer
+                    },
+                    'content': content
+                }
+            ) as resp:
+                await resp
+                await self.update_statements()
+
+    async def create_annotation(self, turn_id: int, customer_response: dict = None):
+        await self.agent.async_update_present_state()
+        intent_to_elicit = customer_response.get('intent', None)
+        slots_to_elicit = customer_response.get('slots', None)
+        if not intent_to_elicit and not slots_to_elicit:
+            return
         url = f"{self.url}/{self.conversation_id}/annotation/{turn_id}"
         payload = {
             'author': {
@@ -362,68 +726,88 @@ class Conversation:
                 'type': 'annotation',
                 'value': [
                     {
-                        'intent_name': self.intent_name,
-                        'dialog_intent_name': 'ContentOnlyIntent',
-                        'slots': [
-                            {
-                                'is_slot_present': True,
-                                'slot_name': slot_name,
-                                'offset': offset,
-                                'slot_value': slot_value,
-                                'utterance': content
-                            }
-                        ]
+                        'intent_name': intent_to_elicit or self.intent_name
                     }
                 ],
                 'activeContexts': [],
                 'agentTurnActiveContexts': []
             }
         }
-        r = requests.post(url, json=payload)
-        return r.json().get('successful')
+        if intent_to_elicit:
+            payload['payload']['value'][0]['is_intent_present'] = True
+        if slots_to_elicit:
+            for slot_name, slot_value in slots_to_elicit:
+                print(slot_name, slot_value)
+                matches = re.search(re.escape(slot_value), customer_response.get('content'), re.IGNORECASE)
+                if matches:
+                    offset = matches.span()[0]
+                    payload['payload']['value'][0].setdefault('slots', []).append(
+                        {
+                            'is_slot_present': True,
+                            'slot_name': slot_name,
+                            'offset': offset,
+                            'slot_value': slot_value,
+                            'utterance': customer_response.get('content')
+                        }
+                    )
+        async with ClientSession() as session:
+            async with session.post(url, json=payload) as resp:
+                r = await resp.json()
+                self.successful = r.json().get('successful')
 
-    def update_statements(self):
+    async def update_statements(self):
         url = f"{self.url}/{self.conversation_id}"
-        r = requests.get(url, headers={**self.agent_token})
-        self.statements = r.json().get('statements')
+        async with ClientSession() as session:
+            async with session.get(
+                    url,
+                    headers={
+                        **self.agent_token
+                    }
+            ) as resp:
+                r = await resp.json()
+                self.statements = r.get('statements')
 
-    def exchange(self, agent_prompt: str, customer_response: str):
+    async def exchange(self, agent_prompt: str, customer_response: str):
         self.agent_response(content=agent_prompt)
-        time.sleep(3)
+        await asyncio.sleep(round(random.random(), 1))
         self.customer_response(content=customer_response)
-        time.sleep(3)
+        await asyncio.sleep(round(random.random(), 1))
 
-    def close(self, agent_rating: str = 'Good', notes: str = ''):
-        url = f"{self.url}/{self.conversation_id}"
-        payload = {
-            'author': {
-                **self.agent
-            },
-            'result': {
-                'agent_rating': agent_rating,
-                'notes': notes
+    async def close(self, agent_rating: str = 'Good', notes: str = ''):
+        if self.successful:
+            url = f"{self.url}/{self.conversation_id}"
+            payload = {
+                'author': {
+                    **self.agent
+                },
+                'result': {
+                    'agent_rating': agent_rating,
+                    'notes': notes
+                }
             }
-        }
-        r = requests.delete(url, json=payload)
-        return r.json().get('successful')
+            async with ClientSession() as session:
+                async with session.delete(url, json=payload) as resp:
+                    r = await resp.json()
+                    self.successful = r.get('successful')
 
-    def converse(self, customer_responses: list):
-        agent_open = self.template.agent_prompts[0]
-        customer_open = customer_responses[0][0]
-        agent_close = self.template.agent_prompts[-1]
-        self.exchange(agent_open, customer_open)
-        self.confirm_intent()
+    async def converse(self, customer_responses: list):
+        tasks = []
+        collected_slots = []
+        agent = ScriptGenerator(self.template.turn_configurations[:-1])
+        customer = ScriptGenerator(customer_responses)
+        for turn_id in range(1, len(customer_responses)*2+1, 2):
+            agent_response = next(agent)
+            if agent_response.get('slot_to_elicit') in collected_slots:
+                agent_response = next(agent)
+            customer_response = next(customer)
+            tasks.append(await self.exchange(agent_response.get('agent_prompt'), customer_response.get('content')))
+            tasks.append(await asyncio.sleep(round(random.random(), 1)))
+            tasks.append(await self.create_annotation(turn_id, customer_response))
+            if slots := customer_response.get('slots'):
+                for slot_name, _ in slots:
+                    collected_slots.append(slot_name)
 
-        for i, agent_prompt in enumerate(self.template.agent_prompts[1:-1], start=1):
-            print(f"{customer_responses[i][1]}: {customer_responses[i][2]}")
-            self.exchange(agent_prompt, customer_responses[i][0])
-            time.sleep(3)
-            turn_id = i
-            matches = re.search(re.escape(customer_responses[i][2]), customer_responses[i][0])
-            print(f"{matches=}")
-            if matches:
-                offset = matches.span()[0]
-                self.create_annotation(turn_id, offset, *customer_responses[i])
-
-        self.agent_response(agent_close)
-        self.close()
+        self.agent_response(self.template.agent_prompts[-1])
+        await asyncio.gather(tasks)
+        await self.close()
+        return self

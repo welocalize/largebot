@@ -1,0 +1,959 @@
+name: LargeBot_MediaCable_scenarios_batch20
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SubscriptionUpgradeTrial_en-US
+    scenario_id: '0381'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to upgrade your subscription from a free trial
+    description: User wants to upgrade their subscription from a free trial
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I'd like to upgrade my subscription to a permanent one. I currently have a free trial.
+        intent_to_elicit: SubscriptionUpgradeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: S.Ian@hotmail.com is my email address
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What new subscriptions would you like?
+        sample_response: I wanna upgrade my subscription but keep it free
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SubscriptionUpgradeTrial_AddChannelPackage_Confirmed_en-US
+    scenario_id: '0382'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to upgrade your subscription from a free trial
+    description: User wants to upgrade their subscription from a free trial
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I've got a free trial subscription and I wanted to uprgade to a permanent one
+        intent_to_elicit: SubscriptionUpgradeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: Can I add a channel package instead? sorry
+        intent_to_elicit: AddChannelPackage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: It's Hera
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Fitz
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your account number.
+        sample_response: It's 52-C00255RX
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please verify your billing address.
+        sample_response: 301 Ann St. Pickens, SC 29671
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please verify your phone number.
+        sample_response: (898) 124-7782
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the package you'd like to add?
+        sample_response: The basic package, please
+        intent_to_elicit: false
+        slot_to_elicit: ChannelPackageName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sure!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpgradePhonePlan_NoIntent_en-US
+    scenario_id: '0383'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to upgrade current phone plan
+    description: User wants to upgrade current phone plan
+    script:
+      - agent: What can I do to help?
+        sample_response: I want to upgrade my current phone plan
+        intent_to_elicit: UpgradePhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: For that I have 67-57954670a8
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your mobile phone number?
+        sample_response: 122-9457
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people share this plan?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpgradePhonePlan_Confirmed_en-US
+    scenario_id: '0384'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to upgrade current phone plan
+    description: User wants to upgrade current phone plan
+    script:
+      - agent: What can I do to help?
+        sample_response: I wanna change my phone plan
+        intent_to_elicit: UpgradePhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: It's 91799615302fg
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your mobile phone number?
+        sample_response: That is 604-046-5680
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people share this plan?
+        sample_response: that's 5
+        intent_to_elicit: false
+        slot_to_elicit: SharePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In GB, how much additional data do you need?
+        sample_response: I think it is 32.
+        intent_to_elicit: false
+        slot_to_elicit: DataUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many international calls do you make in a month?
+        sample_response: '0'
+        intent_to_elicit: false
+        slot_to_elicit: InternationalUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_UpgradePhonePlan_en-US
+    scenario_id: '0385'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to upgrade current phone plan
+    description: User wants to upgrade current phone plan
+    script:
+      - agent: What can I do to help?
+        sample_response: Could I get an upgraded phone plan please
+        intent_to_elicit: UpgradePhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I have 96-E887447GA
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your mobile phone number?
+        sample_response: it's 746-505-8395
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people share this plan?
+        sample_response: Can I design a phone plan for you?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpgradePhonePlan_RepeatIntent_SharePlan_en-US
+    scenario_id: '0386'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to upgrade current phone plan
+    description: User wants to upgrade current phone plan
+    script:
+      - agent: What can I do to help?
+        sample_response: How do I change plans I want an upgrade
+        intent_to_elicit: UpgradePhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 73-C677358ZN
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your mobile phone number?
+        sample_response: it is (653)-227-6996
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people share this plan?
+        sample_response: '6'
+        intent_to_elicit: SharePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In GB, how much additional data do you need?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpgradePhonePlan_SharePlan_DataUsage_InternationalUsage_Confirmed_en-US
+    scenario_id: '0387'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to upgrade current phone plan
+    description: User wants to upgrade current phone plan
+    script:
+      - agent: What can I do to help?
+        sample_response: Hi I'd like to upgrade to a higher data cell phone plan please
+        intent_to_elicit: UpgradePhonePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 'That is: 29245786407SK'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your mobile phone number?
+        sample_response: Yes, 086-603-4090
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people share this plan?
+        sample_response: Number is 1
+        intent_to_elicit: SharePlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In GB, how much additional data do you need?
+        sample_response: '16'
+        intent_to_elicit: DataUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many international calls do you make in a month?
+        sample_response: around 3
+        intent_to_elicit: InternationalUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpgradeSubscription_Denied_en-US
+    scenario_id: '0388'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to upgrade current subscription
+    description: User wants to upgrade current subscription
+    script:
+      - agent: What can I do to help you today?
+        sample_response: Hi I want to upgrade my current subscription
+        intent_to_elicit: UpgradeSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: it should be 83866848507JG
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: JuliaThompson@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What subscription do you want to upgrade to?
+        sample_response: That would be Flex.
+        intent_to_elicit: false
+        slot_to_elicit: UpgradeSubscription
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpgradeSubscription_HelpIntent_en-US
+    scenario_id: '0389'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to upgrade current subscription
+    description: User wants to upgrade current subscription
+    script:
+      - agent: What can I do to help you today?
+        sample_response: Hey currently I have a {CurrentSubscription} can I get an upgrade
+        intent_to_elicit: UpgradeSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: so its aa-81356790
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: it is g.rachel@gmail.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What subscription do you want to upgrade to?
+        sample_response: I need help
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_UpgradeSubscription_en-US
+    scenario_id: '0390'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to upgrade current subscription
+    description: User wants to upgrade current subscription
+    script:
+      - agent: What can I do to help you today?
+        sample_response: I want to change my subscription offerings right now I have {CurrentSubscription}
+        intent_to_elicit: UpgradeSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Put 55081848135TU
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: DelgadoChristina@gmail.com is good.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What subscription do you want to upgrade to?
+        sample_response: I want to buy the phone company
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpgradeSubscription_YesIntent_en-US
+    scenario_id: '0391'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to upgrade current subscription
+    description: User wants to upgrade current subscription
+    script:
+      - agent: What can I do to help you today?
+        sample_response: The {CurrentSubscription} sucks. What do you have that's better
+        intent_to_elicit: UpgradeSubscription
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: KS-92859109
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: I am reachable at Elijah.R@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What subscription do you want to upgrade to?
+        sample_response: That's exactly right.
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ViewLastStatement_Confirmed_en-US
+    scenario_id: '0392'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to view the last statement
+    description: User wants to view the last statement
+    script:
+      - agent: How can I assist you today?
+        sample_response: Can you show me my last statement
+        intent_to_elicit: ViewLastStatement
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 7316174296X8
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: Thats MichaelHgmailcom
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Could you please Thanks
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ViewLastStatement_NoIntent_en-US
+    scenario_id: '0393'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to view the last statement
+    description: User wants to view the last statement
+    script:
+      - agent: How can I assist you today?
+        sample_response: Hi what's the best way to view my most recent account statement please
+        intent_to_elicit: ViewLastStatement
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_ViewLastStatement_en-US
+    scenario_id: '0394'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to view the last statement
+    description: User wants to view the last statement
+    script:
+      - agent: How can I assist you today?
+        sample_response: Hi help me access my latest statement
+        intent_to_elicit: ViewLastStatement
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: think it's PU-25965469
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: MichaelYoung@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: I wanna start a bank
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ViewLastStatement_StartOverIntent_en-US
+    scenario_id: '0395'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to view the last statement
+    description: User wants to view the last statement
+    script:
+      - agent: How can I assist you today?
+        sample_response: How do I pull up my last statement
+        intent_to_elicit: ViewLastStatement
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I have 63-U313080YN
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupTVMultipleScreen_Denied_en-US
+    scenario_id: '0396'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to watch multiple shows on your television at the same time
+    description: User wants to watch multiple shows on their television at the same time
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: I have a {TelevisionManufacturer} {TelevisionModel} can you tell me how I can watch two TV shows at once
+        intent_to_elicit: SetupTVMultipleScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you in?
+        sample_response: USA
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many screens do you hope to display at the same time?
+        sample_response: put 3
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfScreens
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your TV? This may be printed on the TV itself
+        sample_response: 6ffnf0fMq6
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupTVMultipleScreen_CustomerCountry_Denied_en-US
+    scenario_id: '0397'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch multiple shows on your television at the same time
+    description: User wants to watch multiple shows on their television at the same time
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: How do I activate picture-in-picture please
+        intent_to_elicit: SetupTVMultipleScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you in?
+        sample_response: United Kingdom
+        intent_to_elicit: CustomerCountry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many screens do you hope to display at the same time?
+        sample_response: 4 I believe
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfScreens
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes your TV?
+        sample_response: it's a comedy TV
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionManufacturer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model name of your TV?
+        sample_response: The Sony X750H 55-inch 4K Ultra HD LED TV.
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your TV? This may be printed on the TV itself
+        sample_response: ok it's oSlUD8QjDW
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Nope. Not now. Thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupTVMultipleScreen_StopIntent_en-US
+    scenario_id: '0398'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch multiple shows on your television at the same time
+    description: User wants to watch multiple shows on their television at the same time
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Can I watch more than one screen on my television
+        intent_to_elicit: SetupTVMultipleScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you in?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SetupTVMultipleScreen_CustomerCountry_NumberOfScreens_en-US
+    scenario_id: '0399'
+    bias:
+      - MultiIntent
+      - UnsupportedIntent
+    customer_instructions: You want to watch multiple shows on your television at the same time
+    description: User wants to watch multiple shows on their television at the same time
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: How do I set up multiple screens on my TV please
+        intent_to_elicit: SetupTVMultipleScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you in?
+        sample_response: USA
+        intent_to_elicit: CustomerCountry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many screens do you hope to display at the same time?
+        sample_response: '6'
+        intent_to_elicit: NumberOfScreens
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes your TV?
+        sample_response: Can I watch multiple telvisions all with the same show at the same time?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupTVMultipleScreen_PauseIntent_CustomerCountry_NumberOfScreens_en-US
+    scenario_id: '0400'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch multiple shows on your television at the same time
+    description: User wants to watch multiple shows on their television at the same time
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: What do I have to do to watch multiple screens on my TV can you tell me
+        intent_to_elicit: SetupTVMultipleScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you in?
+        sample_response: '{}'
+        intent_to_elicit: CustomerCountry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many screens do you hope to display at the same time?
+        sample_response: Put it through as {}
+        intent_to_elicit: NumberOfScreens
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes your TV?
+        sample_response: I have a animation TV
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionManufacturer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model name of your TV?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

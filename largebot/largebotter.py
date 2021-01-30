@@ -1244,7 +1244,7 @@ class ResourceBot:
                 if not path:
                     logger.error(f"No source folder path for {task}{role}")
                 target = AIE_DRIVE.get_item_by_path(*path)
-                file_names = [item.name.split('.')[0] for item in target.get_items()]
+                file_names = [item.name.split('.')[0] for item in target.get_items()] if target else []
                 for file in resource.summary.get(task, []):
                     if file.file_name.domain != domain or file.status not in folders.get(role):
                         continue

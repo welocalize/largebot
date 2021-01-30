@@ -1,0 +1,828 @@
+name: LargeBot_MediaCable_scenarios_batch06
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_InquireWiFiLocationStrengths_cancelintent_en-US
+    scenario_id: '0101'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to check Wi-Fi strength at your location
+    description: User wants to check Wi-Fi strength at their location
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Wait I want to Cancel
+        intent_to_elicit: cancelintent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What seems to be the problem with internet connection?
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of device are you using?
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you state your current address?
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: ''
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_InquireWiFiLocationStrengths_en-US
+    scenario_id: '0102'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to check Wi-Fi strength at your location
+    description: User wants to check Wi-Fi strength at their location
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: What's the Wi-Fi speed like for {DeviceType} right now
+        intent_to_elicit: InquireWiFiLocationStrengths
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What seems to be the problem with internet connection?
+        sample_response: I'll get the extra large mac and cheese
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_InquireWiFiLocationStrengths_en-US
+    scenario_id: '0103'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to check Wi-Fi strength at your location
+    description: User wants to check Wi-Fi strength at their location
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: HAving slow internet at my address {CustomerAddress} can you check its strength
+        intent_to_elicit: InquireWiFiLocationStrengths
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What seems to be the problem with internet connection?
+        sample_response: Can you tell me how I can make my own router from scratch
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireWiFiLocationStrengths_HelpIntent_en-US
+    scenario_id: '0104'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to check Wi-Fi strength at your location
+    description: User wants to check Wi-Fi strength at their location
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Want to check Wi-Fi strength in {UserCity} on my {DeviceType}.
+        intent_to_elicit: InquireWiFiLocationStrengths
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What seems to be the problem with internet connection?
+        sample_response: disconnected is the biggest problem
+        intent_to_elicit: false
+        slot_to_elicit: InternetIssue
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of device are you using?
+        sample_response: would you be able to help me
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpStreamingService_PauseIntent_en-US
+    scenario_id: '0105'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up a streaming service
+    description: User wants to set up a streaming service
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Uh my name is {UserFirstName} and I wanna know about streaming on my account and my last name is {UserLastName}
+        intent_to_elicit: SetUpStreamingService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpStreamingService_Confirmed_en-US
+    scenario_id: '0106'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to set up a streaming service
+    description: User wants to set up a streaming service
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I wanna watch stuff on streaming but like not pay for it uh can I do that
+        intent_to_elicit: SetUpStreamingService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: My name is Leslie
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you spell your last name?
+        sample_response: That would be White.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: 888-7784
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: "so that's 7579 High Noon St.,\nOtoe, NE 68417"
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming service would you like to set up?
+        sample_response: Yes, ESPN+
+        intent_to_elicit: false
+        slot_to_elicit: ServiceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to have the streaming service?
+        sample_response: 1 year
+        intent_to_elicit: false
+        slot_to_elicit: ServiceDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_SetUpStreamingService_en-US
+    scenario_id: '0107'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to set up a streaming service
+    description: User wants to set up a streaming service
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Does my plan comes with free streaming this is {UserFirstName} {UserLastName}
+        intent_to_elicit: SetUpStreamingService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Where is the Uber pickup zone?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CheckWiFiUsers_StopIntent_en-US
+    scenario_id: '0108'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know who's connected to your Wi-Fi
+    description: User wants to know who's connected to their Wi-Fi
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Yeah hi can I get a list of who's using my wifi please it would be great if you could please text it to me at {UserPhoneNumber}
+        intent_to_elicit: CheckWiFiUsers
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Please stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CheckWiFiUsers_Denied_en-US
+    scenario_id: '0109'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know who's connected to your Wi-Fi
+    description: User wants to know who's connected to their Wi-Fi
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: I'm on {WiFiName} for account number {UserAccountNumber} and need to know what other people are on
+        intent_to_elicit: CheckWiFiUsers
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: my phone number is 4406150695
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: That is going to be 0tH109kqbH
+        intent_to_elicit: false
+        slot_to_elicit: WiFiPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: No
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_CheckWiFiUsers_en-US
+    scenario_id: '0110'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to know who's connected to your Wi-Fi
+    description: User wants to know who's connected to their Wi-Fi
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Wanna know how many people are using my wifi My account number is {UserAccountNumber}.
+        intent_to_elicit: CheckWiFiUsers
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Will they be serving breakfast?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_CheckWiFiUsers_en-US
+    scenario_id: '0111'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to know who's connected to your Wi-Fi
+    description: User wants to know who's connected to their Wi-Fi
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: I need to check who's using my wifi right now. The account number is {UserAccountNumber}.
+        intent_to_elicit: CheckWiFiUsers
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: How do I get my brother off my wifi??
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CheckWiFiUsers_NoIntent_en-US
+    scenario_id: '0112'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know who's connected to your Wi-Fi
+    description: User wants to know who's connected to their Wi-Fi
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Tell me who is logged into the wifi for account number {UserAccountNumber}
+        intent_to_elicit: CheckWiFiUsers
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: Sure, 9663495953
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your Wi-Fi network?
+        sample_response: That is going to be UPC7026767
+        intent_to_elicit: false
+        slot_to_elicit: WiFiName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FindPaymentPlan_SetUpServiceAutopay_Denied_en-US
+    scenario_id: '0113'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a different phone payment plan
+    description: User wants a different phone payment plan
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Yeah this is Mr er {CustomerLastName} can I change my phone plan
+        intent_to_elicit: FindPaymentPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Actually could I set up autopayment?
+        intent_to_elicit: SetUpServiceAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yeah sure the name is Tyler
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Simmons
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: LH-43585639
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service would you like to set up autopayment for?
+        sample_response: My Phone please
+        intent_to_elicit: false
+        slot_to_elicit: UserService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your method of payment?
+        sample_response: Credit card
+        intent_to_elicit: false
+        slot_to_elicit: UserPaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number you would like to use?
+        sample_response: '803876991559'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like your credit card to be charged?
+        sample_response: '2021-03-22'
+        intent_to_elicit: false
+        slot_to_elicit: PaymentDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FindPaymentPlan_Confirmed_en-US
+    scenario_id: '0114'
+    bias:
+      - SingleIntent
+    customer_instructions: You want a different phone payment plan
+    description: User wants a different phone payment plan
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Yeah uh I pay monthly for my {TypeOfPhone} and um I uh I wanna prepay instead
+        intent_to_elicit: FindPaymentPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: name's Dylan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name Ball
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you purchase the phone?
+        sample_response: it should be on 2020-10-05
+        intent_to_elicit: false
+        slot_to_elicit: DateOfPurchase
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What phone payment plan would you like to switch to?
+        sample_response: change me over to Prepaid
+        intent_to_elicit: false
+        slot_to_elicit: PaymentPreferencePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FindPaymentPlan_CancelIntent_en-US
+    scenario_id: '0115'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a different phone payment plan
+    description: User wants a different phone payment plan
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Hey ah would you lemme pay once a month I got my {TypeOfPhone} on {DateOfPurchase} uh
+        intent_to_elicit: FindPaymentPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Cancel
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_FindPaymentPlan_en-US
+    scenario_id: '0116'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want a different phone payment plan
+    description: User wants a different phone payment plan
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Do you guys have any plans that I could uh pay once a month instead of like in advance or something like that
+        intent_to_elicit: FindPaymentPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Do you do all day breakfast?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_FindPaymentPlan_RepeatIntent_en-US
+    scenario_id: '0117'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a different phone payment plan
+    description: User wants a different phone payment plan
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Can I get a {TypeOfPhone} on a pre-paid plan
+        intent_to_elicit: FindPaymentPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: yep - it's Vincent
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure it's Duarte
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of phone do you have?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PlanMinimumAge_Confirmed_en-US
+    scenario_id: '0118'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know the minimum age for having a plan in your name
+    description: User wants to know the minimum age for having a plan in their name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: My son's DOB is {UserBirthDate} does he qualify for his own plan yet
+        intent_to_elicit: PlanMinimumAge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: My name is Laura thanks
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name?
+        sample_response: Yes the last name is Mata
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of plan do you want to look up?
+        sample_response: Unlimited
+        intent_to_elicit: false
+        slot_to_elicit: PlanType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company plan would you like to add?
+        sample_response: The Prepaid
+        intent_to_elicit: false
+        slot_to_elicit: PhonePlanName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would you like to receive the user agreement form?
+        sample_response: via mail please
+        intent_to_elicit: false
+        slot_to_elicit: UserAgreementDeliveryMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PlanMinimumAge_StopIntent_en-US
+    scenario_id: '0119'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the minimum age for having a plan in your name
+    description: User wants to know the minimum age for having a plan in their name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: My son is {UserAge} - is that old enough to have his own plan
+        intent_to_elicit: PlanMinimumAge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_PlanMinimumAge_en-US
+    scenario_id: '0120'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to know the minimum age for having a plan in your name
+    description: User wants to know the minimum age for having a plan in their name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Can I get a plan if I'm only {UserAge} or do I have to wait
+        intent_to_elicit: PlanMinimumAge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Decaf coffee thanks
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

@@ -1,0 +1,1297 @@
+name: LargeBot_MediaCable_scenarios_batch50
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_RestartService_PauseIntent_en-US
+    scenario_id: '0981'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to restart service
+    description: User wants to restart service
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I think I would like to use the service again so go ahead and activate it
+        intent_to_elicit: RestartService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: put it down as joseph
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: my last name is boone
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: that is going to be fk-98076505
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your address please?
+        sample_response: "yes it is 4371 iroquois street,\nuniversity pk, pa 16802"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your phone number?
+        sample_response: that is 090-728-4058
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your email address?
+        sample_response: joseph.b@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you end your service?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReinstateErasedFavoriteShows_Confirmed_en-US
+    scenario_id: '0982'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to restore favorites and saved shows
+    description: User wants to restore favorites and saved shows
+    script:
+      - agent: What can I do to help?
+        sample_response: I lost the favorites that were stored on my device how do I get them back
+        intent_to_elicit: ReinstateErasedFavoriteShows
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your email address?
+        sample_response: Emily.M@hotmail.com that's it.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: For that I have c9MCLo1p95
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did you delete your favorites?
+        sample_response: That's going to be 2020-09-19.
+        intent_to_elicit: false
+        slot_to_elicit: DateDeleted
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many favorites were deleted?
+        sample_response: '5'
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfShows
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device do you use to watch these shows?
+        sample_response: A1842
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What genre of shows are your favorite?
+        sample_response: romance
+        intent_to_elicit: false
+        slot_to_elicit: GenreOfShows
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReinstateErasedFavoriteShows_YesIntent_en-US
+    scenario_id: '0983'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to restore favorites and saved shows
+    description: User wants to restore favorites and saved shows
+    script:
+      - agent: What can I do to help?
+        sample_response: I was hoping my deleted {Device} favorites and saved shows would be put back
+        intent_to_elicit: ReinstateErasedFavoriteShows
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your email address?
+        sample_response: It would be ScottOconnellyahoocom
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: seems to be YSU0fF1dlu
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did you delete your favorites?
+        sample_response: that is going to be 20200914
+        intent_to_elicit: false
+        slot_to_elicit: DateDeleted
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many favorites were deleted?
+        sample_response: That's exactly right.
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReinstateErasedFavoriteShows_RepeatIntent_AmountOfShows_en-US
+    scenario_id: '0984'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to restore favorites and saved shows
+    description: User wants to restore favorites and saved shows
+    script:
+      - agent: What can I do to help?
+        sample_response: Can you restore my favorites and saved shows please
+        intent_to_elicit: ReinstateErasedFavoriteShows
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your email address?
+        sample_response: You can put WShelleygmailcom
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: Im not entirely sure I think its 53Mq1IaepN
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did you delete your favorites?
+        sample_response: ending 20210118
+        intent_to_elicit: false
+        slot_to_elicit: DateDeleted
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many favorites were deleted?
+        sample_response: yes, {}
+        intent_to_elicit: AmountOfShows
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device do you use to watch these shows?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RestoreInternetPreferences_Confirmed_en-US
+    scenario_id: '0985'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to restore internet preferences
+    description: User wants to restore internet preferences
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Please help me I need preferences {BrowserName} preferences restored
+        intent_to_elicit: RestoreInternetPreferences
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your first name?
+        sample_response: My given name is Michelle
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yes, my name is Garcia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your email address please?
+        sample_response: email ID is Michelle.Garcia@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: That is going to be ATJj4CzzNz
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of device are you using?
+        sample_response: Ultra
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What preferences would you like to restore?
+        sample_response: internet
+        intent_to_elicit: false
+        slot_to_elicit: Preferences
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RestoreInternetPreferences_CancelIntent_en-US
+    scenario_id: '0986'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to restore internet preferences
+    description: User wants to restore internet preferences
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I use {BrowserName} and I need my internet preferences for it restored
+        intent_to_elicit: RestoreInternetPreferences
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your first name?
+        sample_response: the name's jacqueline
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: it is under the name henry.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your email address please?
+        sample_response: jacquelineh@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: yeah it's hgarhqzr76
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of device are you using?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RestoreInternetPreferences_StopIntent_en-US
+    scenario_id: '0987'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to restore internet preferences
+    description: User wants to restore internet preferences
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I was hoping to put my preferences back to the way it was please help
+        intent_to_elicit: RestoreInternetPreferences
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your first name?
+        sample_response: I am Anna
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yes Curtis is the last name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your email address please?
+        sample_response: the right email address is CAnna@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: Yes uxFFKwsO98 please
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of device are you using?
+        sample_response: my Express.
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What browser are you using?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReinstateTVPreferences_Confirmed_en-US
+    scenario_id: '0988'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to restore TV preferences
+    description: User wants to restore TV preferences
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Yeah I want to restore my TV preferences
+        intent_to_elicit: ReinstateTVPreferences
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: It's Jamie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name would be Kaufman
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I've got BD-50739872, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "It's 6093 Brandywine St.,\nRehobeth, AL 36303"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: the number is 016-943-5546
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of TV do you need assistance with?
+        sample_response: TCL 4K Smart LED TV 43"
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfTV
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like to schedule the tech support appointment?
+        sample_response: I want to put 2021-06-26
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAvailabilityDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to set up an online or in-person appointment?
+        sample_response: in person
+        intent_to_elicit: false
+        slot_to_elicit: SupportType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReinstateTVPreferences_StartOverIntent_en-US
+    scenario_id: '0989'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to restore TV preferences
+    description: User wants to restore TV preferences
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: How do I change back my TV settings they're all wrong
+        intent_to_elicit: ReinstateTVPreferences
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yes of course, I'm Wanda
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Gardner
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: So I think it's FJ-77954770
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "Yes, it's at 5454 SE. Green Street,\nPrattsville, NY 12468 34701 Sheridan"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WarrantyRepairs_Confirmed_en-US
+    scenario_id: '0990'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to check if the device warranty covers repairs
+    description: User wants to check if the device warranty covers repairs
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Does the warranty on my {TypeOfDevice} cover repairs
+        intent_to_elicit: WarrantyRepairs
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yes, it's Abigail
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name of Allison.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: 71-63155055A3 I guess
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address?
+        sample_response: "It is at 8420B Vermont Street,\nKinards, SC 29355"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: mobile number  is 178-7677
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your email address?
+        sample_response: Yeah it is AAbigail@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Was the device purchased new or refurbished?
+        sample_response: reburbished
+        intent_to_elicit: false
+        slot_to_elicit: PurchaseCondition
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to exchange it for a different refurbished device free of charge or a brand new device for a small fee?
+        sample_response: new
+        intent_to_elicit: false
+        slot_to_elicit: DeviceExchange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WarrantyRepairs_YesIntent_en-US
+    scenario_id: '0991'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to check if the device warranty covers repairs
+    description: User wants to check if the device warranty covers repairs
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I gotta broke ass {TypeOfDevice} here and it needs fixing please tell me the warranty covers repairs
+        intent_to_elicit: WarrantyRepairs
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: It's Justin thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name's Elliott
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: Number 85488483662XG
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address?
+        sample_response: "Sure thing, here it is: 5169 Andover Street,\nAmelia, WV 25160 12580 Dockweiler"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number please?
+        sample_response: 'phone number: 0558882603'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your email address?
+        sample_response: email's ElliottJustin@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Was the device purchased new or refurbished?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NewCustomerPlans_Confirmed_en-US
+    scenario_id: '0992'
+    bias:
+      - SingleIntent
+    customer_instructions: You free trial are about to end and want to enroll in a new plan
+    description: User free trial is about to end and wants to enroll in a new plan
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: My free trial is about to expire and I want to stay subscribed please
+        intent_to_elicit: NewCustomerPlans
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah, I'm Tammy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes, the last name is Nunez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address please, so I can send you a confirmation number?
+        sample_response: email's NunezTammy@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What plan are you interested in?
+        sample_response: Basic
+        intent_to_elicit: false
+        slot_to_elicit: NameOfPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your maximum budget?
+        sample_response: 100 usd in total
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPriceRange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What form of payment will you be using?
+        sample_response: debit
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: yes that's 588981838067
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_NewCustomerPlans_NoIntent_CustomerPriceRange_en-US
+    scenario_id: '0993'
+    bias:
+      - MultiIntent
+    customer_instructions: You free trial are about to end and want to enroll in a new plan
+    description: User free trial is about to end and wants to enroll in a new plan
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: I want to get {NameOfPlan} after my trial is up can you help
+        intent_to_elicit: NewCustomerPlans
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Bradley
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes the last name is Morgan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address please, so I can send you a confirmation number?
+        sample_response: Yeah it is MorganBradley@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your maximum budget?
+        sample_response: That's {}
+        intent_to_elicit: CustomerPriceRange
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What form of payment will you be using?
+        sample_response: I want to use my credit
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LostInternetConnectionIssues_Confirmed_en-US
+    scenario_id: '0994'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to resolve internet outage issue
+    description: User wants to resolve internet outage issue
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: My internet is down
+        intent_to_elicit: LostInternetConnectionIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: first name is taylor
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: it is williams
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: not sure i think it's 80-b098578xk
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: "no problem, the address is 6182 school street,\nsupulpa, ok 74066"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: please. thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LostInternetConnectionIssues_PauseIntent_Confirmed_en-US
+    scenario_id: '0995'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to resolve internet outage issue
+    description: User wants to resolve internet outage issue
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Can we get our internet back up and running at {CustomerAddress}
+        intent_to_elicit: LostInternetConnectionIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LostInternetConnectionIssues_PauseIntent_en-US
+    scenario_id: '0996'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to resolve internet outage issue
+    description: User wants to resolve internet outage issue
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: I have no internet can you restore it
+        intent_to_elicit: LostInternetConnectionIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: David
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Sure the last name is Evans
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: 99278311073VU.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your address please?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DataUsedOptions_Denied_en-US
+    scenario_id: '0997'
+    bias:
+      - SingleIntent
+    customer_instructions: You have used up the monthly data and want to know about available options
+    description: User has used up the monthly data and wants to know about available options
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: I'm all out of {DataUsage} can I get more
+        intent_to_elicit: DataUsedOptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: yes, i'm heather
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: sure it's perez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: that is 79-r851049ye
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your email address please?
+        sample_response: email address is heatherperez@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which plan would you like to upgrade to?
+        sample_response: basic
+        intent_to_elicit: false
+        slot_to_elicit: PlanUpgrade
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: '4183208124631672'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: nope. not now. thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DataUsedOptions_YesIntent_en-US
+    scenario_id: '0998'
+    bias:
+      - MultiIntent
+    customer_instructions: You have used up the monthly data and want to know about available options
+    description: User has used up the monthly data and wants to know about available options
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: Can I please add {DataUsage} to my plan or do I have to upgrade
+        intent_to_elicit: DataUsedOptions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: I am Louis
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yep, it is Stafford
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: 80-N356732PK
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your email address please?
+        sample_response: email I'd is Louis.Stafford@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What option are you interested in?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ServiceBoxDamaged_Confirmed_en-US
+    scenario_id: '0999'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to schedule a technician appointment to fix cable box
+    description: User wants to schedule a technician appointment to fix cable box
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Can I make an appointment with a technician this is {CustomerFirstName}
+        intent_to_elicit: ServiceBoxDamaged
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: Yeah last name is Fisher
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 17-08794654f9
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: it is FisherDale@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide a phone number?
+        sample_response: my number is 1862792740
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like for this appointment?
+        sample_response: check 2021-05-24
+        intent_to_elicit: false
+        slot_to_elicit: AppointmentDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time would you like for this appointment?
+        sample_response: Precisely at 4:05PM.
+        intent_to_elicit: false
+        slot_to_elicit: AppointmentTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ServiceBoxDamaged_StartOverIntent_en-US
+    scenario_id: '1000'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to schedule a technician appointment to fix cable box
+    description: User wants to schedule a technician appointment to fix cable box
+    script:
+      - agent: How can I be of assistance?
+        sample_response: What is the fastest y'all can get someone out here to fix my box I'm having a lot of issues with it
+        intent_to_elicit: ServiceBoxDamaged
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your first name?
+        sample_response: Yeah, it's Kimberly
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: Yeah last name Olson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I'm not entirely sure, I think it's 20141479198BK.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: Sure OlsonKimberly@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide a phone number?
+        sample_response: 'phone: (477)-089-9285'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like for this appointment?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

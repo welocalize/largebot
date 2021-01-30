@@ -1,0 +1,79 @@
+name: LargeBot_MediaCable
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_VODServiceTitleAvailability_en-US
+    scenario_id: '0001'
+    bias:
+      - SingleIntent
+    customer_instructions: Imagine you're trying to get information about a specific movie genre to stream
+    description: User wants information about a streaming genre
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: I'm trying to figure out what to stream.
+        intent_to_elicit: VODServiceTitleAvailability
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What genre are you looking to stream?
+        sample_response: Horror
+        intent_to_elicit: false
+        slot_to_elicit: FilmGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: You can see our titles in that genre at this link. [Do not respond.]
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_Follow-Up_VODServiceTitleAvailability_en-US
+    scenario_id: '0002'
+    bias:
+      - SingleIntent
+    customer_instructions: Imagine you're trying to get information about a specific movie genre to stream
+    description: User wants information about a streaming genre
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: I'm trying to figure out what to stream.
+        intent_to_elicit: VODServiceTitleAvailability
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What genre are you looking to stream?
+        sample_response: Horror
+        intent_to_elicit: false
+        slot_to_elicit: FilmGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: You can see our titles in that genre at this link.
+        sample_response: What about thrillers?
+        intent_to_elicit: Follow-up_VODServiceTitleAvailability
+        slot_to_elicit: false
+        input_output_context: HERE
+        confirm_intent: false
+        assume_intent: false
+        close: false
+        active_contexts:
+          - name: get_content_information
+            turns_to_live: 3
+      - agent: You can see our titles in that genre at this link. [Do not respond.]
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

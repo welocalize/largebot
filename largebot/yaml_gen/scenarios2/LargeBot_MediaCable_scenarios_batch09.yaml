@@ -1,0 +1,1015 @@
+name: LargeBot_MediaCable_scenarios_batch09
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_AddTravelDataPlan_CancelIntent_en-US
+    scenario_id: '0161'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a temporary travel data plan
+    description: User wants to add a temporary travel data plan
+    script:
+      - agent: What can I help you with today?
+        sample_response: My name is {CustomerFirstName} {CustomerLastName}. While I'm traveling can I add a temporary plan please
+        intent_to_elicit: AddTravelDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Never mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_AddTravelDataPlan_en-US
+    scenario_id: '0162'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to add a temporary travel data plan
+    description: User wants to add a temporary travel data plan
+    script:
+      - agent: What can I help you with today?
+        sample_response: I would like to add a temporary travel data plan on account {AccountNumber}
+        intent_to_elicit: AddTravelDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My TV screen is cracked and I need a new one
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddTravelDataPlan_StopIntent_en-US
+    scenario_id: '0163'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a temporary travel data plan
+    description: User wants to add a temporary travel data plan
+    script:
+      - agent: What can I help you with today?
+        sample_response: Add temporary data plan on account {AccountNumber} please
+        intent_to_elicit: AddTravelDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: name's David
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Put Bradford
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please verify your billing address.
+        sample_response: "For the address it's 113 South Lake View Street,\nWadestown, WV 26590 28761 Miami"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please verify your phone number.
+        sample_response: Yes, 545-362-2785
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which country will you be traveling to?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RegulatoryBodyComplaintSteps_Confirmed_en-US
+    scenario_id: '0164'
+    bias:
+      - SingleIntent
+    customer_instructions: You want file a complaint to the regulatory body
+    description: User wants file a complaint to the regulatory body
+    script:
+      - agent: How can I be of assistance?
+        sample_response: How do I put in a complaint to {RegulatoryBodyName}
+        intent_to_elicit: RegulatoryBodyComplaintSteps
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Leslie is my name
+        intent_to_elicit: false
+        slot_to_elicit: FirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I get your last name?
+        sample_response: Last name of Grant.
+        intent_to_elicit: false
+        slot_to_elicit: LastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide the date of the incident?
+        sample_response: 'on: 2020-08-19'
+        intent_to_elicit: false
+        slot_to_elicit: Date
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you provide some details about the incident you are complaining about?
+        sample_response: I am a victim of price gouging from my cable company
+        intent_to_elicit: false
+        slot_to_elicit: IncidentDetail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RegulatoryBodyComplaintSteps_PauseIntent_en-US
+    scenario_id: '0165'
+    bias:
+      - MultiIntent
+    customer_instructions: You want file a complaint to the regulatory body
+    description: User wants file a complaint to the regulatory body
+    script:
+      - agent: How can I be of assistance?
+        sample_response: What are the steps to make a complaint
+        intent_to_elicit: RegulatoryBodyComplaintSteps
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which regulatory body do you want to file a complaint to?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_RegulatoryBodyComplaintSteps_en-US
+    scenario_id: '0166'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want file a complaint to the regulatory body
+    description: User wants file a complaint to the regulatory body
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Show me how to make a complaint
+        intent_to_elicit: RegulatoryBodyComplaintSteps
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which regulatory body do you want to file a complaint to?
+        sample_response: The FTC
+        intent_to_elicit: false
+        slot_to_elicit: RegulatoryBodyName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah it is Donna
+        intent_to_elicit: false
+        slot_to_elicit: FirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I get your last name?
+        sample_response: I want pudding
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RegulatoryBodyComplaintSteps_YesIntent_en-US
+    scenario_id: '0167'
+    bias:
+      - MultiIntent
+    customer_instructions: You want file a complaint to the regulatory body
+    description: User wants file a complaint to the regulatory body
+    script:
+      - agent: How can I be of assistance?
+        sample_response: What do I gotta do to launch a complaint
+        intent_to_elicit: RegulatoryBodyComplaintSteps
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which regulatory body do you want to file a complaint to?
+        sample_response: I'd like to complain to EPA
+        intent_to_elicit: false
+        slot_to_elicit: RegulatoryBodyName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: okay it's Gabrielle
+        intent_to_elicit: false
+        slot_to_elicit: FirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I get your last name?
+        sample_response: Yeah sure the name is Lawrence
+        intent_to_elicit: false
+        slot_to_elicit: LastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide the date of the incident?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_ReportInternetOutage_en-US
+    scenario_id: '0168'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to report an internet outage
+    description: User wants to report an internet outage
+    script:
+      - agent: What can I help you with today?
+        sample_response: My net just went down report it for me
+        intent_to_elicit: ReportInternetOutage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me the address of the site experiencing outages?
+        sample_response: "Yes it is at 1699 Glen Ridge St\nLake Angelus MI 48326"
+        intent_to_elicit: false
+        slot_to_elicit: SiteLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: that is CN32543541
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address for the account?
+        sample_response: Is the restaurant open on weekends?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportInternetOutage_InquireInternetSpeedIssues_ConfirmedIntent_en-US
+    scenario_id: '0169'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report an internet outage
+    description: User wants to report an internet outage
+    script:
+      - agent: What can I help you with today?
+        sample_response: What I gotta do to report an outage for my internet
+        intent_to_elicit: ReportInternetOutage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me the address of the site experiencing outages?
+        sample_response: "My address is 1680 Indian Summer Circle,\nBriscoe, TX 79011"
+        intent_to_elicit: false
+        slot_to_elicit: SiteLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Put 16-25796484J4
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address for the account?
+        sample_response: That's SamuelBruce@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you confirm the phone number on the account?
+        sample_response: The number is 970-3701
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what time the outage began?
+        sample_response: It's 11:53 a.m..
+        intent_to_elicit: false
+        slot_to_elicit: OutageTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Oh, it's not down it's just really slow. Can you help?
+        intent_to_elicit: InquireInternetSpeedIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: CustomerFirstName
+        sample_response: Can I have your first name please?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: CustomerLastName
+        sample_response: Can I have your last name please?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ModemStatus
+        sample_response: What color is the connectivity light on your modem?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: false
+        sample_response: Could you please confirm whether or not I should process this request for you today?
+        intent_to_elicit: ConfirmedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportInternetOutage_Bruce_orange_Samuel_Confirmed_en-US
+    scenario_id: '0170'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report an internet outage
+    description: User wants to report an internet outage
+    script:
+      - agent: What can I help you with today?
+        sample_response: This is getting annoying I need to report another internet outage
+        intent_to_elicit: ReportInternetOutage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me the address of the site experiencing outages?
+        sample_response: "Address: 7883 Hartford Street,\nBlairstown, MO 64726"
+        intent_to_elicit: false
+        slot_to_elicit: SiteLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: yep 21-18394027d4
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address for the account?
+        sample_response: My email would be BJose@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you confirm the phone number on the account?
+        sample_response: That is 3062654570
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what time the outage began?
+        sample_response: 3 o'clock pls
+        intent_to_elicit: false
+        slot_to_elicit: OutageTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: Samuel
+        slot_to_elicit: ''
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: Bruce
+        slot_to_elicit: ''
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: orange
+        slot_to_elicit: ''
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportInternetOutage_NoIntent_en-US
+    scenario_id: '0171'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report an internet outage
+    description: User wants to report an internet outage
+    script:
+      - agent: What can I help you with today?
+        sample_response: My net is down again call {PhoneNumber} so I can report it please
+        intent_to_elicit: ReportInternetOutage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me the address of the site experiencing outages?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportInternetOutage_PauseIntent_en-US
+    scenario_id: '0172'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report an internet outage
+    description: User wants to report an internet outage
+    script:
+      - agent: What can I help you with today?
+        sample_response: Can you kindly dial {PhoneNumber} I wanna report my outage
+        intent_to_elicit: ReportInternetOutage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me the address of the site experiencing outages?
+        sample_response: "Yes, it's at 3726 Clay St.,\nBenedicta, ME 04733"
+        intent_to_elicit: false
+        slot_to_elicit: SiteLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportInternetOutage_Confirmed_en-US
+    scenario_id: '0173'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to report an internet outage
+    description: User wants to report an internet outage
+    script:
+      - agent: What can I help you with today?
+        sample_response: I have an internet issue please tell me what to do
+        intent_to_elicit: ReportInternetOutage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me the address of the site experiencing outages?
+        sample_response: "This is it: 8804 Old Pennsylvania St.,\nAurora, IA 50607"
+        intent_to_elicit: false
+        slot_to_elicit: SiteLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Yes, I've got 10-V003035OG here
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address for the account?
+        sample_response: So it is Ferguson.Melissa@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you confirm the phone number on the account?
+        sample_response: yes 7342594200
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what time the outage began?
+        sample_response: Yeah, 3:21PM
+        intent_to_elicit: false
+        slot_to_elicit: OutageTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportInternetOutage_RepeatIntent_en-US
+    scenario_id: '0174'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report an internet outage
+    description: User wants to report an internet outage
+    script:
+      - agent: What can I help you with today?
+        sample_response: Show me what to do to report an outage please
+        intent_to_elicit: ReportInternetOutage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you give me the address of the site experiencing outages?
+        sample_response: "so its 5775 Pennington Street\nArlington NE 68002"
+        intent_to_elicit: false
+        slot_to_elicit: SiteLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Thats 65L428190LD
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address for the account?
+        sample_response: put down BChristopherhotmailcom
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you confirm the phone number on the account?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseVPNLegal_Confirmed_en-US
+    scenario_id: '0175'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to buy a legal VPN
+    description: User wants to buy a legal VPN
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I'd like to buy a safe VPN please
+        intent_to_elicit: PurchaseVPNLegal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the VPN you are interested in?
+        sample_response: Yes that is Nordvpn
+        intent_to_elicit: false
+        slot_to_elicit: VPNName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name on the account?
+        sample_response: Sure, it's Ronnie
+        intent_to_elicit: false
+        slot_to_elicit: AccountFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name on the account?
+        sample_response: That's Best
+        intent_to_elicit: false
+        slot_to_elicit: AccountLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm the number on the account?
+        sample_response: 374-3537
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you think you could confirm the email address on the account?
+        sample_response: Ronnieb@yahoo.com would be it.
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the maximum price you would like to pay?
+        sample_response: yeah a value of 50 usd
+        intent_to_elicit: false
+        slot_to_elicit: VPNPriceRange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseVPNLegal_StopIntent_en-US
+    scenario_id: '0176'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to buy a legal VPN
+    description: User wants to buy a legal VPN
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I'd like to purchase a VPN can you tell me some legal ones
+        intent_to_elicit: PurchaseVPNLegal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the VPN you are interested in?
+        sample_response: Please stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_PurchaseVPNLegal_en-US
+    scenario_id: '0177'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to buy a legal VPN
+    description: User wants to buy a legal VPN
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I need a list of legal VPN options thank you
+        intent_to_elicit: PurchaseVPNLegal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the VPN you are interested in?
+        sample_response: Its NordVPN
+        intent_to_elicit: false
+        slot_to_elicit: VPNName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name on the account?
+        sample_response: the name's Katie
+        intent_to_elicit: false
+        slot_to_elicit: AccountFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name on the account?
+        sample_response: Yeah, it's Flores
+        intent_to_elicit: false
+        slot_to_elicit: AccountLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm the number on the account?
+        sample_response: Extra spicy chicken wings cheers
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_PurchaseVPNLegal_en-US
+    scenario_id: '0178'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to buy a legal VPN
+    description: User wants to buy a legal VPN
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Can you tell me how do I find a safe VPN
+        intent_to_elicit: PurchaseVPNLegal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the VPN you are interested in?
+        sample_response: How much are you making as a customer service person at this company?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseVPNLegal_RepeatIntent_en-US
+    scenario_id: '0179'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to buy a legal VPN
+    description: User wants to buy a legal VPN
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Can you show me options for a legal VPN
+        intent_to_elicit: PurchaseVPNLegal
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the VPN you are interested in?
+        sample_response: think it's NordVPN
+        intent_to_elicit: false
+        slot_to_elicit: VPNName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name on the account?
+        sample_response: My first name is Jerry
+        intent_to_elicit: false
+        slot_to_elicit: AccountFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name on the account?
+        sample_response: Yes it's Warner
+        intent_to_elicit: false
+        slot_to_elicit: AccountLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm the number on the account?
+        sample_response: 170-2884
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you think you could confirm the email address on the account?
+        sample_response: OK it's W.Jerry@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the maximum price you would like to pay?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddPreferredNewsChannel_Confirmed_en-US
+    scenario_id: '0180'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to add your favorite news channel
+    description: User wants to add their favorite news channel
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Can you help me add my favorite news channel please
+        intent_to_elicit: AddPreferredNewsChannel
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me which television provider you are currently with?
+        sample_response: Xfinity
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you think you could give me the first name on the account?
+        sample_response: David
+        intent_to_elicit: false
+        slot_to_elicit: AccountFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you think you could give me the last name on the account?
+        sample_response: Last name would be Tucker
+        intent_to_elicit: false
+        slot_to_elicit: AccountLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please give me the account number?
+        sample_response: It is 91-Z822303OG.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What news channel would you like to add?
+        sample_response: Add MSNBC please
+        intent_to_elicit: false
+        slot_to_elicit: NewsChannel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

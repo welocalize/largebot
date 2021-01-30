@@ -1,0 +1,1100 @@
+name: LargeBot_MediaCable_scenarios_batch14
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_InquireNetworkFrequencies_YesIntent_en-US
+    scenario_id: '0261'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to see what network frequency providers are in your area
+    description: User wants to see what network frequency providers are in their area
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I live at {InquirerAddress} and I wanna switch to your plan can I use my {InquirerDevice} with it
+        intent_to_elicit: InquireNetworkFrequencies
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you looking for services mainly in the United States or international?
+        sample_response: I am looking in international
+        intent_to_elicit: false
+        slot_to_elicit: InternationalOffering
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you plan to use these services for?
+        sample_response: I need them for calls
+        intent_to_elicit: false
+        slot_to_elicit: InquirerUsagePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of coverage are you looking for?
+        sample_response: That's 2100MHz
+        intent_to_elicit: false
+        slot_to_elicit: FrequencyRangePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which plan are you looking for?
+        sample_response: That's exactly right.
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireTopBroadbandProviders_Denied_en-US
+    scenario_id: '0262'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to see who the top broadband providers are
+    description: User wants to see who the top broadband providers are
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I'm wanting to switch up my internet because it's slow
+        intent_to_elicit: InquireTopBroadbandProviders
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Sure. Where do you live?
+        sample_response: "For the address it's 4892 Marshall Street,\nHillside, IL 60162 04817 Leesburg"
+        intent_to_elicit: false
+        slot_to_elicit: InquirerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you mainly use the internet for?
+        sample_response: I use it for emails.
+        intent_to_elicit: false
+        slot_to_elicit: InternetUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which device will you mainly use?
+        sample_response: I'll use my Flex 5
+        intent_to_elicit: false
+        slot_to_elicit: DeviceUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you want providers with consistent speeds or throttling speeds at peak hours?
+        sample_response: I prefer throttled speeds
+        intent_to_elicit: false
+        slot_to_elicit: MultipleUsers
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to sort by cable or fiber?
+        sample_response: sort by fiber please
+        intent_to_elicit: false
+        slot_to_elicit: CableOrFiberPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet download speed package would you like?
+        sample_response: as fast as possible
+        intent_to_elicit: false
+        slot_to_elicit: DownloadSpeedPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet upload speed package would you like?
+        sample_response: As fast as possible
+        intent_to_elicit: false
+        slot_to_elicit: UploadSpeedPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_InquireTopBroadbandProviders_InternetUsage_en-US
+    scenario_id: '0263'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to see who the top broadband providers are
+    description: User wants to see who the top broadband providers are
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Could we sign me up for a new internet plan today so we have better speed
+        intent_to_elicit: InquireTopBroadbandProviders
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Sure. Where do you live?
+        sample_response: "sure, it's 2642 sussex street,\nquaker, ks 66725 45801 hyndman"
+        intent_to_elicit: false
+        slot_to_elicit: InquirerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you mainly use the internet for?
+        sample_response: Probably just browsing
+        intent_to_elicit: InternetUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which device will you mainly use?
+        sample_response: i have a aspire 5 i'd use
+        intent_to_elicit: false
+        slot_to_elicit: DeviceUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you want providers with consistent speeds or throttling speeds at peak hours?
+        sample_response: I need glasses
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireTopBroadbandProviders_YesIntent_en-US
+    scenario_id: '0264'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to see who the top broadband providers are
+    description: User wants to see who the top broadband providers are
+    script:
+      - agent: How can I be of assistance?
+        sample_response: My apartment is at {InquirerAddress} and I'd like a new plan please
+        intent_to_elicit: InquireTopBroadbandProviders
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you mainly use the internet for?
+        sample_response: I'd say videos
+        intent_to_elicit: false
+        slot_to_elicit: InternetUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which device will you mainly use?
+        sample_response: I'd use my Predator Helios 300
+        intent_to_elicit: false
+        slot_to_elicit: DeviceUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you want providers with consistent speeds or throttling speeds at peak hours?
+        sample_response: consistent speeds please
+        intent_to_elicit: false
+        slot_to_elicit: MultipleUsers
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to sort by cable or fiber?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpSubscriptionAutopay_Confirmed_en-US
+    scenario_id: '0265'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to set up autopayment for your subscription
+    description: User wants to set up autopayment for their subscription
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: I don't want to miss my payments can you deduct it auto automatically
+        intent_to_elicit: SetUpSubscriptionAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your account number.
+        sample_response: 'That is: 33-S242964ZP'
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your state or payer's state number?
+        sample_response: it should be Gene.J1975
+        intent_to_elicit: false
+        slot_to_elicit: SubscriberUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your password?
+        sample_response: That's going to be BQRQ7Emmhn
+        intent_to_elicit: false
+        slot_to_elicit: SubscriberPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We sent you a PIN. Can you tell me what it is?
+        sample_response: Looks like it's 5375.
+        intent_to_elicit: false
+        slot_to_elicit: VerificationPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like autopay to continue?
+        sample_response: approximately 1 year
+        intent_to_elicit: false
+        slot_to_elicit: AutopayDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your credit/debit card number.
+        sample_response: '4412646799118170992'
+        intent_to_elicit: false
+        slot_to_elicit: SubscriberPaymentInformation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We will send you a confirmation email. Can I get your email?
+        sample_response: the right email address is Gene.J@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: SubscriberEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_SetUpSubscriptionAutopay_en-US
+    scenario_id: '0266'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to set up autopayment for your subscription
+    description: User wants to set up autopayment for their subscription
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: Your website is confusing and I need you to set up autopay for me
+        intent_to_elicit: SetUpSubscriptionAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your account number.
+        sample_response: think it's 96-42456460m4
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your state or payer's state number?
+        sample_response: That is going to be R.Brittany1984
+        intent_to_elicit: false
+        slot_to_elicit: SubscriberUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your password?
+        sample_response: Electricians that work weekends near me
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpSubscriptionAutopay_NoIntent_en-US
+    scenario_id: '0267'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up autopayment for your subscription
+    description: User wants to set up autopayment for their subscription
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: My email is {SubscriberEmail} and I want to enable autopay
+        intent_to_elicit: SetUpSubscriptionAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your account number.
+        sample_response: Yes 58-Z813556IZ
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your state or payer's state number?
+        sample_response: Number NicholsJohn1979
+        intent_to_elicit: false
+        slot_to_elicit: SubscriberUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your password?
+        sample_response: 'password: kD8wlEwgRV'
+        intent_to_elicit: false
+        slot_to_elicit: SubscriberPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We sent you a PIN. Can you tell me what it is?
+        sample_response: Its 6846
+        intent_to_elicit: false
+        slot_to_elicit: VerificationPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like autopay to continue?
+        sample_response: about 6 months?
+        intent_to_elicit: false
+        slot_to_elicit: AutopayDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your credit/debit card number.
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpCallForwarding_Confirmed_en-US
+    scenario_id: '0268'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to set up call forwarding
+    description: User wants to set up call forwarding
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Yeah I want to forward my calls to like a different number my current number is {PhoneNumber}
+        intent_to_elicit: SetUpCallForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And to what phone number would you like your calls forwarded to?
+        sample_response: to 443-1858
+        intent_to_elicit: false
+        slot_to_elicit: ForwardingPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: 'its: 4587'
+        intent_to_elicit: false
+        slot_to_elicit: PhonePIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What dates would you like us to forward your calls on?
+        sample_response: that should be from today
+        intent_to_elicit: false
+        slot_to_elicit: CallForwardingDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: DawsonAmanda@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_SetUpCallForwarding_en-US
+    scenario_id: '0269'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to set up call forwarding
+    description: User wants to set up call forwarding
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Arrange call forwarding from {PhoneNumber}.
+        intent_to_elicit: SetUpCallForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And to what phone number would you like your calls forwarded to?
+        sample_response: yes (695)-899-5108
+        intent_to_elicit: false
+        slot_to_elicit: ForwardingPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: Baked beans please
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpCallForwarding_StartOverIntent_en-US
+    scenario_id: '0270'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up call forwarding
+    description: User wants to set up call forwarding
+    script:
+      - agent: How can I be of assistance?
+        sample_response: Is there a way to set up forwarding to forward calls to {ForwardingPhoneNumber}
+        intent_to_elicit: SetUpCallForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Sure, (370)-824-5218
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: Yes, I've got 4864 here
+        intent_to_elicit: false
+        slot_to_elicit: PhonePIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What dates would you like us to forward your calls on?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpCallForwarding_PauseIntent_en-US
+    scenario_id: '0271'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up call forwarding
+    description: User wants to set up call forwarding
+    script:
+      - agent: How can I be of assistance?
+        sample_response: What do I have to do to forward my calls for {CallForwardingDuration}
+        intent_to_elicit: SetUpCallForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Yes 4923706542
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And to what phone number would you like your calls forwarded to?
+        sample_response: Yes 4923706542
+        intent_to_elicit: false
+        slot_to_elicit: ForwardingPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DivertPhoneSettings_Confirmed_en-US
+    scenario_id: '0272'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to set up call diverting
+    description: User wants to set up call diverting
+    script:
+      - agent: How may I assist you?
+        sample_response: I want to divert my calls to {DivertingPhoneNumber}
+        intent_to_elicit: DivertPhoneSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: cell number is 9815950213
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: I believe it is 6543
+        intent_to_elicit: false
+        slot_to_elicit: PhonePIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long do you want to divert calls for?
+        sample_response: Maybe a year
+        intent_to_elicit: false
+        slot_to_elicit: CallDivertingDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We will send you a confirmation email. Can I get your email?
+        sample_response: Yes DavidW@hotmail.com is my email.
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_DivertPhoneSettings_en-US
+    scenario_id: '0273'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to set up call diverting
+    description: User wants to set up call diverting
+    script:
+      - agent: How may I assist you?
+        sample_response: Will you please divert my calls to {DivertingPhoneNumber} my PIN is {PhonePIN}.
+        intent_to_elicit: DivertPhoneSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: I want to build a smart phone how do I do it?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_DivertPhoneSettings_en-US
+    scenario_id: '0274'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to set up call diverting
+    description: User wants to set up call diverting
+    script:
+      - agent: How may I assist you?
+        sample_response: Will you kindly divert my calls
+        intent_to_elicit: DivertPhoneSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: mobile number is (986)-966-7769
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And to what phone number would you like your calls diverted to?
+        sample_response: yes (986)-966-7769
+        intent_to_elicit: false
+        slot_to_elicit: DivertingPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: Does that come with cheese?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DivertPhoneSettings_StopIntent_en-US
+    scenario_id: '0275'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up call diverting
+    description: User wants to set up call diverting
+    script:
+      - agent: How may I assist you?
+        sample_response: I would like to set up call diverting to divert calls from {PhoneNumber}.
+        intent_to_elicit: DivertPhoneSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And to what phone number would you like your calls diverted to?
+        sample_response: Sure, 549-6876
+        intent_to_elicit: false
+        slot_to_elicit: DivertingPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: it should be 6846
+        intent_to_elicit: false
+        slot_to_elicit: PhonePIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long do you want to divert calls for?
+        sample_response: I guess like 1 year
+        intent_to_elicit: false
+        slot_to_elicit: CallDivertingDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We will send you a confirmation email. Can I get your email?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DivertPhoneSettings_RepeatIntent_en-US
+    scenario_id: '0276'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up call diverting
+    description: User wants to set up call diverting
+    script:
+      - agent: How may I assist you?
+        sample_response: I need help sending calls I get to {DivertingPhoneNumber} please.
+        intent_to_elicit: DivertPhoneSettings
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Yes, (171)-128-4570
+        intent_to_elicit: false
+        slot_to_elicit: PhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your phone PIN.
+        sample_response: Yes, I've got 6846 here
+        intent_to_elicit: false
+        slot_to_elicit: PhonePIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long do you want to divert calls for?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpInternationalRoaming_StopInternationalDataRoaming_en-US
+    scenario_id: '0277'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up international roaming on your phone
+    description: User wants to set up international roaming on their phone
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: Are you able to get international roaming started on my {CustomerDevice} please
+        intent_to_elicit: SetUpInternationalRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Yeah, it is Keith
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yes, the last name is Gutierrez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your phone carrier?
+        sample_response: I have Google Fi
+        intent_to_elicit: false
+        slot_to_elicit: PhoneCarrier
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: 3317001495 is my number
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you need?
+        sample_response: think I need 32 GB
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your email address?
+        sample_response: It would be GKeith@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Actually instead can I please just block international roaming?
+        intent_to_elicit: StopInternationalDataRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: CustomerAccountNumber
+        sample_response: Ok, sure! What is your account number?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: CustomerBillingAddress
+        sample_response: What is the billing address associated with your account?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpInternationalRoaming_583 Hartford Street,Berkshire, VT 05447_40-J026916JU_Denied_en-US
+    scenario_id: '0278'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up international roaming on your phone
+    description: User wants to set up international roaming on their phone
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: Tell me what I need to do in order to have international roaming on my {CustomerDevice}
+        intent_to_elicit: SetUpInternationalRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: It is Patricia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: last name is Shaw
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your phone carrier?
+        sample_response: I use Metro
+        intent_to_elicit: false
+        slot_to_elicit: PhoneCarrier
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: (675)-442-9284
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you need?
+        sample_response: from what I can see its 10 GB
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your email address?
+        sample_response: email's PatriciaShaw@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: 40-J026916JU
+        slot_to_elicit: ''
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: ''
+        sample_response: ''
+        intent_to_elicit: 583 Hartford Street,Berkshire, VT 05447
+        slot_to_elicit: ''
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpInternationalRoaming_Denied_en-US
+    scenario_id: '0279'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to set up international roaming on your phone
+    description: User wants to set up international roaming on their phone
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: Can I have my {CustomerDevice} set up for international roaming
+        intent_to_elicit: SetUpInternationalRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Sure, my name is Johnathan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Noble
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your phone carrier?
+        sample_response: It's Google Fi
+        intent_to_elicit: false
+        slot_to_elicit: PhoneCarrier
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: That is 7777575832
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you need?
+        sample_response: it's 10 GB
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your email address?
+        sample_response: sure it's N.Johnathan@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Actually, let's hold off for the moment. Please don't submit anything now.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SetUpInternationalRoaming_en-US
+    scenario_id: '0280'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to set up international roaming on your phone
+    description: User wants to set up international roaming on their phone
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: International roaming needs to be installed on my phone as soon as possible can you help
+        intent_to_elicit: SetUpInternationalRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: I want to take my phone swimming on holiday
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

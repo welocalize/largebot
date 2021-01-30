@@ -1,0 +1,980 @@
+name: LargeBot_MediaCable_scenarios_batch21
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_SetupTVMultipleScreen_CustomerCountry_NumberOfScreens_Denied_en-US
+    scenario_id: '0401'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch multiple shows on your television at the same time
+    description: User wants to watch multiple shows on their television at the same time
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Please help me use the multiple screens thing I am not sure how to get it to work
+        intent_to_elicit: SetupTVMultipleScreen
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you in?
+        sample_response: Japan
+        intent_to_elicit: CustomerCountry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many screens do you hope to display at the same time?
+        sample_response: so that's 1
+        intent_to_elicit: NumberOfScreens
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes your TV?
+        sample_response: it's a action
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionManufacturer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model name of your TV?
+        sample_response: I'm sure it's a Toshiba TF-32A710U21 32-inch Smart HD TV
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your TV? This may be printed on the TV itself
+        sample_response: think it's LZVP6T1000
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Please don't do anything just yet. I'm going to wait a bit.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchFilmfareAwards_Confirmed_en-US
+    scenario_id: '0402'
+    bias:
+      - SingleIntent
+    customer_instructions: Consumer want to add a TV package that will allow them to view the Filmfare Awards
+    description: Consumer wants to add a TV package that will allow them to view the Filmfare Awards
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Do you have a package that will let me watch the Filmfare Awards in {CustomerCountry}
+        intent_to_elicit: WatchFilmfareAwards
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What show are you trying to watch?
+        sample_response: I want to watch How I Met Your Mother
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the state you are located in?
+        sample_response: Yeah, it's AR
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current subscription package?
+        sample_response: it's the Basic
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerCurrentSubscriptionPackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which subscription package would you like to add to your account?
+        sample_response: Please add the Premium package
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerPackageToAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel are you interested in adding to your subscription?
+        sample_response: I want to add TVLand
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerChannelDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When do you want this change to take effect?
+        sample_response: I want to put 2021-01-29
+        intent_to_elicit: false
+        slot_to_elicit: PackageAddEffectiveDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_WatchFilmfareAwards_en-US
+    scenario_id: '0403'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: Consumer want to add a TV package that will allow them to view the Filmfare Awards
+    description: Consumer wants to add a TV package that will allow them to view the Filmfare Awards
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: What package do I need for the Filmfare Awards
+        intent_to_elicit: WatchFilmfareAwards
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What show are you trying to watch?
+        sample_response: I'd like to watch The Walking Dead
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the state you are located in?
+        sample_response: It is in IA
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current subscription package?
+        sample_response: How do I get nominated for the Filmfare Awards
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchFilmfareAwards_NoIntent_en-US
+    scenario_id: '0404'
+    bias:
+      - MultiIntent
+    customer_instructions: Consumer want to add a TV package that will allow them to view the Filmfare Awards
+    description: Consumer wants to add a TV package that will allow them to view the Filmfare Awards
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I can't figure out what package I need to watch the Filmfare Awards can you help
+        intent_to_elicit: WatchFilmfareAwards
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What show are you trying to watch?
+        sample_response: How I Met Your Mother is what I want to watch
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the state you are located in?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchFilmfareAwards_StopIntent_en-US
+    scenario_id: '0405'
+    bias:
+      - MultiIntent
+    customer_instructions: Consumer want to add a TV package that will allow them to view the Filmfare Awards
+    description: Consumer wants to add a TV package that will allow them to view the Filmfare Awards
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I really want to watch the Filmfare Awards but I think I need an add-on which one is it
+        intent_to_elicit: WatchFilmfareAwards
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What show are you trying to watch?
+        sample_response: I'm wanting to watch RuPaul\'s Drag Race
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the state you are located in?
+        sample_response: State of TX please.
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current subscription package?
+        sample_response: The package is Unlimited
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerCurrentSubscriptionPackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which subscription package would you like to add to your account?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchLiveSpaceLaunch_Confirmed_en-US
+    scenario_id: '0406'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to watch the next space shuttle launch live when it happens
+    description: Customer wants to watch the next space shuttle launch live when it happens
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Is the shuttle launch like included with {ConsumerCurrentSubscriptionPackage}
+        intent_to_elicit: WatchLiveSpaceLaunch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What content are you trying to view?
+        sample_response: Game of Thrones
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you trying to view this content live or pre-recorded?
+        sample_response: live
+        intent_to_elicit: false
+        slot_to_elicit: LiveOrStreaming
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: USA
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What state are you in?
+        sample_response: Its OH
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerState
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In what city do you reside?
+        sample_response: I'm going to put Huntsville
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When is this event happening?
+        sample_response: I want to put 2021-02-10
+        intent_to_elicit: false
+        slot_to_elicit: DateOfContent
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchLiveSpaceLaunch_NoIntent_en-US
+    scenario_id: '0407'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch the next space shuttle launch live when it happens
+    description: Customer wants to watch the next space shuttle launch live when it happens
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: I wanted to watch the shuttle launch do I need another package
+        intent_to_elicit: WatchLiveSpaceLaunch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What content are you trying to view?
+        sample_response: the space launch basically
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you trying to view this content live or pre-recorded?
+        sample_response: live
+        intent_to_elicit: false
+        slot_to_elicit: LiveOrStreaming
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_WatchLiveSpaceLaunch_en-US
+    scenario_id: '0408'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to watch the next space shuttle launch live when it happens
+    description: Customer wants to watch the next space shuttle launch live when it happens
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: How can I watch the shuttle launch do I have access
+        intent_to_elicit: WatchLiveSpaceLaunch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Disney's Hercules
+        sample_response: Disney's Hercules
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you trying to view this content live or pre-recorded?
+        sample_response: live
+        intent_to_elicit: false
+        slot_to_elicit: LiveOrStreaming
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: How do I get a ticket to go on the space shuttle?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchLiveSpaceLaunch_YesIntent_en-US
+    scenario_id: '0409'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch the next space shuttle launch live when it happens
+    description: Customer wants to watch the next space shuttle launch live when it happens
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Can I see the shuttle launch my city is {ConsumerCity} and my state is {ConsumerState}
+        intent_to_elicit: WatchLiveSpaceLaunch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What content are you trying to view?
+        sample_response: The live space launch
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerContentDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you trying to view this content live or pre-recorded?
+        sample_response: That's exactly right.
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchStreamingSmartTV_Denied_en-US
+    scenario_id: '0410'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to watch a streaming service on your Smart TV device
+    description: Customer wants to watch a streaming service on their Smart TV device
+    script:
+      - agent: How can I be of service?
+        sample_response: I have {TelevisionManufacturer} and I want to stream on it so how do I do that
+        intent_to_elicit: WatchStreamingSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming service are you interested in watching?
+        sample_response: ESPN+
+        intent_to_elicit: false
+        slot_to_elicit: StreamingService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of your Smart TV?
+        sample_response: Sony X750H 55-inch 4K Ultra HD LED TV
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know the model number of your Smart TV?
+        sample_response: model numbers G4DZUFtR81
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Not right now. But thank you for your help.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchStreamingSmartTV_StopIntent_en-US
+    scenario_id: '0411'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch a streaming service on your Smart TV device
+    description: Customer wants to watch a streaming service on their Smart TV device
+    script:
+      - agent: How can I be of service?
+        sample_response: How do I go about watching {StreamingService} on my {TelevisionManufacturer} TV
+        intent_to_elicit: WatchStreamingSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of your Smart TV?
+        sample_response: It's Sony X750H 55-inch 4K Ultra HD LED TV
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know the model number of your Smart TV?
+        sample_response: Wait, can we stop?
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_WatchStreamingSmartTV_en-US
+    scenario_id: '0412'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to watch a streaming service on your Smart TV device
+    description: Customer wants to watch a streaming service on their Smart TV device
+    script:
+      - agent: How can I be of service?
+        sample_response: How do I set up {StreamingService} on my {TelevisionManufacturer} TV
+        intent_to_elicit: WatchStreamingSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of your Smart TV?
+        sample_response: How do I design a streaming service?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchStreamingSmartTV_RepeatIntent_en-US
+    scenario_id: '0413'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch a streaming service on your Smart TV device
+    description: Customer wants to watch a streaming service on their Smart TV device
+    script:
+      - agent: How can I be of service?
+        sample_response: What do I have to do to um enable {StreamingService} on my smart TV please
+        intent_to_elicit: WatchStreamingSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me who makes your Smart TV device?
+        sample_response: 'manufacturer: Sony'
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionManufacturer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of your Smart TV?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireDifferenceTVStreamingTV_Confirmed_en-US
+    scenario_id: '0414'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know the difference between watching TV and streaming TV
+    description: Customer wants to know the difference between watching TV and streaming TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Is streaming similar to on-demand TV
+        intent_to_elicit: InquireDifferenceTVStreamingTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a streaming service you are interested in learning more about?
+        sample_response: Prime Video
+        intent_to_elicit: false
+        slot_to_elicit: StreamingInterest
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: Laos
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of television shows do you normally watch?
+        sample_response: I like horror shows
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionPreferredGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of movies do you normally watch?
+        sample_response: I like animation movies
+        intent_to_elicit: false
+        slot_to_elicit: MoviePreferredGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day do you normally watch television?
+        sample_response: That's Saturday.
+        intent_to_elicit: false
+        slot_to_elicit: WatchDays
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time do you normally watch television?
+        sample_response: put it for 17:01:06
+        intent_to_elicit: false
+        slot_to_elicit: WatchTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireDifferenceTVStreamingTV_PauseIntent_en-US
+    scenario_id: '0415'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the difference between watching TV and streaming TV
+    description: Customer wants to know the difference between watching TV and streaming TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: What is the difference between TV and streaming TV
+        intent_to_elicit: InquireDifferenceTVStreamingTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a streaming service you are interested in learning more about?
+        sample_response: I'd like to watch Hulu
+        intent_to_elicit: false
+        slot_to_elicit: StreamingInterest
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireDifferenceTVStreamingTV_ConsumerCountry_Confirmed_en-US
+    scenario_id: '0416'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the difference between watching TV and streaming TV
+    description: Customer wants to know the difference between watching TV and streaming TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: What exactly is the difference between watching and streaming TV
+        intent_to_elicit: InquireDifferenceTVStreamingTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a streaming service you are interested in learning more about?
+        sample_response: CBS All Access please
+        intent_to_elicit: false
+        slot_to_elicit: StreamingInterest
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: USA
+        intent_to_elicit: ConsumerCountry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of television shows do you normally watch?
+        sample_response: I like to watch action
+        intent_to_elicit: false
+        slot_to_elicit: TelevisionPreferredGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of movies do you normally watch?
+        sample_response: I like to watch documentary movies
+        intent_to_elicit: false
+        slot_to_elicit: MoviePreferredGenre
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day do you normally watch television?
+        sample_response: For Sunday.
+        intent_to_elicit: false
+        slot_to_elicit: WatchDays
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time do you normally watch television?
+        sample_response: Exactly at 14:52:39.
+        intent_to_elicit: false
+        slot_to_elicit: WatchTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_InquireDifferenceTVStreamingTV_en-US
+    scenario_id: '0417'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to know the difference between watching TV and streaming TV
+    description: Customer wants to know the difference between watching TV and streaming TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Can I see more {MoviePreferredGenre} movies on streaming than normal TV
+        intent_to_elicit: InquireDifferenceTVStreamingTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a streaming service you are interested in learning more about?
+        sample_response: I'd like to see CBS All Access
+        intent_to_elicit: false
+        slot_to_elicit: StreamingInterest
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: Italy
+        intent_to_elicit: false
+        slot_to_elicit: ConsumerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of television shows do you normally watch?
+        sample_response: How do I repair my TV myself?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireDifferenceTVStreamingTV_StartOverIntent_ConsumerCountry_en-US
+    scenario_id: '0418'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know the difference between watching TV and streaming TV
+    description: Customer wants to know the difference between watching TV and streaming TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: What are the main differences between streaming and watching TV
+        intent_to_elicit: InquireDifferenceTVStreamingTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a streaming service you are interested in learning more about?
+        sample_response: I'd like to watch Tidal
+        intent_to_elicit: false
+        slot_to_elicit: StreamingInterest
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you viewing from?
+        sample_response: Italy
+        intent_to_elicit: ConsumerCountry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of television shows do you normally watch?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupDevicesForgetWiFi_CancelIntent_en-US
+    scenario_id: '0419'
+    bias:
+      - MultiIntent
+    customer_instructions: You want devices to forget a Wi-Fi network
+    description: User wants devices to forget a Wi-Fi network
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: How do I go about removing a device from the network {NetworkName}
+        intent_to_elicit: SetupDevicesForgetWiFi
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your account number?
+        sample_response: yeah YJ-53222029
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first and last name.
+        sample_response: My name is Stephanie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first and last name?
+        sample_response: Sure it's Kim
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number please?
+        sample_response: Wait actually now I don't want to
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SetupDevicesForgetWiFi_en-US
+    scenario_id: '0420'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want devices to forget a Wi-Fi network
+    description: User wants devices to forget a Wi-Fi network
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Can you please help me find a way to remove this {NetworkName} from my devices
+        intent_to_elicit: SetupDevicesForgetWiFi
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your account number?
+        sample_response: yeah it's 92-81209581C0
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first and last name.
+        sample_response: My name is Gerald thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first and last name?
+        sample_response: How does WIFI even work?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

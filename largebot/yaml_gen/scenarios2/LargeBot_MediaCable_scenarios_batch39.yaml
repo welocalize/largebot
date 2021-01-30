@@ -1,0 +1,1115 @@
+name: LargeBot_MediaCable_scenarios_batch39
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_AddTVStreaming_PauseIntent_en-US
+    scenario_id: '0761'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to stream TV
+    description: User wants to stream TV
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Could you hook me up with that streaming TV
+        intent_to_elicit: AddTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: At what address will you be streaming?
+        sample_response: "The address is 4390 West Berkshire St.,\nBlountstown, FL 32424 57767 Ft Towson"
+        intent_to_elicit: false
+        slot_to_elicit: StreamingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you do me a favor and tell me your current internet package?
+        sample_response: It's the CenturyLink Fiber Gigabit package
+        intent_to_elicit: false
+        slot_to_elicit: InternetPackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device will you be using?
+        sample_response: It'd be my A1842
+        intent_to_elicit: false
+        slot_to_elicit: DeviceUsed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And at what time of day will you be streaming? Afternoon? Evening?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddTVStreaming_StopIntent_en-US
+    scenario_id: '0762'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to stream TV
+    description: User wants to stream TV
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I would like to use {AppToBeUsed} to watch {ShowDesired}
+        intent_to_elicit: AddTVStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: At what address will you be streaming?
+        sample_response: "At 5422 Brickyard Street,\nSugarloaf, PA 18249 92743 Columbus"
+        intent_to_elicit: false
+        slot_to_elicit: StreamingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you do me a favor and tell me your current internet package?
+        sample_response: Xfinity Extreme Pro
+        intent_to_elicit: false
+        slot_to_elicit: InternetPackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device will you be using?
+        sample_response: 4K
+        intent_to_elicit: false
+        slot_to_elicit: DeviceUsed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And at what time of day will you be streaming? Afternoon? Evening?
+        sample_response: During the afternoon
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfDay
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you go ahead and tell me your network speed in Mbps?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePhoneTechSupport_Confirmed_en-US
+    scenario_id: '0763'
+    bias:
+      - SingleIntent
+    customer_instructions: You want tech support for your cellphone
+    description: User wants tech support for their cellphone
+    script:
+      - agent: How can I assist you today?
+        sample_response: Can you help me with my phone
+        intent_to_elicit: InquirePhoneTechSupport
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your service provider?
+        sample_response: Cricket Wireless
+        intent_to_elicit: false
+        slot_to_elicit: ServiceProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like tech support by phone or online?
+        sample_response: online
+        intent_to_elicit: false
+        slot_to_elicit: TechSupportByPhoneOrOnline
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your device number?
+        sample_response: That's EWH654851565624.
+        intent_to_elicit: false
+        slot_to_elicit: DeviceNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long have you had your current phone?
+        sample_response: 8 months
+        intent_to_elicit: false
+        slot_to_elicit: YearsPhoneOwned
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePhoneTechSupport_HelpIntent_en-US
+    scenario_id: '0764'
+    bias:
+      - MultiIntent
+    customer_instructions: You want tech support for your cellphone
+    description: User wants tech support for their cellphone
+    script:
+      - agent: How can I assist you today?
+        sample_response: Could y'all get me tech support for my {DeviceNumber} phone
+        intent_to_elicit: InquirePhoneTechSupport
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your service provider?
+        sample_response: I've got Xfinity Mobile.
+        intent_to_elicit: false
+        slot_to_elicit: ServiceProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like tech support by phone or online?
+        sample_response: online is good
+        intent_to_elicit: false
+        slot_to_elicit: TechSupportByPhoneOrOnline
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your device number?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BlockNumber_Denied_en-US
+    scenario_id: '0765'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to block a certain number
+    description: User wants to block a certain number
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I need to block someone
+        intent_to_elicit: BlockNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your service provider?
+        sample_response: Xfinity mobile
+        intent_to_elicit: false
+        slot_to_elicit: ServiceProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I will need your device number.
+        sample_response: Dn89746516886
+        intent_to_elicit: false
+        slot_to_elicit: DeviceNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you go ahead and tell me which number you wish to block?
+        sample_response: '3161827320'
+        intent_to_elicit: false
+        slot_to_elicit: NumberToBlock
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long do you wish to block this number?
+        sample_response: 5 years
+        intent_to_elicit: false
+        slot_to_elicit: DurationOfBlocking
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BlockNumber_PauseIntent_en-US
+    scenario_id: '0766'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to block a certain number
+    description: User wants to block a certain number
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I need to block someone so they can't call or text me on my {ServiceProvider} phone for {DurationOfBlocking}
+        intent_to_elicit: BlockNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I will need your device number.
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BlockNumber_RepeatIntent_en-US
+    scenario_id: '0767'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to block a certain number
+    description: User wants to block a certain number
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I would like to block someone please
+        intent_to_elicit: BlockNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your service provider?
+        sample_response: My plan is with Verizon
+        intent_to_elicit: false
+        slot_to_elicit: ServiceProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: I will need your device number.
+        sample_response: For the number it's DN89746516886
+        intent_to_elicit: false
+        slot_to_elicit: DeviceNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you go ahead and tell me which number you wish to block?
+        sample_response: '2858975402'
+        intent_to_elicit: false
+        slot_to_elicit: NumberToBlock
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long do you wish to block this number?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseCableAdvertising_Confirmed_en-US
+    scenario_id: '0768'
+    bias:
+      - SingleIntent
+    customer_instructions: You want buy cable TV advertising
+    description: User wants buy cable TV advertising
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Can I buy a commercial for {AdvertisementTimeInSeconds} my budget is {BudgetInDollars}
+        intent_to_elicit: PurchaseCableAdvertising
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you be so kind as to tell me your business address?
+        sample_response: Sure, it's  Illinois
+        intent_to_elicit: false
+        slot_to_elicit: BusinessAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long do you want your advertisement to run?
+        sample_response: 6 months
+        intent_to_elicit: false
+        slot_to_elicit: DateDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what channels will your advertisement be on?
+        sample_response: The channel is Lifetime
+        intent_to_elicit: false
+        slot_to_elicit: ChannelsToBeOn
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How will you be paying?
+        sample_response: debit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For security purposes, can I have your billing address?
+        sample_response: "For the address 10 South Smith St.,\nTriana, AL 35758"
+        intent_to_elicit: false
+        slot_to_elicit: BillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseCableAdvertising_StopIntent_en-US
+    scenario_id: '0769'
+    bias:
+      - MultiIntent
+    customer_instructions: You want buy cable TV advertising
+    description: User wants buy cable TV advertising
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I need to purchase a commercial on TV to advertise my business
+        intent_to_elicit: PurchaseCableAdvertising
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you be so kind as to tell me your business address?
+        sample_response: 'Postal address: 4765 main st..'
+        intent_to_elicit: false
+        slot_to_elicit: BusinessAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your budget in dollars please?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseCableAdvertising_PauseIntent_en-US
+    scenario_id: '0770'
+    bias:
+      - MultiIntent
+    customer_instructions: You want buy cable TV advertising
+    description: User wants buy cable TV advertising
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I would like to be able to purchase a TV commercial how do I do that
+        intent_to_elicit: PurchaseCableAdvertising
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you be so kind as to tell me your business address?
+        sample_response: 'Sure thing, here it is: 3418 Grim Avenue San Diego California 92101'
+        intent_to_elicit: false
+        slot_to_elicit: BusinessAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your budget in dollars please?
+        sample_response: Only $500.
+        intent_to_elicit: false
+        slot_to_elicit: BudgetInDollars
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long do you want your advertisement to run?
+        sample_response: For 2 months.
+        intent_to_elicit: false
+        slot_to_elicit: DateDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what channels will your advertisement be on?
+        sample_response: On TVLand
+        intent_to_elicit: false
+        slot_to_elicit: ChannelsToBeOn
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How will you be paying?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpdateAntivirus_Confirmed_en-US
+    scenario_id: '0771'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to update antivirus software
+    description: User wants to update antivirus software
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: How do I get an antivirus software update
+        intent_to_elicit: UpdateAntivirus
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: note my name as Ian
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yes, the last name is Campbell
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: For that I have PO-92286058
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your address?
+        sample_response: "Address: 5868A Newport Street,\nUnited States Military Acade, NY 10996"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your internet provider?
+        sample_response: Xfinity
+        intent_to_elicit: false
+        slot_to_elicit: InternetProviderName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What antivirus software do you have?
+        sample_response: Avast
+        intent_to_elicit: false
+        slot_to_elicit: AntiVirusSoftwareName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was your antivirus software last updated?
+        sample_response: The date of 2020-09-22.
+        intent_to_elicit: false
+        slot_to_elicit: LastUpdate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpdateAntivirus_PauseIntent_en-US
+    scenario_id: '0772'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update antivirus software
+    description: User wants to update antivirus software
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Please help me update the antivirus software
+        intent_to_elicit: UpdateAntivirus
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: I am Michelle
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yeah sure the name is Jordan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 'is this it: 94-70933923r7'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your address?
+        sample_response: "It is at 2252 Edgewater St.,\nBelmond, IA 50421"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your internet provider?
+        sample_response: I'm with T-Mobile Wireless
+        intent_to_elicit: false
+        slot_to_elicit: InternetProviderName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What antivirus software do you have?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UpdateAntivirus_StartOverIntent_en-US
+    scenario_id: '0773'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update antivirus software
+    description: User wants to update antivirus software
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: What are the steps to get my antivirus updated
+        intent_to_elicit: UpdateAntivirus
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: My name is Patricia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Walls
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Yes 86-54751549b8 please
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your address?
+        sample_response: "No problem, the address is 2070 hamilton street,\ncayce, sc 29033 17946 golden city"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your internet provider?
+        sample_response: It's At&t wireless
+        intent_to_elicit: false
+        slot_to_elicit: InternetProviderName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What antivirus software do you have?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessDigitalRadio_Confirmed_en-US
+    scenario_id: '0774'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to access digital radio
+    description: User wants to access digital radio
+    script:
+      - agent: What can I do for you?
+        sample_response: The digital radio service is what I want to add
+        intent_to_elicit: AccessDigitalRadio
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you trying to access digital radio on?
+        sample_response: Streambar
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me when you want to access digital radio?
+        sample_response: starting 2021-05-20
+        intent_to_elicit: false
+        slot_to_elicit: AccessDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to access digital radio?
+        sample_response: Maybe 1 year
+        intent_to_elicit: false
+        slot_to_elicit: ListeningDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of music would you like to listen to?
+        sample_response: rock
+        intent_to_elicit: false
+        slot_to_elicit: MusicPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessDigitalRadio_CancelIntent_en-US
+    scenario_id: '0775'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access digital radio
+    description: User wants to access digital radio
+    script:
+      - agent: What can I do for you?
+        sample_response: I want to get digital radio please
+        intent_to_elicit: AccessDigitalRadio
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you trying to access digital radio on?
+        sample_response: I have a Express
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me when you want to access digital radio?
+        sample_response: say 2021-04-06?
+        intent_to_elicit: false
+        slot_to_elicit: AccessDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to access digital radio?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessDigitalRadio_YesIntent_en-US
+    scenario_id: '0776'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access digital radio
+    description: User wants to access digital radio
+    script:
+      - agent: What can I do for you?
+        sample_response: I have a {DeviceType} and I am looking to get it some digital radio how do I do that
+        intent_to_elicit: AccessDigitalRadio
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me when you want to access digital radio?
+        sample_response: '44326'
+        intent_to_elicit: false
+        slot_to_elicit: AccessDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to access digital radio?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetrieveLastCallReceived_Confirmed_en-US
+    scenario_id: '0777'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to retrieve the number of the last incoming call to your phone
+    description: User wants to retrieve the number of the last incoming call to their phone
+    script:
+      - agent: How can I assist you today?
+        sample_response: Please tell me the phone number of the most recent call on my landline
+        intent_to_elicit: RetrieveLastCallReceived
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your phone provider?
+        sample_response: ATT
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: '1372539961'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I have down 64R802683FM
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what your first name is?
+        sample_response: save my name as Beth
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name of Mcpherson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did you receive the call?
+        sample_response: it was 20210108
+        intent_to_elicit: false
+        slot_to_elicit: IncomingCallDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time did you receive the call?
+        sample_response: it was 005159
+        intent_to_elicit: false
+        slot_to_elicit: IncomingCallTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Yes please Thank you very much
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetrieveLastCallReceived_Denied_en-US
+    scenario_id: '0778'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to retrieve the number of the last incoming call to your phone
+    description: User wants to retrieve the number of the last incoming call to their phone
+    script:
+      - agent: How can I assist you today?
+        sample_response: How would I go about getting the phone number of the person who just called my landline
+        intent_to_elicit: RetrieveLastCallReceived
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your phone provider?
+        sample_response: it is Verizon
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: it's 7939808458
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: So it's BB-65532330
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what your first name is?
+        sample_response: Yes, my name is Jennifer
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure, it's Lawrence
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did you receive the call?
+        sample_response: That'd be 2021-01-17.
+        intent_to_elicit: false
+        slot_to_elicit: IncomingCallDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time did you receive the call?
+        sample_response: put it for 06:30
+        intent_to_elicit: false
+        slot_to_elicit: IncomingCallTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetrieveLastCallReceived_PauseIntent_en-US
+    scenario_id: '0779'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to retrieve the number of the last incoming call to your phone
+    description: User wants to retrieve the number of the last incoming call to their phone
+    script:
+      - agent: How can I assist you today?
+        sample_response: I want the number of the most recent caller on my landline please
+        intent_to_elicit: RetrieveLastCallReceived
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your phone provider?
+        sample_response: that'd be Boost Mobile
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: it is 0378082905
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetrieveLastCallReceived_StopIntent_en-US
+    scenario_id: '0780'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to retrieve the number of the last incoming call to your phone
+    description: User wants to retrieve the number of the last incoming call to their phone
+    script:
+      - agent: How can I assist you today?
+        sample_response: I need to somehow get the incoming phone number of whoever just called my landline
+        intent_to_elicit: RetrieveLastCallReceived
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your phone provider?
+        sample_response: it's Xfinity Mobile right now
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: (179)-751-8121
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Yes 94-C937955KE please
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what your first name is?
+        sample_response: Yeah, it's Gregory
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure the last name is Ramirez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did you receive the call?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

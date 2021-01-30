@@ -1,0 +1,2606 @@
+name: LargeBot_Finance_scenarios_batch05
+locale: en-US
+domain: Finance
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: Finance(OODIntent)_RequestRoutingNumber_en-US
+    scenario_id: '0201'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to request your bank's routing number
+    description: User wants to request their bank's routing number
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: can you tell me my routing number
+        intent_to_elicit: RequestRoutingNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: My bank is TD Bank
+        intent_to_elicit: false
+        slot_to_elicit: UserBank
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is your bank located?
+        sample_response: 'Sure thing, here it is:  Buffalo Grove'
+        intent_to_elicit: false
+        slot_to_elicit: BankLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city of your nearest branch?
+        sample_response: I would like a Slurpee
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestSWIFTCode_RequestRoutingNumber_Confirmed_en-US
+    scenario_id: '0202'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request your bank's SWIFT Code
+    description: User wants to request their bank's SWIFT Code
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Could you please show me on my account {CustomerAccountNumber} where I find my SWIFT Code
+        intent_to_elicit: RequestSWIFTCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: Its called Bank of America
+        intent_to_elicit: false
+        slot_to_elicit: UserBank
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is your bank located?
+        sample_response: They are at 581 Pineview Dr.
+        intent_to_elicit: false
+        slot_to_elicit: BankLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city of your nearest branch?
+        sample_response: Thatd be Leadwood
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current location?
+        sample_response: "thats 7448A Myrtle Street,\nGreene, ME 04236"
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationPostal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: NI38548706 I think
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: Norman.Allison1973
+        intent_to_elicit: false
+        slot_to_elicit: CustomerUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: ok its XDeKd7bk4n
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name on your bank account?
+        sample_response: Its Allison thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What last name is the account under?
+        sample_response: Yes the last name is Norman
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Oh actually it's the routing number I need
+        intent_to_elicit: RequestRoutingNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process the routing number request request for you today?
+        sample_response: Yes please!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestSWIFTCode_Denied_en-US
+    scenario_id: '0203'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request your bank's SWIFT Code
+    description: User wants to request their bank's SWIFT Code
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I have an account under the name {CustomerFirstName} {CustomerLastName} and I need to verify my SWIFT Code
+        intent_to_elicit: RequestSWIFTCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: They're Chase
+        intent_to_elicit: false
+        slot_to_elicit: UserBank
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is your bank located?
+        sample_response: The bank address is in  Graysville
+        intent_to_elicit: false
+        slot_to_elicit: BankLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city of your nearest branch?
+        sample_response: That's going to be Chillicothe
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current location?
+        sample_response: "Here you go: 2557 Hudson Street,\nBig Lake, MN 55309"
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationPostal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: not entirely sure but I think it's 2647627838g1
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: StevensAshley1978 I guess
+        intent_to_elicit: false
+        slot_to_elicit: CustomerUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: I'm not entirely sure, I think it's K2LenuN0Zh.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name on your bank account?
+        sample_response: I'm Ashley
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What last name is the account under?
+        sample_response: Sure, it is Stevens
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestSWIFTCode_PauseIntent_en-US
+    scenario_id: '0204'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request your bank's SWIFT Code
+    description: User wants to request their bank's SWIFT Code
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Can you tell me my SWIFT code?
+        intent_to_elicit: RequestSWIFTCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: it's PNC
+        intent_to_elicit: false
+        slot_to_elicit: UserBank
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is your bank located?
+        sample_response: so that's  Georgia
+        intent_to_elicit: false
+        slot_to_elicit: BankLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city of your nearest branch?
+        sample_response: I want to put Amsterdam
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current location?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestSWIFTCode_NoIntent_en-US
+    scenario_id: '0205'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request your bank's SWIFT Code
+    description: User wants to request their bank's SWIFT Code
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I need to know my SWIFT code
+        intent_to_elicit: RequestSWIFTCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: TD Bank is their name
+        intent_to_elicit: false
+        slot_to_elicit: UserBank
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is your bank located?
+        sample_response: Yes it is at  11209
+        intent_to_elicit: false
+        slot_to_elicit: BankLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city of your nearest branch?
+        sample_response: it's Alma Center
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current location?
+        sample_response: Sure, it's 5841 Forest St., St Augustine Beach, FL 32080
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationPostal
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: I have down 13527086518JB
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: seems to be JJustin1998
+        intent_to_elicit: false
+        slot_to_elicit: CustomerUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestSWIFTCode_en-US
+    scenario_id: '0206'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to request your bank's SWIFT Code
+    description: User wants to request their bank's SWIFT Code
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: What is the unique SWIFT Code for my bank
+        intent_to_elicit: RequestSWIFTCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: Can I change my SWIFT code?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestSWIFTCode_en-US
+    scenario_id: '0207'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to request your bank's SWIFT Code
+    description: User wants to request their bank's SWIFT Code
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Hey I am trying to find out my SWIFT code
+        intent_to_elicit: RequestSWIFTCode
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: My bank is Wells Fargo
+        intent_to_elicit: false
+        slot_to_elicit: UserBank
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is your bank located?
+        sample_response: Sure thing here it is 3348 Godfrey Rd.
+        intent_to_elicit: false
+        slot_to_elicit: BankLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the city of your nearest branch?
+        sample_response: Thats Magenta
+        intent_to_elicit: false
+        slot_to_elicit: UserLocationCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current location?
+        sample_response: I want christmas lights
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestCreditHistory_Confirmed_en-US
+    scenario_id: '0208'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request your credit history
+    description: User wants to request their credit history
+    script:
+      - agent: What can I help you with today?
+        sample_response: Hey what's my credit history
+        intent_to_elicit: RequestCreditHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Its Joanne thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes the last name is Mejia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: thats 757550333
+        intent_to_elicit: false
+        slot_to_elicit: SocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: 03/12/1992
+        intent_to_elicit: false
+        slot_to_elicit: DateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: The address is 1620 Harvey Street, East Rutherford, NJ 07073
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Perfect Thank you
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestCreditHistory_NoIntent_en-US
+    scenario_id: '0209'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request your credit history
+    description: User wants to request their credit history
+    script:
+      - agent: What can I help you with today?
+        sample_response: Can you pull up my credit report
+        intent_to_elicit: RequestCreditHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: It is Stacy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My family name is Reid
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestCreditHistory_PauseIntent_en-US
+    scenario_id: '0210'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request your credit history
+    description: User wants to request their credit history
+    script:
+      - agent: What can I help you with today?
+        sample_response: I wanna know about my credit history
+        intent_to_elicit: RequestCreditHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Sure it's Erik
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes Smith is the last name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: Ssn 631372205
+        intent_to_elicit: false
+        slot_to_elicit: SocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: My dob's 03/20/1978
+        intent_to_elicit: false
+        slot_to_elicit: DateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestCreditHistory_en-US
+    scenario_id: '0211'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to request your credit history
+    description: User wants to request their credit history
+    script:
+      - agent: What can I help you with today?
+        sample_response: I need my credit report
+        intent_to_elicit: RequestCreditHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Can I erase my credit report?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestCreditHistory_en-US
+    scenario_id: '0212'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to request your credit history
+    description: User wants to request their credit history
+    script:
+      - agent: What can I help you with today?
+        sample_response: Can you get me a report of my credit history
+        intent_to_elicit: RequestCreditHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: My first name is Cindy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My last name is Fischer thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: I want to buy outdoor furniture
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestPaymentDate_Confirmed_en-US
+    scenario_id: '0213'
+    bias:
+      - MultiIntent
+    customer_instructions: You want the next payment due date
+    description: User wants the next payment due date
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: When is my next payment
+        intent_to_elicit: RequestPaymentDate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: "it's: LO69569124"
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: It is Bryce
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: last name of Davis
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: It is at 4792 Bald Hill Street, Dryden, TX 78851
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestPaymentDate_StartOverIntent_en-US
+    scenario_id: '0214'
+    bias:
+      - MultiIntent
+    customer_instructions: You want the next payment due date
+    description: User wants the next payment due date
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Could you please get me the next payment due date
+        intent_to_elicit: RequestPaymentDate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: I've got 49716234398KB, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: It is Vanessa thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestPaymentDate_StopIntent_en-US
+    scenario_id: '0215'
+    bias:
+      - MultiIntent
+    customer_instructions: You want the next payment due date
+    description: User wants the next payment due date
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I gotta know the next payment deadline
+        intent_to_elicit: RequestPaymentDate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: Not sure I think its 79W114056BM
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah its Shannon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: The names Morales
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestPaymentDate_en-US
+    scenario_id: '0216'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want the next payment due date
+    description: User wants the next payment due date
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Date I have to pay my next payment
+        intent_to_elicit: RequestPaymentDate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: Is there a bank with valet parking
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestPaymentDate_en-US
+    scenario_id: '0217'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want the next payment due date
+    description: User wants the next payment due date
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Could you assist me with knowing my payment deadline
+        intent_to_elicit: RequestPaymentDate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: As far as I can tell it's 2807105430G2.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: record my name as Alejandro
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: I'm after patio furniture
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportSuspiciousCreditCardCharge_Confirmed_en-US
+    scenario_id: '0218'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspicious credit card charge
+    description: User wants to report a suspicious credit card charge
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: There's a charge on my credit card and I didn't authorize it
+        intent_to_elicit: ReportSuspiciousCreditCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: 'this is it: UE7722740'
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: I'm called Olivia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: It's King
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: 09/07/1987
+        intent_to_elicit: false
+        slot_to_elicit: DateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you prefer to speak to a representative via chat, email, or phone?
+        sample_response: email
+        intent_to_elicit: false
+        slot_to_elicit: SupportRepresentative
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportSuspiciousCreditCardCharge_YesIntent_en-US
+    scenario_id: '0219'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspicious credit card charge
+    description: User wants to report a suspicious credit card charge
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: There is a fraudulent charge on my credit card
+        intent_to_elicit: ReportSuspiciousCreditCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: That is going to be KR88046366
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: It is Vanessa thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: The last name's Herman
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: It is 02/22/1995
+        intent_to_elicit: false
+        slot_to_elicit: DateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you prefer to speak to a representative via chat, email, or phone?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportSuspiciousCreditCardCharge_CancelIntent_en-US
+    scenario_id: '0220'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspicious credit card charge
+    description: User wants to report a suspicious credit card charge
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I want to report fraud on my credit card
+        intent_to_elicit: ReportSuspiciousCreditCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: Is this what you need? 5091068068k3
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: I'm Kimberly
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_ReportSuspiciousCreditCardCharge_en-US
+    scenario_id: '0221'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to report a suspicious credit card charge
+    description: User wants to report a suspicious credit card charge
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: There is some suspicious activity on my credit card
+        intent_to_elicit: ReportSuspiciousCreditCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: How do I get a job as a teller?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_ReportSuspiciousCreditCardCharge_en-US
+    scenario_id: '0222'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to report a suspicious credit card charge
+    description: User wants to report a suspicious credit card charge
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: This is {CustomerFirstName} {CustomerLastName} I want to report some suspicious activity on my credit card
+        intent_to_elicit: ReportSuspiciousCreditCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: Yes, I've got 7464751408s2 here
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah, I'm Robert
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes, it's Hicks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: I want to order Chinese food
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportSuspiciousDebitCardCharge_Confirmed_en-US
+    scenario_id: '0223'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspicious account charge
+    description: User wants to report a suspicious account charge
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: There's been some unauthorized activity on my account
+        intent_to_elicit: ReportSuspiciousDebitCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: 7745079608x3
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Sure, it's Travis
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My last name is Knight thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: 10/10/1988
+        intent_to_elicit: false
+        slot_to_elicit: DateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you prefer to speak to a representative via chat, email, or phone?
+        sample_response: phone
+        intent_to_elicit: false
+        slot_to_elicit: SupportRepresentative
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportSuspiciousDebitCardCharge_PauseIntent_en-US
+    scenario_id: '0224'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspicious account charge
+    description: User wants to report a suspicious account charge
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: Yes I'm looking at my account and I don't understand why these charges I didn't make are showing up
+        intent_to_elicit: ReportSuspiciousDebitCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: XA28401571
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Wayne is my first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportSuspiciousDebitCardCharge_StartOverIntent_en-US
+    scenario_id: '0225'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspicious account charge
+    description: User wants to report a suspicious account charge
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: I see some weird charges on my account
+        intent_to_elicit: ReportSuspiciousDebitCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: 77401522295AY
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_ReportSuspiciousDebitCardCharge_en-US
+    scenario_id: '0226'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to report a suspicious account charge
+    description: User wants to report a suspicious account charge
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: I'm looking at my account statement and I don't recognize some of the charges
+        intent_to_elicit: ReportSuspiciousDebitCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: Can I get the bank teller's personal phone number?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_ReportSuspiciousDebitCardCharge_en-US
+    scenario_id: '0227'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to report a suspicious account charge
+    description: User wants to report a suspicious account charge
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: Yeah I did not make these charges on my account
+        intent_to_elicit: ReportSuspiciousDebitCardCharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number?
+        sample_response: VX9613335
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: save my first name as Lisa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Can I order Mexican food
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportBankingBreach_Confirmed_en-US
+    scenario_id: '0228'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspected banking security breach
+    description: User wants to report a suspected banking security breach
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: I think my information got compromised
+        intent_to_elicit: ReportBankingBreach
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number where a breach is suspected?
+        sample_response: acct no 90M622440OF
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah its Carrie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last names Robinson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you prefer to speak to a representative via chat, email, or phone?
+        sample_response: chat
+        intent_to_elicit: false
+        slot_to_elicit: SupportRepresentative
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be great thanks
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportBankingBreach_StopIntent_en-US
+    scenario_id: '0229'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspected banking security breach
+    description: User wants to report a suspected banking security breach
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: Yes I think a stranger has broken into my account somehow
+        intent_to_elicit: ReportBankingBreach
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number where a breach is suspected?
+        sample_response: yeah that's 82308955683HR
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: My name is Jennifer thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReportBankingBreach_YesIntent_en-US
+    scenario_id: '0230'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report a suspected banking security breach
+    description: User wants to report a suspected banking security breach
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: Banking security breach help
+        intent_to_elicit: ReportBankingBreach
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number where a breach is suspected?
+        sample_response: it's LV58073506
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Gregory is my name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: yeah it's Kerr
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you prefer to speak to a representative via chat, email, or phone?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_ReportBankingBreach_en-US
+    scenario_id: '0231'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to report a suspected banking security breach
+    description: User wants to report a suspected banking security breach
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: Yeah I think my bank account is being hijacked somehow
+        intent_to_elicit: ReportBankingBreach
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number where a breach is suspected?
+        sample_response: Can I get a job working security at the bank?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_ReportBankingBreach_en-US
+    scenario_id: '0232'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You want to report a suspected banking security breach
+    description: User wants to report a suspected banking security breach
+    script:
+      - agent: Hi, how can I help you?
+        sample_response: I think my account was hacked into or something
+        intent_to_elicit: ReportBankingBreach
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number where a breach is suspected?
+        sample_response: 92715996892UR
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: I'm wanna buy gluten free bread
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditCardCashAdvance_Denied_en-US
+    scenario_id: '0233'
+    bias:
+      - MultiIntent
+    customer_instructions: Card holder wishes to request a cash advance from your credit card
+    description: Card holder wishes to request a cash advance from their credit card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Withdraw {CashAdvanceAmountDesired} in cash from credit card
+        intent_to_elicit: CreditCardCashAdvance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the cash advance that you would like to draw against your credit limit?
+        sample_response: for $90.00
+        intent_to_elicit: false
+        slot_to_elicit: CashAdvanceAmountDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name as it appears on your credit card?
+        sample_response: My name is James
+        intent_to_elicit: false
+        slot_to_elicit: CardHolderFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name as it appears on your credit card?
+        sample_response: Obrien is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: CardHolderLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the billing address for your account?
+        sample_response: "it's 1522 Corona Street,\nTroy, OH 45373"
+        intent_to_elicit: false
+        slot_to_elicit: CardHolderAccountAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the number of the credit card?
+        sample_response: card number 6550031335636755
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the three-digit security code the appears on the back of your card?
+        sample_response: It'll be 029.
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardSecurityCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your card's expiration date?
+        sample_response: 12/22
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardExpirationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Nope. Not now. Thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditCardCashAdvance_RecoverPIN_Denied_en-US
+    scenario_id: '0234'
+    bias:
+      - MultiIntent
+    customer_instructions: Card holder wishes to request a cash advance from your credit card
+    description: Card holder wishes to request a cash advance from their credit card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I need {CashAdvanceAmountDesired} cash from my credit card
+        intent_to_elicit: CreditCardCashAdvance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the cash advance that you would like to draw against your credit limit?
+        sample_response: Yes - $90.00.
+        intent_to_elicit: false
+        slot_to_elicit: CashAdvanceAmountDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name as it appears on your credit card?
+        sample_response: I need to recover my PIN
+        intent_to_elicit: RecoverPIN
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your debit card number?
+        sample_response: That's 2948284939482745.
+        intent_to_elicit: false
+        slot_to_elicit: DebitCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: think it's 3529485726HJ
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: yep  it's Margo
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Of course, it's Kidd
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: It's 12/12/1994
+        intent_to_elicit: false
+        slot_to_elicit: DateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: My address is 293 E. Market Street, Bogata, TX 75417
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Nope. Not now. Thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditCardCashAdvance_NoIntent_en-US
+    scenario_id: '0235'
+    bias:
+      - MultiIntent
+    customer_instructions: Card holder wishes to request a cash advance from your credit card
+    description: Card holder wishes to request a cash advance from their credit card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Please give me a credit card cash advance OK?
+        intent_to_elicit: CreditCardCashAdvance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the cash advance that you would like to draw against your credit limit?
+        sample_response: for a total of $180.00
+        intent_to_elicit: false
+        slot_to_elicit: CashAdvanceAmountDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name as it appears on your credit card?
+        sample_response: my name is Matthew thanks
+        intent_to_elicit: false
+        slot_to_elicit: CardHolderFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name as it appears on your credit card?
+        sample_response: yeah, it's Armstrong
+        intent_to_elicit: false
+        slot_to_elicit: CardHolderLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the billing address for your account?
+        sample_response: "no problem, the address is 8709 NW. Ridgeview Street,\nBowlsville, VT 05742"
+        intent_to_elicit: false
+        slot_to_elicit: CardHolderAccountAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the number of the credit card?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_CreditCardCashAdvance_en-US
+    scenario_id: '0236'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: Card holder wishes to request a cash advance from your credit card
+    description: Card holder wishes to request a cash advance from their credit card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I would like a {CashAdvanceAmountDesired} from my credit card
+        intent_to_elicit: CreditCardCashAdvance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the cash advance that you would like to draw against your credit limit?
+        sample_response: How can I tell who has my credit card info stored
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_CreditCardCashAdvance_en-US
+    scenario_id: '0237'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: Card holder wishes to request a cash advance from your credit card
+    description: Card holder wishes to request a cash advance from their credit card
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: How can I get {CashAdvanceAmountDesired} as cash from my credit card
+        intent_to_elicit: CreditCardCashAdvance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the cash advance that you would like to draw against your credit limit?
+        sample_response: For that $130.00
+        intent_to_elicit: false
+        slot_to_elicit: CashAdvanceAmountDesired
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name as it appears on your credit card?
+        sample_response: yep - it's Brent
+        intent_to_elicit: false
+        slot_to_elicit: CardHolderFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name as it appears on your credit card?
+        sample_response: I want to order sushi
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestCreditReport_Confirmed_en-US
+    scenario_id: '0238'
+    bias:
+      - MultiIntent
+    customer_instructions: You are requesting a copy of your credit report
+    description: User is requesting a copy of their credit report
+    script:
+      - agent: What can I help you with today?
+        sample_response: I'd like to see a copy of my credit report please
+        intent_to_elicit: RequestCreditReport
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: call me Bianca
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Sure it's Warren
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: 02/19/1987
+        intent_to_elicit: false
+        slot_to_elicit: UserDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: '705736083'
+        intent_to_elicit: false
+        slot_to_elicit: UserSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your permanent address?
+        sample_response: "Address: 4441C SW. Homewood St.,\nDenair, CA 95316"
+        intent_to_elicit: false
+        slot_to_elicit: UserPermanentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the address of any other place you resided in for the past two years?
+        sample_response: My address is 458 Henry Street, Saint Louis, MO 63118
+        intent_to_elicit: false
+        slot_to_elicit: UserPreviousAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In order to confirm your identity, what lending institution has issued your current mortgage?
+        sample_response: Bank of America
+        intent_to_elicit: false
+        slot_to_elicit: CreditAgencySecurityQuestionOne
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In order to confirm your identity, from which lender is your current car loan issued through?
+        sample_response: PenFed Credit Union
+        intent_to_elicit: false
+        slot_to_elicit: CreditAgencySecurityQuestionTwo
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestCreditReport_RepeatIntent_en-US
+    scenario_id: '0239'
+    bias:
+      - MultiIntent
+    customer_instructions: You are requesting a copy of your credit report
+    description: User is requesting a copy of their credit report
+    script:
+      - agent: What can I help you with today?
+        sample_response: Hi this is {UserFirstName} {UserLastName} requesting my credit report
+        intent_to_elicit: RequestCreditReport
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Yes, my name is Katelyn
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Yeah last name Walker
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: its 07/20/1987
+        intent_to_elicit: false
+        slot_to_elicit: UserDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: 'SSN: 482464029'
+        intent_to_elicit: false
+        slot_to_elicit: UserSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your permanent address?
+        sample_response: "Yes it is at 1708 Strawberry Street,\nMinnesott Beach, NC 28510"
+        intent_to_elicit: false
+        slot_to_elicit: UserPermanentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the address of any other place you resided in for the past two years?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestCreditReport_PauseIntent_en-US
+    scenario_id: '0240'
+    bias:
+      - MultiIntent
+    customer_instructions: You are requesting a copy of your credit report
+    description: User is requesting a copy of their credit report
+    script:
+      - agent: What can I help you with today?
+        sample_response: My name is {UserFirstName} {UserLastName} and I need to see my credit report
+        intent_to_elicit: RequestCreditReport
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Sure, my name is Timothy
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Yeah last name is Tate
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: My DOB's 06/13/1987
+        intent_to_elicit: false
+        slot_to_elicit: UserDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number?
+        sample_response: that's 808276037
+        intent_to_elicit: false
+        slot_to_elicit: UserSocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your permanent address?
+        sample_response: "It's: 4976B High Street,\nGarden Plain, KS 67050"
+        intent_to_elicit: false
+        slot_to_elicit: UserPermanentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the address of any other place you resided in for the past two years?
+        sample_response: "Street address is 7086 Green Street,\nRaymond, OH 43067"
+        intent_to_elicit: false
+        slot_to_elicit: UserPreviousAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In order to confirm your identity, what lending institution has issued your current mortgage?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_RequestCreditReport_en-US
+    scenario_id: '0241'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You are requesting a copy of your credit report
+    description: User is requesting a copy of their credit report
+    script:
+      - agent: What can I help you with today?
+        sample_response: How can I get a copy of my credit report
+        intent_to_elicit: RequestCreditReport
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: How can I start a payment processing business
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_RequestCreditReport_en-US
+    scenario_id: '0242'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: You are requesting a copy of your credit report
+    description: User is requesting a copy of their credit report
+    script:
+      - agent: What can I help you with today?
+        sample_response: Hi I need my credit report plz
+        intent_to_elicit: RequestCreditReport
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: My name's Matthew
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Last name would be Stone
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: I want to buy tacos
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReduceMortgageInterestRate_Confirmed_en-US
+    scenario_id: '0243'
+    bias:
+      - MultiIntent
+    customer_instructions: Debtor would like a lower interest rate on your mortgage
+    description: Debtor would like a lower interest rate on their mortgage
+    script:
+      - agent: What may I assist you with today?
+        sample_response: How can I lower mortgage interest rate for account {DebtorAccountNumber}
+        intent_to_elicit: ReduceMortgageInterestRate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the interest rate that you are requesting?
+        sample_response: It's 2.99
+        intent_to_elicit: false
+        slot_to_elicit: DebtorRequestedRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current credit score?
+        sample_response: that's 780
+        intent_to_elicit: false
+        slot_to_elicit: DebtorCreditScore
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your yearly income?
+        sample_response: My yearly income is $450,000
+        intent_to_elicit: false
+        slot_to_elicit: DebtorYearlyIncome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: yep 6431122767r1
+        intent_to_elicit: false
+        slot_to_elicit: DebtorAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: James is my name
+        intent_to_elicit: false
+        slot_to_elicit: DebtorFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account?
+        sample_response: Put Vasquez
+        intent_to_elicit: false
+        slot_to_elicit: DebtorLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the address on your account?
+        sample_response: Yes it's 2915 E. Smoky Hollow St., Greenbush, VA 23357
+        intent_to_elicit: false
+        slot_to_elicit: DebtorAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReduceMortgageInterestRate_HelpIntent_en-US
+    scenario_id: '0244'
+    bias:
+      - MultiIntent
+    customer_instructions: Debtor would like a lower interest rate on your mortgage
+    description: Debtor would like a lower interest rate on their mortgage
+    script:
+      - agent: What may I assist you with today?
+        sample_response: Lower the mortgage interest rate for my account {DebtorAccountNumber}
+        intent_to_elicit: ReduceMortgageInterestRate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the interest rate that you are requesting?
+        sample_response: I want 2.3%
+        intent_to_elicit: false
+        slot_to_elicit: DebtorRequestedRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current credit score?
+        sample_response: my credit score is 825
+        intent_to_elicit: false
+        slot_to_elicit: DebtorCreditScore
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your yearly income?
+        sample_response: My total yearly pay is $60.00
+        intent_to_elicit: false
+        slot_to_elicit: DebtorYearlyIncome
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReduceMortgageInterestRate_RepeatIntent_en-US
+    scenario_id: '0245'
+    bias:
+      - MultiIntent
+    customer_instructions: Debtor would like a lower interest rate on your mortgage
+    description: Debtor would like a lower interest rate on their mortgage
+    script:
+      - agent: What may I assist you with today?
+        sample_response: Please help me get a lower interest rate on my mortgage
+        intent_to_elicit: ReduceMortgageInterestRate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the interest rate that you are requesting?
+        sample_response: it's 1.7%.
+        intent_to_elicit: false
+        slot_to_elicit: DebtorRequestedRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current credit score?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(UnsupportedIntent)_ReduceMortgageInterestRate_en-US
+    scenario_id: '0246'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: Debtor would like a lower interest rate on your mortgage
+    description: Debtor would like a lower interest rate on their mortgage
+    script:
+      - agent: What may I assist you with today?
+        sample_response: I want to lower my mortgage interest rate please can you help me
+        intent_to_elicit: ReduceMortgageInterestRate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the interest rate that you are requesting?
+        sample_response: I want to pay my mortgage in coins
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance(OODIntent)_ReduceMortgageInterestRate_en-US
+    scenario_id: '0247'
+    bias:
+      - MultiIntent
+      - OODIntent
+    customer_instructions: Debtor would like a lower interest rate on your mortgage
+    description: Debtor would like a lower interest rate on their mortgage
+    script:
+      - agent: What may I assist you with today?
+        sample_response: Hi I have an account with you number {DebtorAccountNumber} can I get a lower interest rate on my mortgage somehow?
+        intent_to_elicit: ReduceMortgageInterestRate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the interest rate that you are requesting?
+        sample_response: I want it to be 7%
+        intent_to_elicit: false
+        slot_to_elicit: DebtorRequestedRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current credit score?
+        sample_response: The credit score I have is 350
+        intent_to_elicit: false
+        slot_to_elicit: DebtorCreditScore
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your yearly income?
+        sample_response: I want to order KFC for delivery
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestInternationalMortgage_Confirmed_en-US
+    scenario_id: '0248'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like a mortgage for a property abroad
+    description: User would like a mortgage for a property abroad
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Hey uh {PropertyCountry} can I get a mortgage on a property there
+        intent_to_elicit: RequestInternationalMortgage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In which country is the property that you wish to mortgage?
+        sample_response: It's in Malaysia thanks
+        intent_to_elicit: false
+        slot_to_elicit: PropertyCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the property that you wish to mortgage?
+        sample_response: The address is 2751 N. Willow St., Lee Center, NY 13363
+        intent_to_elicit: false
+        slot_to_elicit: PropertyAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to mortgage?
+        sample_response: '130000'
+        intent_to_elicit: false
+        slot_to_elicit: MortgageAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the interest rate desired for this mortgage?
+        sample_response: 2% should be ok please
+        intent_to_elicit: false
+        slot_to_elicit: MortgageRate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What length of mortgage are you requesting?
+        sample_response: 20 years
+        intent_to_elicit: false
+        slot_to_elicit: MortgageTermLength
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For which country do you claim permanent residency?
+        sample_response: That's be Uganda
+        intent_to_elicit: false
+        slot_to_elicit: UserCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: I'm Vanessa
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: It's Ward
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your date of birth?
+        sample_response: 03/19/1988
+        intent_to_elicit: false
+        slot_to_elicit: UserDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: "It's: 1096 Orange Street,\nShedd, OR 97377"
+        intent_to_elicit: false
+        slot_to_elicit: UserPermanentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestInternationalMortgage_StartOverIntent_en-US
+    scenario_id: '0249'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like a mortgage for a property abroad
+    description: User would like a mortgage for a property abroad
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I need to get a mortgage for this property in another country
+        intent_to_elicit: RequestInternationalMortgage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In which country is the property that you wish to mortgage?
+        sample_response: Yeah in Andorra
+        intent_to_elicit: false
+        slot_to_elicit: PropertyCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the property that you wish to mortgage?
+        sample_response: 'Address: 4864 Sierra St., Old Ripley, IL 62275'
+        intent_to_elicit: false
+        slot_to_elicit: PropertyAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to mortgage?
+        sample_response: yes it's $20.00
+        intent_to_elicit: false
+        slot_to_elicit: MortgageAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the interest rate desired for this mortgage?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_RequestInternationalMortgage_StopIntent_en-US
+    scenario_id: '0250'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like a mortgage for a property abroad
+    description: User would like a mortgage for a property abroad
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: International property mortgage
+        intent_to_elicit: RequestInternationalMortgage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In which country is the property that you wish to mortgage?
+        sample_response: Its Uzbekistan
+        intent_to_elicit: false
+        slot_to_elicit: PropertyCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the property that you wish to mortgage?
+        sample_response: "that's: 4160 Carpenter Street, Ruthven, IA 51358"
+        intent_to_elicit: false
+        slot_to_elicit: PropertyAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount that you wish to mortgage?
+        sample_response: Please stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

@@ -1,0 +1,1010 @@
+name: LargeBot_MediaCable_scenarios_batch44
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_CompareDSLFiber_Denied_en-US
+    scenario_id: '0861'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to compare DSL and fiber internet
+    description: User wants to compare DSL and fiber internet
+    script:
+      - agent: What can I help you with today?
+        sample_response: Is fiber optic internet better than traditional DSL
+        intent_to_elicit: CompareDSLFiber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me who your current internet provider is?
+        sample_response: T-Mobile Wireless
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCurrentProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your current address so I can see which services are available in your area?
+        sample_response: "Yep, that's 5532 Glenwood Street,\nSevern, MD 21144"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Approximately how many gigabytes of data do you think you use in an average month?
+        sample_response: I believe it is 2
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDataConsumption
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What do you use the internet most often for?
+        sample_response: Mostly I stream things
+        intent_to_elicit: false
+        slot_to_elicit: CustomerInternetUsageType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Hm, not just yet. I need to think about it a little more.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CompareDSLFiber_StopIntent_en-US
+    scenario_id: '0862'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to compare DSL and fiber internet
+    description: User wants to compare DSL and fiber internet
+    script:
+      - agent: What can I help you with today?
+        sample_response: Is DSL internet better than fiber internet or the same can you explain the difference
+        intent_to_elicit: CompareDSLFiber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me who your current internet provider is?
+        sample_response: I have AT&T Wireless internet
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCurrentProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your current address so I can see which services are available in your area?
+        sample_response: "Here you go: 6498 Joy Ridge St.,\nJard De Patillas, PR 00723 77802 Stewartsville"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Approximately how many gigabytes of data do you think you use in an average month?
+        sample_response: Wait, can we stop?
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CompareDSLFiber_HelpIntent_en-US
+    scenario_id: '0863'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to compare DSL and fiber internet
+    description: User wants to compare DSL and fiber internet
+    script:
+      - agent: What can I help you with today?
+        sample_response: Can y'all tell me difference between DSL internet and fiber.
+        intent_to_elicit: CompareDSLFiber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me who your current internet provider is?
+        sample_response: I subscriber to HughesNet
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCurrentProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your current address so I can see which services are available in your area?
+        sample_response: "Yep thats 9537 Rockledge St\nFairfax VA 22032 33838 Henagar"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Approximately how many gigabytes of data do you think you use in an average month?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordTVShow_Confirmed_en-US
+    scenario_id: '0864'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to record a show on cable TV
+    description: User wants to record a show on cable TV
+    script:
+      - agent: How can I assist you today?
+        sample_response: I was wondering if it's possible to record {CurrentFavoriteShow} at {ShowRecordingTime}
+        intent_to_elicit: RecordTVShow
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your cable TV provider?
+        sample_response: Xfinity
+        intent_to_elicit: false
+        slot_to_elicit: CableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordTVShow_HelpIntent_en-US
+    scenario_id: '0865'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to record a show on cable TV
+    description: User wants to record a show on cable TV
+    script:
+      - agent: How can I assist you today?
+        sample_response: Do {CableProvider} let me record {CurrentFavoriteShow} when it comes on
+        intent_to_elicit: RecordTVShow
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your cable TV provider?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordTVShow_PauseIntent_en-US
+    scenario_id: '0866'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to record a show on cable TV
+    description: User wants to record a show on cable TV
+    script:
+      - agent: How can I assist you today?
+        sample_response: I wanna record a show for my friend who doesn't have cable so she can watch it
+        intent_to_elicit: RecordTVShow
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your cable TV provider?
+        sample_response: I have CenturyLink
+        intent_to_elicit: false
+        slot_to_elicit: CableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What recording time would you like to set for the TV show?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordTVShow_StartOverIntent_en-US
+    scenario_id: '0867'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to record a show on cable TV
+    description: User wants to record a show on cable TV
+    script:
+      - agent: How can I assist you today?
+        sample_response: I wanna know if I can record some TV shows on my TV to watch later
+        intent_to_elicit: RecordTVShow
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your cable TV provider?
+        sample_response: I've got T-Mobile Wireless
+        intent_to_elicit: false
+        slot_to_elicit: CableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What recording time would you like to set for the TV show?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestCableHouseholdViewingHistory_Confirmed_en-US
+    scenario_id: '0868'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to request the cable TV household viewing history
+    description: User wants to request the cable TV household viewing history
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Is it possible for me to see what {HouseholdMembers} have been watching on the TV
+        intent_to_elicit: RequestCableHouseholdViewingHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me which cable TV provider you use?
+        sample_response: CenturyLink
+        intent_to_elicit: false
+        slot_to_elicit: CableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your login username?
+        sample_response: JuanM1907.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your login password?
+        sample_response: For that I have 3A2UUErNCP
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have the email you would like the watch history sent to?
+        sample_response: You can put JuanM@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestCableHouseholdViewingHistory_RepeatIntent_en-US
+    scenario_id: '0869'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request the cable TV household viewing history
+    description: User wants to request the cable TV household viewing history
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I would like to look at the household viewing history for my cable TV
+        intent_to_elicit: RequestCableHouseholdViewingHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me which cable TV provider you use?
+        sample_response: I don't understand.
+        intent_to_elicit: false
+        slot_to_elicit: CableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your login username?
+        sample_response: As far as I can tell it's Karen.Williams2017.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestCableHouseholdViewingHistory_PauseIntent_en-US
+    scenario_id: '0870'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request the cable TV household viewing history
+    description: User wants to request the cable TV household viewing history
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I need to look at what my wife has been watching recently
+        intent_to_elicit: RequestCableHouseholdViewingHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me which cable TV provider you use?
+        sample_response: I have CenturyLink
+        intent_to_elicit: false
+        slot_to_elicit: CableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your login username?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestCableHouseholdViewingHistory_NoIntent_en-US
+    scenario_id: '0871'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request the cable TV household viewing history
+    description: User wants to request the cable TV household viewing history
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I need to see the viewing history for my cable television
+        intent_to_elicit: RequestCableHouseholdViewingHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me which cable TV provider you use?
+        sample_response: I've got Verizon WirelessSpectrum
+        intent_to_elicit: false
+        slot_to_elicit: CableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your login username?
+        sample_response: it should be Gordon.Jessica2007
+        intent_to_elicit: false
+        slot_to_elicit: CustomerUsername
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your login password?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddStreamingService_PauseIntent_en-US
+    scenario_id: '0872'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a streaming service to your device
+    description: User wants to add a streaming service to their device
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Hi I'm trying to add {StreamingService} to one of my devices at home can you tell me how to do it
+        intent_to_elicit: AddStreamingService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your first name?
+        sample_response: Yes, it's Brad
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your last name?
+        sample_response: The name's Wright
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your email as your account login.
+        sample_response: Yeah the email is WrightBrad@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please create a password for this account?
+        sample_response: it should be XgIHIKgn9C
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your billing address?
+        sample_response: "It is at 9785 Pheasant Street,\nHartford, SD 57033 36971 San Antonio"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerBillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What form of payment would you like to use for this account?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddStreamingService_HelpIntent_en-US
+    scenario_id: '0873'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a streaming service to your device
+    description: User wants to add a streaming service to their device
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Please get me someone who knows how to add {StreamingService} to my TV
+        intent_to_elicit: AddStreamingService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your first name?
+        sample_response: I need help
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddStreamingService_NoIntent_en-US
+    scenario_id: '0874'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a streaming service to your device
+    description: User wants to add a streaming service to their device
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: We want to know if we can add the {StreamingService} to our televisions
+        intent_to_elicit: AddStreamingService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your first name?
+        sample_response: you can call me Jeffery
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your last name?
+        sample_response: Flynn
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your email as your account login.
+        sample_response: The email is JefferyFlynn@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please create a password for this account?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddStreamingService_Confirmed_en-US
+    scenario_id: '0875'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to add a streaming service to your device
+    description: User wants to add a streaming service to their device
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: Can y'all help me add {StreamingService} to my TV please
+        intent_to_elicit: AddStreamingService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your first name?
+        sample_response: Andrea is my first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I please have your last name?
+        sample_response: It is Boyd thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your email as your account login.
+        sample_response: My email address is AndreaBoyd@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please create a password for this account?
+        sample_response: I have P59Gc2laB1
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your billing address?
+        sample_response: Yep, that's 5968 Hartford Street,Sargeant, MN 55973
+        intent_to_elicit: false
+        slot_to_elicit: CustomerBillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What form of payment would you like to use for this account?
+        sample_response: let's do debit please
+        intent_to_elicit: false
+        slot_to_elicit: PaymentOption
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please enter your credit card number.
+        sample_response: the number would be 4380054982830621
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card security code?
+        sample_response: It's going to be 210.
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardSecurityCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the expiry date for your credit card?
+        sample_response: Let's put 12/23
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardExpiryDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CheckInternetHackerPreventionSafety_Confirmed_en-US
+    scenario_id: '0876'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to verify internet protection against hackers
+    description: User wants to verify internet protection against hackers
+    script:
+      - agent: What can I help you with today?
+        sample_response: I've been wondering if my password will be good enough to block out hackers
+        intent_to_elicit: CheckInternetHackerPreventionSafety
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What features in a service are you most looking for in protecting yourself from hackers?
+        sample_response: I want password attack
+        intent_to_elicit: false
+        slot_to_elicit: SafetyFeatures
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you have connected to your home Wi-Fi network?
+        sample_response: '4'
+        intent_to_elicit: false
+        slot_to_elicit: DevicesConnected
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you updated your VPN?
+        sample_response: '2021-01-04'
+        intent_to_elicit: false
+        slot_to_elicit: VPNUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the date of your last firmware update?
+        sample_response: For 2020-10-10.
+        intent_to_elicit: false
+        slot_to_elicit: FirmwareUpdate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you checked the WPS functionality?
+        sample_response: The date of 2021-01-17.
+        intent_to_elicit: false
+        slot_to_elicit: WPSFunctionality
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the name of the current firewall protection service you are using?
+        sample_response: Sophos
+        intent_to_elicit: false
+        slot_to_elicit: FirewallServiceName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CheckInternetHackerPreventionSafety_HelpIntent_en-US
+    scenario_id: '0877'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to verify internet protection against hackers
+    description: User wants to verify internet protection against hackers
+    script:
+      - agent: What can I help you with today?
+        sample_response: Is {WiFiAutoConnect} set to prevent people from hacking into my stuff
+        intent_to_elicit: CheckInternetHackerPreventionSafety
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What features in a service are you most looking for in protecting yourself from hackers?
+        sample_response: DDoS
+        intent_to_elicit: false
+        slot_to_elicit: SafetyFeatures
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you have connected to your home Wi-Fi network?
+        sample_response: A total of 5 devices.
+        intent_to_elicit: false
+        slot_to_elicit: DevicesConnected
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you updated your VPN?
+        sample_response: for 2020-10-19
+        intent_to_elicit: false
+        slot_to_elicit: VPNUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the date of your last firmware update?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CheckInternetHackerPreventionSafety_PauseIntent_en-US
+    scenario_id: '0878'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to verify internet protection against hackers
+    description: User wants to verify internet protection against hackers
+    script:
+      - agent: What can I help you with today?
+        sample_response: Do you know if there are {SafetyFeatures} on my internet service please
+        intent_to_elicit: CheckInternetHackerPreventionSafety
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you have connected to your home Wi-Fi network?
+        sample_response: 8 in total
+        intent_to_elicit: false
+        slot_to_elicit: DevicesConnected
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you updated your VPN?
+        sample_response: '20200810'
+        intent_to_elicit: false
+        slot_to_elicit: VPNUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the date of your last firmware update?
+        sample_response: Its going to be 20200912
+        intent_to_elicit: false
+        slot_to_elicit: FirmwareUpdate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you checked the WPS functionality?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CheckInternetHackerPreventionSafety_CancelIntent_en-US
+    scenario_id: '0879'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to verify internet protection against hackers
+    description: User wants to verify internet protection against hackers
+    script:
+      - agent: What can I help you with today?
+        sample_response: Would you mind confirming that my internet is safe against hackers
+        intent_to_elicit: CheckInternetHackerPreventionSafety
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What features in a service are you most looking for in protecting yourself from hackers?
+        sample_response: I need SQL injection
+        intent_to_elicit: false
+        slot_to_elicit: SafetyFeatures
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you have connected to your home Wi-Fi network?
+        sample_response: 2 I guess.
+        intent_to_elicit: false
+        slot_to_elicit: DevicesConnected
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you updated your VPN?
+        sample_response: it was 2020-11-10
+        intent_to_elicit: false
+        slot_to_elicit: VPNUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the date of your last firmware update?
+        sample_response: 2020-12-05.
+        intent_to_elicit: false
+        slot_to_elicit: FirmwareUpdate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time you checked the WPS functionality?
+        sample_response: The date of 2021-01-08
+        intent_to_elicit: false
+        slot_to_elicit: WPSFunctionality
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the name of the current firewall protection service you are using?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddBusinessInternetPlan_Denied_en-US
+    scenario_id: '0880'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to add new internet plan for your business for optimal bandwidth
+    description: User wants to add new internet plan for their business for optimal bandwidth
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: Hey I've got about {PlanBudget} to spend on a new internet plan for my office per month but I need at least {IdealBandwidthOutput} please
+        intent_to_elicit: AddBusinessInternetPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What city is your business located in?
+        sample_response: Yes it's Fredericksbrg
+        intent_to_elicit: false
+        slot_to_elicit: BusinessCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current internet provider?
+        sample_response: We have Xfinity
+        intent_to_elicit: false
+        slot_to_elicit: InternetProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current plan under that provider?
+        sample_response: It's Cox Gigablast
+        intent_to_elicit: false
+        slot_to_elicit: ProviderPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you prefer wired internet or wireless?
+        sample_response: I want to go with virtual
+        intent_to_elicit: false
+        slot_to_elicit: WiredOrWireless
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many employees do you have working at your business location?
+        sample_response: numbers 8
+        intent_to_elicit: false
+        slot_to_elicit: CompanyEmployeePopulation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you have connected to your internet on a daily basis?
+        sample_response: That's going to be 12.
+        intent_to_elicit: false
+        slot_to_elicit: DevicesUsed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many hours per day is your business using the internet?
+        sample_response: exactly 10
+        intent_to_elicit: false
+        slot_to_elicit: InternetUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Not right now. But thank you for your help.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

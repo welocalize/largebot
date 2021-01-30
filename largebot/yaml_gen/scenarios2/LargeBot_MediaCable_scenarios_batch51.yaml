@@ -1,0 +1,1451 @@
+name: LargeBot_MediaCable_scenarios_batch51
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_RemoveLineOfService_Denied_en-US
+    scenario_id: '1001'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to remove a line of service from account
+    description: User wants to remove a line of service from account
+    script:
+      - agent: What can I do for you?
+        sample_response: I would like to remove {CustomerPhoneNumber} from my lines
+        intent_to_elicit: RemoveLineOfService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your first name?
+        sample_response: Yes it's Andrew
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: Yeah sure the name is Reyes
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: UV-58617636!
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: My email address is R.Andrew@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which line would you like to remove?
+        sample_response: remove 705-476-5827
+        intent_to_elicit: false
+        slot_to_elicit: LineRemovalNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like this change to take effect?
+        sample_response: For 2021-02-28.
+        intent_to_elicit: false
+        slot_to_elicit: StartDateOfChange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the reason for removing this line?
+        sample_response: No longer need it
+        intent_to_elicit: false
+        slot_to_elicit: RemovalReason
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would you like to receive an updated statement that reflects this change?
+        sample_response: email
+        intent_to_elicit: false
+        slot_to_elicit: UpdatedStatement
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveLineOfService_PauseIntent_en-US
+    scenario_id: '1002'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove a line of service from account
+    description: User wants to remove a line of service from account
+    script:
+      - agent: What can I do for you?
+        sample_response: I need to drop a line from my plan can you arrange it for me
+        intent_to_elicit: RemoveLineOfService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your first name?
+        sample_response: Yeah, it is Thomas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: My family name is Guzman
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: so it's 53-93309871K3
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: sure it's ThomasG@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your phone number?
+        sample_response: 'cell number: (990)-453-6802'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which line would you like to remove?
+        sample_response: remove (990)-453-6802 please
+        intent_to_elicit: false
+        slot_to_elicit: LineRemovalNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date would you like this change to take effect?
+        sample_response: I want to put 2021-04-22
+        intent_to_elicit: false
+        slot_to_elicit: StartDateOfChange
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the reason for removing this line?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseNewDevice_Confirmed_en-US
+    scenario_id: '1003'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to purchavee a new device for an existing line
+    description: User wants to purchase a new device for an existing line
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Hi my name is {CustomerFirstName} can you help me get a new {DeviceType}
+        intent_to_elicit: PurchaseNewDevice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: Yes it's Bradley
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 21-H53111PF.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide a phone number?
+        sample_response: my number is 064-407-2784
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: My email address is Rodney.B@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device would you like to trade in towards the purchase of this device?
+        sample_response: Google Pixel XL
+        intent_to_elicit: false
+        slot_to_elicit: TradeInDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which service line number would you like this device to be associated with?
+        sample_response: 064-407-2784
+        intent_to_elicit: false
+        slot_to_elicit: ServiceLineNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What additional plan  would you like to add to this device?
+        sample_response: Basic
+        intent_to_elicit: false
+        slot_to_elicit: AdditionalPlanOptions
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to pay for this device in full or would you like to set up a payment plan?
+        sample_response: full
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseNewDevice_RepeatIntent_en-US
+    scenario_id: '1004'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a new device for an existing line
+    description: User wants to purchase a new device for an existing line
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Hello I'm {CustomerFirstName} and I need to get a new {DeviceType}
+        intent_to_elicit: PurchaseNewDevice
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: Last name Hayes
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 'That is: 21-S542126GZ'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide a phone number?
+        sample_response: my cell number is 8739185725
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: Yeah HayesLaura@gmail.com is the email.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device would you like to trade in towards the purchase of this device?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveChannelPackage_Confirmed_en-US
+    scenario_id: '1005'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to remove a channel package from cable plan
+    description: User wants to remove a channel package from cable plan
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Yeah this is {CustomerFirstName} {CustomerLastName} and I need to cancel a channel
+        intent_to_elicit: RemoveChannelPackage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: SY-81369038 is that it
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: Campbell.Karen@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide a phone number?
+        sample_response: my number is 2994807356
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the package you would like to remove?
+        sample_response: Spectrum TV Gold
+        intent_to_elicit: false
+        slot_to_elicit: PackageName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel package would you like to replace this with?
+        sample_response: Hulu + Live TV
+        intent_to_elicit: false
+        slot_to_elicit: PackageReplacement
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I ask the reason for removing this package?
+        sample_response: don't like it
+        intent_to_elicit: false
+        slot_to_elicit: RemovalReason
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveChannelPackage_YesIntent_en-US
+    scenario_id: '1006'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove a channel package from cable plan
+    description: User wants to remove a channel package from cable plan
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: I wanna cancel the {PackageName} ASAP please
+        intent_to_elicit: RemoveChannelPackage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your first name?
+        sample_response: Yeah it is Lisa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: last name of Perry
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: think it's 23-42598643s7
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: Perry.Lisa@hotmail.com would be it.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide a phone number?
+        sample_response: 'phone: 976-449-0749'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel package would you like to replace this with?
+        sample_response: I'd like the AT&T TV Ultimate package
+        intent_to_elicit: false
+        slot_to_elicit: PackageReplacement
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I ask the reason for removing this package?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferCableService_Denied_en-US
+    scenario_id: '1007'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to transfer current cable service to a new location
+    description: User wants to transfer current cable service to a new location
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I'm moving next month please transfer my service to {NewCustomerAddress}
+        intent_to_elicit: TransferCableService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your first name?
+        sample_response: Yes, it's Emily
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: Yep, it is Moore
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address where you currently have service?
+        sample_response: "At 5940 Lawrence Street,\nCharlotte, NC 28217"
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: yeah so its DG-20597133
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your email address?
+        sample_response: Yes MEmily@yahoo.com is my email.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide a phone number?
+        sample_response: my number is 450-2708
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: On second thought not just yet. Thanks anyway!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferCableService_StopIntent_en-US
+    scenario_id: '1008'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer current cable service to a new location
+    description: User wants to transfer current cable service to a new location
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Update my addy to {NewCustomerAddress}. That's where I require service now.
+        intent_to_elicit: TransferCableService
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your first name?
+        sample_response: Sure, my name is Desiree
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your last name?
+        sample_response: Last name would be Perez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address where you currently have service?
+        sample_response: "For the address it's 9964 Summit St.,\nNeils, IA 50453 42211 Collinsville"
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveAgeRestrictions_Denied_en-US
+    scenario_id: '1009'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to remove the age setting restrictions with your cellphone network provider
+    description: User wants to remove the age setting restrictions with their cellphone network provider
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: I want to change the age settings on the {CustomerPhoneNumber} number
+        intent_to_elicit: RemoveAgeRestrictions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: put it down as Jeremy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: that's Harmon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cellphone network provider?
+        sample_response: Verizon
+        intent_to_elicit: false
+        slot_to_elicit: CellphoneNetworkProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your account number?
+        sample_response: So it's 28-14503791p5
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your birthdate?
+        sample_response: '1978-03-05'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email?
+        sample_response: yeah sure Jeremy.Harmon@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which city are you located in?
+        sample_response: So yeah it's Tucker
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices are currently on your plan?
+        sample_response: Two
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfDevices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveAgeRestrictions_HelpIntent_en-US
+    scenario_id: '1010'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove the age setting restrictions with your cellphone network provider
+    description: User wants to remove the age setting restrictions with their cellphone network provider
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: I wanna take off all the restrictions on my phone the age ones please thanks
+        intent_to_elicit: RemoveAgeRestrictions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: Yes, my name is Brandon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: It is Flynn thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cellphone network provider?
+        sample_response: I have cell service with Google Fi.
+        intent_to_elicit: false
+        slot_to_elicit: CellphoneNetworkProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your account number?
+        sample_response: try KQ-21304623
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your birthdate?
+        sample_response: It is 1945-02-26.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number?
+        sample_response: my phone number is 394-459-1245
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email?
+        sample_response: I am reachable at FlynnBrandon@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which city are you located in?
+        sample_response: Sure Southbridge
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices are currently on your plan?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpVisualVoicemail_Denied_en-US
+    scenario_id: '1011'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to set up visual voicemail
+    description: User wants to set up visual voicemail
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: I want to see my voicemails when they come in how would I enable that
+        intent_to_elicit: SetUpVisualVoicemail
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: okay it's Madison
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please state your last name?
+        sample_response: Last name of Thompson.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me who your mobile network provider is?
+        sample_response: Mint Mobile
+        intent_to_elicit: false
+        slot_to_elicit: MobileNetworkProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: For that I have 84973946350OB
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your username?
+        sample_response: Yes T.Madison1970
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password please?
+        sample_response: Password f1KIvfymV9
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your date of birth?
+        sample_response: '2005-04-23'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number?
+        sample_response: my number is 823-608-0861
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: My email is T.Madison@yahoo.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me how many devices are currently on your plan?
+        sample_response: There is 4
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfDevices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: On second thought not just yet. Thanks anyway!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpVisualVoicemail_NoIntent_en-US
+    scenario_id: '1012'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up visual voicemail
+    description: User wants to set up visual voicemail
+    script:
+      - agent: Hi there, what brings you here?
+        sample_response: Will you let me know what to do to set up an visual voicemail I'm confused
+        intent_to_elicit: SetUpVisualVoicemail
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: Yeah, I'm Dawn
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please state your last name?
+        sample_response: Mitchell
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me who your mobile network provider is?
+        sample_response: It's currently Xfinity Mobile.
+        intent_to_elicit: false
+        slot_to_elicit: MobileNetworkProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: That's 25-H856178PD
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your username?
+        sample_response: So it's DawnMitchell1909
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password please?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RestrictNonWiFiDataUsage_Denied_en-US
+    scenario_id: '1013'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to restrict automatic data usage when they are not connected to Wi-Fi
+    description: User wants to restrict automatic data usage when they are not connected to Wi-Fi
+    script:
+      - agent: What can I do for you?
+        sample_response: Show me how to turn off data when not on Wi-Fi pleae
+        intent_to_elicit: RestrictNonWiFiDataUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name please?
+        sample_response: My first name is Phyllis
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Sure the last name is Smith
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your account number?
+        sample_response: As far as I can tell it's 73-J311208SI.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your password?
+        sample_response: it should be As2uvvV62U
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your birthdate please?
+        sample_response: Sure it is 1993-12-29
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number please?
+        sample_response: That is (773)-016-2226
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your email?
+        sample_response: It is Phyllis.Smith@gmail.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which city are you currently in?
+        sample_response: So the city, that's Mercer
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me how many devices are currently on your plan?
+        sample_response: the number would be 11
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfDevices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data usage does your current plan provide?
+        sample_response: for the number it's 80
+        intent_to_elicit: false
+        slot_to_elicit: CurrentPlanDataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please don't do anything just yet. I'm going to wait a bit.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RestrictNonWiFiDataUsage_NoIntent_en-US
+    scenario_id: '1014'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to restrict automatic data usage when they are not connected to Wi-Fi
+    description: User wants to restrict automatic data usage when they are not connected to Wi-Fi
+    script:
+      - agent: What can I do for you?
+        sample_response: Show me how to allow my phone data on wifi please
+        intent_to_elicit: RestrictNonWiFiDataUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name please?
+        sample_response: sure its Joy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Yep it is Shaw
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your account number?
+        sample_response: so its 57880776552JM
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CancellationPenaltyInquiry_Denied_en-US
+    scenario_id: '1015'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know if there are a penalty for canceling
+    description: User wants to know if there is a penalty for canceling
+    script:
+      - agent: What can I help you with?
+        sample_response: Are there consequences to canceling {ServiceProvider} services
+        intent_to_elicit: CancellationPenaltyInquiry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: that is 18-D159263VH
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your first name?
+        sample_response: sure its Felicia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: The name is Fletcher
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address please?
+        sample_response: "Here it is: 6785 SW. Pennington St.,\nBlk River Fls, WI 54615"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number?
+        sample_response: my number is 0133880505
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your email address?
+        sample_response: yeah sure FletcherFelicia@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your current type of plan?
+        sample_response: Premium
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your current monthly fee?
+        sample_response: yeah - $19.95
+        intent_to_elicit: false
+        slot_to_elicit: CurrentMonthlyFee
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the date you would like the cancellation to take effect?
+        sample_response: The date of 2021-07-13.
+        intent_to_elicit: false
+        slot_to_elicit: CancellationRequestedDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Not right now. But thank you for your help.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_CancellationPenaltyInquiry_PauseIntent_en-US
+    scenario_id: '1016'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know if there are a penalty for canceling
+    description: User wants to know if there is a penalty for canceling
+    script:
+      - agent: What can I help you with?
+        sample_response: I would like to know what happens if I cancel something from {ServiceProvider} please
+        intent_to_elicit: CancellationPenaltyInquiry
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: think it's 13-73717808f8
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your first name?
+        sample_response: Sure, it's Thomas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Harris
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address please?
+        sample_response: "Yes, it's at 9884 Fairview Street,\nLenox, MO 65541 30195 Holly"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number?
+        sample_response: Yes, 4971279689
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your email address?
+        sample_response: yeah it's Thomas.H@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your current type of plan?
+        sample_response: I have the Basic
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your current monthly fee?
+        sample_response: a total of $30
+        intent_to_elicit: false
+        slot_to_elicit: CurrentMonthlyFee
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the date you would like the cancellation to take effect?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordingErrorBroadcastSchedule_CancelIntent_en-US
+    scenario_id: '1017'
+    bias:
+      - MultiIntent
+    customer_instructions: You are having problems recording a show
+    description: User is having problems recording a show
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: How can I record {ShowName}
+        intent_to_elicit: RecordingErrorBroadcastSchedule
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did this show air?
+        sample_response: I've changed my mind.
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordingErrorBroadcastSchedule_Confirmed_en-US
+    scenario_id: '1018'
+    bias:
+      - SingleIntent
+    customer_instructions: You are having problems recording a show
+    description: User is having problems recording a show
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: I'm having problems recording stuff on {ChannelName} can you help
+        intent_to_elicit: RecordingErrorBroadcastSchedule
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did this show air?
+        sample_response: Probably Monday
+        intent_to_elicit: false
+        slot_to_elicit: ShowDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the show?
+        sample_response: It's The Walking Dead
+        intent_to_elicit: false
+        slot_to_elicit: ShowName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What episode number are you trying to record?
+        sample_response: numbers 1-8
+        intent_to_elicit: false
+        slot_to_elicit: EpisodeNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the episode?
+        sample_response: The episode is Discovery
+        intent_to_elicit: false
+        slot_to_elicit: EpisodeName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RecordingErrorBroadcastSchedule_PauseIntent_en-US
+    scenario_id: '1019'
+    bias:
+      - MultiIntent
+    customer_instructions: You are having problems recording a show
+    description: User is having problems recording a show
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: I need help recording {ShowName}. It's just not working for some reason.
+        intent_to_elicit: RecordingErrorBroadcastSchedule
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did this show air?
+        sample_response: I think Monday
+        intent_to_elicit: false
+        slot_to_elicit: ShowDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel does this show air on?
+        sample_response: The name of the channel is TVLand
+        intent_to_elicit: false
+        slot_to_elicit: ChannelName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What episode number are you trying to record?
+        sample_response: Put it through as 4- 6
+        intent_to_elicit: false
+        slot_to_elicit: EpisodeNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of the episode?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OverseasCancellation_Confirmed_en-US
+    scenario_id: '1020'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to cancel because they are moving abroad
+    description: User wants to cancel because they are moving abroad
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: I need to cancel my account because {CancellationReason} on {EndDate}
+        intent_to_elicit: OverseasCancellation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I ask your first name?
+        sample_response: yep, i'm jacob
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: for the last name it's skinner
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: ok it's 83-89357460h9
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your username please?
+        sample_response: i'm not entirely sure, i think it's s.jacob1956.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: 0mmu4rlvy6!
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your address?
+        sample_response: "the street address is 1484 richardson st.,\nkemps landing, la 71354"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where would you like your confirmation email sent?
+        sample_response: it's s.jacob@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: yup!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

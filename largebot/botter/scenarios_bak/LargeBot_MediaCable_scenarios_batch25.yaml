@@ -1,0 +1,2748 @@
+name: LargeBot_MediaCable_scenarios_batch25
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_RequestReplacementCord_Denied_en-US
+    scenario_id: '1201'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to replace a broken cord
+    description: Customer needs to replace a broken cord
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Hey so my {CordType} cord is broken can I get a replacement
+        intent_to_elicit: RequestReplacementCord
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What issue are you having with the cord?
+        sample_response: The cord is damage
+        intent_to_elicit: false
+        slot_to_elicit: EquipmentIssue
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of cord needs replacement?
+        sample_response: fiber
+        intent_to_elicit: false
+        slot_to_elicit: CordType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to exchange the cord in-store or by mail?
+        sample_response: mail
+        intent_to_elicit: false
+        slot_to_elicit: ReplacementMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please don't do anything just yet. I'm going to wait a bit.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestReplacementCord_PauseIntent_en-US
+    scenario_id: '1202'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to replace a broken cord
+    description: Customer needs to replace a broken cord
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: Help me replace my broken cord
+        intent_to_elicit: RequestReplacementCord
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What issue are you having with the cord?
+        sample_response: The problem with the cord is tearing
+        intent_to_elicit: false
+        slot_to_elicit: EquipmentIssue
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of cord needs replacement?
+        sample_response: its wireless
+        intent_to_elicit: false
+        slot_to_elicit: CordType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like to exchange the cord in-store or by mail?
+        sample_response: Hang on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestReplacementCord_YesIntent_en-US
+    scenario_id: '1203'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to replace a broken cord
+    description: Customer needs to replace a broken cord
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I need help with broken {CordType} cord replacement
+        intent_to_elicit: RequestReplacementCord
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What issue are you having with the cord?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestTVSteamingAssistance_Confirmed_en-US
+    scenario_id: '1204'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access TV streaming platform on your TV
+    description: Customer wants to access TV streaming platform on their TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Does {StreamingDeviceType} have the ability to connect with my streaming services
+        intent_to_elicit: RequestTVSteamingAssistance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming platform are you trying to access?
+        sample_response: Disney+
+        intent_to_elicit: false
+        slot_to_elicit: PlatformToAccess
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of streaming device are you using? Examples would be a smart TV or a plug-in device
+        sample_response: TV
+        intent_to_elicit: false
+        slot_to_elicit: StreamingDeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the brand of your streaming device?
+        sample_response: Fire TV Cube
+        intent_to_elicit: false
+        slot_to_elicit: StreamingDeviceManufacturer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the specific model of your device?
+        sample_response: Streambar
+        intent_to_elicit: false
+        slot_to_elicit: StreamingDeviceModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestTVSteamingAssistance_HelpIntent_en-US
+    scenario_id: '1205'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access TV streaming platform on your TV
+    description: Customer wants to access TV streaming platform on their TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Open up {PlatformToAccess}.
+        intent_to_elicit: RequestTVSteamingAssistance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming platform are you trying to access?
+        sample_response: I'm trying to get on to Netflix
+        intent_to_elicit: false
+        slot_to_elicit: PlatformToAccess
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of streaming device are you using? Examples would be a smart TV or a plug-in device
+        sample_response: I'm using a Express
+        intent_to_elicit: false
+        slot_to_elicit: StreamingDeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the brand of your streaming device?
+        sample_response: The brand is Roku
+        intent_to_elicit: false
+        slot_to_elicit: StreamingDeviceManufacturer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the specific model of your device?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestTVSteamingAssistance_StopIntent_en-US
+    scenario_id: '1206'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to access TV streaming platform on your TV
+    description: Customer wants to access TV streaming platform on their TV
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Would it be possible to get TV access to {PlatformToAccess}
+        intent_to_elicit: RequestTVSteamingAssistance
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming platform are you trying to access?
+        sample_response: It's Netflix.
+        intent_to_elicit: false
+        slot_to_elicit: PlatformToAccess
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of streaming device are you using? Examples would be a smart TV or a plug-in device
+        sample_response: I use a 4K
+        intent_to_elicit: false
+        slot_to_elicit: StreamingDeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the brand of your streaming device?
+        sample_response: Please stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireIPAddressesStreaming_Confirmed_en-US
+    scenario_id: '1207'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like to know the IP address list used with your streaming platform
+    description: Customer would like to know the IP address list used with their streaming platform
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I want to see the IP addresses using my account
+        intent_to_elicit: InquireIPAddressesStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you using for which you would like to determine the IP?
+        sample_response: I'm using a Streambar
+        intent_to_elicit: false
+        slot_to_elicit: UserAccessDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the username associated with your account?
+        sample_response: T.Sheri2020 I guess
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the email associated with your account?
+        sample_response: Sure T.Sheri@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: UserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you connecting to the service from?
+        sample_response: USA
+        intent_to_elicit: false
+        slot_to_elicit: UserCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Yup!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireIPAddressesStreaming_StartOverIntent_en-US
+    scenario_id: '1208'
+    bias:
+      - MultiIntent
+    customer_instructions: You would like to know the IP address list used with your streaming platform
+    description: Customer would like to know the IP address list used with their streaming platform
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Could I have have the IP addresses of anyone accessing my streaming service?
+        intent_to_elicit: InquireIPAddressesStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you using for which you would like to determine the IP?
+        sample_response: It is a Streambar
+        intent_to_elicit: false
+        slot_to_elicit: UserAccessDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the username associated with your account?
+        sample_response: Anne.J1969?? is that what you need
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the email associated with your account?
+        sample_response: it is Anne.J@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: UserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country are you connecting to the service from?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DisputeDataOvercharge_Denied_en-US
+    scenario_id: '1209'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute data overage charges
+    description: Customer wants to dispute data overage charges
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: There's a charge I want to dispute on my account
+        intent_to_elicit: DisputeDataOvercharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Why are you disputing this charge?
+        sample_response: It's not fair
+        intent_to_elicit: false
+        slot_to_elicit: ReasonForDispute
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the date of the charge that you are disputing?
+        sample_response: That's going to be 07-31-2020.
+        intent_to_elicit: false
+        slot_to_elicit: DisputedChargeDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the charge that you are disputing?
+        sample_response: It's 500.
+        intent_to_elicit: false
+        slot_to_elicit: DisputedChargeAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please confirm your first name on your account?
+        sample_response: Sure its Shannon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please confirm the last name on your account?
+        sample_response: Yes, it's Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number of the account holder?
+        sample_response: (050)-236-3722
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DisputeDataOvercharge_YesIntent_en-US
+    scenario_id: '1210'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute data overage charges
+    description: Customer wants to dispute data overage charges
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: Who can I talk to about the charges on my account
+        intent_to_elicit: DisputeDataOvercharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Why are you disputing this charge?
+        sample_response: They charged me twice
+        intent_to_elicit: false
+        slot_to_elicit: ReasonForDispute
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the date of the charge that you are disputing?
+        sample_response: for 2020-09-08
+        intent_to_elicit: false
+        slot_to_elicit: DisputedChargeDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the charge that you are disputing?
+        sample_response: Just $24.95
+        intent_to_elicit: false
+        slot_to_elicit: DisputedChargeAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please confirm your first name on your account?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DisputeDataOvercharge_RepeatIntent_en-US
+    scenario_id: '1211'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute data overage charges
+    description: Customer wants to dispute data overage charges
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: There's an overage charge I'd like removed
+        intent_to_elicit: DisputeDataOvercharge
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Why are you disputing this charge?
+        sample_response: The amount is not right
+        intent_to_elicit: false
+        slot_to_elicit: ReasonForDispute
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the date of the charge that you are disputing?
+        sample_response: It's going to be 2020-10-24
+        intent_to_elicit: false
+        slot_to_elicit: DisputedChargeDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the amount of the charge that you are disputing?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StopInternationalDataRoaming_Confirmed_en-US
+    scenario_id: '1212'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to disable international data roaming
+    description: Customer wants to disable international data roaming
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: I no longer need international data roaming how do I get rid of it
+        intent_to_elicit: StopInternationalDataRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: My name's Linda
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account?
+        sample_response: My name is Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you confirm the phone number of the device that you want to disable roaming on?
+        sample_response: 752-973-9691
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Put 40-J026916JU
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the billing address associated with your account?
+        sample_response: "My address is 583 Hartford Street,\nBerkshire, VT 05447"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerBillingAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StopInternationalDataRoaming_YesIntent_en-US
+    scenario_id: '1213'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to disable international data roaming
+    description: Customer wants to disable international data roaming
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: How do I go about disabling international data roaming
+        intent_to_elicit: StopInternationalDataRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_StopInternationalDataRoaming_PauseIntent_en-US
+    scenario_id: '1214'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to disable international data roaming
+    description: Customer wants to disable international data roaming
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: I need international data roaming deactivated
+        intent_to_elicit: StopInternationalDataRoaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the first name on your account?
+        sample_response: Yeah, it's Richard
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the last name on your account?
+        sample_response: That would be Pennington.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you confirm the phone number of the device that you want to disable roaming on?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DiscountErrorRequestCredit_Confirmed_en-US
+    scenario_id: '1215'
+    bias:
+      - MultiIntent
+    customer_instructions: Your discount was not applied and are requesting a credit on your account
+    description: Customer's discount was not applied and is requesting a credit on their account
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: If I need to get some credit on my account how do I ask for it
+        intent_to_elicit: DiscountErrorRequestCredit
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know what kind of discount was supposed to be applied to your account?
+        sample_response: It was the starting discount
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDiscountName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date was this discount supposed to take effect?
+        sample_response: Yep for 09-18-2020
+        intent_to_elicit: false
+        slot_to_elicit: DiscountEffectiveDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know the amount that was supposed to be discounted from your bill?
+        sample_response: The amount of 50
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDiscountAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: So its 87869007274rj
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: It's Maria thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Last name Thomas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have the phone number associated with your account?
+        sample_response: 587-018-8251
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DiscountErrorRequestCredit_RepeatIntent_en-US
+    scenario_id: '1216'
+    bias:
+      - MultiIntent
+    customer_instructions: Your discount was not applied and are requesting a credit on your account
+    description: Customer's discount was not applied and is requesting a credit on their account
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: Is there a way to get the credit on my account
+        intent_to_elicit: DiscountErrorRequestCredit
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know what kind of discount was supposed to be applied to your account?
+        sample_response: I think it is the 20% discount
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDiscountName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date was this discount supposed to take effect?
+        sample_response: Starting 2020-12-02
+        intent_to_elicit: false
+        slot_to_elicit: DiscountEffectiveDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know the amount that was supposed to be discounted from your bill?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DiscountErrorRequestCredit_NoIntent_en-US
+    scenario_id: '1217'
+    bias:
+      - MultiIntent
+    customer_instructions: Your discount was not applied and are requesting a credit on your account
+    description: Customer's discount was not applied and is requesting a credit on their account
+    script:
+      - agent: Welcome. What can I do for you?
+        sample_response: Someone needs to help me with an account credit request
+        intent_to_elicit: DiscountErrorRequestCredit
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know what kind of discount was supposed to be applied to your account?
+        sample_response: it was meant to be discounted for Easter
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDiscountName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What date was this discount supposed to take effect?
+        sample_response: 'on the following date: 01-09-2020'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDiscountAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know the amount that was supposed to be discounted from your bill?
+        sample_response: The amount should be 15
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDiscountAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: Yes, I've got 7714425772BR here
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireLongTimeDiscount_Denied_en-US
+    scenario_id: '1218'
+    bias:
+      - MultiIntent
+    customer_instructions: You want loyalty discount information
+    description: User wants loyalty discount information
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Can you provide me more information about this new loyalty discount promotion My name is {CustomerFirstName} and my account number is {CustomerAccountNumber}
+        intent_to_elicit: InquireLongTimeDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your service plan?
+        sample_response: Flex Plus
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your payment plan frequency?
+        sample_response: Every month
+        intent_to_elicit: false
+        slot_to_elicit: PaymentPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long ago did you sign up for this contract?
+        sample_response: 7 years I guess
+        intent_to_elicit: false
+        slot_to_elicit: ContractLength
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: 2407865919O1
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify the PIN associated with your account?
+        sample_response: '8647'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first name, please?
+        sample_response: save my name as Sharon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name, please?
+        sample_response: It is Jones
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your email address?
+        sample_response: Sure SharonJ@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: "Street address is 5174 North Lincoln Street\nLas Cruces NM 88002"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your phone number?
+        sample_response: '6456383'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: On second thought not just yet. Thanks anyway!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireLongTimeDiscount_NoIntent_en-US
+    scenario_id: '1219'
+    bias:
+      - MultiIntent
+    customer_instructions: You want loyalty discount information
+    description: User wants loyalty discount information
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Can I know more information about my membership I want to get a loyalty discount
+        intent_to_elicit: InquireLongTimeDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your service plan?
+        sample_response: I'm on Flex plus
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your payment plan frequency?
+        sample_response: I pay every 2 months
+        intent_to_elicit: false
+        slot_to_elicit: PaymentPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long ago did you sign up for this contract?
+        sample_response: around about 8 months ago
+        intent_to_elicit: false
+        slot_to_elicit: ContractLength
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number?
+        sample_response: That's Wr-96176670
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify the PIN associated with your account?
+        sample_response: No, thank you
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireLongTimeDiscount_HelpIntent_en-US
+    scenario_id: '1220'
+    bias:
+      - MultiIntent
+    customer_instructions: You want loyalty discount information
+    description: User wants loyalty discount information
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: I've had my membership with you for {ContractLength}.I am getting in touch regarding the loyalty discount offer.
+        intent_to_elicit: InquireLongTimeDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your service plan?
+        sample_response: Im on the Flex Plus
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your payment plan frequency?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeBillingDetails_Confirmed_en-US
+    scenario_id: '1221'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update billing information
+    description: User wants to update billing information
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I want to change my payment method to {PaymentMethod}
+        intent_to_elicit: ChangeBillingDetails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number.
+        sample_response: its 93-S947826NX
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the PIN you use with your account?
+        sample_response: 7861 please
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can you give me your first name?
+        sample_response: My name is William thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And your last name.
+        sample_response: Yeah it's Andrews
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your credit card number please?
+        sample_response: '3555277276228870.0'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your email address.
+        sample_response: AWilliam@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address, including city and state?
+        sample_response: "Postal address: 5883 Fairfield Street,\nDayton, MD 21036"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeBillingDetails_PauseIntent_en-US
+    scenario_id: '1222'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update billing information
+    description: User wants to update billing information
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I need to make billing changes on my account. My current plan is {PaymentPlan}
+        intent_to_elicit: ChangeBillingDetails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number.
+        sample_response: that is YE1195256
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the PIN you use with your account?
+        sample_response: it would be 9933
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can you give me your first name?
+        sample_response: Yeah it is Beth
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And your last name.
+        sample_response: Its Lewis
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your credit card number please?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeBillingDetails_CancelIntent_en-US
+    scenario_id: '1223'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to update billing information
+    description: User wants to update billing information
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I can't login to my account and edit my billing information
+        intent_to_elicit: ChangeBillingDetails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number.
+        sample_response: 32-Z662868LF I guess
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the PIN you use with your account?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireAnnualPaymentDiscount_Confirmed_en-US
+    scenario_id: '1224'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a discount on your plan
+    description: User wants a discount on their plan
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I would like to receive an annual discount because I've been a member with you guys for a while now
+        intent_to_elicit: InquireAnnualPaymentDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of your service plan?
+        sample_response: Flex
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first name?
+        sample_response: I am Mark
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you pay your bill?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can you provide your last name?
+        sample_response: It is Richardson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please tell me your account number?
+        sample_response: Its 15-0609663F2
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Thanks. And what's your PIN?
+        sample_response: '8761'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: "At the address 5309 Wintergreen Street,\nSouth Heart, ND 58655"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the email address associated with this account
+        sample_response: You can put R.Mark@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your credit card number please?
+        sample_response: '4324309428977'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireAnnualPaymentDiscount_RepeatIntent_en-US
+    scenario_id: '1225'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a discount on your plan
+    description: User wants a discount on their plan
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: I've been trying to inquire more about this yearly discount. My name is {CustomerFirstName} {CustomerLastName}
+        intent_to_elicit: InquireAnnualPaymentDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of your service plan?
+        sample_response: I have the Basic.
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first name?
+        sample_response: It's Charles
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you pay your bill?
+        sample_response: I wanna use my credit card
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can you provide your last name?
+        sample_response: The name's Good
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please tell me your account number?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireAnnualPaymentDiscount_YesIntent_en-US
+    scenario_id: '1226'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a discount on your plan
+    description: User wants a discount on their plan
+    script:
+      - agent: Hello, how may I assist you?
+        sample_response: Is there a way I could see if I'm eligible for an annual discount
+        intent_to_elicit: InquireAnnualPaymentDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of your service plan?
+        sample_response: I'm on Premium.
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your first name?
+        sample_response: Yep, I'm Patricia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you pay your bill?
+        sample_response: I use a debit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can you provide your last name?
+        sample_response: Yes the last name is Atkins
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please tell me your account number?
+        sample_response: Its 71625711615YH
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Thanks. And what's your PIN?
+        sample_response: it's 1200
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: "Yeah it is 270 Lakewood Street,\nEast Hebron, NH 03241"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the email address associated with this account
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupChildrenStreamingProfile_Confirmed_en-US
+    scenario_id: '1227'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up a streaming profile for your child
+    description: User wants to set up a streaming profile for their child
+    script:
+      - agent: What can I do to help you?
+        sample_response: I need to setup a separate profile for my kids. My name is {CustomerFirstName} {CustomerLastName}.
+        intent_to_elicit: SetupChildrenStreamingProfile
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming service do you want to add a child profile for?
+        sample_response: Peacock
+        intent_to_elicit: false
+        slot_to_elicit: StreamingService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your service plan?
+        sample_response: Flex Plus
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: It should be 82733209974QT
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify the PIN associated with your account?
+        sample_response: '8646'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many secondary account holders are there?
+        sample_response: yeah, 4
+        intent_to_elicit: false
+        slot_to_elicit: JointAccountHolders
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name.
+        sample_response: Lindsay is my name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name, please?
+        sample_response: That would be Anderson.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your email address?
+        sample_response: It would be A.Lindsay@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your street address for me please?
+        sample_response: "It's: 1538 Penn Street,\nOmaha, AR 72662"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your credit card number please?
+        sample_response: '213115026294065'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupChildrenStreamingProfile_NoIntent_en-US
+    scenario_id: '1228'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up a streaming profile for your child
+    description: User wants to set up a streaming profile for their child
+    script:
+      - agent: What can I do to help you?
+        sample_response: I want to make add an extra profile to my account under my child's name? The account number is {CustomerAccountNumber}
+        intent_to_elicit: SetupChildrenStreamingProfile
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming service do you want to add a child profile for?
+        sample_response: Please add it to Hulu
+        intent_to_elicit: false
+        slot_to_elicit: StreamingService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your service plan?
+        sample_response: It's the Unlimited.
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: That's OA-26812521
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify the PIN associated with your account?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupChildrenStreamingProfile_StopIntent_en-US
+    scenario_id: '1229'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up a streaming profile for your child
+    description: User wants to set up a streaming profile for their child
+    script:
+      - agent: What can I do to help you?
+        sample_response: Can my child and I be {JointAccountHolders} with separate profiles
+        intent_to_elicit: SetupChildrenStreamingProfile
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What streaming service do you want to add a child profile for?
+        sample_response: I want it on Tidal
+        intent_to_elicit: false
+        slot_to_elicit: StreamingService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your service plan?
+        sample_response: The Premium plan.
+        intent_to_elicit: false
+        slot_to_elicit: ServicePlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number?
+        sample_response: Yes BD-72368651
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify the PIN associated with your account?
+        sample_response: it's 8890
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many secondary account holders are there?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchShowInternationalLanguage_Confirmed_en-US
+    scenario_id: '1230'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch a show in a foreign language
+    description: User wants to watch a show in a foreign language
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Can you please send me information on how to turn on subtitles for an international show
+        intent_to_elicit: WatchShowInternationalLanguage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your language of preference?
+        sample_response: Frisian
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLanguage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In what language do you want the audio?
+        sample_response: Frisian
+        intent_to_elicit: false
+        slot_to_elicit: ShowAudioSetting
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In what language do you want the subtitles?
+        sample_response: Swedish
+        intent_to_elicit: false
+        slot_to_elicit: ShowCaptionSetting
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can I have your account number
+        sample_response: not entirely sure but I think it's 3925563209ZZ
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first name, please.
+        sample_response: No problem, it's Jimmy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name, please?
+        sample_response: Nguyen would be it
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: "that's 4688 Pleasant Street,\nIndian Spgs, OH 45014"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchShowInternationalLanguage_HelpIntent_en-US
+    scenario_id: '1231'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch a show in a foreign language
+    description: User wants to watch a show in a foreign language
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: I need to change the audio for {ShowAudioSetting}
+        intent_to_elicit: WatchShowInternationalLanguage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your language of preference?
+        sample_response: I'd prefer Hindi
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLanguage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In what language do you want the audio?
+        sample_response: Hindi
+        intent_to_elicit: false
+        slot_to_elicit: ShowAudioSetting
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In what language do you want the subtitles?
+        sample_response: Hindi of course
+        intent_to_elicit: false
+        slot_to_elicit: ShowCaptionSetting
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can I have your account number
+        sample_response: I need help
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WatchShowInternationalLanguage_StartOverIntent_en-US
+    scenario_id: '1232'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to watch a show in a foreign language
+    description: User wants to watch a show in a foreign language
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Is there a way I can get captions for {ShowCaptionSetting}
+        intent_to_elicit: WatchShowInternationalLanguage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your language of preference?
+        sample_response: it's Arabic
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLanguage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In what language do you want the audio?
+        sample_response: I want it in Arabic
+        intent_to_elicit: false
+        slot_to_elicit: ShowAudioSetting
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In what language do you want the subtitles?
+        sample_response: Can I have them in Arabic
+        intent_to_elicit: false
+        slot_to_elicit: ShowCaptionSetting
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And can I have your account number
+        sample_response: yeah it's 82-37217404H8
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with your first name, please.
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ClearViewingHistory_Confirmed_en-US
+    scenario_id: '1233'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to clear your viewing history
+    description: User wants to clear their viewing history
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: How do I delete my browsing history for {WebBrowser}
+        intent_to_elicit: ClearViewingHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What web browser are you using?
+        sample_response: Firefox
+        intent_to_elicit: false
+        slot_to_elicit: WebBrowser
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What version of your web browser are you running?
+        sample_response: Not entirely sure but i think it's Firefox
+        intent_to_elicit: false
+        slot_to_elicit: WebBrowserVersion
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: From what date would you like to clear your history?
+        sample_response: 9/27/2009 I guess
+        intent_to_elicit: false
+        slot_to_elicit: ClearTimeLength
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yup!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ClearViewingHistory_StopIntent_en-US
+    scenario_id: '1234'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to clear your viewing history
+    description: User wants to clear their viewing history
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: I don't have a need to see any of my browsing history so we can get rid of it
+        intent_to_elicit: ClearViewingHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What web browser are you using?
+        sample_response: I'm using Opera.
+        intent_to_elicit: false
+        slot_to_elicit: WebBrowser
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What version of your web browser are you running?
+        sample_response: yes that is Safari
+        intent_to_elicit: false
+        slot_to_elicit: WebBrowserVersion
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: From what date would you like to clear your history?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ClearViewingHistory_RepeatIntent_en-US
+    scenario_id: '1235'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to clear your viewing history
+    description: User wants to clear their viewing history
+    script:
+      - agent: Hello and welcome, what would you like me to do for you?
+        sample_response: How do I delete the history from my {WebBrowser} for a given period
+        intent_to_elicit: ClearViewingHistory
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What web browser are you using?
+        sample_response: The browser would be Safari.
+        intent_to_elicit: false
+        slot_to_elicit: WebBrowser
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What version of your web browser are you running?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OfflineMusicStreaming_Confirmed_en-US
+    scenario_id: '1236'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to listen to music streaming offline
+    description: User wants to listen to music streaming offline
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Is it possible to streaming my music without an internet connection
+        intent_to_elicit: OfflineMusicStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What app are you using?
+        sample_response: from what I can see its Spotify
+        intent_to_elicit: false
+        slot_to_elicit: AppName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What playlist would you like to hear offline?
+        sample_response: Christmas Tunes
+        intent_to_elicit: false
+        slot_to_elicit: PlaylistPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What album do you want to hear offline?
+        sample_response: its ALICIA
+        intent_to_elicit: false
+        slot_to_elicit: AlbumPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What song would you like to hear offline?
+        sample_response: I Hope
+        intent_to_elicit: false
+        slot_to_elicit: MusicPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OfflineMusicStreaming_PauseIntent_en-US
+    scenario_id: '1237'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to listen to music streaming offline
+    description: User wants to listen to music streaming offline
+    script:
+      - agent: Hello, what seems to be the issue?
+        sample_response: Does {AppName} let users listen without Wi-Fi?
+        intent_to_elicit: OfflineMusicStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What app are you using?
+        sample_response: It is Peacock.
+        intent_to_elicit: false
+        slot_to_elicit: AppName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What playlist would you like to hear offline?
+        sample_response: Feelin' Myself would be great
+        intent_to_elicit: false
+        slot_to_elicit: PlaylistPreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What album do you want to hear offline?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DowngradeStreaming_Confirmed_en-US
+    scenario_id: '1238'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to downgrade your streaming service
+    description: User wants to downgrade their streaming service
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Is there a cheaper way to pay for this streaming service
+        intent_to_elicit: DowngradeStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which of our streaming services would you like to downgrade?
+        sample_response: Peacock
+        intent_to_elicit: false
+        slot_to_elicit: StreamingServiceDowngrade
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: From which device would you like to downgrade?
+        sample_response: Express
+        intent_to_elicit: false
+        slot_to_elicit: RemoveDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We will send a confirmation email. What is your email?
+        sample_response: Larry.Kennedy@yahoo.com would be my email
+        intent_to_elicit: false
+        slot_to_elicit: RequesterEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We sent a confirmation PIN. What is your PIN?
+        sample_response: so that's 8456
+        intent_to_elicit: false
+        slot_to_elicit: RequesterPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_DowngradeStreaming_NoIntent_en-US
+    scenario_id: '1239'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to downgrade your streaming service
+    description: User wants to downgrade their streaming service
+    script:
+      - agent: Welcome. How can I help you?
+        sample_response: Is there any cheaper streaming service I can switch to
+        intent_to_elicit: DowngradeStreaming
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which of our streaming services would you like to downgrade?
+        sample_response: Could I downgrade my Disney+ please
+        intent_to_elicit: false
+        slot_to_elicit: StreamingServiceDowngrade
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: From which device would you like to downgrade?
+        sample_response: What I have is a Express
+        intent_to_elicit: false
+        slot_to_elicit: RemoveDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We will send a confirmation email. What is your email?
+        sample_response: Joseph.Smith@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: RequesterEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We sent a confirmation PIN. What is your PIN?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestMultiAccountDiscount_Confirmed_en-US
+    scenario_id: '1240'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a multi-account discount
+    description: User wants a multi-account discount
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: I want a discount for {PreferredDiscount} can I get that I have multiple accounts
+        intent_to_elicit: RequestMultiAccountDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much of a discount would you like?
+        sample_response: yes 5%
+        intent_to_elicit: false
+        slot_to_elicit: PreferredDiscount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long have you used our services?
+        sample_response: 3 years
+        intent_to_elicit: false
+        slot_to_elicit: UserLoyalty
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your primary account number?
+        sample_response: Yes 16409047738OJ please
+        intent_to_elicit: false
+        slot_to_elicit: PrimaryAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the secondary or other account number you want to add?
+        sample_response: I think it's 16409047738OJ
+        intent_to_elicit: false
+        slot_to_elicit: SecondaryAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: We have sent a PIN to confirm linking of accounts. What is that PIN?
+        sample_response: It's going to be 4515.
+        intent_to_elicit: false
+        slot_to_elicit: VerificationPIN
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RequestMultiAccountDiscount_HelpIntent_en-US
+    scenario_id: '1241'
+    bias:
+      - MultiIntent
+    customer_instructions: You want a multi-account discount
+    description: User wants a multi-account discount
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: I am interested in a multi-account discount please
+        intent_to_elicit: RequestMultiAccountDiscount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much of a discount would you like?
+        sample_response: '0.33'
+        intent_to_elicit: false
+        slot_to_elicit: PreferredDiscount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long have you used our services?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePriceIncrease_Confirmed_en-US
+    scenario_id: '1242'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know why your prices increased
+    description: User wants to know why their prices increased
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: "{UserAccountNumber} is my account number why is my bill higher this month I didn't change anything"
+        intent_to_elicit: InquirePriceIncrease
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What service are you concerned with?
+        sample_response: Flex
+        intent_to_elicit: false
+        slot_to_elicit: UserServicesUsed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Sure. What are your account details?
+        sample_response: So I think it's AaronFarrell1985
+        intent_to_elicit: false
+        slot_to_elicit: UserAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For how long have you used our services?
+        sample_response: 6 years
+        intent_to_elicit: false
+        slot_to_elicit: ServiceUsage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where are you contacting us from today?
+        sample_response: "for the street address it's 8904 Walt Whitman Street,\nTullahassee, OK 74454"
+        intent_to_elicit: false
+        slot_to_elicit: UserLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePriceIncrease_PauseIntent_en-US
+    scenario_id: '1243'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know why your prices increased
+    description: User wants to know why their prices increased
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: My {UserAccount} bill is higher than it usually is why
+        intent_to_elicit: InquirePriceIncrease
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What service are you concerned with?
+        sample_response: It's about my Premium service.
+        intent_to_elicit: false
+        slot_to_elicit: UserServicesUsed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Sure. What are your account details?
+        sample_response: BiancaSmith1974 is that it
+        intent_to_elicit: false
+        slot_to_elicit: UserAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For how long have you used our services?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePriceIncrease_CancelIntent_en-US
+    scenario_id: '1244'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know why your prices increased
+    description: User wants to know why their prices increased
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Why has my bill gone up all of a sudden?
+        intent_to_elicit: InquirePriceIncrease
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What service are you concerned with?
+        sample_response: Yeah its my Basic service
+        intent_to_elicit: false
+        slot_to_elicit: UserServicesUsed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Sure. What are your account details?
+        sample_response: Put BethRichardson1963
+        intent_to_elicit: false
+        slot_to_elicit: UserAccount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For how long have you used our services?
+        sample_response: Cancel
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseMovie_Denied_en-US
+    scenario_id: '1245'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a movie
+    description: User wants to purchase a movie
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: Hi can you help me purchase a film
+        intent_to_elicit: PurchaseMovie
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me which movie you would like to purchase?
+        sample_response: Rushmore
+        intent_to_elicit: false
+        slot_to_elicit: MoviePurchase
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: think it's HI-29755747
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number on the card you would like to use?
+        sample_response: '4176282071625800.0'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: The name of Elizabeth
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: It's Mcdonald
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: No.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseMovie_StartOverIntent_en-US
+    scenario_id: '1246'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a movie
+    description: User wants to purchase a movie
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: Could you tell me how to buy this film called {MoviePurchase}
+        intent_to_elicit: PurchaseMovie
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me which movie you would like to purchase?
+        sample_response: I'll purchase Silver Linings Playbook
+        intent_to_elicit: false
+        slot_to_elicit: MoviePurchase
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: I believe it is CR-63718984
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number on the card you would like to use?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseMovie_YesIntent_en-US
+    scenario_id: '1247'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee a movie
+    description: User wants to purchase a movie
+    script:
+      - agent: Hello, how may I help you today?
+        sample_response: I want to get {MoviePurchase} purchased
+        intent_to_elicit: PurchaseMovie
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me which movie you would like to purchase?
+        sample_response: I'll buy Her please
+        intent_to_elicit: false
+        slot_to_elicit: MoviePurchase
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: 'That is: 56-6064413S2'
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the credit card number on the card you would like to use?
+        sample_response: yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternetSupportingHD_Confirmed_en-US
+    scenario_id: '1248'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee internet that supports HD streaming
+    description: User wants to purchase internet that supports HD streaming
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: Do you have a good plan that supports HD streaming
+        intent_to_elicit: PurchaseInternetSupportingHD
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me which type of internet plan you would like to purchase?
+        sample_response: Xfinity Extreme Pro
+        intent_to_elicit: false
+        slot_to_elicit: InternetPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Yes 33-45841629v2
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which payment method would you like to use to pay for your new internet service?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the number on the credit card you would like to use?
+        sample_response: '373028340672252'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Sure, it's Linda
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes the last name is White
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternetSupportingHD_NoIntent_en-US
+    scenario_id: '1249'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee internet that supports HD streaming
+    description: User wants to purchase internet that supports HD streaming
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: Hi I'd like to subscribe to a plan offering HD streaming capabilities
+        intent_to_elicit: PurchaseInternetSupportingHD
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me which type of internet plan you would like to purchase?
+        sample_response: I want the AT&T Internet 1000 plan
+        intent_to_elicit: false
+        slot_to_elicit: InternetPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: try 12-85707024u8
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which payment method would you like to use to pay for your new internet service?
+        sample_response: credit please
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the number on the credit card you would like to use?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseInternetSupportingHD_StopIntent_en-US
+    scenario_id: '1250'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee internet that supports HD streaming
+    description: User wants to purchase internet that supports HD streaming
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: I'd like to enroll in the {InternetPlan} that allows me stream content in HD
+        intent_to_elicit: PurchaseInternetSupportingHD
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me which type of internet plan you would like to purchase?
+        sample_response: Centurylink fiber gigabit please
+        intent_to_elicit: false
+        slot_to_elicit: InternetPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: As far as i can tell it's 98084151137nf.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which payment method would you like to use to pay for your new internet service?
+        sample_response: I want to use a Debit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the number on the credit card you would like to use?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

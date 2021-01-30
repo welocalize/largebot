@@ -1,0 +1,1192 @@
+name: LargeBot_MediaCable_scenarios_batch48
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_InquireInternetSpeedVariation_Confirmed_en-US
+    scenario_id: '0941'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know why your internet speed varies
+    description: Customer wants to know why their internet speed varies
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: My internet speed becomes volatile around {TimeOfIssue}.
+        intent_to_elicit: InquireInternetSpeedVariation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which of our internet plans are you currently subscribed to?
+        sample_response: AT&T Internet 1000
+        intent_to_elicit: false
+        slot_to_elicit: InternetPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many people are connected to your home network?
+        sample_response: yeah, 10
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfNetworkUsers
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Does your internet speed tend to slow down with certain kinds of use, such as streaming or playing online games?
+        sample_response: yeah
+        intent_to_elicit: false
+        slot_to_elicit: UserActivity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the brand of your Wi-Fi router?
+        sample_response: It's called Amazon
+        intent_to_elicit: false
+        slot_to_elicit: WiFiRouterMaker
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the model of your Wi-Fi router?
+        sample_response: Eero Pro Mesh
+        intent_to_elicit: false
+        slot_to_elicit: WiFiRouterModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireInternetSpeedVariation_StartOverIntent_en-US
+    scenario_id: '0942'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know why your internet speed varies
+    description: Customer wants to know why their internet speed varies
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I don't understand why my internet speed started varying at {TimeOfIssue} can you help me please
+        intent_to_elicit: InquireInternetSpeedVariation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which of our internet plans are you currently subscribed to?
+        sample_response: I've got the Cox Gigablast plan
+        intent_to_elicit: false
+        slot_to_elicit: InternetPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many people are connected to your home network?
+        sample_response: Well there are 5 of us
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfNetworkUsers
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Does your internet speed tend to slow down with certain kinds of use, such as streaming or playing online games?
+        sample_response: Can we start over?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireInternetSpeedVariation_NumberOfNetworkUsers_YesIntent_en-US
+    scenario_id: '0943'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know why your internet speed varies
+    description: Customer wants to know why their internet speed varies
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I have varying internet speeds and I demand an answer
+        intent_to_elicit: InquireInternetSpeedVariation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which of our internet plans are you currently subscribed to?
+        sample_response: It's called the Verizon Fios Gigabit plan
+        intent_to_elicit: false
+        slot_to_elicit: InternetPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know how many people are connected to your home network?
+        sample_response: '{}, probably?'
+        intent_to_elicit: NumberOfNetworkUsers
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you notice your internet speed varying during a particular time of day?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OrderNewBusinessHandsets_Denied_en-US
+    scenario_id: '0944'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to order new handsets for your business landline
+    description: User wants to order new handsets for their business landline
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I want to order new handsets for my business landline
+        intent_to_elicit: OrderNewBusinessHandsets
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah it is Angelica
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes the last name is Taylor
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand of handsets would you prefer?
+        sample_response: Toshiba
+        intent_to_elicit: false
+        slot_to_elicit: PreferredBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What features are desired for your handsets?
+        sample_response: I want them to have NFC
+        intent_to_elicit: false
+        slot_to_elicit: FeatureRequested
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many handsets would you like to order?
+        sample_response: '3'
+        intent_to_elicit: false
+        slot_to_elicit: QuantityOrdered
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where would you like the handsets mailed to?
+        sample_response: "It is 5123A Carson Street,\nFrankfort, IN 46058"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your desired shipping speed?
+        sample_response: 2-day
+        intent_to_elicit: false
+        slot_to_elicit: ShippingSpeed
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What method of payment would you like to use?
+        sample_response: debit
+        intent_to_elicit: false
+        slot_to_elicit: MethodOfPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address should we send the order confirmation to?
+        sample_response: AngelicaTaylor@hotmail.com is the best one to use
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please don't do anything just yet. I'm going to wait a bit.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OrderNewBusinessHandsets_YesIntent_en-US
+    scenario_id: '0945'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to order new handsets for your business landline
+    description: User wants to order new handsets for their business landline
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I'm interested in purchasing new landline handsets please
+        intent_to_elicit: OrderNewBusinessHandsets
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Sure, it is Anthony
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_OrderNewBusinessHandsets_StopIntent_en-US
+    scenario_id: '0946'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to order new handsets for your business landline
+    description: User wants to order new handsets for their business landline
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Could you send me options for buying some new handsets at {CustomerEmail}
+        intent_to_elicit: OrderNewBusinessHandsets
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Ashley is my first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name's Smith
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand of handsets would you prefer?
+        sample_response: I actually prefer Meridian
+        intent_to_elicit: false
+        slot_to_elicit: PreferredBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What features are desired for your handsets?
+        sample_response: crystal-clear display
+        intent_to_elicit: false
+        slot_to_elicit: FeatureRequested
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many handsets would you like to order?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportPOSMalfunctions_CancelIntent_en-US
+    scenario_id: '0947'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report that your POS software are malfunctioning
+    description: User wants to report that their POS software is malfunctioning
+    script:
+      - agent: What can I do for you today?
+        sample_response: Hi my POS software isn't working
+        intent_to_elicit: ReportPOSMalfunctions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: I'm not entirely sure, I think it's 95-D879545FI.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: No problem, it's Nichole
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: The last name is Cook
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What POS software do you use?
+        sample_response: Wait actually now I don't want to
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportPOSMalfunctions_Confirmed_en-US
+    scenario_id: '0948'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to report that your POS software are malfunctioning
+    description: User wants to report that their POS software is malfunctioning
+    script:
+      - agent: What can I do for you today?
+        sample_response: Looking to report that my POS software is malfunctioning
+        intent_to_elicit: ReportPOSMalfunctions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: That's going to be OU-29259632
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: name's Angela
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Of course, it's Cook
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What POS software do you use?
+        sample_response: Lightspeed.
+        intent_to_elicit: false
+        slot_to_elicit: SoftwareBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What version POS software do you use?
+        sample_response: Vend is that it
+        intent_to_elicit: false
+        slot_to_elicit: SoftwareVersion
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReportPOSMalfunctions_HelpIntent_en-US
+    scenario_id: '0949'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to report that your POS software are malfunctioning
+    description: User wants to report that their POS software is malfunctioning
+    script:
+      - agent: What can I do for you today?
+        sample_response: This is {CustomerFirstName} and there seems to be an issue with our POS system
+        intent_to_elicit: ReportPOSMalfunctions
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: Not sure i think it's Ep-24366018
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My name is Preston thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What POS software do you use?
+        sample_response: would you be able to help me
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireInternetSecurity_Confirmed_en-US
+    scenario_id: '0950'
+    bias:
+      - SingleIntent
+    customer_instructions: You are inquiring about internet security
+    description: User is inquiring about internet security
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Hey I'd like to know more about how to protecting my devices
+        intent_to_elicit: InquireInternetSecurity
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: from what I can see its 42442539868EY
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: No problem, it's Lisa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yeah it's Ross
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of operating system do you use?
+        sample_response: iOS
+        intent_to_elicit: false
+        slot_to_elicit: HardwareBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you are already using an internet security software, what brand is it?
+        sample_response: Norton
+        intent_to_elicit: false
+        slot_to_elicit: ExistingSoftware
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the maximum amount you are willing to spend annually on internet security software?
+        sample_response: $150 total.
+        intent_to_elicit: false
+        slot_to_elicit: DesiredBudget
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireInternetSecurity_HelpIntent_en-US
+    scenario_id: '0951'
+    bias:
+      - MultiIntent
+    customer_instructions: You are inquiring about internet security
+    description: User is inquiring about internet security
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Hi right now I'm working with {ExistingSoftware} and I wanna know if there are better brands to use
+        intent_to_elicit: InquireInternetSecurity
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Yes 68-84208655q7
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: My name is Karen thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: it's Parker
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of operating system do you use?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireInternetSecurity_HardwareBrand_HelpIntent_en-US
+    scenario_id: '0952'
+    bias:
+      - MultiIntent
+    customer_instructions: You are inquiring about internet security
+    description: User is inquiring about internet security
+    script:
+      - agent: Hi! What can I help you with today?
+        sample_response: Hello I'm interested in knowing more about anti-virus software for my internet
+        intent_to_elicit: InquireInternetSecurity
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: that is 47-B808911MF
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah it is Mark
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Yes, my name is Booth
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of operating system do you use?
+        sample_response: MacOS
+        intent_to_elicit: HardwareBrand
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you are already using an internet security software, what brand is it?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BusinessMobilePlans_Confirmed_en-US
+    scenario_id: '0953'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to purchavee multiple mobile plans for your business and staff
+    description: User wants to purchase multiple mobile plans for their business and staff
+    script:
+      - agent: What can I do for you today?
+        sample_response: Can I get like multiple phone plans from you guys
+        intent_to_elicit: BusinessMobilePlans
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: So I think it's 64851069293TW
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: save my name as Bonnie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: My family name is Higgins
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people is this service for?
+        sample_response: 7, I believe
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfPlans
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand of phone do you prefer?
+        sample_response: iPhone
+        intent_to_elicit: false
+        slot_to_elicit: PhoneBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you need?
+        sample_response: That's 7.
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfDevices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much monthly data do you need in gigabytes (GB)?
+        sample_response: that's 128
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where would you like the phones mailed to?
+        sample_response: "To 5624A 4th Street,\nDumas, TX 79029 12960 Lead"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What method of payment would you like to use?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: MethodOfPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address should we send the order confirmation to?
+        sample_response: Sure BonnieHiggins@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BusinessMobilePlans_NoIntent_en-US
+    scenario_id: '0954'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee multiple mobile plans for your business and staff
+    description: User wants to purchase multiple mobile plans for their business and staff
+    script:
+      - agent: What can I do for you today?
+        sample_response: How can I get more than one mobile phone plan
+        intent_to_elicit: BusinessMobilePlans
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 26587166009LF
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yeah, I am Kevin
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Gilbert
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people is this service for?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BusinessMobilePlans_NumberOfPlans_StopIntent_en-US
+    scenario_id: '0955'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee multiple mobile plans for your business and staff
+    description: User wants to purchase multiple mobile plans for their business and staff
+    script:
+      - agent: What can I do for you today?
+        sample_response: What do you offer for multiple phone plans on one account for a small business like ours
+        intent_to_elicit: BusinessMobilePlans
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: It is 1106403108o0
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Sure my name is Sandy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Mccormick
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many people is this service for?
+        sample_response: '5'
+        intent_to_elicit: NumberOfPlans
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand of phone do you prefer?
+        sample_response: Samsung Galaxy
+        intent_to_elicit: false
+        slot_to_elicit: PhoneBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you need?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SuspendAccount_Confirmed_en-US
+    scenario_id: '0956'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to suspend your account for a set period of time
+    description: User wants to suspend their account for a set period of time
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I'd like to suspend my account for a while
+        intent_to_elicit: SuspendAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: that is 94900537741OU
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Yes, I'm Valerie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name's Mckenzie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like your suspension to start?
+        sample_response: 'on: 2021-07-03'
+        intent_to_elicit: false
+        slot_to_elicit: SuspensionStartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like your suspension to last?
+        sample_response: For about one month
+        intent_to_elicit: false
+        slot_to_elicit: SuspensionDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email address should we send the suspension confirmation to?
+        sample_response: You can put MValerie@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SuspendAccount_PauseIntent_en-US
+    scenario_id: '0957'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to suspend your account for a set period of time
+    description: User wants to suspend their account for a set period of time
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: This is {CustomerFirstName} and I gotta cancel an account just for a little while
+        intent_to_elicit: SuspendAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: That's EA-39554965
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure, it is Harrington
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like your suspension to start?
+        sample_response: Let's put 2021-03-11
+        intent_to_elicit: false
+        slot_to_elicit: SuspensionStartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like your suspension to last?
+        sample_response: I'll be right back
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SuspendAccount_CancelIntent_en-US
+    scenario_id: '0958'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to suspend your account for a set period of time
+    description: User wants to suspend their account for a set period of time
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Is it possible to temporarily suspend an account for {SuspensionDuration} please
+        intent_to_elicit: SuspendAccount
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your account number please?
+        sample_response: Number 15-83613597i2
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Yeah, it is Rachel
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: that's Morgan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like your suspension to start?
+        sample_response: 2021-07-18 I guess
+        intent_to_elicit: false
+        slot_to_elicit: SuspensionStartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like your suspension to last?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SwitchPhoneProviderTimeline_Confirmed_en-US
+    scenario_id: '0959'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know when they can switch phone service providers
+    description: User wants to know when they can switch phone service providers
+    script:
+      - agent: How can I be of service?
+        sample_response: I wanna change providers can you tell me when I can
+        intent_to_elicit: SwitchPhoneProviderTimeline
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your full name?
+        sample_response: It is Craig
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you spell your last name?
+        sample_response: Sure, it's Hernandez
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your postal address please?
+        sample_response: "That is 8213 Oak Valley Street,\nHull, TX 77564 52960 Forest Grove."
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cell provider?
+        sample_response: Verizon
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCellularProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who makes your current phone?
+        sample_response: Motorola One
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of your current phone?
+        sample_response: A Samsung Galaxy S10 Plus
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SwitchPhoneProviderTimeline_RepeatIntent_en-US
+    scenario_id: '0960'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know when they can switch phone service providers
+    description: User wants to know when they can switch phone service providers
+    script:
+      - agent: How can I be of service?
+        sample_response: Hey I'm with {CurrentCellularProvider} and I don't like them much when can I switch
+        intent_to_elicit: SwitchPhoneProviderTimeline
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your full name?
+        sample_response: okay its Monique
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you spell your last name?
+        sample_response: Sure the last name is Clark
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your postal address please?
+        sample_response: "Postal address 2061 Brook Street\nAndrews IN 46702 40588 Happy Camp"
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cell provider?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

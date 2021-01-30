@@ -1,0 +1,1217 @@
+name: LargeBot_MediaCable_scenarios_batch19
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_InquireMobilePlanDeals_StartOverIntent_en-US
+    scenario_id: '0361'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to the mobile service provider with the best deal
+    description: User wants to switch to the mobile service provider with the best deal
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Can you assist me in switching to a mobile provider with the best deal my name's {CustomerFirstName}
+        intent_to_elicit: InquireMobilePlanDeals
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Last name would be Sullivan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your address?
+        sample_response: "My address is 1538 Elm St.,\nLemon Grove, CA 91945 85081 Ardmore"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number please?
+        sample_response: That is 289-1351
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_InquireMobilePlanDeals_en-US
+    scenario_id: '0362'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to switch to the mobile service provider with the best deal
+    description: User wants to switch to the mobile service provider with the best deal
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I want to find the best deals from other mobile providers so I can change my provider
+        intent_to_elicit: InquireMobilePlanDeals
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your first name?
+        sample_response: okay its Michelle
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: The name is Raymond
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your address?
+        sample_response: How do I suggest deals for mobile service providers?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireMobilePlanDeals_CurrentLinesNumber_Confirmed_en-US
+    scenario_id: '0363'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to the mobile service provider with the best deal
+    description: User wants to switch to the mobile service provider with the best deal
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Help me find the best deals from other mobile providers so I can switch
+        intent_to_elicit: InquireMobilePlanDeals
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your first name?
+        sample_response: Yes of course, I'm Zoe
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Last name's Reed
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your address?
+        sample_response: "It's at 2448 Harrison St.,\nDegognia, IL 62950 65073 Albuquerque"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number please?
+        sample_response: yes 493-0784
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: My email would be Zoe.R@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current mobile service provider?
+        sample_response: Metro
+        intent_to_elicit: false
+        slot_to_elicit: CurrentMobileProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many phone lines are on your current plan?
+        sample_response: for the number of phones, it's 1
+        intent_to_elicit: CurrentLinesNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the data limit on your current plan?
+        sample_response: the limit is Unlimited
+        intent_to_elicit: false
+        slot_to_elicit: CurrentDataPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dollars per month is your current mobile service rate?
+        sample_response: Yes - $75.
+        intent_to_elicit: false
+        slot_to_elicit: CurrentMonthlyFee
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireMobilePlanDeals_YesIntent_en-US
+    scenario_id: '0364'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to the mobile service provider with the best deal
+    description: User wants to switch to the mobile service provider with the best deal
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Is it possible to switch my mobile provider to the one with the best deal
+        intent_to_elicit: InquireMobilePlanDeals
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your first name?
+        sample_response: Sure, my name is Ashley
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: The name's Andrews
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your address?
+        sample_response: "that's 5266 Briarwood Street,\nTekonsha, MI 49092 78168 Aitkin"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number please?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireMobilePlanDeals_CurrentMonthlyFee_CurrentLinesNumber_Confirmed_en-US
+    scenario_id: '0365'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to the mobile service provider with the best deal
+    description: User wants to switch to the mobile service provider with the best deal
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I need a new mobile provider and I'd like to change to the one with the best deal
+        intent_to_elicit: InquireMobilePlanDeals
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your first name?
+        sample_response: I'm Jacob
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Of course, it's Ford
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your address?
+        sample_response: "Yes it is at 5046 Brewery Street,\nBlythedale, MO 64426 26505 Vona"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number please?
+        sample_response: Yes, 641-396-1896
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: email's JacobF@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current mobile service provider?
+        sample_response: I have Google Fi.
+        intent_to_elicit: false
+        slot_to_elicit: CurrentMobileProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many phone lines are on your current plan?
+        sample_response: yeah 2
+        intent_to_elicit: CurrentLinesNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the data limit on your current plan?
+        sample_response: Prepaid.
+        intent_to_elicit: false
+        slot_to_elicit: CurrentDataPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dollars per month is your current mobile service rate?
+        sample_response: totaling 80
+        intent_to_elicit: CurrentMonthlyFee
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupAutopay_Confirmed_en-US
+    scenario_id: '0366'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to switch to automatic billing
+    description: User wants to switch to automatic billing
+    script:
+      - agent: How can I assist you today?
+        sample_response: Will I be able to have automatic billing please
+        intent_to_elicit: SetupAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your first name?
+        sample_response: Yeah, Catherine
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: Yes, it's Becker
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: think it's 1000444659BK
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your password?
+        sample_response: It should be wIQXDsnc5C
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your postal address?
+        sample_response: "It's at 8000 Trusel St.,\nBardwell, KY 42023"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your date of birth?
+        sample_response: it's 1999-08-10
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: That's BeckerCatherine@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your phone number?
+        sample_response: 344-9123
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the method of payment you will be using?
+        sample_response: I want to use my debit card
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your credit card number please?
+        sample_response: yeah 4800680963401222
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupAutopay_StopIntent_en-US
+    scenario_id: '0367'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to automatic billing
+    description: User wants to switch to automatic billing
+    script:
+      - agent: How can I assist you today?
+        sample_response: I want to switch to automatic billing please
+        intent_to_elicit: SetupAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your first name?
+        sample_response: sure its Jose
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: Yeah last name is Green
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: That is going to be MO-12474550
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your password?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_SetupAutopay_en-US
+    scenario_id: '0368'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to switch to automatic billing
+    description: User wants to switch to automatic billing
+    script:
+      - agent: How can I assist you today?
+        sample_response: I would rather have my {AccountNumber} account be set up for automatic billing please
+        intent_to_elicit: SetupAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your first name?
+        sample_response: Bryan is my name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: It's Gaines
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: How do I start a credit card company?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetupAutopay_NoIntent_en-US
+    scenario_id: '0369'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to automatic billing
+    description: User wants to switch to automatic billing
+    script:
+      - agent: How can I assist you today?
+        sample_response: My account number is {AccountNumber} and I'd like my bill to be paid automatically
+        intent_to_elicit: SetupAutopay
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your first name?
+        sample_response: Yeah, I'm William
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name?
+        sample_response: Sure it's Rojas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferAccountName_Confirmed_en-US
+    scenario_id: '0370'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to transfer your account to someone else's name
+    description: User wants to transfer their account to someone else's name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I would like to give {TransfereeFirstName} {TransfereeLastName} access to my account as well
+        intent_to_elicit: TransferAccountName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: 'its: 31-K096354LW'
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: My first name is Alyssa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Last name Obrien
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your date of birth?
+        sample_response: '1960-12-27'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address please?
+        sample_response: "That is 8343 Glen Creek Street,\nMonford, KY 42252"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the date of birth of the person whom you would like to transfer this account to?
+        sample_response: '1964-03-21'
+        intent_to_elicit: false
+        slot_to_elicit: TransfereeDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the person who would be taking over this account?
+        sample_response: "At 4034 Roosevelt St.,\nNaples, FL 34113 thanks"
+        intent_to_elicit: false
+        slot_to_elicit: TransfereeAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me the credit card number of the person who would be taking over this account?
+        sample_response: '4668770583290641'
+        intent_to_elicit: false
+        slot_to_elicit: TransfereeCreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferAccountName_CancelIntent_en-US
+    scenario_id: '0371'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer your account to someone else's name
+    description: User wants to transfer their account to someone else's name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Help me transfer {TransfereeFirstName} {TransfereeLastName} my account
+        intent_to_elicit: TransferAccountName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: yes that is 26-C942449FJ
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: I'm called Courtney
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Yeah, it is Boyd
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your date of birth?
+        sample_response: it's 2004-10-14
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address please?
+        sample_response: "Yep, that's 554 University St.,\nFairport Hbr, OH 44077 92984 Portland"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the date of birth of the person whom you would like to transfer this account to?
+        sample_response: Their DOB is 1943-02-21
+        intent_to_elicit: false
+        slot_to_elicit: TransfereeDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the person who would be taking over this account?
+        sample_response: "Yes it is at 6973 Olive Street,\nStaley, NC 27355 00414 Fischer"
+        intent_to_elicit: false
+        slot_to_elicit: TransfereeAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me the credit card number of the person who would be taking over this account?
+        sample_response: Wait actually now I don't want to
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferAccountName_TransferServiceAddress_Confirmed_en-US
+    scenario_id: '0372'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer your account to someone else's name
+    description: User wants to transfer their account to someone else's name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Could you help me find out how to transfer my account over to {TransfereeFirstName}
+        intent_to_elicit: TransferAccountName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: I believe it is 73335259814XD
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: Justin is my first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: The name's Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your date of birth?
+        sample_response: yep 2018-12-14
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address please?
+        sample_response: 255 Lees Creek Street,Athena, OR 97813
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the first name of the person whom you would like to transfer the account to?
+        sample_response: Can I just transfer the service to a new address
+        intent_to_elicit: TransferServiceAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: '"Sure thing. What is the phone number associated with this account?"'
+        sample_response: Sure, 4556332565
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the new address for this account?
+        sample_response: "Yes it's 9434 Winding Way Street,\nLennox, CA 90304 63269 Maxie"
+        intent_to_elicit: false
+        slot_to_elicit: NewCustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the effective date for the new address?
+        sample_response: 'for: 2021-05-07'
+        intent_to_elicit: false
+        slot_to_elicit: DateNewCustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date do you want to transfer the service to the new address?
+        sample_response: On 2021-07-16
+        intent_to_elicit: false
+        slot_to_elicit: TransferService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_TransferAccountName_en-US
+    scenario_id: '0373'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to transfer your account to someone else's name
+    description: User wants to transfer their account to someone else's name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Can you please make sure my account gets transferred to {TransfereeFirstName}
+        intent_to_elicit: TransferAccountName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: yes 78304623391lu please
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: put alison as the first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: yes, my name is james
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your date of birth?
+        sample_response: Can I buy someone elses account off them?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferAccountName_PauseIntent_en-US
+    scenario_id: '0374'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer your account to someone else's name
+    description: User wants to transfer their account to someone else's name
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Can you start the transfer of my account to some other name
+        intent_to_elicit: TransferAccountName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: yes that is 65172733379XI
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name please?
+        sample_response: put it down as Destiny
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: Yes, it's Sanders
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your date of birth?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferServiceAddress_Confirmed_en-US
+    scenario_id: '0375'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to transfer service because they are moving
+    description: User wants to transfer service because they are moving
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Hi I'm moving to another city so can I transfer my service
+        intent_to_elicit: TransferServiceAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: For that I have UE-44914568
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number associated with this account?
+        sample_response: '8169068346'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the current address for this account?
+        sample_response: "It is 3822 Wakehurst Street,\nClair Mel, FL 33619"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the new address for this account?
+        sample_response: "yep 1272 Bohemia Street,\nClemmons, NC 27012"
+        intent_to_elicit: false
+        slot_to_elicit: NewCustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the effective date for the new address?
+        sample_response: on 2021-03-08
+        intent_to_elicit: false
+        slot_to_elicit: DateNewCustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date do you want to transfer the service to the new address?
+        sample_response: I want to put 2021-03-11
+        intent_to_elicit: false
+        slot_to_elicit: TransferService
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferServiceAddress_StartOverIntent_en-US
+    scenario_id: '0376'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer service because they are moving
+    description: User wants to transfer service because they are moving
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I'm trying to switch my plan to {NewCustomerAddress} but it's in a different state
+        intent_to_elicit: TransferServiceAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: it's 74-29754677i9
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number associated with this account?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_TransferServiceAddress_en-US
+    scenario_id: '0377'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to transfer service because they are moving
+    description: User wants to transfer service because they are moving
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Do you know if it's possible to transfer service from {CustomerAddress} to {NewCustomerAddress} please
+        intent_to_elicit: TransferServiceAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: think it's 86-J998379MI
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number associated with this account?
+        sample_response: yes 2744321061
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the current address for this account?
+        sample_response: I'm moving overseas can I take my service with me?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_TransferServiceAddress_StopIntent_en-US
+    scenario_id: '0378'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to transfer service because they are moving
+    description: User wants to transfer service because they are moving
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I'm living at {CustomerAddress} but am moving out of the city. Do I have any options as I'd like to retain your services
+        intent_to_elicit: TransferServiceAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: yes that is 15612242796ON
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number associated with this account?
+        sample_response: Yes, 9750840735
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the new address for this account?
+        sample_response: "Sure, that's 1887 South James Street,\nMalvern, PA 19355 70968 Ivanhoe."
+        intent_to_elicit: false
+        slot_to_elicit: NewCustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the effective date for the new address?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SubscriptionUpgradeTrial_Confirmed_en-US
+    scenario_id: '0379'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to upgrade your subscription from a free trial
+    description: User wants to upgrade their subscription from a free trial
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Hello I wanted to upgrade from the free trial please
+        intent_to_elicit: SubscriptionUpgradeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: Email address is M.charles@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What new subscriptions would you like?
+        sample_response: The Basic
+        intent_to_elicit: false
+        slot_to_elicit: SubscriptionAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SubscriptionUpgradeTrial_RepeatIntent_en-US
+    scenario_id: '0380'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to upgrade your subscription from a free trial
+    description: User wants to upgrade their subscription from a free trial
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: How do I upgrade from the free trial to a subscription
+        intent_to_elicit: SubscriptionUpgradeTrial
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email associated with this account?
+        sample_response: TurnerDennis@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What new subscriptions would you like?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

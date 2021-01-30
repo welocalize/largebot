@@ -1,0 +1,974 @@
+name: LargeBot_MediaCable_scenarios_batch03
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_JoinRewardsProgram_en-US
+    scenario_id: '0041'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to join your provider's rewards program
+    description: User wants to join their provider's rewards program
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: So, I would like to join your rewards program for my account which is {AccountNumber}
+        intent_to_elicit: JoinRewardsProgram
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Print bank statements
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_JoinRewardsProgram_PauseIntent_en-US
+    scenario_id: '0042'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to join your provider's rewards program
+    description: User wants to join their provider's rewards program
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: I would like to enroll in your rewards program. My account is {AccountNumber}.
+        intent_to_elicit: JoinRewardsProgram
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Yeah it is David
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Yeah, it is Wright
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would like to receive notifications?
+        sample_response: I'd prefer email
+        intent_to_elicit: false
+        slot_to_elicit: RewardsNotifications
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I get your phone number?
+        sample_response: It's 275-3636
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhone
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your mailing address?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_JoinRewardsProgram_HelpIntent_en-US
+    scenario_id: '0043'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to join your provider's rewards program
+    description: User wants to join their provider's rewards program
+    script:
+      - agent: Hello, what can I help you with today?
+        sample_response: Sign me up for your rewards program. My account number is {AccountNumber}.
+        intent_to_elicit: JoinRewardsProgram
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Of course, it's Barbara
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: that's Blair
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How would like to receive notifications?
+        sample_response: Hey can you help me
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeWiFiNetworkName_Confirmed_en-US
+    scenario_id: '0044'
+    bias:
+      - SingleIntent
+    customer_instructions: You want help changing your Wi-Fi network name
+    description: User wants help changing their Wi-Fi network name
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: It would be great if I could change the name of the WiFi network
+        intent_to_elicit: ChangeWiFiNetworkName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Yeah, it's Amber
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: My family name is Campbell
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is this a public Wi-Fi or private Wi-Fi network?
+        sample_response: it's private
+        intent_to_elicit: false
+        slot_to_elicit: NetworkType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I get the Wi-Fi network's IP?
+        sample_response: 23.22.138.69
+        intent_to_elicit: false
+        slot_to_elicit: NetworkIPNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the current Wi-Fi name?
+        sample_response: superking111
+        intent_to_elicit: false
+        slot_to_elicit: WiFiName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What name would you like to change the Wi-Fi to?
+        sample_response: Put Bbox-707E1F
+        intent_to_elicit: false
+        slot_to_elicit: NetworkName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_ChangeWiFiNetworkName_en-US
+    scenario_id: '0045'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want help changing your Wi-Fi network name
+    description: User wants help changing their Wi-Fi network name
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I would like to modify the name of my internet which is {WiFiName} currently.
+        intent_to_elicit: ChangeWiFiNetworkName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Can I change my room to non smoking
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeWiFiNetworkName_RepeatIntent_en-US
+    scenario_id: '0046'
+    bias:
+      - MultiIntent
+    customer_instructions: You want help changing your Wi-Fi network name
+    description: User wants help changing their Wi-Fi network name
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I was wondering if I could change the name of the WiFi
+        intent_to_elicit: ChangeWiFiNetworkName
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: okay it's Laura
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Yeah last name is Johnson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is this a public Wi-Fi or private Wi-Fi network?
+        sample_response: Let's see it's public
+        intent_to_elicit: false
+        slot_to_elicit: NetworkType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I get the Wi-Fi network's IP?
+        sample_response: Yes 87.165.50.61
+        intent_to_elicit: false
+        slot_to_elicit: NetworkIPNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the current Wi-Fi name?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LinkCableSmartTV_Denied_en-US
+    scenario_id: '0047'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to link your cable provider information to your Smart TV
+    description: User wants to link their cable provider information to their Smart TV
+    script:
+      - agent: What can I do to help?
+        sample_response: How do I share my cable provider information with my {SmartTVBrand} smart TV
+        intent_to_elicit: LinkCableSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Im called Fred
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Last name would be Cruz
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number for your cable provider?
+        sample_response: yep 7658168080k3
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: '0993110'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhone
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: It is Fred.C@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your TV's model number?
+        sample_response: from what I can see its TCL 4K Smart LED TV 43
+        intent_to_elicit: false
+        slot_to_elicit: TVModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: I dont think so no
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_LinkCableSmartTV_en-US
+    scenario_id: '0048'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to link your cable provider information to your Smart TV
+    description: User wants to link their cable provider information to their Smart TV
+    script:
+      - agent: What can I do to help?
+        sample_response: Set up my {SmartTVBrand} with my cable membership
+        intent_to_elicit: LinkCableSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: I wanna buy a case of beer
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LinkCableSmartTV_StartOverIntent_en-US
+    scenario_id: '0049'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to link your cable provider information to your Smart TV
+    description: User wants to link their cable provider information to their Smart TV
+    script:
+      - agent: What can I do to help?
+        sample_response: Can you connect my {SmartTVBrand} to my cable subscription
+        intent_to_elicit: LinkCableSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: put it down as Elizabeth
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Yep, it is West
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number for your cable provider?
+        sample_response: not entirely sure but I think it's XD-13439745
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Sure, 602-634-9470
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhone
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LinkCableSmartTV_StopIntent_en-US
+    scenario_id: '0050'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to link your cable provider information to your Smart TV
+    description: User wants to link their cable provider information to their Smart TV
+    script:
+      - agent: What can I do to help?
+        sample_response: Hey can you link my {SmartTVBrand} TV and my cable subscription
+        intent_to_elicit: LinkCableSmartTV
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: you can call me Thomas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: It is Wilson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number for your cable provider?
+        sample_response: Yes 87-90721861p7
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Yes, 167-5676
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhone
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Sure, my email is W.Thomas@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your TV's brand name?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessPodcasts_Confirmed_en-US
+    scenario_id: '0051'
+    bias:
+      - SingleIntent
+    customer_instructions: You want help accessing your podcasts
+    description: User wants help accessing their podcasts
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Find my {PodcastTypes} podcasts please
+        intent_to_elicit: AccessPodcasts
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: the name's Patricia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Castro
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Yes it is Castro.Patricia@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a particular channel you want to listen to?
+        sample_response: This American Life
+        intent_to_elicit: false
+        slot_to_elicit: PodcastChannel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a particular podcast episode you would want to play?
+        sample_response: 'Play Dynasties #5 – The Sahotas for me please'
+        intent_to_elicit: false
+        slot_to_elicit: PodcastEpisode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_AccessPodcasts_en-US
+    scenario_id: '0052'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want help accessing your podcasts
+    description: User wants help accessing their podcasts
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: I want to listen to some of my favorite podcasts. Where can they be found
+        intent_to_elicit: AccessPodcasts
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Can I get a refund if my food arrives cold?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_AccessPodcasts_en-US
+    scenario_id: '0053'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want help accessing your podcasts
+    description: User wants help accessing their podcasts
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Please tell me where my {PodcastTypes} podcasts are
+        intent_to_elicit: AccessPodcasts
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Who can help me start my own podcast
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessPodcasts_StopIntent_en-US
+    scenario_id: '0054'
+    bias:
+      - MultiIntent
+    customer_instructions: You want help accessing your podcasts
+    description: User wants help accessing their podcasts
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Where can I retrieve my {PodcastTypes} podcasts
+        intent_to_elicit: AccessPodcasts
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Yes, my name is Claire
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: For last name, it's Perkins.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: ClairePerkins@gmail.com is good.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a particular channel you want to listen to?
+        sample_response: Oh I like This American Life
+        intent_to_elicit: false
+        slot_to_elicit: PodcastChannel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a particular podcast episode you would want to play?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AccessPodcasts_PauseIntent_en-US
+    scenario_id: '0055'
+    bias:
+      - MultiIntent
+    customer_instructions: You want help accessing your podcasts
+    description: User wants help accessing their podcasts
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: I would like to know where I can access my {PodcastTypes} podcasts
+        intent_to_elicit: AccessPodcasts
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Yep, I'm Christopher
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Yes Martin is the last name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Sure Christopher.Martin@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of podcasts do you want to listen to?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireAccountLogin_Denied_en-US
+    scenario_id: '0056'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know how to log in to your account
+    description: User wants to know how to log in to their account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: This is {CustomerFirstName} {CustomerLastName}. I'm contacting you because I'd like to know how to log in to my account.
+        intent_to_elicit: InquireAccountLogin
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: It should be 34855468987GR
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: "Its 2177 Wild Rose St\nBarneveld WI 53507"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: '2029725664'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhone
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: sure its OOscar@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please dont do anything just yet Im going to wait a bit
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_InquireAccountLogin_en-US
+    scenario_id: '0057'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to know how to log in to your account
+    description: User wants to know how to log in to their account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I'd like to know how to log in to my account, can you  help with that.
+        intent_to_elicit: InquireAccountLogin
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Does it come in orange?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireAccountLogin_YesIntent_en-US
+    scenario_id: '0058'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know how to log in to your account
+    description: User wants to know how to log in to their account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I can't seem to log in can you tell me how I can log in
+        intent_to_elicit: InquireAccountLogin
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: yeah VW-642515
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: it's Yvonne...
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireAccountLogin_StopIntent_en-US
+    scenario_id: '0059'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know how to log in to your account
+    description: User wants to know how to log in to their account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I've been trying to log in to my account can you tell me how to do it
+        intent_to_elicit: InquireAccountLogin
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: it should be 15242087812TK
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name, please?
+        sample_response: Sure, my name is Melanie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name, please?
+        sample_response: Of course, it's Turner
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: "For the address it's 6724 Proctor Street,\nHaypoint, MN 55748 86251 Carroll"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_BrandSocialMediaContact_Confirmed_en-US
+    scenario_id: '0060'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know how to reach the brand on social media
+    description: User wants to know how to reach the brand on social media
+    script:
+      - agent: Hey there, what seems to be the issue?
+        sample_response: Can you please send me the {SocialMediaPlatform} page for {BrandName}
+        intent_to_elicit: BrandSocialMediaContact
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me the email address to send the details to?
+        sample_response: it is BriggsElizabeth@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

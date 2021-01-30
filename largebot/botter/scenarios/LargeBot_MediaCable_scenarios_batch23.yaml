@@ -1,0 +1,2587 @@
+name: LargeBot_MediaCable_scenarios_batch23
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_RouterLostInternetConnection_HelpIntent_en-US
+    scenario_id: '1101'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to check internet connection
+    description: Customer needs to check internet connection
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: My internet is lost can you help me reconnect
+        intent_to_elicit: RouterLostInternetConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did the issue start?
+        sample_response: The date of 2021-01-13.
+        intent_to_elicit: false
+        slot_to_elicit: IssueStartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your issue address?
+        sample_response: "For the address 4974 Old Valley Street,\nSiam, IA 50833"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of router do you have?
+        sample_response: It is a TP-Link
+        intent_to_elicit: false
+        slot_to_elicit: RouterType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your service provider?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WiFiLostConnection_Confirmed_en-US
+    scenario_id: '1102'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to fix Wi-Fi connection
+    description: User wants to fix Wi-Fi connection
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Hi my address is {UserAddress} and I don't have Wi-Fi
+        intent_to_elicit: WiFiLostConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you lose your Wi-Fi connection?
+        sample_response: 12:41
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfLostConnection
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of your Wi-Fi?
+        sample_response: So it's Bbox-FA3F0F
+        intent_to_elicit: false
+        slot_to_elicit: NameOfWiFi
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your account number with us?
+        sample_response: Not sure I think it's 67426892470ZA
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: Yeah, it's Allison
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what's your last name?
+        sample_response: Sure the last name is Jordan
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the address we have on file for you?
+        sample_response: "No problem, the address is 5058 Dunbar St.,\nHillsdale, IN 47854"
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WiFiLostConnection_HelpIntent_en-US
+    scenario_id: '1103'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to fix Wi-Fi connection
+    description: User wants to fix Wi-Fi connection
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Fix my Wi-Fi at {UserAddress}. Send some one fast.
+        intent_to_elicit: WiFiLostConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you lose your Wi-Fi connection?
+        sample_response: At 13:56
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfLostConnection
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of your Wi-Fi?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_WiFiLostConnection_CancelIntent_en-US
+    scenario_id: '1104'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to fix Wi-Fi connection
+    description: User wants to fix Wi-Fi connection
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I need to fix a dropped wifi connection why is this happening
+        intent_to_elicit: WiFiLostConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you lose your Wi-Fi connection?
+        sample_response: That's 1:59 p.m..
+        intent_to_elicit: false
+        slot_to_elicit: TimeOfLostConnection
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of your Wi-Fi?
+        sample_response: Vodafone Hotspot!
+        intent_to_elicit: false
+        slot_to_elicit: NameOfWiFi
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your account number with us?
+        sample_response: Yes RO-5488580 please
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SafeRouterDistances_Confirmed_en-US
+    scenario_id: '1105'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know how far away they should keep your router for safety reasons
+    description: User wants to know how far away they should keep their router for safety reasons
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: I have {AmountOfChildren} kids and I want to keep them safe from the effects of wifi
+        intent_to_elicit: SafeRouterDistances
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you currently have your router?
+        sample_response: I have it in the kitchen
+        intent_to_elicit: false
+        slot_to_elicit: RouterLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: OK, and about how far, in feet, is that from where you mostly use your Wi-Fi?
+        sample_response: its 30
+        intent_to_elicit: false
+        slot_to_elicit: RouterDistanceFromCustomer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the brand of your router?
+        sample_response: It's called EDIMAX
+        intent_to_elicit: false
+        slot_to_elicit: WiFiRouterBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me by chance what your router frequency is in GHz?
+        sample_response: Yep - 5
+        intent_to_elicit: false
+        slot_to_elicit: RouterFrequencyBands
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you live in a house or an apartment?
+        sample_response: I live in a house
+        intent_to_elicit: false
+        slot_to_elicit: UserHomeType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know the square footage of where you live?
+        sample_response: That's 1000
+        intent_to_elicit: false
+        slot_to_elicit: HomeSquareFootage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many family members live with you?
+        sample_response: Yes 2
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfFamilyMembers
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many children are there in your household?
+        sample_response: I have 0 kids
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfChildren
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you've done an EMF radiation meter reading, what was it?
+        sample_response: Its 2 V/m
+        intent_to_elicit: false
+        slot_to_elicit: EMFRadiationMeterReading
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SafeRouterDistances_NoIntent_en-US
+    scenario_id: '1106'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know how far away they should keep your router for safety reasons
+    description: User wants to know how far away they should keep their router for safety reasons
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: Will I be saferfrom illness if I move my router
+        intent_to_elicit: SafeRouterDistances
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you currently have your router?
+        sample_response: attic
+        intent_to_elicit: false
+        slot_to_elicit: RouterLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: OK, and about how far, in feet, is that from where you mostly use your Wi-Fi?
+        sample_response: 20 ft
+        intent_to_elicit: false
+        slot_to_elicit: RouterDistanceFromCustomer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the brand of your router?
+        sample_response: the router brand is netgear
+        intent_to_elicit: false
+        slot_to_elicit: WiFiRouterBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me by chance what your router frequency is in GHz?
+        sample_response: It should be 5 GHz
+        intent_to_elicit: false
+        slot_to_elicit: RouterFrequencyBands
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you live in a house or an apartment?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SafeRouterDistances_YesIntent_en-US
+    scenario_id: '1107'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know how far away they should keep your router for safety reasons
+    description: User wants to know how far away they should keep their router for safety reasons
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: Will moving my router prevent illness
+        intent_to_elicit: SafeRouterDistances
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you currently have your router?
+        sample_response: Right in the basement
+        intent_to_elicit: false
+        slot_to_elicit: RouterLocation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: OK, and about how far, in feet, is that from where you mostly use your Wi-Fi?
+        sample_response: That's 15 feet.
+        intent_to_elicit: false
+        slot_to_elicit: RouterDistanceFromCustomer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the brand of your router?
+        sample_response: It's made by EDIMAX
+        intent_to_elicit: false
+        slot_to_elicit: WiFiRouterBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me by chance what your router frequency is in GHz?
+        sample_response: Yes, 2.5
+        intent_to_elicit: false
+        slot_to_elicit: RouterFrequencyBands
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you live in a house or an apartment?
+        sample_response: We're in a townhouse
+        intent_to_elicit: false
+        slot_to_elicit: UserHomeType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you know the square footage of where you live?
+        sample_response: A total of 1200
+        intent_to_elicit: false
+        slot_to_elicit: HomeSquareFootage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many family members live with you?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_HardwireInternetInstallation_PauseIntent_en-US
+    scenario_id: '1108'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to install hardwire internet
+    description: User wants to install hardwire internet
+    script:
+      - agent: What can I do for you today?
+        sample_response: Do I have the choice of wired internet with {NetworkProvider} I'd like to switch
+        intent_to_elicit: HardwireInternetInstallation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many ports do you think you'll need?
+        sample_response: '10'
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfPortsNeeded
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you want to hardwire?
+        sample_response: I'll be right back
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_HardwireInternetInstallation_Confirmed_en-US
+    scenario_id: '1109'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to install hardwire internet
+    description: User wants to install hardwire internet
+    script:
+      - agent: What can I do for you today?
+        sample_response: Do {NetworkProvider} offer the option of having a wired connection I'd like to go for it
+        intent_to_elicit: HardwireInternetInstallation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many ports do you think you'll need?
+        sample_response: I need 2
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfPortsNeeded
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you want to hardwire?
+        sample_response: 2 devices
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfDevices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what brand of router you have?
+        sample_response: The Apple
+        intent_to_elicit: false
+        slot_to_elicit: RouterType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what type of modem you have?
+        sample_response: My modem is a DSL
+        intent_to_elicit: false
+        slot_to_elicit: ModemType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your network provider?
+        sample_response: I use Dish
+        intent_to_elicit: false
+        slot_to_elicit: NetworkProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me in square footage, how big your house is?
+        sample_response: '800'
+        intent_to_elicit: false
+        slot_to_elicit: HouseSquareFootage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_HardwireInternetInstallation_StopIntent_en-US
+    scenario_id: '1110'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to install hardwire internet
+    description: User wants to install hardwire internet
+    script:
+      - agent: What can I do for you today?
+        sample_response: The Wi-Fi reception in my house is terrible - can I get a wired connection installed please
+        intent_to_elicit: HardwireInternetInstallation
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many ports do you think you'll need?
+        sample_response: 5 ports.
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfPortsNeeded
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many devices do you want to hardwire?
+        sample_response: Please stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LinkMultipleEmails_Confirmed_en-US
+    scenario_id: '1111'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to forward multiple email accounts to one account
+    description: User wants to forward multiple email accounts to one account
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: Could you kindly set up a forward that makes all my email go to {UserFinalDestinationEmailAddress}
+        intent_to_elicit: LinkMultipleEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What are the email addresses that you want forwarded?
+        sample_response: Email address is MichaelStafford@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailAddressesToForward
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you want an alias name, what is it?
+        sample_response: Could it be MichaelStafford1961
+        intent_to_elicit: false
+        slot_to_elicit: AliasName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide me with the name of the SMTP server?
+        sample_response: I've got Smtp.1and1.com, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: SMTPServer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me if you have a username with that account?
+        sample_response: MichaelStafford1961 I guess
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yup!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LinkMultipleEmails_RepeatIntent_en-US
+    scenario_id: '1112'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to forward multiple email accounts to one account
+    description: User wants to forward multiple email accounts to one account
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: Set up email forwarding for {UserFinalDestinationEmailAddress}. It's quite urgent.
+        intent_to_elicit: LinkMultipleEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What are the email addresses that you want forwarded?
+        sample_response: Price.Katherine@yahoo.com is good.
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailAddressesToForward
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you want an alias name, what is it?
+        sample_response: Yeah Price.Katherine1963
+        intent_to_elicit: false
+        slot_to_elicit: AliasName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide me with the name of the SMTP server?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LinkMultipleEmails_StartOverIntent_en-US
+    scenario_id: '1113'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to forward multiple email accounts to one account
+    description: User wants to forward multiple email accounts to one account
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: Just help me set up email forwarding thank you
+        intent_to_elicit: LinkMultipleEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What are the email addresses that you want forwarded?
+        sample_response: I am reachable at AnaBailey@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailAddressesToForward
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you want an alias name, what is it?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpPersonalizedDomainEmails_Confirmed_en-US
+    scenario_id: '1114'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up personalized emails for your domain
+    description: User wants to set up personalized emails for their domain
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: How do I set up new email addresses for {DomainName} please
+        intent_to_elicit: SetUpPersonalizedDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many personalized emails do you want to set up?
+        sample_response: That'll be 3
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfEmailAddresses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the email address you want them forwarded to?
+        sample_response: SarahWalker@yahoo.com is the correct email
+        intent_to_elicit: false
+        slot_to_elicit: UserFinalDestinationEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your domain name?
+        sample_response: wilkins.biz
+        intent_to_elicit: false
+        slot_to_elicit: DomainName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your domain host?
+        sample_response: web-03.hall.net
+        intent_to_elicit: false
+        slot_to_elicit: DomainHost
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the username on that account?
+        sample_response: Looks like it's SarahWalker2000.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me what you want your email address to be?
+        sample_response: So it is SarahWalker19@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: PersonalizedEmailAddresses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpPersonalizedDomainEmails_StopIntent_en-US
+    scenario_id: '1115'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up personalized emails for your domain
+    description: User wants to set up personalized emails for their domain
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: What do I need to do to get a new email set up for {DomainName}
+        intent_to_elicit: SetUpPersonalizedDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many personalized emails do you want to set up?
+        sample_response: That's 7
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfEmailAddresses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the email address you want them forwarded to?
+        sample_response: yeah teresa.ramsey@gmail.com is the email.
+        intent_to_elicit: false
+        slot_to_elicit: UserFinalDestinationEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your domain name?
+        sample_response: never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetUpPersonalizedDomainEmails_RepeatIntent_en-US
+    scenario_id: '1116'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up personalized emails for your domain
+    description: User wants to set up personalized emails for their domain
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Will you be able to add email addresses to my domain for me
+        intent_to_elicit: SetUpPersonalizedDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many personalized emails do you want to set up?
+        sample_response: I think 15.
+        intent_to_elicit: false
+        slot_to_elicit: AmountOfEmailAddresses
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the email address you want them forwarded to?
+        sample_response: it's m.christopher@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: UserFinalDestinationEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your domain name?
+        sample_response: Could you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveWorkspaceDomain_Confirmed_en-US
+    scenario_id: '1117'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove a domain from your workspace
+    description: User wants to remove a domain from their workspace
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Take away {DomainName} from my work email asap
+        intent_to_elicit: RemoveWorkspaceDomain
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the email address you'd like to remove?
+        sample_response: yeah its trevor.w@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressRemoval
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of the domain?
+        sample_response: lopez-green.org
+        intent_to_elicit: false
+        slot_to_elicit: DomainName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the password to enter into your domain?
+        sample_response: yes that is l45gtmtbtb
+        intent_to_elicit: false
+        slot_to_elicit: DomainPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: trevor.
+        intent_to_elicit: false
+        slot_to_elicit: DomainOwnerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: yeah sure the name is willis
+        intent_to_elicit: false
+        slot_to_elicit: DomainOwnerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: yes, please. thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveWorkspaceDomain_YesIntent_en-US
+    scenario_id: '1118'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove a domain from your workspace
+    description: User wants to remove a domain from their workspace
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: How do I delete the {DomainName} from workspace domain
+        intent_to_elicit: RemoveWorkspaceDomain
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the email address you'd like to remove?
+        sample_response: Yeah the email is Tammy.S@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressRemoval
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of the domain?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RemoveWorkspaceDomain_PauseIntent_en-US
+    scenario_id: '1119'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to remove a domain from your workspace
+    description: User wants to remove a domain from their workspace
+    script:
+      - agent: Welcome! How can I help you out today?
+        sample_response: Delete the {DomainName} domain
+        intent_to_elicit: RemoveWorkspaceDomain
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the email address you'd like to remove?
+        sample_response: That would be JaimeBaileygmailcom
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressRemoval
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the name of the domain?
+        sample_response: morse.com
+        intent_to_elicit: false
+        slot_to_elicit: DomainName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the password to enter into your domain?
+        sample_response: p3k7UnnBpp
+        intent_to_elicit: false
+        slot_to_elicit: DomainPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddEmailForwarding_Confirmed_en-US
+    scenario_id: '1120'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a forwarding email address
+    description: User wants to add a forwarding email address
+    script:
+      - agent: What can I do to help you?
+        sample_response: Put email forwarding on my work mail for me please
+        intent_to_elicit: AddEmailForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the forwarding email address you would like to add?
+        sample_response: The correct email is Alicia.Smith@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerForwardingEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to begin forwarding to that email address?
+        sample_response: The date of 2021-07-06
+        intent_to_elicit: false
+        slot_to_elicit: BeginForwardingDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to keep the forwarding email address active?
+        sample_response: I guess 4 days.
+        intent_to_elicit: false
+        slot_to_elicit: ForwardingDuration
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: First name Alicia
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yeah last name is Smith
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddEmailForwarding_CancelIntent_en-US
+    scenario_id: '1121'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a forwarding email address
+    description: User wants to add a forwarding email address
+    script:
+      - agent: What can I do to help you?
+        sample_response: Please in my email i need forwarding added can you set it up for me
+        intent_to_elicit: AddEmailForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the forwarding email address you would like to add?
+        sample_response: Gregory.Bright@hotmail.com would be it.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerForwardingEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to begin forwarding to that email address?
+        sample_response: On 2021-07-09
+        intent_to_elicit: false
+        slot_to_elicit: BeginForwardingDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How long would you like to keep the forwarding email address active?
+        sample_response: Cancel
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddEmailForwarding_NoIntent_en-US
+    scenario_id: '1122'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add a forwarding email address
+    description: User wants to add a forwarding email address
+    script:
+      - agent: What can I do to help you?
+        sample_response: What are the steps to put {CustomerForwardingEmailAddress} email into forwarding
+        intent_to_elicit: AddEmailForwarding
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the forwarding email address you would like to add?
+        sample_response: yeah sure j.cory@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerForwardingEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to begin forwarding to that email address?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeReplyEmailAddress_Confirmed_en-US
+    scenario_id: '1123'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your email address
+    description: User wants to change their email address
+    script:
+      - agent: What can I do to help you today?
+        sample_response: I wanna have {NewUserEmail} as my email address
+        intent_to_elicit: ChangeReplyEmailAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your new email address to be?
+        sample_response: Put down Casey.Curtis@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: NewUserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your email password?
+        sample_response: Ok it's 8QDOnkIIYZ
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the phone number linked to the email account?
+        sample_response: 873-5267
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name?
+        sample_response: Name's Curtis
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Casey is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeReplyEmailAddress_NoIntent_en-US
+    scenario_id: '1124'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your email address
+    description: User wants to change their email address
+    script:
+      - agent: What can I do to help you today?
+        sample_response: Place {NewUserEmail} as my default email for me thank you
+        intent_to_elicit: ChangeReplyEmailAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your new email address to be?
+        sample_response: It would be JesseHoward@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: NewUserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your email password?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeReplyEmailAddress_HelpIntent_en-US
+    scenario_id: '1125'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to change your email address
+    description: User wants to change their email address
+    script:
+      - agent: What can I do to help you today?
+        sample_response: Set up my new email for me delete the old one
+        intent_to_elicit: ChangeReplyEmailAddress
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like your new email address to be?
+        sample_response: Yeah it's WoodKarla@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: NewUserEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you verify your email password?
+        sample_response: can you help me
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddAdditionalDomainEmails_Confirmed_en-US
+    scenario_id: '1126'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add an email address
+    description: User wants to add an email address
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: Add this email please
+        intent_to_elicit: AddAdditionalDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address you would like to add?
+        sample_response: JoshuaH@hotmail.com that's it.
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressToAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your domain host?
+        sample_response: Yahoo
+        intent_to_elicit: false
+        slot_to_elicit: DomainHostName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My name is Joshua
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: My name is Hunter thanks
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: (505)-188-0375
+        intent_to_elicit: false
+        slot_to_elicit: UserPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddAdditionalDomainEmails_PauseIntent_en-US
+    scenario_id: '1127'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add an email address
+    description: User wants to add an email address
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: I need {EmailAddressesToAdd} email added please
+        intent_to_elicit: AddAdditionalDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address you would like to add?
+        sample_response: Timothy.N@yahoo.com that's it.
+        intent_to_elicit: false
+        slot_to_elicit: EmailAddressToAdd
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your domain host?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddAdditionalDomainEmails_CancelIntent_en-US
+    scenario_id: '1128'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add an email address
+    description: User wants to add an email address
+    script:
+      - agent: Welcome. What can I do for you today?
+        sample_response: Could you kindly please add on {EmailAddressesToAdd}
+        intent_to_elicit: AddAdditionalDomainEmails
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the email address you would like to add?
+        sample_response: never mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalInboxStorage_RepeatIntent_en-US
+    scenario_id: '1129'
+    bias:
+      - MultiIntent
+    customer_instructions: You have a full inbox and want to purchavee additional storage
+    description: User has a full inbox and wants to purchase additional storage
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Add {DesiredStorageAmount} to my email please
+        intent_to_elicit: PurchaseAdditionalInboxStorage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you currently have?
+        sample_response: '64'
+        intent_to_elicit: false
+        slot_to_elicit: CurrentEmailStorage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you think you need?
+        sample_response: so that's 320
+        intent_to_elicit: false
+        slot_to_elicit: DesiredStorageAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like the additional storage to expire?
+        sample_response: For the date 2021-05-29.
+        intent_to_elicit: false
+        slot_to_elicit: StorageExpirationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of credit card will you be using to pay?
+        sample_response: Can you repeat that
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalInboxStorage_YesIntent_en-US
+    scenario_id: '1130'
+    bias:
+      - MultiIntent
+    customer_instructions: You have a full inbox and want to purchavee additional storage
+    description: User has a full inbox and wants to purchase additional storage
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: How do I get more email storage
+        intent_to_elicit: PurchaseAdditionalInboxStorage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you currently have?
+        sample_response: That's 128
+        intent_to_elicit: false
+        slot_to_elicit: CurrentEmailStorage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you think you need?
+        sample_response: yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalInboxStorage_Confirmed_en-US
+    scenario_id: '1131'
+    bias:
+      - MultiIntent
+    customer_instructions: You have a full inbox and want to purchavee additional storage
+    description: User has a full inbox and wants to purchase additional storage
+    script:
+      - agent: Is there anything I can do for you today?
+        sample_response: Make my email storage larger
+        intent_to_elicit: PurchaseAdditionalInboxStorage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you currently have?
+        sample_response: So that's 32
+        intent_to_elicit: false
+        slot_to_elicit: CurrentEmailStorage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of storage do you think you need?
+        sample_response: it should be 64
+        intent_to_elicit: false
+        slot_to_elicit: DesiredStorageAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like the additional storage to expire?
+        sample_response: Say 2021-06-24?
+        intent_to_elicit: false
+        slot_to_elicit: StorageExpirationDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of credit card will you be using to pay?
+        sample_response: A VISA 16 digit card
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfCreditCard
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your credit card number please?
+        sample_response: For the number it's 4294237198347416
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your email address?
+        sample_response: Yup, it is P.Donald@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: UserEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalData_Confirmed_en-US
+    scenario_id: '1132'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional data
+    description: User wants to purchase additional data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I'm {CustomerFirstName} {CustomerLastName} and I need more data for my phone can I buy some more please
+        intent_to_elicit: PurchaseAdditionalData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data would you like to purchase?
+        sample_response: That's 128 GB
+        intent_to_elicit: false
+        slot_to_elicit: PurchaseAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your username please?
+        sample_response: I've got James.Dean1907, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: Its S02UjbKtgU
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: Yeah, James
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name of Dean.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your credit card number?
+        sample_response: It would be 3515079881111427
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email do you want your receipt sent to?
+        sample_response: The email is James.Dean@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalData_StartOverIntent_en-US
+    scenario_id: '1133'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional data
+    description: User wants to purchase additional data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I'm {CustomerFirstName} {CustomerLastName} and I would like to buy more data
+        intent_to_elicit: PurchaseAdditionalData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data would you like to purchase?
+        sample_response: Yes that's 12
+        intent_to_elicit: false
+        slot_to_elicit: PurchaseAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your username please?
+        sample_response: It is AngelaStanley1942.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your password?
+        sample_response: So it's H4WoW2jx5M
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your first name?
+        sample_response: Yeah it is Angela
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Yes, it's Stanley
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your credit card number?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseAdditionalData_StopIntent_en-US
+    scenario_id: '1134'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional data
+    description: User wants to purchase additional data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Buy the {PurchaseAmount} data package for my phone
+        intent_to_elicit: PurchaseAdditionalData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data would you like to purchase?
+        sample_response: 16 gb.
+        intent_to_elicit: false
+        slot_to_elicit: PurchaseAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your username please?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReduceData_Confirmed_en-US
+    scenario_id: '1135'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce the amount of data on your plan
+    description: User wants to reduce the amount of data on their plan
+    script:
+      - agent: Hello! Can I help you with something?
+        sample_response: Deduct {DataAmount} data from my plan so that my new plan is {NewAmount}.
+        intent_to_elicit: ReduceData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you currently have?
+        sample_response: That's 32
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you want to have?
+        sample_response: I'd like 64
+        intent_to_elicit: false
+        slot_to_elicit: NewAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When do you want the change to go into effect?
+        sample_response: Yes, 2021-06-03
+        intent_to_elicit: false
+        slot_to_elicit: StartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device is this for?
+        sample_response: Express
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I believe it is 37205025464HN
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your password?
+        sample_response: So I think it's 3bRWgv0jxm
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What email do you want your confirmation email sent to?
+        sample_response: My email address is NancyGlenn@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReduceData_YesIntent_en-US
+    scenario_id: '1136'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce the amount of data on your plan
+    description: User wants to reduce the amount of data on their plan
+    script:
+      - agent: Hello! Can I help you with something?
+        sample_response: There's {DataAmount} worth of data on my plan that I don't need can I switch to a different amount?
+        intent_to_elicit: ReduceData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you currently have?
+        sample_response: i have 45
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you want to have?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ReduceData_StopIntent_en-US
+    scenario_id: '1137'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reduce the amount of data on your plan
+    description: User wants to reduce the amount of data on their plan
+    script:
+      - agent: Hello! Can I help you with something?
+        sample_response: I don't need this much data how can I reduce the amount I have on my plan
+        intent_to_elicit: ReduceData
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you currently have?
+        sample_response: its 28
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you want to have?
+        sample_response: stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PhoneAppDataUsage_Confirmed_en-US
+    scenario_id: '1138'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease the amount of apps on your phone due to data overuse
+    description: User wants to decrease the amount of apps on their phone due to data overuse
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: How can I delete the apps on my phone that are using up all my data
+        intent_to_elicit: PhoneAppDataUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you using?
+        sample_response: iPhone 11
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which is your favorite type of app to use?
+        sample_response: That would be Messenger
+        intent_to_elicit: false
+        slot_to_elicit: FavoriteApps
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you have?
+        sample_response: That's 32
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: That's Patricia.Collier1986
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your password?
+        sample_response: Yes 7SCsdHm3Fr
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PhoneAppDataUsage_CancelIntent_en-US
+    scenario_id: '1139'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease the amount of apps on your phone due to data overuse
+    description: User wants to decrease the amount of apps on their phone due to data overuse
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I want to delete apps off my {Device}.
+        intent_to_elicit: PhoneAppDataUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you using?
+        sample_response: What I have is a Google Pixel 5
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which is your favorite type of app to use?
+        sample_response: It's Messenger
+        intent_to_elicit: false
+        slot_to_elicit: FavoriteApps
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you have?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PhoneAppDataUsage_StartOverIntent_en-US
+    scenario_id: '1140'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease the amount of apps on your phone due to data overuse
+    description: User wants to decrease the amount of apps on their phone due to data overuse
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: I'm going through way too much data and keep going over how do I delete apps on my {Device} to stop
+        intent_to_elicit: PhoneAppDataUsage
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device are you using?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddInternationalCalls_Confirmed_en-US
+    scenario_id: '1141'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add international calls to your plan
+    description: User wants to add international calls to their plan
+    script:
+      - agent: What may I assist you with today?
+        sample_response: Please add calling {CustomerCountry} to my phone plan so I can make international calls
+        intent_to_elicit: AddInternationalCalls
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country do you want to call?
+        sample_response: For Tajikistan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your phone provider?
+        sample_response: AT&T
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: (970)-660-7113
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: As far as I can tell it's C.Christopher2013.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your password?
+        sample_response: I believe it is pphxd5VU4V
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: Christopher is my name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: Yes Cross is the last name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where should I send your confirmation email?
+        sample_response: Email ID is C.Christopher@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: ConfirmationEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddInternationalCalls_HelpIntent_en-US
+    scenario_id: '1142'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add international calls to your plan
+    description: User wants to add international calls to their plan
+    script:
+      - agent: What may I assist you with today?
+        sample_response: I'd like to be able to call {CustomerCountry} on my plan with {PhoneProvider} please
+        intent_to_elicit: AddInternationalCalls
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country do you want to call?
+        sample_response: Tuvalu's the one
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your phone provider?
+        sample_response: I have Verizon
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your phone number?
+        sample_response: That is 287-712-6350
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: I need help
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AddInternationalCalls_RepeatIntent_en-US
+    scenario_id: '1143'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to add international calls to your plan
+    description: User wants to add international calls to their plan
+    script:
+      - agent: What may I assist you with today?
+        sample_response: Can I add calling {CustomerCountry} to my phone's plan
+        intent_to_elicit: AddInternationalCalls
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country do you want to call?
+        sample_response: Sure, it's Maldives
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCountry
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your phone provider?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePhoneHotspot_NoIntent_en-US
+    scenario_id: '1144'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to use your phone as a hotspot
+    description: User wants to use their phone as a hotspot
+    script:
+      - agent: What can I do to help you today?
+        sample_response: I've got a phone with {PhoneProvider} can you tell me how to make it a hotspot
+        intent_to_elicit: InquirePhoneHotspot
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you want to connect your hotspot?
+        sample_response: I want to connect using bluetooth
+        intent_to_elicit: false
+        slot_to_elicit: ConnectionMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your device?
+        sample_response: A1842
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your phone provider?
+        sample_response: Cricket Wireless
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you have each month?
+        sample_response: no, thank you
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePhoneHotspot_Denied_en-US
+    scenario_id: '1145'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to use your phone as a hotspot
+    description: User wants to use their phone as a hotspot
+    script:
+      - agent: What can I do to help you today?
+        sample_response: I have a phone through {PhoneProvider} and I was wondering if you could tell me how to tether it
+        intent_to_elicit: InquirePhoneHotspot
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you want to connect your hotspot?
+        sample_response: I want to use wifi
+        intent_to_elicit: false
+        slot_to_elicit: ConnectionMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your device?
+        sample_response: It's a A1842
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your phone provider?
+        sample_response: It is Mint Mobile
+        intent_to_elicit: false
+        slot_to_elicit: PhoneProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much data do you have each month?
+        sample_response: I've got 150
+        intent_to_elicit: false
+        slot_to_elicit: DataAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Actually, let's hold off for the moment. Please don't submit anything now.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquirePhoneHotspot_PauseIntent_en-US
+    scenario_id: '1146'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to use your phone as a hotspot
+    description: User wants to use their phone as a hotspot
+    script:
+      - agent: What can I do to help you today?
+        sample_response: How do I tether my phone to use it as a hotspot
+        intent_to_elicit: InquirePhoneHotspot
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How do you want to connect your hotspot?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AdditionalInternetSingleMonth_Confirmed_en-US
+    scenario_id: '1147'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional internet data for one month
+    description: User want to purchase additional internet data for one month
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: Yeah so I have a {DeviceType} and I want to add another month
+        intent_to_elicit: AdditionalInternetSingleMonth
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data do you want?
+        sample_response: Yeah, 200
+        intent_to_elicit: false
+        slot_to_elicit: DataUpgrade
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device do you want more data on?
+        sample_response: Ultra
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Yeah, I'm Donald
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Brown.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: It's 55-W64686RC
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AdditionalInternetSingleMonth_PauseIntent_en-US
+    scenario_id: '1148'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional internet data for one month
+    description: User want to purchase additional internet data for one month
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I'd like to add more data to my {DeviceType} for one month please
+        intent_to_elicit: AdditionalInternetSingleMonth
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data do you want?
+        sample_response: 84 GB
+        intent_to_elicit: false
+        slot_to_elicit: DataUpgrade
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device do you want more data on?
+        sample_response: I have a 4K
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: Okay it's Mary
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: The name's Anthony
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_AdditionalInternetSingleMonth_NoIntent_en-US
+    scenario_id: '1149'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee additional internet data for one month
+    description: User want to purchase additional internet data for one month
+    script:
+      - agent: Hello, how can I help you?
+        sample_response: I want to purchase one additional month of data for my plan
+        intent_to_elicit: AdditionalInternetSingleMonth
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data do you want?
+        sample_response: That'll be 34
+        intent_to_elicit: false
+        slot_to_elicit: DataUpgrade
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What device do you want more data on?
+        sample_response: It is for my Streambar
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your first name please?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_RetroactiveInternationalCallPlan_Confirmed_en-US
+    scenario_id: '1150'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to retroactively add international calls to your plan
+    description: User wants to retroactively add international calls to their plan
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Can I get an international plan retroactively?
+        intent_to_elicit: RetroactiveInternationalCallPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please tell me your first name?
+        sample_response: Name's Cathy
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please tell me your last name?
+        sample_response: That's Holmes
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Will you please tell me your account number?
+        sample_response: Think its 86162801001WM
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What country do you live in?
+        sample_response: USA
+        intent_to_elicit: false
+        slot_to_elicit: Country
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the retroactive start date of the international plan?
+        sample_response: It's going to be 2021-01-20
+        intent_to_elicit: false
+        slot_to_elicit: PlanStartDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

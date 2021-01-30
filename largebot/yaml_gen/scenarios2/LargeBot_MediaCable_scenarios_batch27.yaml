@@ -1,0 +1,1346 @@
+name: LargeBot_MediaCable_scenarios_batch27
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_DamagedRouter_StopIntent_en-US
+    scenario_id: '0521'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to replace damaged router
+    description: User wants to replace damaged router
+    script:
+      - agent: What can I do for you today?
+        sample_response: I'd like to exchange a damaged router can you help me with that
+        intent_to_elicit: DamagedRouter
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Hello. What is your name?
+        sample_response: Sure, my name is Seth
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your name please?
+        sample_response: Morris
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: SS-61957560 I guess
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your home address?
+        sample_response: 'Address: 3936 Andover Street,Lawrence Twp, NJ 08648'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your phone number?
+        sample_response: Yes, (046)-882-4628
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the problem with your router?
+        sample_response: it won't turn on
+        intent_to_elicit: false
+        slot_to_elicit: RouterIssueGeneric
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the brand of your router?
+        sample_response: It's made by Linksys
+        intent_to_elicit: false
+        slot_to_elicit: RouterBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model of your router?
+        sample_response: For that I have AX3000
+        intent_to_elicit: false
+        slot_to_elicit: RouterModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the internet indicator light doing?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SameRateContinued_Confirmed_en-US
+    scenario_id: '0522'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to continue service contract
+    description: User wants to continue service contract
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Is it possible to extend my contract with you
+        intent_to_elicit: SameRateContinued
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: that is XI-42009494
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name?
+        sample_response: Yes, my name is Angela
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: Yeah, it is Larsen
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your home address?
+        sample_response: "At 2235 Union Street,\nBooneville, AR 72927"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: (679)-690-4747
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And which of our packages would you like to continue?
+        sample_response: Basic
+        intent_to_elicit: false
+        slot_to_elicit: ServicePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the monthly rate you would like to continue?
+        sample_response: a total of $29
+        intent_to_elicit: false
+        slot_to_elicit: PayRatePreference
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SameRateContinued_StartOverIntent_en-US
+    scenario_id: '0523'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to continue service contract
+    description: User wants to continue service contract
+    script:
+      - agent: Hello there. What brings you here today?
+        sample_response: Do you think you can help me continue with {ServicePreference} please
+        intent_to_elicit: SameRateContinued
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: 27-48518135V0!
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name?
+        sample_response: My given name is Kim
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: Yes Bartlett is the last name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your home address?
+        sample_response: "so that's 706C River Street,\nUlen, MN 56585 98305 Rindge"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireServiceIssues_Denied_en-US
+    scenario_id: '0524'
+    bias:
+      - SingleIntent
+    customer_instructions: Your service are not working and needs troubleshooting
+    description: User's service is not working and needs troubleshooting
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: My service is {ServiceProblemGeneric} and needs to get fixed
+        intent_to_elicit: InquireServiceIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Hello. What is your name?
+        sample_response: The name is Denise
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: Yeah sure the name is Serrano
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: it would be YH-10773755
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: "so that's 6677 Leeton Ridge Street,\nJarreau, LA 70749"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: 343-232-3549
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which services are not working?
+        sample_response: It is my internet
+        intent_to_elicit: false
+        slot_to_elicit: ServicesNotWorking
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What color is the router power indicator light?
+        sample_response: It's red
+        intent_to_elicit: false
+        slot_to_elicit: RouterPoweredOn
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: I don't think so, no.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireServiceIssues_PauseIntent_en-US
+    scenario_id: '0525'
+    bias:
+      - MultiIntent
+    customer_instructions: Your service are not working and needs troubleshooting
+    description: User's service is not working and needs troubleshooting
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: I want to get help to fix my service please
+        intent_to_elicit: InquireServiceIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Hello. What is your name?
+        sample_response: Yeah, I am Randall
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: Put Hernandez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: I have down 44-P081576QU
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: "Of course, it's 1104 Prince Street,\nFranklin, AL 36444 88476 Burlington"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireServiceIssues_PauseIntent_ServiceProblemGeneric_en-US
+    scenario_id: '0526'
+    bias:
+      - MultiIntent
+    customer_instructions: Your service are not working and needs troubleshooting
+    description: User's service is not working and needs troubleshooting
+    script:
+      - agent: Welcome. How can I assist you today?
+        sample_response: Would you help me troubleshoot my service please
+        intent_to_elicit: InquireServiceIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Hello. What is your name?
+        sample_response: I am Kevin
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: The last names Wilcox
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: It is 47O506195RS
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: "thats 4273 NW Strawberry Street\nHomewood IL 60430 25464 Roach"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Yes 4418012232
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which services are not working?
+        sample_response: my WiFi
+        intent_to_elicit: false
+        slot_to_elicit: ServicesNotWorking
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the problem with your service?
+        sample_response: the connection
+        intent_to_elicit: ServiceProblemGeneric
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What color is the router power indicator light?
+        sample_response: Hey can we pause for a moment
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxRemoteIssues_Confirmed_en-US
+    scenario_id: '0527'
+    bias:
+      - SingleIntent
+    customer_instructions: You needs to reset connection between your top box and remote
+    description: User needs to reset connection between their top box and remote
+    script:
+      - agent: What can I do to help?
+        sample_response: I wanna reset the the connection to the top box and remote
+        intent_to_elicit: SetTopBoxRemoteIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name?
+        sample_response: It is Jorge
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: Yep, it is Bowman
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: yes that is 82-V816878LX
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you live?
+        sample_response: "It's at the address 1518 Pineknoll Street,\nCalhoun City, MS 38916"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: '4572679888'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What color are the indicator lights on the top box?
+        sample_response: It's orange
+        intent_to_elicit: false
+        slot_to_elicit: PoweredOn
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the status of your remote?
+        sample_response: off
+        intent_to_elicit: false
+        slot_to_elicit: RemoteProblemGeneric
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxRemoteIssues_PauseIntent_en-US
+    scenario_id: '0528'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to reset connection between your top box and remote
+    description: User needs to reset connection between their top box and remote
+    script:
+      - agent: What can I do to help?
+        sample_response: I wanna fix the remote and top box connectivity
+        intent_to_elicit: SetTopBoxRemoteIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name?
+        sample_response: David is my first name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: Yes, the last name is Wall
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxRemoteIssues_StartOverIntent_en-US
+    scenario_id: '0529'
+    bias:
+      - MultiIntent
+    customer_instructions: You needs to reset connection between your top box and remote
+    description: User needs to reset connection between their top box and remote
+    script:
+      - agent: What can I do to help?
+        sample_response: I want to get the top box and remote connection programmed again can you help please
+        intent_to_elicit: SetTopBoxRemoteIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name?
+        sample_response: save my name as Justin
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your name please?
+        sample_response: For last name, it's Gordon.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number listed on your last bill?
+        sample_response: EY-45981408 I guess
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where do you live?
+        sample_response: "Put 6281 Essex Street,\nBoones Mill, VA 24065 27653 Steen"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Yes, (853)-007-8758
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What color are the indicator lights on the top box?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxLag_SetTopBoxRemoteIssues_ConfirmedIntent_en-US
+    scenario_id: '0530'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to stop your set-top box from lagging
+    description: User wants to stop their set-top box from lagging
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Is my cable box broke It's acting real weird all of a sudden
+        intent_to_elicit: SetTopBoxLag
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: yep - its Daniel
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: My family name is Lucas
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: it is Daniel.Lucas@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What problems are you having with your set-top box?
+        sample_response: I can't get it to connect to the TV
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand is your set-top box?
+        sample_response: It's a Huawei
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you purchase your set-top box?
+        sample_response: ending 2020-09-17
+        intent_to_elicit: false
+        slot_to_elicit: DatePurchased
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your set-top box?
+        sample_response: It is 562258889.
+        intent_to_elicit: false
+        slot_to_elicit: SerialNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What address do you want your new set-top box sent to?
+        sample_response: "No problem, the address is 1790 2nd Street,\nRio Vista, CA 94571"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Ah! The remote is the cause. Can you help with that instead?
+        intent_to_elicit: SetTopBoxRemoteIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: CustomerAccountNumber
+        sample_response: Sure! What is your account number listed on your last bill?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: CustomerPhoneNumber
+        sample_response: What is your phone number?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: PoweredOn
+        sample_response: What color are the indicator lights on the top box?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: RemoteProblemGeneric
+        sample_response: What is the status of your remote?
+        intent_to_elicit: ''
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: false
+        sample_response: Shall I submit your request?
+        intent_to_elicit: ConfirmedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxLag_Confirmed_en-US
+    scenario_id: '0531'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to stop your set-top box from lagging
+    description: User wants to stop their set-top box from lagging
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Can you please help me with my {SetTopBoxBrand} cable box
+        intent_to_elicit: SetTopBoxLag
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: it's Diana...
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: Yeah it's Fuentes
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: I am reachable at Diana.F@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What problems are you having with your set-top box?
+        sample_response: I think it's a faulty connection
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you purchase your set-top box?
+        sample_response: 2020-12-26 I guess
+        intent_to_elicit: false
+        slot_to_elicit: DatePurchased
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your set-top box?
+        sample_response: Yes 4588745
+        intent_to_elicit: false
+        slot_to_elicit: SerialNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What address do you want your new set-top box sent to?
+        sample_response: 'Thats: 1504 East Street,Nemo, SD 57759'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxLag_SerialNumber_Confirmed_en-US
+    scenario_id: '0532'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to stop your set-top box from lagging
+    description: User wants to stop their set-top box from lagging
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: Would you please help me with my {SetTopBoxBrand} cable box it's lagging
+        intent_to_elicit: SetTopBoxLag
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: sure it's Julie
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: It is Bennett thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: My email would be B.Julie@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What problems are you having with your set-top box?
+        sample_response: A faulty box I think
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you purchase your set-top box?
+        sample_response: For the date 2020-10-12.
+        intent_to_elicit: false
+        slot_to_elicit: DatePurchased
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your set-top box?
+        sample_response: not entirely sure but I think it's 2566321
+        intent_to_elicit: SerialNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What address do you want your new set-top box sent to?
+        sample_response: Put 8216 4th St.,Vivian, SD 57576
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxLag_StartOverIntent_en-US
+    scenario_id: '0533'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to stop your set-top box from lagging
+    description: User wants to stop their set-top box from lagging
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: I need some help please my {SetTopBoxBrand} cable box is {SetTopBoxProblem}.
+        intent_to_elicit: SetTopBoxLag
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: I'm Samantha
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: Last name Nguyen
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Nguyen.samantha@gmail.com that's it.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you purchase your set-top box?
+        sample_response: Can we start from the beginning?
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxLag_PauseIntent_en-US
+    scenario_id: '0534'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to stop your set-top box from lagging
+    description: User wants to stop their set-top box from lagging
+    script:
+      - agent: Hello. How can I help you today?
+        sample_response: My cable box is being all weird can you help
+        intent_to_elicit: SetTopBoxLag
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: call me Michele
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: Yeah last name Blackwell
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Sure Blackwell.Michele@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What problems are you having with your set-top box?
+        sample_response: A faulty box I think
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand is your set-top box?
+        sample_response: It says Broadcom on it
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did you purchase your set-top box?
+        sample_response: 'for: 2020-11-12'
+        intent_to_elicit: false
+        slot_to_elicit: DatePurchased
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your set-top box?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxRebootIssues_Confirmed_en-US
+    scenario_id: '0535'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to reboot set-top box
+    description: Customer wants to reboot set-top box
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: How do I reboot my cable box
+        intent_to_elicit: SetTopBoxRebootIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What problems are you having with your set-top box?
+        sample_response: It's not connecting
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did this problem start?
+        sample_response: for 2020-07-29
+        intent_to_elicit: false
+        slot_to_elicit: DateOfProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand is your set-top box?
+        sample_response: It's a Comcast
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxBrand
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your set-top box?
+        sample_response: 12477963N
+        intent_to_elicit: false
+        slot_to_elicit: SerialNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many times has the reset button been pressed?
+        sample_response: 3 times.
+        intent_to_elicit: false
+        slot_to_elicit: ResetButton
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Could you please? Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SetTopBoxRebootIssues_StopIntent_en-US
+    scenario_id: '0536'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to reboot set-top box
+    description: Customer wants to reboot set-top box
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: What are the steps to restart my {Device}
+        intent_to_elicit: SetTopBoxRebootIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What problems are you having with your set-top box?
+        sample_response: it won't turn on
+        intent_to_elicit: false
+        slot_to_elicit: SetTopBoxProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What day did this problem start?
+        sample_response: I want to put 2020-10-27
+        intent_to_elicit: false
+        slot_to_elicit: DateOfProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What brand is your set-top box?
+        sample_response: Wait, can we stop?
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SoundPictureSyncingIssues_Confirmed_en-US
+    scenario_id: '0537'
+    bias:
+      - SingleIntent
+    customer_instructions: You want your sound and picture in sync
+    description: User wants their sound and picture in sync
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: I wanna know the steps to line up the audio and video on my TV please
+        intent_to_elicit: SoundPictureSyncingIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of device do you have?
+        sample_response: Sony
+        intent_to_elicit: false
+        slot_to_elicit: DeviceName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your device?
+        sample_response: 'Is this it: Lzvp6t1000'
+        intent_to_elicit: false
+        slot_to_elicit: ModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your device?
+        sample_response: K5984463
+        intent_to_elicit: false
+        slot_to_elicit: SerialNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What problem are you having with your device?
+        sample_response: It's making a funny noise
+        intent_to_elicit: false
+        slot_to_elicit: DeviceProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When was the last time your device was updated?
+        sample_response: Ending 2020-08-20
+        intent_to_elicit: false
+        slot_to_elicit: DeviceUpdate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of speaker is your device connected to?
+        sample_response: Quested
+        intent_to_elicit: false
+        slot_to_elicit: SpeakerDevice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SoundPictureSyncingIssues_YesIntent_en-US
+    scenario_id: '0538'
+    bias:
+      - MultiIntent
+    customer_instructions: You want your sound and picture in sync
+    description: User wants their sound and picture in sync
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: How do I match up the audio and video on my TV
+        intent_to_elicit: SoundPictureSyncingIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of device do you have?
+        sample_response: it's for my westinghouse
+        intent_to_elicit: false
+        slot_to_elicit: DeviceName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your device?
+        sample_response: yeah so it's o7erMSDx1o
+        intent_to_elicit: false
+        slot_to_elicit: ModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your device?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SoundPictureSyncingIssues_RepeatIntent_en-US
+    scenario_id: '0539'
+    bias:
+      - MultiIntent
+    customer_instructions: You want your sound and picture in sync
+    description: User wants their sound and picture in sync
+    script:
+      - agent: Hi. How can I help you today?
+        sample_response: What can I do to stop my TV from suffering from {DeviceProblem} please
+        intent_to_elicit: SoundPictureSyncingIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of device do you have?
+        sample_response: it is for my sony
+        intent_to_elicit: false
+        slot_to_elicit: DeviceName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the model number of your device?
+        sample_response: g7volcogbz!
+        intent_to_elicit: false
+        slot_to_elicit: ModelNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me the serial number of your device?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SpeakerVolumeChannelIssues_Confirmed_en-US
+    scenario_id: '0540'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to stop your volume changing between channels
+    description: User wants to stop their volume changing between channels
+    script:
+      - agent: Welcome! How may I be of assistance?
+        sample_response: Hi I need help with my set-top box it keeps changing volume between channels
+        intent_to_elicit: SpeakerVolumeChannelIssues
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you explain your problem?
+        sample_response: It's started making a weird noise
+        intent_to_elicit: false
+        slot_to_elicit: DeviceProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When did this problem begin?
+        sample_response: 'for: 2020-10-21'
+        intent_to_elicit: false
+        slot_to_elicit: DateOfProblem
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of device is it?
+        sample_response: cable box
+        intent_to_elicit: false
+        slot_to_elicit: Device
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What setting is the speaker on your TV set to?
+        sample_response: low
+        intent_to_elicit: false
+        slot_to_elicit: SpeakerSettings
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

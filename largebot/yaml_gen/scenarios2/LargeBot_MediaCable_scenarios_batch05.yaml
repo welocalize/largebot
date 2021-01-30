@@ -1,0 +1,980 @@
+name: LargeBot_MediaCable_scenarios_batch05
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable_InquireModemSecurityFeatures_Confirmed_en-US
+    scenario_id: '0081'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to check the security features that the modem or router provided by your internet service have
+    description: User wants to check the security features that the modem or router provided by their internet service has
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: Hi this is {CustomerFirstName} and I want to ask about the security features on the router you provided
+        intent_to_elicit: InquireModemSecurityFeatures
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your last name?
+        sample_response: Yes, it's Reid
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I've got 91-37947473z6, is that right?
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your internet provider?
+        sample_response: That's AT&T Wireless
+        intent_to_elicit: false
+        slot_to_elicit: InternetProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your modem type?
+        sample_response: it's a cable modem
+        intent_to_elicit: false
+        slot_to_elicit: ModemType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Yup!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_InquireModemSecurityFeatures_en-US
+    scenario_id: '0082'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to check the security features that the modem or router provided by your internet service have
+    description: User wants to check the security features that the modem or router provided by their internet service has
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: I've got a {ModemType} from {ServiceProvider} and I'd like to check out the security feautres
+        intent_to_elicit: InquireModemSecurityFeatures
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your first name?
+        sample_response: Mushrooms with gravy
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireModemSecurityFeatures_NoIntent_en-US
+    scenario_id: '0083'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to check the security features that the modem or router provided by your internet service have
+    description: User wants to check the security features that the modem or router provided by their internet service has
+    script:
+      - agent: Hi, what could I do for you?
+        sample_response: So I want to setup my security features on the modem you provided. The account number is {AccountNumber}.
+        intent_to_elicit: InquireModemSecurityFeatures
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your first name?
+        sample_response: Yes its Chad
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your last name?
+        sample_response: Last name of Weeks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PayModemSeparately_Confirmed_en-US
+    scenario_id: '0084'
+    bias:
+      - SingleIntent
+    customer_instructions: You want pay the cost of your modem separately
+    description: User wants pay the cost of their modem separately
+    script:
+      - agent: How can I assist you today?
+        sample_response: So I would like separate bills for my modem and my my monthly bill
+        intent_to_elicit: PayModemSeparately
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My name's Matthew
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: The name's Moody
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: 17861686263YD
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to use as your payment method?
+        sample_response: debit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for this checking account?
+        sample_response: yeah 17861686263YD
+        intent_to_elicit: false
+        slot_to_elicit: CheckingAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the routing number for this checking account?
+        sample_response: '8213966976'
+        intent_to_elicit: false
+        slot_to_elicit: CheckingRoutingNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me which part of your charge you would like to pay separately?
+        sample_response: I'll pay for the phone
+        intent_to_elicit: false
+        slot_to_elicit: SeparateCost
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_PayModemSeparately_en-US
+    scenario_id: '0085'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want pay the cost of your modem separately
+    description: User wants pay the cost of their modem separately
+    script:
+      - agent: How can I assist you today?
+        sample_response: I need to pay for my modem separately.
+        intent_to_elicit: PayModemSeparately
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Is it a non-stick frying pan?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PayModemSeparately_NoIntent_en-US
+    scenario_id: '0086'
+    bias:
+      - MultiIntent
+    customer_instructions: You want pay the cost of your modem separately
+    description: User wants pay the cost of their modem separately
+    script:
+      - agent: How can I assist you today?
+        sample_response: Is it possible to pay for my modem separately from my internet?
+        intent_to_elicit: PayModemSeparately
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: It's Nicholas thanks
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Sure my family name is Jenkins
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: not entirely sure, but I think it's BV-80391404
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to use as your payment method?
+        sample_response: I wanna use my credit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for this checking account?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseResidentialFiberOpticBroadband_NoIntent_en-US
+    scenario_id: '0087'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee fiber-optic broadband service at your home
+    description: User wants to purchase fiber-optic broadband service at their home
+    script:
+      - agent: What may I assist you with today?
+        sample_response: I'd like fiber optic internet. My name is {UserFirstName}.
+        intent_to_elicit: PurchaseResidentialFiberOpticBroadband
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseResidentialFiberOpticBroadband_Confirmed_en-US
+    scenario_id: '0088'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to purchavee fiber-optic broadband service at your home
+    description: User wants to purchase fiber-optic broadband service at their home
+    script:
+      - agent: What may I assist you with today?
+        sample_response: I want to enroll in the fiber optic internet
+        intent_to_elicit: PurchaseResidentialFiberOpticBroadband
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Kristi is my first name
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Sure the last name is Turner
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: Yes, I've got 54151062527EA here
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for this checking account?
+        sample_response: Put 54151062527EA
+        intent_to_elicit: false
+        slot_to_elicit: CheckingAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the routing number for this checking account?
+        sample_response: routing number is 4081928465
+        intent_to_elicit: false
+        slot_to_elicit: CheckingRoutingNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet service would you like to purchase today?
+        sample_response: I want dial-up
+        intent_to_elicit: false
+        slot_to_elicit: ServiceRequested
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to be reccurently billed for this service?
+        sample_response: monthly
+        intent_to_elicit: false
+        slot_to_elicit: PaymentDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to use as your payment method?
+        sample_response: debit please
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_PurchaseResidentialFiberOpticBroadband_en-US
+    scenario_id: '0089'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to purchavee fiber-optic broadband service at your home
+    description: User wants to purchase fiber-optic broadband service at their home
+    script:
+      - agent: What may I assist you with today?
+        sample_response: Hello this is {UserFirstName} {UserLastName}. I want to know if I can get fiber internet.
+        intent_to_elicit: PurchaseResidentialFiberOpticBroadband
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Snowboard lessons for beginners
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseResidentialFiberOpticBroadband_YesIntent_en-US
+    scenario_id: '0090'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee fiber-optic broadband service at your home
+    description: User wants to purchase fiber-optic broadband service at their home
+    script:
+      - agent: What may I assist you with today?
+        sample_response: I'm {UserFirstName} {UserLastName} and I was wondering if there is a way to get faster internet with fiber optic
+        intent_to_elicit: PurchaseResidentialFiberOpticBroadband
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: GI64527706 is that it
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for this checking account?
+        sample_response: Number GI64527706
+        intent_to_elicit: false
+        slot_to_elicit: CheckingAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the routing number for this checking account?
+        sample_response: try 3160500419
+        intent_to_elicit: false
+        slot_to_elicit: CheckingRoutingNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet service would you like to purchase today?
+        sample_response: Yep, sounds good
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseResidentialFiberOpticBroadband_PaymentDate_Confirmed_en-US
+    scenario_id: '0091'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee fiber-optic broadband service at your home
+    description: User wants to purchase fiber-optic broadband service at their home
+    script:
+      - agent: What may I assist you with today?
+        sample_response: Can you give me info about purchasing fiber internet? My name is {UserFirstName} {UserLastName}.
+        intent_to_elicit: PurchaseResidentialFiberOpticBroadband
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: yeah its ZP47411325
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for this checking account?
+        sample_response: That is ZP47411325
+        intent_to_elicit: false
+        slot_to_elicit: CheckingAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the routing number for this checking account?
+        sample_response: yep 4391207523
+        intent_to_elicit: false
+        slot_to_elicit: CheckingRoutingNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which internet service would you like to purchase today?
+        sample_response: dialup
+        intent_to_elicit: false
+        slot_to_elicit: ServiceRequested
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to be reccurently billed for this service?
+        sample_response: weekly
+        intent_to_elicit: PaymentDate
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to use as your payment method?
+        sample_response: I want to use my debit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Perfect Thank you
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PaySuspensionReactivationCharges_NoIntent_en-US
+    scenario_id: '0092'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to pay reactivation charges on your delinquent account
+    description: User wants to pay reactivation charges on their delinquent account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I'm {CustomerFirstName} {CustomerLastName} how can I pay reactivation charges?
+        intent_to_elicit: PaySuspensionReactivationCharges
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your first name?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PaySuspensionReactivationCharges_Confirmed_en-US
+    scenario_id: '0093'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to pay reactivation charges on your delinquent account
+    description: User wants to pay reactivation charges on their delinquent account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I need to pay reactivation charges.
+        intent_to_elicit: PaySuspensionReactivationCharges
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your first name?
+        sample_response: Yes, it's Erik
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your last name?
+        sample_response: Yes, it's Peterson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: So I think it's 33940397828TE
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: Yes epeterson
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When were you suspended?
+        sample_response: yeah, 2020-11-21
+        intent_to_elicit: false
+        slot_to_elicit: AccountSuspension
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the amount you received in fees?
+        sample_response: its $42.17
+        intent_to_elicit: false
+        slot_to_elicit: AccountCharges
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to use as your payment method?
+        sample_response: debit thx
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the account number for this checking account?
+        sample_response: it's 33940397828TE
+        intent_to_elicit: false
+        slot_to_elicit: CheckingAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the routing number for this checking account?
+        sample_response: Number 9805750609
+        intent_to_elicit: false
+        slot_to_elicit: CheckingRoutingNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_PaySuspensionReactivationCharges_en-US
+    scenario_id: '0094'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to pay reactivation charges on your delinquent account
+    description: User wants to pay reactivation charges on their delinquent account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: For the account with the username {Username},  I want to pay to reactivate the account by paying the fees.
+        intent_to_elicit: PaySuspensionReactivationCharges
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your first name?
+        sample_response: Intermediate painting classes on Saturdays near me
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PaySuspensionReactivationCharges_PauseIntent_AccountCharges_en-US
+    scenario_id: '0095'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to pay reactivation charges on your delinquent account
+    description: User wants to pay reactivation charges on their delinquent account
+    script:
+      - agent: How can I be of assistance?
+        sample_response: I have a delinquent account that I want to reactivate. How do I pay the reactivation charge
+        intent_to_elicit: PaySuspensionReactivationCharges
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your first name?
+        sample_response: record my name as John
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I have your last name?
+        sample_response: Put Burns
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 99-78261932l5 I think?
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your username?
+        sample_response: jburns12
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When were you suspended?
+        sample_response: For 2020-07-19
+        intent_to_elicit: false
+        slot_to_elicit: AccountSuspension
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the amount you received in fees?
+        sample_response: totaling $100
+        intent_to_elicit: AccountCharges
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to use as your payment method?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseOnlineGamingConsole_Confirmed_en-US
+    scenario_id: '0096'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to purchavee the best console for online gaming
+    description: User wants to purchase the best console for online gaming
+    script:
+      - agent: What can I help you with today?
+        sample_response: This is uh {UserFirstName} {UserLastName} calling and I uh wanted to know which gaming console is best for like competitive online gamers
+        intent_to_elicit: PurchaseOnlineGamingConsole
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: yeah so its 87-v759631qe
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your postal address please?
+        sample_response: "street address is 5387 e. fairground street,\ncolony, ok 73021"
+        intent_to_elicit: false
+        slot_to_elicit: UserPostalAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What would you like to use as your payment method?
+        sample_response: credit
+        intent_to_elicit: false
+        slot_to_elicit: PaymentMethod
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: yes, please. thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseOnlineGamingConsole_CancelIntent_en-US
+    scenario_id: '0097'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee the best console for online gaming
+    description: User wants to purchase the best console for online gaming
+    script:
+      - agent: What can I help you with today?
+        sample_response: I uh hello oh hi yeah I'm looking to get a new console for my son who games online a lot which one is the best or like is the best for doing that
+        intent_to_elicit: PurchaseOnlineGamingConsole
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Never mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(OODIntent)_PurchaseOnlineGamingConsole_en-US
+    scenario_id: '0098'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to purchavee the best console for online gaming
+    description: User wants to purchase the best console for online gaming
+    script:
+      - agent: What can I help you with today?
+        sample_response: Need to know about the best console  to use online. Can you help me My account number is {UserAccountNumber}. Thanks
+        intent_to_elicit: PurchaseOnlineGamingConsole
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Can I get a free refill?
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_PurchaseOnlineGamingConsole_YesIntent_en-US
+    scenario_id: '0099'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to purchavee the best console for online gaming
+    description: User wants to purchase the best console for online gaming
+    script:
+      - agent: What can I help you with today?
+        sample_response: Hello I'm {UserFirstName} {UserLastName} and I want to buy the best online console
+        intent_to_elicit: PurchaseOnlineGamingConsole
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your account number please?
+        sample_response: 25-93192282J9.
+        intent_to_elicit: false
+        slot_to_elicit: UserAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your postal address please?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireWiFiLocationStrengths_Confirmed_en-US
+    scenario_id: '0100'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to check Wi-Fi strength at your location
+    description: User wants to check Wi-Fi strength at their location
+    script:
+      - agent: Greetings! What can I do for you today?
+        sample_response: I'm having a {InternetIssue} at home what's wrong with my wifi
+        intent_to_elicit: InquireWiFiLocationStrengths
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of device are you using?
+        sample_response: that's MacBook Pro
+        intent_to_elicit: false
+        slot_to_elicit: DeviceType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you state your current address?
+        sample_response: "Yes it's 8636 Carson St.,\nMetcalf, IL 61940"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

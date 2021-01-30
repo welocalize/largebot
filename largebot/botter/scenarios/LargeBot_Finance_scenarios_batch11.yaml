@@ -1,0 +1,2874 @@
+name: LargeBot_Finance_scenarios_batch11
+locale: en-US
+domain: Finance
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: Finance_ComplaintAgainstBanker_Confirmed_en-US
+    scenario_id: '0501'
+    bias:
+      - MultiIntent
+    customer_instructions: Yous want to file a complaint about a specific banker
+    description: Users wants to file a complaint about a specific banker
+    script:
+      - agent: What is your first name?
+        sample_response: James
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Wright
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the branch you visited?
+        sample_response: 1456 Hillside Drive, West Roxbury MA 02132
+        intent_to_elicit: false
+        slot_to_elicit: BranchAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date did this incident occur?
+        sample_response: '2020-08-09'
+        intent_to_elicit: false
+        slot_to_elicit: BranchDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Approximately what time did this incident occur?
+        sample_response: late
+        intent_to_elicit: false
+        slot_to_elicit: BranchTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the complaint you wish to file?
+        sample_response: He was rude
+        intent_to_elicit: false
+        slot_to_elicit: Complaint
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the banker's first name?
+        sample_response: James
+        intent_to_elicit: false
+        slot_to_elicit: BankerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Please. Thanks.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ComplaintAgainstBanker_NoIntent_en-US
+    scenario_id: '0502'
+    bias:
+      - MultiIntent
+    customer_instructions: Yous want to file a complaint about a specific banker
+    description: Users wants to file a complaint about a specific banker
+    script:
+      - agent: What is your first name?
+        sample_response: I'm Jacob.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name's Grant.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the branch you visited?
+        sample_response: The street address is 3033 Arbutus Dr. Suite B3, Ft. Lauderdal FL 33301.
+        intent_to_elicit: false
+        slot_to_elicit: BranchAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date did this incident occur?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ComplaintAgainstBanker_RepeatIntent_en-US
+    scenario_id: '0503'
+    bias:
+      - MultiIntent
+    customer_instructions: Yous want to file a complaint about a specific banker
+    description: Users wants to file a complaint about a specific banker
+    script:
+      - agent: What is your first name?
+        sample_response: My name's Barbara.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: The last name is Rivera.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the address of the branch you visited?
+        sample_response: At 1456 Hillside Drive, West Roxbury MA 02132.
+        intent_to_elicit: false
+        slot_to_elicit: BranchAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date did this incident occur?
+        sample_response: Sure, 2020-11-22.
+        intent_to_elicit: false
+        slot_to_elicit: BranchDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Approximately what time did this incident occur?
+        sample_response: It is early .
+        intent_to_elicit: false
+        slot_to_elicit: BranchTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the complaint you wish to file?
+        sample_response: She stole my money
+        intent_to_elicit: false
+        slot_to_elicit: Complaint
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the banker's first name?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ScheduleAppointmentFinancialAdvisor_Denied_en-US
+    scenario_id: '0504'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to schedule an appointment with a financial advisor at a local branch
+    description: User wants to schedule an appointment with a financial advisor at a local branch
+    script:
+      - agent: What is your first name?
+        sample_response: Destiny
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Wilson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide your phone number?
+        sample_response: '0944678121'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your email address?
+        sample_response: W.Destiny@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the reason for the appointment?
+        sample_response: general advice
+        intent_to_elicit: false
+        slot_to_elicit: Reason
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date would you like to have the appointment?
+        sample_response: '2021-01-30'
+        intent_to_elicit: false
+        slot_to_elicit: PreferredDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: At what time would you like to have the appointment?
+        sample_response: late
+        intent_to_elicit: false
+        slot_to_elicit: PreferredTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In which city is the branch located?
+        sample_response: Marvel
+        intent_to_elicit: false
+        slot_to_elicit: BranchCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Nope. Not now. Thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ScheduleAppointmentFinancialAdvisor_StartOverIntent_en-US
+    scenario_id: '0505'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to schedule an appointment with a financial advisor at a local branch
+    description: User wants to schedule an appointment with a financial advisor at a local branch
+    script:
+      - agent: What is your first name?
+        sample_response: My name is Gina.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure, it's Lane.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide your phone number?
+        sample_response: 745-240-6870
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your email address?
+        sample_response: Gina.L@gmail.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the reason for the appointment?
+        sample_response: Help navigating a financial crisis
+        intent_to_elicit: false
+        slot_to_elicit: Reason
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date would you like to have the appointment?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ScheduleAppointmentFinancialAdvisor_HelpIntent_en-US
+    scenario_id: '0506'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to schedule an appointment with a financial advisor at a local branch
+    description: User wants to schedule an appointment with a financial advisor at a local branch
+    script:
+      - agent: What is your first name?
+        sample_response: Yeah, it's Spencer.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name's Campbell.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide your phone number?
+        sample_response: '8464620759'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your email address?
+        sample_response: OK, it's CampbellSpencer@yahoo.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the reason for the appointment?
+        sample_response: I want advice about how to save
+        intent_to_elicit: false
+        slot_to_elicit: Reason
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date would you like to have the appointment?
+        sample_response: 2021-01-29.
+        intent_to_elicit: false
+        slot_to_elicit: PreferredDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: At what time would you like to have the appointment?
+        sample_response: That would be evening.
+        intent_to_elicit: false
+        slot_to_elicit: PreferredTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In which city is the branch located?
+        sample_response: I'm not sure, can you help me?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ScheduleAppointmentFinancialAdvisor_NoIntent_en-US
+    scenario_id: '0507'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to schedule an appointment with a financial advisor at a local branch
+    description: User wants to schedule an appointment with a financial advisor at a local branch
+    script:
+      - agent: What is your first name?
+        sample_response: My name's Tammy.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: It is Goodwin.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please provide your phone number?
+        sample_response: '1340157584'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is your email address?
+        sample_response: The email is G.Tammy@gmail.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the reason for the appointment?
+        sample_response: I need help making plans for retirement
+        intent_to_elicit: false
+        slot_to_elicit: Reason
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: On what date would you like to have the appointment?
+        sample_response: I don't feel comfortable telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditLimitIncreaseRequest_Denied_en-US
+    scenario_id: '0508'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request a credit card limit increase
+    description: User wants to request a credit card limit increase
+    script:
+      - agent: What is your first name?
+        sample_response: Jennifer
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Kelley
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please provide your account number?
+        sample_response: 56-33208168v6
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number?
+        sample_response: '4595571812956269'
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number, for verification purposes?
+        sample_response: 154-47-7730
+        intent_to_elicit: false
+        slot_to_elicit: SocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your phone number?
+        sample_response: (031)-568-9954
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the email address we currently have on file?
+        sample_response: Kelley.Jennifer@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the new limit you would like to request?
+        sample_response: $70.00
+        intent_to_elicit: false
+        slot_to_elicit: NewCreditCardLimit
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Not right now. but thank you for your help.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditLimitIncreaseRequest_RepeatIntent_en-US
+    scenario_id: '0509'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request a credit card limit increase
+    description: User wants to request a credit card limit increase
+    script:
+      - agent: What is your first name?
+        sample_response: Yeah, it's Jared.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name's Smith.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please provide your account number?
+        sample_response: 57-L142599EA.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number?
+        sample_response: Sure, 2293885596769428.
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number, for verification purposes?
+        sample_response: Okay, it's 115-34-4948.
+        intent_to_elicit: false
+        slot_to_elicit: SocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your phone number?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditLimitIncreaseRequest_StartOverIntent_en-US
+    scenario_id: '0510'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request a credit card limit increase
+    description: User wants to request a credit card limit increase
+    script:
+      - agent: What is your first name?
+        sample_response: Yeah, it's Lisa.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: OK, it's Briggs.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please provide your account number?
+        sample_response: That is 5230503757BP.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number?
+        sample_response: It's 180046731668484.
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your social security number, for verification purposes?
+        sample_response: That's 619-12-6338.
+        intent_to_elicit: false
+        slot_to_elicit: SocialSecurityNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could I please have your phone number?
+        sample_response: 469-7159
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: And what is the email address we currently have on file?
+        sample_response: For email, Lisa.B@yahoo.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the new limit you would like to request?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreditLimitIncreaseRequest_ReduceOverdraft_Confirmed_en-US
+    scenario_id: '0511'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to request a credit card limit increase
+    description: User wants to request a credit card limit increase
+    script:
+      - agent: Welcome. How may I help you?
+        sample_response: Can I get my credit card limit increased to {NewCreditCardLimit}
+        intent_to_elicit: CreditLimitIncreaseRequest
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: It's Michael.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Last name is Morse.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please provide your account number?
+        sample_response: Reduce overdraft limit please
+        intent_to_elicit: ReduceOverdraft
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: Morse.Michael33
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account password for verification purposes?
+        sample_response: Djf82kk0
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your full bank account number?
+        sample_response: '8892842948'
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current physical address?
+        sample_response: 14 Montague St. Charleston, SC 29424
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's a good valid phone number for you?
+        sample_response: (843) 223-9938
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's a valid email address for you?
+        sample_response: MorseM33@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ConvertPreferredCommonShares_Confirmed_en-US
+    scenario_id: '0512'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to convert your preferred shares into common shares
+    description: User wants to convert their preferred shares into common shares
+    script:
+      - agent: What is your first name?
+        sample_response: Brandon
+        intent_to_elicit: false
+        slot_to_elicit: BrokerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Jackson
+        intent_to_elicit: false
+        slot_to_elicit: BrokerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: MK-49082445
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: 1251 E. Forest Street, Queenstown, MD 21658
+        intent_to_elicit: false
+        slot_to_elicit: BrokerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best phone number to reach you at?
+        sample_response: (176)-796-8693
+        intent_to_elicit: false
+        slot_to_elicit: BrokerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide me with your email address?
+        sample_response: BrandonJ@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: BrokerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your current total in preferred stock shares?
+        sample_response: '300'
+        intent_to_elicit: false
+        slot_to_elicit: CurrentPreferredStockTotalAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What amount of that total were you looking to convert to common shares?
+        sample_response: '100'
+        intent_to_elicit: false
+        slot_to_elicit: PreferredStockTradeInAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your desired conversion date for these shares?
+        sample_response: '2021-04-11'
+        intent_to_elicit: false
+        slot_to_elicit: ConversionDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you looking to sell your common shares immediately, or hold for a later date?
+        sample_response: hold.
+        intent_to_elicit: false
+        slot_to_elicit: SellOrHold
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: If you don't mind, thank you.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ConvertPreferredCommonShares_RepeatIntent_en-US
+    scenario_id: '0513'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to convert your preferred shares into common shares
+    description: User wants to convert their preferred shares into common shares
+    script:
+      - agent: What is your first name?
+        sample_response: It is Gerald.
+        intent_to_elicit: false
+        slot_to_elicit: BrokerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Ward is the last name.
+        intent_to_elicit: false
+        slot_to_elicit: BrokerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: 44-40008033D5.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: At 8422 Cleveland St., Is Of Springs, ME 04549
+        intent_to_elicit: false
+        slot_to_elicit: BrokerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best phone number to reach you at?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ConvertPreferredCommonShares_StopIntent_en-US
+    scenario_id: '0514'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to convert your preferred shares into common shares
+    description: User wants to convert their preferred shares into common shares
+    script:
+      - agent: What is your first name?
+        sample_response: Its Johnny
+        intent_to_elicit: false
+        slot_to_elicit: BrokerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: It is Perry
+        intent_to_elicit: false
+        slot_to_elicit: BrokerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number?
+        sample_response: Okay its JM-27708851
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your physical address?
+        sample_response: "My address is 1356 Newbridge Street,\nSacramento, CA 95819"
+        intent_to_elicit: false
+        slot_to_elicit: BrokerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the best phone number to reach you at?
+        sample_response: '3949152964'
+        intent_to_elicit: false
+        slot_to_elicit: BrokerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you provide me with your email address?
+        sample_response: My email is PerryJohnny@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: BrokerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your current total in preferred stock shares?
+        sample_response: I want to stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreateBusinessPlan_Denied_en-US
+    scenario_id: '0515'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to create a business plan for your new business
+    description: User wants to create a business plan for their new business
+    script:
+      - agent: What is your business name?
+        sample_response: Yu, Hartman and Anderson
+        intent_to_elicit: false
+        slot_to_elicit: BusinessName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please describe the products and/or services your business will be offering.
+        sample_response: I design web pages.
+        intent_to_elicit: false
+        slot_to_elicit: ProductOrServiceOffered
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you a sole proprietor or will this business be an LLC?
+        sample_response: LLC.
+        intent_to_elicit: false
+        slot_to_elicit: SoleProprietorOrLLC
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you plan to form a general or limited partnership?
+        sample_response: general.
+        intent_to_elicit: false
+        slot_to_elicit: GeneralOrLimitedPartnership
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you have or intend to incorporate your business as an S or C corporation?
+        sample_response: C corporation
+        intent_to_elicit: false
+        slot_to_elicit: SOrCIncorporation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: nope. not now. thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CreateBusinessPlan_YesIntent_en-US
+    scenario_id: '0516'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to create a business plan for your new business
+    description: User wants to create a business plan for their new business
+    script:
+      - agent: What is your business name?
+        sample_response: That's Morris-Chandler.
+        intent_to_elicit: false
+        slot_to_elicit: BusinessName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please describe the products and/or services your business will be offering.
+        sample_response: We deliver glitter bombs.
+        intent_to_elicit: false
+        slot_to_elicit: ProductOrServiceOffered
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Are you a sole proprietor or will this business be an LLC?
+        sample_response: That's exactly right.
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReduceOverdraft_Confirmed_en-US
+    scenario_id: '0517'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease your overdraft limit
+    description: User wants to decrease their overdraft limit
+    script:
+      - agent: What is your first name?
+        sample_response: Rebecca
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Medina
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: MRebecca2013
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account password for verification purposes?
+        sample_response: O3Obi075td
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your full bank account number?
+        sample_response: 84-37046233y1
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current physical address?
+        sample_response: "7395 Rosewood Street,\nNorwood, OH 45207"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's a good valid phone number for you?
+        sample_response: 598-5629
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's a valid email address for you?
+        sample_response: MRebecca@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReduceOverdraft_CancelIntent_en-US
+    scenario_id: '0518'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease your overdraft limit
+    description: User wants to decrease their overdraft limit
+    script:
+      - agent: What is your first name?
+        sample_response: It's Jessica.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: My last name is Hall.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: Sure, H.Jessica1997.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account password for verification purposes?
+        sample_response: That's tDMpZgwd9e.
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your full bank account number?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ReduceOverdraft_StopIntent_en-US
+    scenario_id: '0519'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to decrease your overdraft limit
+    description: User wants to decrease their overdraft limit
+    script:
+      - agent: What is your first name?
+        sample_response: Sure, it's Lonnie.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name?
+        sample_response: Sure, it's Ramirez.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: OK, it's LonnieR1941.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account password for verification purposes?
+        sample_response: That is 8aiH6z3yUT.
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your full bank account number?
+        sample_response: It's 24-57585628Y5.
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current physical address?
+        sample_response: Yes, it's 7373 Leatherwood St., Richlands, NC 28574
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's a good valid phone number for you?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCheckLate_Confirmed_en-US
+    scenario_id: '0520'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit a check after regular banking hours
+    description: User wants to deposit a check after regular banking hours
+    script:
+      - agent: Can I have your first name please?
+        sample_response: Lisa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Lopez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where are you currently located?
+        sample_response: 3198 Maple Street, Edgemoor, SC 29712
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your best phone number?
+        sample_response: (786)-170-1110
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide your email address if you'd like a transcript of this conversation.
+        sample_response: LLisa@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCheckLate_YesIntent_en-US
+    scenario_id: '0521'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit a check after regular banking hours
+    description: User wants to deposit a check after regular banking hours
+    script:
+      - agent: Can I have your first name please?
+        sample_response: Yeah, it's Ann.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name's Martinez.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where are you currently located?
+        sample_response: Sure, it's 438 Schoolhouse Circle, Flemington, FL 32686
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your best phone number?
+        sample_response: Sure!
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCheckLate_CancelIntent_en-US
+    scenario_id: '0522'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit a check after regular banking hours
+    description: User wants to deposit a check after regular banking hours
+    script:
+      - agent: Can I have your first name please?
+        sample_response: My name's Leslie.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name's Johnson.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where are you currently located?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCheckApp_Confirmed_en-US
+    scenario_id: '0523'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit a check using your bank's app
+    description: User wants to deposit a check using their bank's app
+    script:
+      - agent: Can you tell me your first name?
+        sample_response: Melissa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: Patterson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you have your account number?
+        sample_response: SI-57746788
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: P.Melissa1966
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account password for verification purposes?
+        sample_response: AL6FsunAEs
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide the model of your phone so that I can verify it can deposit checks with the camera option.
+        sample_response: Pixel 4A.
+        intent_to_elicit: false
+        slot_to_elicit: PhoneModel
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCheckApp_YesIntent_en-US
+    scenario_id: '0524'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit a check using your bank's app
+    description: User wants to deposit a check using their bank's app
+    script:
+      - agent: Can you tell me your first name?
+        sample_response: I'm Jodi.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: OK, it's Brown.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you have your account number?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCheckApp_NoIntent_en-US
+    scenario_id: '0525'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit a check using your bank's app
+    description: User wants to deposit a check using their bank's app
+    script:
+      - agent: Can you tell me your first name?
+        sample_response: It is Jesse.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name?
+        sample_response: My last name is Carter.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Do you have your account number?
+        sample_response: OK, it's 70-B306508TV.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account username?
+        sample_response: It is JesseCarter1980.
+        intent_to_elicit: false
+        slot_to_elicit: Username
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account password for verification purposes?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCashLate_Confirmed_en-US
+    scenario_id: '0526'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit cash after banking hours
+    description: User wants to deposit cash after banking hours
+    script:
+      - agent: Can you tell me your first name please?
+        sample_response: Christine
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name please?
+        sample_response: Harris
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your bank account number?
+        sample_response: 55-8202481V2
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address please?
+        sample_response: 4846 South Garfield Street, Pinson, TN 38366
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is the closest branch to you?
+        sample_response: 4547 Sigley Rd. Suite 11C
+        intent_to_elicit: false
+        slot_to_elicit: BankAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time does your bank close?
+        sample_response: night
+        intent_to_elicit: false
+        slot_to_elicit: BankClosingTime
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me how much you need to deposit?
+        sample_response: $30.00
+        intent_to_elicit: false
+        slot_to_elicit: DepositAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCashLate_StartOverIntent_en-US
+    scenario_id: '0527'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit cash after banking hours
+    description: User wants to deposit cash after banking hours
+    script:
+      - agent: Can you tell me your first name please?
+        sample_response: sure, it's Jennifer.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name please?
+        sample_response: my last name is Rangel.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your bank account number?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DepositCashLate_StopIntent_en-US
+    scenario_id: '0528'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to deposit cash after banking hours
+    description: User wants to deposit cash after banking hours
+    script:
+      - agent: Can you tell me your first name please?
+        sample_response: It is Luke.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your last name please?
+        sample_response: Freeman.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your bank account number?
+        sample_response: Sure, 33-Q208055UV.
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address please?
+        sample_response: It's at 13 Dunbar Street, Jane Lew, WV 26378
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Where is the closest branch to you?
+        sample_response: My address is 4547 Sigley Rd. Suite 11C.
+        intent_to_elicit: false
+        slot_to_elicit: BankAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What time does your bank close?
+        sample_response: Never mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeBouncedFee_Confirmed_en-US
+    scenario_id: '0529'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute a bounced payment charge
+    description: User wants to dispute a bounced payment charge
+    script:
+      - agent: For verification purposes, what's your first name?
+        sample_response: Melissa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For verification purposes, what's your last name?
+        sample_response: Edwards
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your bank account number please?
+        sample_response: ZN-57354503
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For security reasons, could I have your passcode?
+        sample_response: '4562'
+        intent_to_elicit: false
+        slot_to_elicit: SecurityCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What account type is that, for example, your checking or your savings?
+        sample_response: money market
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Just for security purposes, could I have your date of birth please?
+        sample_response: '1996-09-14'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the address we have on file for you?
+        sample_response: 6099 Glen Creek Street, Georgetown, AR 72143
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Please provide me with the amount that you were charged.
+        sample_response: $190.00
+        intent_to_elicit: false
+        slot_to_elicit: ChargeAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's the date that the payment bounced?
+        sample_response: '2020-11-26'
+        intent_to_elicit: false
+        slot_to_elicit: DateOfBouncedPaymentCharge
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who was the payment supposed to go to?
+        sample_response: Hamilton, Hardy and Walter
+        intent_to_elicit: false
+        slot_to_elicit: PaymentReceiver
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Sure.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeBouncedFee_RepeatIntent_en-US
+    scenario_id: '0530'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute a bounced payment charge
+    description: User wants to dispute a bounced payment charge
+    script:
+      - agent: For verification purposes, what's your first name?
+        sample_response: It's Michael.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For verification purposes, what's your last name?
+        sample_response: Sure, it's Carr.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your bank account number please?
+        sample_response: It's 2270618158LE.
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For security reasons, could I have your passcode?
+        sample_response: I don't understand.
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeBouncedFee_HelpIntent_en-US
+    scenario_id: '0531'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute a bounced payment charge
+    description: User wants to dispute a bounced payment charge
+    script:
+      - agent: For verification purposes, what's your first name?
+        sample_response: My name is Paula.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For verification purposes, what's your last name?
+        sample_response: Sure, it's Johnson.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your bank account number please?
+        sample_response: help, how do I find that info?
+        intent_to_elicit: HelpIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeBankFee_NoIntent_en-US
+    scenario_id: '0532'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute a fee your bank withdrew from your account
+    description: User wants to dispute a fee their bank withdrew from their account
+    script:
+      - agent: Could you provide me with your first name please?
+        sample_response: Yeah, it's Kyle.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name?
+        sample_response: The last name is Hart.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In order to proceed, I'll need to know your bank account number please.
+        sample_response: OK, it's 96-Q753281KK.
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For security reasons, could I have your passcode?
+        sample_response: No, thank you
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeBankFee_StartOverIntent_en-US
+    scenario_id: '0533'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute a fee your bank withdrew from your account
+    description: User wants to dispute a fee their bank withdrew from their account
+    script:
+      - agent: Could you provide me with your first name please?
+        sample_response: Yeah, it's Debra.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name?
+        sample_response: It's Sellers.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In order to proceed, I'll need to know your bank account number please.
+        sample_response: Okay, it's 49958025651VW.
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For security reasons, could I have your passcode?
+        sample_response: Wait, let's start over
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeBankFee_Denied_en-US
+    scenario_id: '0534'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute a fee your bank withdrew from your account
+    description: User wants to dispute a fee their bank withdrew from their account
+    script:
+      - agent: Could you provide me with your first name please?
+        sample_response: My name's Dawn.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your last name?
+        sample_response: Last name is Stokes.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: In order to proceed, I'll need to know your bank account number please.
+        sample_response: It's AM-3512400.
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For security reasons, could I have your passcode?
+        sample_response: That is 2554.
+        intent_to_elicit: false
+        slot_to_elicit: SecurityCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Let's see, was that your checking or your savings account?
+        sample_response: It should have been my IRA
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What's your date of birth please?
+        sample_response: 1984-11-01 is my birthdate.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you provide me with your current address please?
+        sample_response: It's 2909 High Noon Street, Pinero, VA 23061.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When were you charged this fee?
+        sample_response: 2020-08-13.
+        intent_to_elicit: false
+        slot_to_elicit: DateOfIncurredFee
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much were you charged?
+        sample_response: The amount is $100.00.
+        intent_to_elicit: false
+        slot_to_elicit: IncurredFeeAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What was the reason provided that you were charged the fee?
+        sample_response: insufficient funds
+        intent_to_elicit: false
+        slot_to_elicit: ReasonForFee
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: I think I will think about it a little first so let's not finalize anything just this minute.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SetUpRecurringPayments_Confirmed_en-US
+    scenario_id: '0535'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up recurring automatic payments for a bill
+    description: User wants to set up recurring automatic payments for a bill
+    script:
+      - agent: Could you verify you bank account number please?
+        sample_response: 50-D422098XV
+        intent_to_elicit: false
+        slot_to_elicit: CustomerBankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the security code on your account for security purposes?
+        sample_response: '5621'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerSecurityCode
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: For verification reasons, what's your date of birth?
+        sample_response: '1962-04-05'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerDateOfBirth
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me what email address we have on file for you?
+        sample_response: JohnsonCarlos@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmailAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is receiving the payments?
+        sample_response: Mullen-Richard
+        intent_to_elicit: false
+        slot_to_elicit: ReceiverOfPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to schedule your automatic payments?
+        sample_response: '2021-01-08'
+        intent_to_elicit: false
+        slot_to_elicit: DateOfPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account type do you want your payments deducted from?
+        sample_response: money market
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountType
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Is there a duration that you'll make these payments or should we assume it's ongoing for now?
+        sample_response: monthly
+        intent_to_elicit: false
+        slot_to_elicit: DurationOfPayment
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SetUpRecurringPayments_NoIntent_en-US
+    scenario_id: '0536'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up recurring automatic payments for a bill
+    description: User wants to set up recurring automatic payments for a bill
+    script:
+      - agent: Could you verify you bank account number please?
+        sample_response: That's 94-92906733T8.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerBankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me the security code on your account for security purposes?
+        sample_response: No, thank you
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CompleteETF_StopIntent_en-US
+    scenario_id: '0537'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to do an Electronic Funds Transfer
+    description: User wants to do an Electronic Funds Transfer
+    script:
+      - agent: If you want to make this a recurring transfer, what is the span of time that you'd like to do so?
+        sample_response: seven months
+        intent_to_elicit: false
+        slot_to_elicit: SpanOfFundsTransferred
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you want to do a certain percentage of transferable funds, how much would you like to do?
+        sample_response: yes, current
+        intent_to_elicit: false
+        slot_to_elicit: PercentageAmountOfTransfer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Just for security purposes, what's the password on that account?
+        sample_response: Please stop
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CompleteETF_CancelIntent_en-US
+    scenario_id: '0538'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to do an Electronic Funds Transfer
+    description: User wants to do an Electronic Funds Transfer
+    script:
+      - agent: If you want to make this a recurring transfer, what is the span of time that you'd like to do so?
+        sample_response: eleven months
+        intent_to_elicit: false
+        slot_to_elicit: SpanOfFundsTransferred
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you want to do a certain percentage of transferable funds, how much would you like to do?
+        sample_response: yes thats operating cash flow
+        intent_to_elicit: false
+        slot_to_elicit: PercentageAmountOfTransfer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Just for security purposes, what's the password on that account?
+        sample_response: Sure its 3uHIaVmUC9
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account do you want to transfer funds from?
+        sample_response: The checking account
+        intent_to_elicit: false
+        slot_to_elicit: AccountTypeToTransferFrom
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account do you want to transfer funds to?
+        sample_response: I want them transferred into the savings
+        intent_to_elicit: false
+        slot_to_elicit: AccountTypeToReceiveTransfer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like this transfer to happen?
+        sample_response: I've changed my mind
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_CompleteETF_Denied_en-US
+    scenario_id: '0539'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to do an Electronic Funds Transfer
+    description: User wants to do an Electronic Funds Transfer
+    script:
+      - agent: If you want to make this a recurring transfer, what is the span of time that you'd like to do so?
+        sample_response: one month
+        intent_to_elicit: false
+        slot_to_elicit: SpanOfFundsTransferred
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: If you want to do a certain percentage of transferable funds, how much would you like to do?
+        sample_response: put it through as quick.
+        intent_to_elicit: false
+        slot_to_elicit: PercentageAmountOfTransfer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Just for security purposes, what's the password on that account?
+        sample_response: Yeah, it's 4JD8QMHk8q.
+        intent_to_elicit: false
+        slot_to_elicit: AccountPassword
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account do you want to transfer funds from?
+        sample_response: It is the IRA account
+        intent_to_elicit: false
+        slot_to_elicit: AccountTypeToTransferFrom
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Which account do you want to transfer funds to?
+        sample_response: Please put it in the checking
+        intent_to_elicit: false
+        slot_to_elicit: AccountTypeToReceiveTransfer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like this transfer to happen?
+        sample_response: OK, it's 2021-03-09.
+        intent_to_elicit: false
+        slot_to_elicit: DateOfTransfer
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your bank account number please?
+        sample_response: 96-59297268F0.
+        intent_to_elicit: false
+        slot_to_elicit: BankAccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much would you like to transfer?
+        sample_response: $110.00.
+        intent_to_elicit: false
+        slot_to_elicit: TransferAmount
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: I think I will think about it a little first so let's not finalize anything just this minute.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ExecuteArbitrageTrade_Confirmed_en-US
+    scenario_id: '0540'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to execute an arbitrage trade in the securities market
+    description: Customer wants to execute an arbitrage trade in the securities market
+    script:
+      - agent: What is your first name?
+        sample_response: Bradley
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name?
+        sample_response: Ruiz
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What market are you selling to?
+        sample_response: NASDAQ.
+        intent_to_elicit: false
+        slot_to_elicit: MarketSellTo
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the trade name?
+        sample_response: GE.
+        intent_to_elicit: false
+        slot_to_elicit: TradeName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the value of the receiving trade?
+        sample_response: $120.00
+        intent_to_elicit: false
+        slot_to_elicit: BuyInPrice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the value of the initial trade?
+        sample_response: $80.00
+        intent_to_elicit: false
+        slot_to_elicit: TradePrice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much are you willing to spend for to trade?
+        sample_response: $170.00
+        intent_to_elicit: false
+        slot_to_elicit: MarketBuyIn
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Perfect! Thank you!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ExecuteArbitrageTrade_RepeatIntent_en-US
+    scenario_id: '0541'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to execute an arbitrage trade in the securities market
+    description: Customer wants to execute an arbitrage trade in the securities market
+    script:
+      - agent: What is your first name?
+        sample_response: It is Mark.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name?
+        sample_response: Sure, it's Burnett.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What market are you selling to?
+        sample_response: The NYSE.
+        intent_to_elicit: false
+        slot_to_elicit: MarketSellTo
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the trade name?
+        sample_response: JBLU is the stock symbol.
+        intent_to_elicit: false
+        slot_to_elicit: TradeName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the value of the receiving trade?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_ExecuteArbitrageTrade_PauseIntent_en-US
+    scenario_id: '0542'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to execute an arbitrage trade in the securities market
+    description: Customer wants to execute an arbitrage trade in the securities market
+    script:
+      - agent: What is your first name?
+        sample_response: My name is Jermaine.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name?
+        sample_response: It's Decker.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What market are you selling to?
+        sample_response: It's NYSE
+        intent_to_elicit: false
+        slot_to_elicit: MarketSellTo
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the trade name?
+        sample_response: MFA, please.
+        intent_to_elicit: false
+        slot_to_elicit: TradeName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the value of the receiving trade?
+        sample_response: Okay, it's $200.00.
+        intent_to_elicit: false
+        slot_to_elicit: BuyInPrice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the value of the initial trade?
+        sample_response: Sure, it's $60.00.
+        intent_to_elicit: false
+        slot_to_elicit: TradePrice
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How much are you willing to spend for to trade?
+        sample_response: Can I do this later?
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SellStockShares_RepeatIntent_en-US
+    scenario_id: '0543'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sell stock shares
+    description: User wants to sell stock shares
+    script:
+      - agent: Can I have your first name?
+        sample_response: Sure, it's Helen.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Last name is Rodriguez.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stock shares would you like to sell?
+        sample_response: Can you repeat that?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SellStockShares_StartOverIntent_en-US
+    scenario_id: '0544'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sell stock shares
+    description: User wants to sell stock shares
+    script:
+      - agent: Can I have your first name?
+        sample_response: I'm Linda.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_SellStockShares_Confirmed_en-US
+    scenario_id: '0545'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to sell stock shares
+    description: User wants to sell stock shares
+    script:
+      - agent: Can I have your first name?
+        sample_response: It's Mark.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: It is Shelton.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many stock shares would you like to sell?
+        sample_response: Okay, 100
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfShares
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What company's stock shares would you like to sell?
+        sample_response: I'd like to sell Gap.
+        intent_to_elicit: false
+        slot_to_elicit: StockName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the minimum price you will take per share?
+        sample_response: OK, it's $190.00.
+        intent_to_elicit: false
+        slot_to_elicit: PricePerShare
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you like me to finalize your request?
+        sample_response: That would be great, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_AppointmentNotary_Denied_en-US
+    scenario_id: '0546'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up an appointment with a notary public
+    description: User wants to set up an appointment with a notary public
+    script:
+      - agent: Can you tell me your first name please?
+        sample_response: Megan
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: Sharp
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: 1100 Studebaker St., Macon, NC 27551
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What city are you located in?
+        sample_response: Phoenix
+        intent_to_elicit: false
+        slot_to_elicit: UserCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to schedule your notary appointment?
+        sample_response: '2021-01-22'
+        intent_to_elicit: false
+        slot_to_elicit: NotaryAppointmentDate
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of document do you need notarized?
+        sample_response: trusts
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfDocuments
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Nope. Not now. Thanks for the info, though!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_AppointmentNotary_NoIntent_en-US
+    scenario_id: '0547'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up an appointment with a notary public
+    description: User wants to set up an appointment with a notary public
+    script:
+      - agent: Can you tell me your first name please?
+        sample_response: It's Courtney.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: OK, it's Moore.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_AppointmentNotary_PauseIntent_en-US
+    scenario_id: '0548'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to set up an appointment with a notary public
+    description: User wants to set up an appointment with a notary public
+    script:
+      - agent: Can you tell me your first name please?
+        sample_response: Gregory.
+        intent_to_elicit: false
+        slot_to_elicit: UserFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name please?
+        sample_response: The last name is Flores.
+        intent_to_elicit: false
+        slot_to_elicit: UserLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your address?
+        sample_response: The street address is 2586 Poplar Street, Corpus Christi, TX 78470
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What city are you located in?
+        sample_response: City is Palmdale.
+        intent_to_elicit: false
+        slot_to_elicit: UserCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: When would you like to schedule your notary appointment?
+        sample_response: Hold on
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeATMFee_Denied_en-US
+    scenario_id: '0549'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute ATM fees
+    description: User wants to dispute ATM fees
+    script:
+      - agent: Can I have your first name?
+        sample_response: Michele
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name?
+        sample_response: Valdez
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your home address?
+        sample_response: 2679A Maple Street, Harlan, KY 40831
+        intent_to_elicit: false
+        slot_to_elicit: UserAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What city do you live in?
+        sample_response: Moneta
+        intent_to_elicit: false
+        slot_to_elicit: CustomerCity
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the name of your bank?
+        sample_response: State Street
+        intent_to_elicit: false
+        slot_to_elicit: BankName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What type of fees do you want to dispute?
+        sample_response: I did a balance inquiry on another bank's ATM
+        intent_to_elicit: false
+        slot_to_elicit: TypeOfDispute
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Actually, let's hold off for the moment. Please don't submit anything now.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Denied
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: Finance_DisputeATMFee_RepeatIntent_en-US
+    scenario_id: '0550'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to dispute ATM fees
+    description: User wants to dispute ATM fees
+    script:
+      - agent: Can I have your first name?
+        sample_response: Sure its Teresa
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can I have your last name?
+        sample_response: Vasquez is the last name
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your home address?
+        sample_response: What was that again?
+        intent_to_elicit: RepeatIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true

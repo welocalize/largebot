@@ -1,0 +1,1371 @@
+name: LargeBot_MediaCable_scenarios_batch18
+locale: en-US
+domain: MediaCable
+general_agent_instructions: In this task, you will be playing the Agent side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+general_customer_instructions: In this task, you will be playing the Customer side of a customer service bot. Follow the directions found in the "Simulated Conversation with a Text Bot" guidelines.
+slot_filled_instructions: IMPORTANT - Do not re-ask for information that the Customer gave you when they first made the request. Just skip over that prompt when you get to it.
+custom_slot_instructions: Please use the following information to answer the bot's questions.
+personal_information: IMPORTANT - Do not give any personal information to the bot! If it asks you for personal information, just make up something that sounds realistic.
+agent_did_not_understand: Sorry, I did not understand. Goodbye!
+conversations:
+  - conversation:
+    name: MediaCable(OODIntent)_SurrenderConnection_en-US
+    scenario_id: '0341'
+    bias:
+      - SingleIntent
+      - OODIntent
+    customer_instructions: You want to cancel your cable TV or broadband connection
+    description: User wants to cancel their cable TV or broadband connection
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: For the account {AccountNumber} how would I cancel it
+        intent_to_elicit: SurrenderConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Its Angela thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: It is Walls
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you please tell me your account number?
+        sample_response: I want two pina coladas
+        intent_to_elicit: OODIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SurrenderConnection_StartOverIntent_en-US
+    scenario_id: '0342'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to cancel your cable TV or broadband connection
+    description: User wants to cancel their cable TV or broadband connection
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I have an account {AccountNumber} and I don't want it anymore. Please cancel it
+        intent_to_elicit: SurrenderConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My first name is Sarah
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: That's Sullivan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the current address connected to this account?
+        sample_response: "yeah it's 262 NE. San Pablo St.,\nBonita, LA 71223 17517 Albany"
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What will be the date of cancellation?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_SurrenderConnection_NoIntent_en-US
+    scenario_id: '0343'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to cancel your cable TV or broadband connection
+    description: User wants to cancel their cable TV or broadband connection
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Can you cancel the account {AccountNumber} please
+        intent_to_elicit: SurrenderConnection
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yeah, it is Tiffany
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Of course, it's Rodgers
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the current address connected to this account?
+        sample_response: "Sure, that's 1760A Fairfield St.,\nRipon, CA 95366 78883 Marks."
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What will be the date of cancellation?
+        sample_response: for 2021-07-02
+        intent_to_elicit: false
+        slot_to_elicit: DateOfCancellation
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your credit card number connected to this account?
+        sample_response: I don't want to give that information.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LoyaltyOffer_Confirmed_en-US
+    scenario_id: '0344'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to know what a company can offer them if user tries to switch companies
+    description: User wants to know what a company can offer them if user tries to switch companies
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I'm comparing other offers compared to my {CurrentPackage}. Anything you can do to keep me
+        intent_to_elicit: LoyaltyOffer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yeah it is Martin
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yep, it is Boyd
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: Its 59-I866332YX
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: "No problem, the address is 8421C Alderwood St.,\nBement, IL 61813"
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your budget in dollars?
+        sample_response: The amount is exactly 45.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerBudgetInDollars
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the number of channels you would like to have?
+        sample_response: it would be 65
+        intent_to_elicit: false
+        slot_to_elicit: HowManyChannelsWanted
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel are you interested in adding to your package?
+        sample_response: Add HGTV please
+        intent_to_elicit: false
+        slot_to_elicit: WhatChannelsWanted
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: That would be splendid! Thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LoyaltyOffer_CustomerBudgetInDollars_Confirmed_en-US
+    scenario_id: '0345'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know what a company can offer them if user tries to switch companies
+    description: User wants to know what a company can offer them if user tries to switch companies
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Can you do anything to lower my costs If not I'm gonna switch carriers
+        intent_to_elicit: LoyaltyOffer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: My name is Lindsay
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Yes, it's Robbins
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: ok it's 57989284399PX
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: "For the address it's 2469 Essex St.,\nSteelmantown, NJ 08270"
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What current package do you have with us?
+        sample_response: it's unlimited plus
+        intent_to_elicit: false
+        slot_to_elicit: CurrentPackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Can you tell me your budget in dollars?
+        sample_response: totaling 55
+        intent_to_elicit: CustomerBudgetInDollars
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the number of channels you would like to have?
+        sample_response: Put the number as 100
+        intent_to_elicit: false
+        slot_to_elicit: HowManyChannelsWanted
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What channel are you interested in adding to your package?
+        sample_response: I want Discovery
+        intent_to_elicit: false
+        slot_to_elicit: WhatChannelsWanted
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please confirm whether or not I should process this request for you today?
+        sample_response: Absolutely!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_LoyaltyOffer_en-US
+    scenario_id: '0346'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to know what a company can offer them if user tries to switch companies
+    description: User wants to know what a company can offer them if user tries to switch companies
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: I am thinking about moving to another service what can you offer to keep me
+        intent_to_elicit: LoyaltyOffer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: Yes, I'm Laura
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Put Anderson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: If I switch companies can I still watch the old service?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LoyaltyOffer_PauseIntent_en-US
+    scenario_id: '0347'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know what a company can offer them if user tries to switch companies
+    description: User wants to know what a company can offer them if user tries to switch companies
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: Do you have anything to match your competition otherwise I'll switch
+        intent_to_elicit: LoyaltyOffer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: call me Max
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Sure the last name is Owens
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: I'll be right back.
+        intent_to_elicit: PauseIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_LoyaltyOffer_StopIntent_en-US
+    scenario_id: '0348'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to know what a company can offer them if user tries to switch companies
+    description: User wants to know what a company can offer them if user tries to switch companies
+    script:
+      - agent: Welcome, what can I do for you?
+        sample_response: There is a better deal out there and I've been a customer for years. I need something extra to keep me here
+        intent_to_elicit: LoyaltyOffer
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your first name please?
+        sample_response: first name is Dustin
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: May I have your last name please?
+        sample_response: Last name of Garcia.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: 34-75625987K7 I guess
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your current address?
+        sample_response: I've changed my mind
+        intent_to_elicit: StopIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeCableProviderPriceMatch_Confirmed_en-US
+    scenario_id: '0349'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to switch to a different cable company but want to pay the same monthly fee
+    description: User wants to switch to a different cable company but wants to pay the same monthly fee
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I would like some help switch my cable providers and I don't want my monthly fees to change
+        intent_to_elicit: ChangeCableProviderPriceMatch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: Yeah it is Barbara
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your last name?
+        sample_response: It is Thomas thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address please?
+        sample_response: BarbaraT@hotmail.com is the best one to use
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your address please?
+        sample_response: "Here you go: 4317 Lafayette  Street,\nWest Union, WV 26456"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: 006-7210
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cable provider?
+        sample_response: Yeah, T-Mobile Wireless.
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of cable package do you currently have?
+        sample_response: I've got AT&T TV Ultimate
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCablePackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many televisions are currently connected to your cable service at your home?
+        sample_response: That's 4.
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfDevices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many channels does your current plan provide?
+        sample_response: it's like 200
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAvailableChannelsNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dollars per month is your current cable service rate?
+        sample_response: $120
+        intent_to_elicit: false
+        slot_to_elicit: CurrentMonthlyFee
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes, please. Thank you very much.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_ChangeCableProviderPriceMatch_en-US
+    scenario_id: '0350'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to switch to a different cable company but want to pay the same monthly fee
+    description: User wants to switch to a different cable company but wants to pay the same monthly fee
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: It's {CustomerFirstName} and I'm trying to switch my cable provider but still pay the same fees
+        intent_to_elicit: ChangeCableProviderPriceMatch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your last name?
+        sample_response: that's Anthony
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address please?
+        sample_response: My email is AnthonyAndrew@yahoo.com.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your address please?
+        sample_response: How do I buy your competitor company?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeCableProviderPriceMatch_NoIntent_en-US
+    scenario_id: '0351'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to a different cable company but want to pay the same monthly fee
+    description: User wants to switch to a different cable company but wants to pay the same monthly fee
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I want to switch cable companies and I would like to pay the same each month
+        intent_to_elicit: ChangeCableProviderPriceMatch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: yes it's jennifer
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your last name?
+        sample_response: yes the last name is simon
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address please?
+        sample_response: that would be simonjennifer@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your address please?
+        sample_response: "it is 1978b bridge street,\nriverbank, ca 95367 22593 mobile"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: it's 1171301274
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cable provider?
+        sample_response: wow! is my provider
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of cable package do you currently have?
+        sample_response: it's spectrum tv gold
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCablePackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many televisions are currently connected to your cable service at your home?
+        sample_response: I'm not telling you.
+        intent_to_elicit: NoIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeCableProviderPriceMatch_YesIntent_en-US
+    scenario_id: '0352'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to a different cable company but want to pay the same monthly fee
+    description: User wants to switch to a different cable company but wants to pay the same monthly fee
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: Can you tell me how to switch to a cable company that charges the same amount as my current provider
+        intent_to_elicit: ChangeCableProviderPriceMatch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: Jesse...
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your last name?
+        sample_response: Guerra
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address please?
+        sample_response: Yup, it is G.Jesse@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your address please?
+        sample_response: Yes
+        intent_to_elicit: YesIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeCableProviderPriceMatch_CurrentMonthlyFee_Confirmed_en-US
+    scenario_id: '0353'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to a different cable company but want to pay the same monthly fee
+    description: User wants to switch to a different cable company but wants to pay the same monthly fee
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I'm happy with the monthly fee I pay but would like to switch to a new provider
+        intent_to_elicit: ChangeCableProviderPriceMatch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: put it down as Brittany
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your last name?
+        sample_response: My name is Barrera
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address please?
+        sample_response: Yes it is Brittany.Barrera@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your address please?
+        sample_response: "Address: 1152 Augusta Street,\nSilver Creek, WA 98585 75407 Hacks Neck"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Sure, 879-2352
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cable provider?
+        sample_response: I subscribe to WOW!
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of cable package do you currently have?
+        sample_response: it's the DISH America\'s Top 200
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCablePackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many televisions are currently connected to your cable service at your home?
+        sample_response: yeah 3
+        intent_to_elicit: false
+        slot_to_elicit: NumberOfDevices
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many channels does your current plan provide?
+        sample_response: yes that's 250
+        intent_to_elicit: false
+        slot_to_elicit: CurrentAvailableChannelsNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dollars per month is your current cable service rate?
+        sample_response: 100 only
+        intent_to_elicit: CurrentMonthlyFee
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_ChangeCableProviderPriceMatch_NumberOfDevices_CurrentAvailableChannelsNumber_CurrentMonthlyFee_Confirmed_en-US
+    scenario_id: '0354'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to a different cable company but want to pay the same monthly fee
+    description: User wants to switch to a different cable company but wants to pay the same monthly fee
+    script:
+      - agent: Welcome, how can I help you?
+        sample_response: I don't want my monthly payments to change but I would like to switch to a new provider
+        intent_to_elicit: ChangeCableProviderPriceMatch
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your first name?
+        sample_response: My name is Bruce thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your last name?
+        sample_response: Of course, it's Carney
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address please?
+        sample_response: Sure, my email is BruceC@gmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your address please?
+        sample_response: "yep 6106 SE. Ivy Street,\nScitico, CT 06082 70962 Columbia"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your phone number?
+        sample_response: Yes, 462-1087
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Who is your current cable provider?
+        sample_response: Frontier
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCableProvider
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What kind of cable package do you currently have?
+        sample_response: AT&T TV Ultimate package
+        intent_to_elicit: false
+        slot_to_elicit: CurrentCablePackage
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many televisions are currently connected to your cable service at your home?
+        sample_response: '2'
+        intent_to_elicit: NumberOfDevices
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many channels does your current plan provide?
+        sample_response: Number's 100
+        intent_to_elicit: CurrentAvailableChannelsNumber
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dollars per month is your current cable service rate?
+        sample_response: yeah - 50
+        intent_to_elicit: CurrentMonthlyFee
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: That would be wonderful, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UnlimitedCallsDataPlan_CancelIntent_en-US
+    scenario_id: '0355'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to a mobile plan with unlimited calls and or data
+    description: User wants to switch to a mobile plan with unlimited calls and or data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I only have {CurrentPlanUsageLimits} on my current plan and I need a plan that has unlimited calls
+        intent_to_elicit: UnlimitedCallsDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My first name is Emma
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name please?
+        sample_response: Sure the last name is Hart
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: Yes, I've got 48681186168HW here
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your password?
+        sample_response: try M7E5dZZghu
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your address?
+        sample_response: "My address is 562 Church Street,\nSynarep, WA 98849 08298 Kansas City"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your phone number?
+        sample_response: '2920776052'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: Cancel that please.
+        intent_to_elicit: CancelIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UnlimitedCallsDataPlan_Confirmed_en-US
+    scenario_id: '0356'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to switch to a mobile plan with unlimited calls and or data
+    description: User wants to switch to a mobile plan with unlimited calls and or data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Could you change my mobile plan to a plan that includes unlimited calls
+        intent_to_elicit: UnlimitedCallsDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My name's Susan
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name please?
+        sample_response: Yes, it's Estrada
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: So I think it's 22018031309UR
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your password?
+        sample_response: try 3IKIqir86D
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your address?
+        sample_response: "That is 6312 Wakehurst Street,\nFort Lauderdale, FL 33321"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your phone number?
+        sample_response: 134-109-4225
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: That's Estrada.Susan@hotmail.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data usage does your current plan have?
+        sample_response: so that's 34
+        intent_to_elicit: false
+        slot_to_elicit: CurrentPlanUsageLimits
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your credit card number?
+        sample_response: Number's 4662034837430131
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Please do, thanks!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable(UnsupportedIntent)_UnlimitedCallsDataPlan_en-US
+    scenario_id: '0357'
+    bias:
+      - SingleIntent
+      - UnsupportedIntent
+    customer_instructions: You want to switch to a mobile plan with unlimited calls and or data
+    description: User wants to switch to a mobile plan with unlimited calls and or data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Is it possible to switch my mobile plan to one that has unlimited calls
+        intent_to_elicit: UnlimitedCallsDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: I am Barbara
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name please?
+        sample_response: Bradford
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: Do you offer any unlimited plans that don't cost a thing?
+        intent_to_elicit: UnsupportedIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UnlimitedCallsDataPlan_CurrentPlanUsageLimits_Confirmed_en-US
+    scenario_id: '0358'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to a mobile plan with unlimited calls and or data
+    description: User wants to switch to a mobile plan with unlimited calls and or data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: Can you change the mobile plan I have to one that gives me unlimited calls
+        intent_to_elicit: UnlimitedCallsDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: My name is Miranda thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name please?
+        sample_response: It's Griffith
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: it's 86849646156AS
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your password?
+        sample_response: So I think it's zJ6Q94Tjme
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your address?
+        sample_response: "It's 9580 Bellevue Street,\nHernando, FL 34442 43096 Ft Worth"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your phone number?
+        sample_response: it's 931-860-4077
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your email address?
+        sample_response: sure it's G.Miranda@yahoo.com
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many gigabytes of data usage does your current plan have?
+        sample_response: Number is 16
+        intent_to_elicit: CurrentPlanUsageLimits
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your credit card number?
+        sample_response: put 4453129760754219
+        intent_to_elicit: false
+        slot_to_elicit: CreditCardNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Should I complete your request?
+        sample_response: Yes.
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_UnlimitedCallsDataPlan_StartOverIntent_en-US
+    scenario_id: '0359'
+    bias:
+      - MultiIntent
+    customer_instructions: You want to switch to a mobile plan with unlimited calls and or data
+    description: User wants to switch to a mobile plan with unlimited calls and or data
+    script:
+      - agent: Hello and Welcome. How can I assist you today?
+        sample_response: I'd like to change my mobile plan to one with unlimited calls
+        intent_to_elicit: UnlimitedCallsDataPlan
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your first name?
+        sample_response: It's Elizabeth thanks
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your last name please?
+        sample_response: that's Dickson
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your account number please?
+        sample_response: As far as I can tell it's 84-96383969M5.
+        intent_to_elicit: false
+        slot_to_elicit: AccountNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your password?
+        sample_response: Password KoUEeLQw38
+        intent_to_elicit: false
+        slot_to_elicit: Password
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your address?
+        sample_response: can we start again please
+        intent_to_elicit: StartOverIntent
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
+  - conversation:
+    name: MediaCable_InquireMobilePlanDeals_Confirmed_en-US
+    scenario_id: '0360'
+    bias:
+      - SingleIntent
+    customer_instructions: You want to switch to the mobile service provider with the best deal
+    description: User wants to switch to the mobile service provider with the best deal
+    script:
+      - agent: Hello! How might I help you today?
+        sample_response: Change my mobile provider from {CurrentMobileProvider} to the one with the best deal
+        intent_to_elicit: InquireMobilePlanDeals
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you tell me your first name?
+        sample_response: okay it's Jason
+        intent_to_elicit: false
+        slot_to_elicit: CustomerFirstName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is your last name please?
+        sample_response: The last name's Hamilton
+        intent_to_elicit: false
+        slot_to_elicit: CustomerLastName
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Would you please tell me your address?
+        sample_response: "No problem, the address is 6304 New St.,\nMeadowview, VA 24361"
+        intent_to_elicit: false
+        slot_to_elicit: CustomerAddress
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you tell me your phone number please?
+        sample_response: '6496771139'
+        intent_to_elicit: false
+        slot_to_elicit: CustomerPhoneNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Could you please tell me your email address?
+        sample_response: HJason@hotmail.com that's it.
+        intent_to_elicit: false
+        slot_to_elicit: CustomerEmail
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many phone lines are on your current plan?
+        sample_response: Put it through as 5
+        intent_to_elicit: false
+        slot_to_elicit: CurrentLinesNumber
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: What is the data limit on your current plan?
+        sample_response: its Unlimited
+        intent_to_elicit: false
+        slot_to_elicit: CurrentDataPlan
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: How many dollars per month is your current mobile service rate?
+        sample_response: for a total of 85
+        intent_to_elicit: false
+        slot_to_elicit: CurrentMonthlyFee
+        confirm_intent: false
+        assume_intent: false
+        close: false
+      - agent: Shall I submit your request?
+        sample_response: Sounds good!
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: Confirmed
+        assume_intent: false
+        close: false
+      - agent: Closing message (do not respond)
+        sample_response: false
+        intent_to_elicit: false
+        slot_to_elicit: false
+        confirm_intent: false
+        assume_intent: false
+        close: true
